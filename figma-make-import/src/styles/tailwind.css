@@ -1,0 +1,189 @@
+@import 'tailwindcss' source(none);
+@source '../**/*.{js,ts,jsx,tsx}';
+
+@import 'tw-animate-css';
+
+/* ═══ TDS Color Theme Registration for Tailwind v4 ═══
+   Maps CSS variables from theme.css to Tailwind color tokens
+   so that utility classes like bg-toss-blue, text-toss-grey-900 etc. work. */
+
+@theme {
+  /* ── Brand ── */
+  --color-toss-brand-blue: var(--toss-brand-blue);
+  --color-toss-brand-grey: var(--toss-brand-grey);
+
+  /* ── Blue Scale ── */
+  --color-toss-blue: var(--toss-blue-500);
+  --color-toss-blue-50: var(--toss-blue-50);
+  --color-toss-blue-100: var(--toss-blue-100);
+  --color-toss-blue-200: var(--toss-blue-200);
+  --color-toss-blue-300: var(--toss-blue-300);
+  --color-toss-blue-400: var(--toss-blue-400);
+  --color-toss-blue-500: var(--toss-blue-500);
+  --color-toss-blue-600: var(--toss-blue-600);
+  --color-toss-blue-700: var(--toss-blue-700);
+  --color-toss-blue-800: var(--toss-blue-800);
+  --color-toss-blue-900: var(--toss-blue-900);
+
+  /* ── Grey Scale ── */
+  --color-toss-grey-50: var(--toss-grey-50);
+  --color-toss-grey-100: var(--toss-grey-100);
+  --color-toss-grey-200: var(--toss-grey-200);
+  --color-toss-grey-300: var(--toss-grey-300);
+  --color-toss-grey-400: var(--toss-grey-400);
+  --color-toss-grey-500: var(--toss-grey-500);
+  --color-toss-grey-600: var(--toss-grey-600);
+  --color-toss-grey-700: var(--toss-grey-700);
+  --color-toss-grey-800: var(--toss-grey-800);
+  --color-toss-grey-900: var(--toss-grey-900);
+
+  /* ── Red Scale ── */
+  --color-toss-red: var(--toss-red-500);
+  --color-toss-red-50: var(--toss-red-50);
+  --color-toss-red-100: var(--toss-red-100);
+  --color-toss-red-200: var(--toss-red-200);
+  --color-toss-red-300: var(--toss-red-300);
+  --color-toss-red-400: var(--toss-red-400);
+  --color-toss-red-500: var(--toss-red-500);
+  --color-toss-red-600: var(--toss-red-600);
+  --color-toss-red-700: var(--toss-red-700);
+  --color-toss-red-800: var(--toss-red-800);
+  --color-toss-red-900: var(--toss-red-900);
+  --color-toss-red-light: var(--toss-red-50);
+
+  /* ── Orange Scale ── */
+  --color-toss-orange: var(--toss-orange-500);
+  --color-toss-orange-50: var(--toss-orange-50);
+  --color-toss-orange-100: var(--toss-orange-100);
+  --color-toss-orange-200: var(--toss-orange-200);
+  --color-toss-orange-300: var(--toss-orange-300);
+  --color-toss-orange-400: var(--toss-orange-400);
+  --color-toss-orange-500: var(--toss-orange-500);
+  --color-toss-orange-600: var(--toss-orange-600);
+  --color-toss-orange-700: var(--toss-orange-700);
+  --color-toss-orange-800: var(--toss-orange-800);
+  --color-toss-orange-900: var(--toss-orange-900);
+  --color-toss-orange-light: var(--toss-orange-50);
+
+  /* ── Yellow Scale ── */
+  --color-toss-yellow: var(--toss-yellow-500);
+  --color-toss-yellow-50: var(--toss-yellow-50);
+  --color-toss-yellow-100: var(--toss-yellow-100);
+  --color-toss-yellow-500: var(--toss-yellow-500);
+
+  /* ── Green Scale ── */
+  --color-toss-green: var(--toss-green-500);
+  --color-toss-green-50: var(--toss-green-50);
+  --color-toss-green-100: var(--toss-green-100);
+  --color-toss-green-200: var(--toss-green-200);
+  --color-toss-green-300: var(--toss-green-300);
+  --color-toss-green-400: var(--toss-green-400);
+  --color-toss-green-500: var(--toss-green-500);
+  --color-toss-green-600: var(--toss-green-600);
+  --color-toss-green-700: var(--toss-green-700);
+  --color-toss-green-800: var(--toss-green-800);
+  --color-toss-green-900: var(--toss-green-900);
+  --color-toss-green-light: var(--toss-green-50);
+
+  /* ── Teal Scale ── */
+  --color-toss-teal: var(--toss-teal-500);
+  --color-toss-teal-50: var(--toss-teal-50);
+  --color-toss-teal-500: var(--toss-teal-500);
+
+  /* ── Purple Scale ── */
+  --color-toss-purple: var(--toss-purple-500);
+  --color-toss-purple-50: var(--toss-purple-50);
+  --color-toss-purple-500: var(--toss-purple-500);
+
+  /* ── Semantic Fill / Text / Border ── */
+  --color-toss-fill-brand: var(--toss-fill-brand);
+  --color-toss-fill-brand-weak: var(--toss-fill-brand-weak);
+  --color-toss-fill-neutral: var(--toss-fill-neutral);
+  --color-toss-fill-danger: var(--toss-fill-danger);
+  --color-toss-fill-danger-weak: var(--toss-fill-danger-weak);
+  --color-toss-fill-success: var(--toss-fill-success);
+  --color-toss-fill-success-weak: var(--toss-fill-success-weak);
+  --color-toss-fill-warning: var(--toss-fill-warning);
+  --color-toss-fill-warning-weak: var(--toss-fill-warning-weak);
+  --color-toss-text-primary: var(--toss-text-primary);
+  --color-toss-text-secondary: var(--toss-text-secondary);
+  --color-toss-text-tertiary: var(--toss-text-tertiary);
+  --color-toss-text-disabled: var(--toss-text-disabled);
+  --color-toss-border-default: var(--toss-border-default);
+  --color-toss-border-strong: var(--toss-border-strong);
+
+  /* ── Background (semantic) ── */
+  --color-toss-bg: var(--toss-bg);
+  --color-toss-bg-grey: var(--toss-bg-grey);
+}
+
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ═══ A11y: Skip Navigation ═══ */
+@utility skip-nav {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+
+  &:focus {
+    position: fixed;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    height: auto;
+    padding: 12px 24px;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: nowrap;
+    z-index: 9999;
+    background-color: var(--toss-grey-900);
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    outline: none;
+  }
+}
+
+/* ═══ A11y: Focus-Visible Ring ═══
+   키보드 포커스 시에만 아웃라인 표시 (마우스/터치는 생략) */
+@layer base {
+  *:focus-visible {
+    outline: 2px solid var(--toss-blue-500);
+    outline-offset: 2px;
+  }
+
+  /* 인풋/텍스트에어리어는 자체 포커스 스타일 유지 */
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    outline: none;
+  }
+
+  /* 포커스 아웃라인이 잘릴 수 있는 요소 보정 */
+  button:focus-visible,
+  a:focus-visible,
+  [role="tab"]:focus-visible,
+  [role="radio"]:focus-visible,
+  [role="switch"]:focus-visible,
+  [role="checkbox"]:focus-visible,
+  [role="menuitem"]:focus-visible {
+    outline: 2px solid var(--toss-blue-500);
+    outline-offset: 2px;
+  }
+}

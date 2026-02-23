@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vrink - AI 스마트 드링크 시스템</title>
+    <meta name="description" content="원하는 대로 만드는 나만의 한 잔. 브링크는 음료 농도, 맛, 탄산을 조절하는 AI 드링크 디스펜서입니다.">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="dark">
+    <!-- Navigation (최대 3~5 섹션 제약 반영) -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Vrink</a>
+            <ul class="nav-links">
+                <li><a href="#features">AI 드링크</a></li>
+                <li><a href="#shots">맞춤형 샷</a></li>
+                <li><a href="#plans">플랜 안내</a></li>
+            </ul>
+            <a href="#contact" class="btn btn-primary">도입 문의</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section (최소 텍스트, 1개 주 행동) -->
+    <header class="hero">
+        <div class="hero-content">
+            <div class="badge">대한민국 최초 스마트 디스펜서</div>
+            <h1 class="hero-title">개인화된 음료의<br><span class="highlight">새로운 AI 시스템</span></h1>
+            <p class="hero-desc">AI 기술로 내 취향에 맞는 맛, 농도, 탄산을 매일 다르게 조절하세요. 복잡한 과정 없이, 당신만의 기준에 맞춘 한 잔을 완성합니다.</p>
+            <div class="hero-actions">
+                <a href="#features" class="btn btn-primary hero-btn">브링크 경험하기</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="glass-orb orb1"></div>
+            <div class="glass-orb orb2"></div>
+            <div class="glass-orb orb3"></div>
+            <div class="glass-dispenser">
+                <div class="liquid"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Section 2: Features (정보 구조 분리: 요약 → 상세, 한 화면 섹션당 3~5개) -->
+    <section id="features" class="features-section">
+        <h2 class="section-title">원하는 대로 만드는 나만의 한 잔</h2>
+        <p class="section-sub">정해진 레시피를 따르지 않아도 됩니다. 브링크가 분석해 당신의 하루를 채워줍니다.</p>
+        
+        <div class="feature-grid">
+            <div class="feature-card glass-panel" tabindex="0" role="listitem" aria-labelledby="f1-title">
+                <div class="feature-icon taste-icon"></div>
+                <h3 id="f1-title">다양한 맛 경험</h3>
+                <p>사과, 청포도, 체리 등 5가지 플레이버. 기분에 맞춰 가장 어울리는 맛을 선택하세요.</p>
+            </div>
+            <div class="feature-card glass-panel" tabindex="0" role="listitem" aria-labelledby="f2-title">
+                <div class="feature-icon concentration-icon"></div>
+                <h3 id="f2-title">농도 세밀 조절</h3>
+                <p>부드럽게 마실지, 진하게 즐길지 AI가 기억하고 당신만의 농도를 바로 제공합니다.</p>
+            </div>
+            <div class="feature-card glass-panel" tabindex="0" role="listitem" aria-labelledby="f3-title">
+                <div class="feature-icon carbonation-icon"></div>
+                <h3 id="f3-title">탄산 감각 통제</h3>
+                <p>부드러운 한 모금부터 입안을 깨우는 짜릿함까지, 탄산 강도를 내 마음대로 설정하세요.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Shots (데이터 모델 적용, 3~5개 항목 권장) -->
+    <section id="shots" class="shots-section">
+        <div class="section-header">
+            <h2 class="section-title">가장 완벽한 밸런스, 맞춤형 샷</h2>
+            <p class="section-sub">상황에 따라 꼭 필요한 영양을 선택해보세요.</p>
+        </div>
+        
+        <div class="shots-container">
+            <!-- 최대 4개 리스트 아이템 노출 -->
+            <div class="shot-card">
+                <div class="shot-color booster"></div>
+                <h3>부스터 샷</h3>
+                <p>에너지와 집중이 필요한 순간. 빠르게 활력을 끌어올려보세요.</p>
+            </div>
+            <div class="shot-card">
+                <div class="shot-color stress"></div>
+                <h3>스트레스 샷</h3>
+                <p>긴장을 내려놓고 싶을 때. 과한 자극 없이 균형을 되찾아줍니다.</p>
+            </div>
+            <div class="shot-card">
+                <div class="shot-color slim"></div>
+                <h3>슬림 샷</h3>
+                <p>가볍게 관리하고 싶은 날. 부담 없이 일상의 흐름을 유지하세요.</p>
+            </div>
+            <div class="shot-card">
+                <div class="shot-color recovery"></div>
+                <h3>리커버리 샷</h3>
+                <p>정돈과 휴식이 필요한 시간. 몸이 다시 회복하도록 도와줍니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Pricing/Plans (가격 가드레일: 3개 플랜, 핵심 6줄, 추천 1개, 표기 규격) -->
+    <section id="plans" class="plans-section">
+        <h2 class="section-title">오피스 도입 플랜</h2>
+        <p class="section-sub">운영 효율을 극대화하는 맞춤형 관리 플랜을 확인하세요.</p>
+        
+        <div class="plan-grid">
+            <div class="plan-card glass-panel fallback-outline" tabindex="0">
+                <div class="plan-header">
+                    <h3>스타터 플랜</h3>
+                    <p class="plan-desc">소규모 오피스에 적합</p>
+                </div>
+                <div class="plan-price">
+                    <span class="currency">₩</span>
+                    <span class="amount">199,000</span>
+                    <span class="period">/월</span>
+                </div>
+                <!-- 가격 1회 고지 가드레일 (18자 이내) -->
+                <p class="plan-vat-notice">부가세 별도 (10%)</p>
+                <ul class="plan-features">
+                    <li>스마트 디스펜서 1대</li>
+                    <li>기본 플레이버 3종</li>
+                    <li>월 1회 정기 클리닝</li>
+                    <li>고객 지원 문의 창구</li>
+                </ul>
+                <button class="btn btn-outline">상세 보기</button>
+            </div>
+
+            <!-- 강력히 추천 1개만 (추천 배지) 강조는 1개만 허용하는 규칙 -->
+            <div class="plan-card glass-panel recommended-plan" tabindex="0">
+                <div class="plan-badge">추천 플랜</div>
+                <div class="plan-header">
+                    <h3>스탠다드 플랜</h3>
+                    <p class="plan-desc">가장 인기 있는 팀 관리용</p>
+                </div>
+                <div class="plan-price">
+                    <span class="currency">₩</span>
+                    <span class="amount">299,000</span>
+                    <span class="period">/월</span>
+                </div>
+                <p class="plan-vat-notice">부가세 별도 (10%)</p>
+                <ul class="plan-features">
+                    <li>스마트 디스펜서 2대</li>
+                    <li>전체 플레이버 5종 제공</li>
+                    <li>기능성 영양 샷 무제한</li>
+                    <li>24/7 프리미엄 유지보수</li>
+                    <li>커스텀 대시보드 접근권</li>
+                </ul>
+                <button class="btn btn-primary hero-btn">도입 문의</button>
+            </div>
+
+            <div class="plan-card glass-panel fallback-outline" tabindex="0">
+                <div class="plan-header">
+                    <h3>엔터프라이즈</h3>
+                    <p class="plan-desc">대기업 및 복합 공간용</p>
+                </div>
+                <!-- 금액 포맷 책임 분리 -->
+                <div class="plan-price">
+                    <span class="amount">맞춤 견적</span>
+                </div>
+                <p class="plan-vat-notice">컨설팅 1회 무상 제공</p>
+                <ul class="plan-features">
+                    <li>기기 무제한 확장 설치</li>
+                    <li>시크릿 플레이버 추가 제공</li>
+                    <li>전담 매니저 배정</li>
+                    <li>API 및 시스템 연동 지원</li>
+                </ul>
+                <button class="btn btn-outline">영업팀 연결</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CS / Contact (최대 3개 필드, 상태 피드백 규칙) -->
+    <section id="contact" class="contact-section">
+        <h2 class="section-title">빠르게 도입을 상담해보세요</h2>
+        <div class="contact-card glass-panel">
+            <form id="contact-form" class="vrink-form">
+                <!-- A11y & Form 에러 표시 연결 -->
+                <div class="form-group">
+                    <label for="companyName">회사명</label>
+                    <input type="text" id="companyName" placeholder="도입을 원하는 회사명 입력" aria-required="true">
+                    <span class="error-msg" id="companyName-error" aria-live="polite"></span>
+                </div>
+                <div class="form-group">
+                    <label for="contactInfo">연락처</label>
+                    <input type="tel" id="contactInfo" placeholder="번호 입력 (010-0000-0000)" aria-required="true">
+                    <span class="error-msg" id="contactInfo-error" aria-live="polite"></span>
+                </div>
+                <!-- 필수 입력은 최대 3개로 고정하는 CS 정책 규칙 -->
+                <div class="form-group">
+                    <label for="inquiryType">문의 유형</label>
+                    <select id="inquiryType" aria-required="true">
+                        <option value="">유형을 선택하세요</option>
+                        <option value="rental">렌탈 상담</option>
+                        <option value="purchase">구매 상담</option>
+                        <option value="partnership">파트너십 제안</option>
+                    </select>
+                    <span class="error-msg" id="inquiryType-error" aria-live="polite"></span>
+                </div>
+                <button type="submit" class="btn btn-primary submit-btn">상담 신청하기</button>
+                <div class="form-status" id="form-status" aria-live="polite"></div>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h2>Vrink</h2>
+                <p>일상을 바꾸는 AI 드링크 시스템</p>
+            </div>
+            <div class="footer-info">
+                <p>주소: 경기도 남양주시 별내 중앙로 30, 제 305-1821호</p>
+                <p>번호: 010-7362-6070</p>
+                <p>이메일: vrink@contact.kr</p>
+                <div class="footer-meta">대표자: 김민수 | 사업자번호: 162-81-03420</div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright © 2026 주식회사 브링크. All rights reserved.</p>
+            <div class="legal-links">
+                <a href="#">이용약관</a>
+                <a href="#">개인정보 처리방침</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

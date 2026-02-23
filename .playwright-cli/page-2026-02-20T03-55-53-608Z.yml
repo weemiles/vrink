@@ -1,0 +1,29 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - button "iPhone 16 v" [ref=e6]:
+      - generic [ref=e7]: iPhone 16
+      - generic [ref=e8]: v
+    - generic [ref=e9]:
+      - generic [ref=e10]: W 393
+      - generic [ref=e11]: H 852
+  - main [ref=e12]:
+    - iframe [active] [ref=e15]:
+      - generic [ref=f1e3]:
+        - link "본문으로 건너뛰기" [ref=f1e4] [cursor=pointer]:
+          - /url: "#main-content"
+        - main [ref=f1e5]:
+          - generic [ref=f1e19]:
+            - button "건너뛰기" [ref=f1e21]
+            - generic [ref=f1e23]:
+              - img [ref=f1e25]
+              - heading "소중한 사람들을 한곳에서 관리하세요" [active] [level=1] [ref=f1e26]
+              - paragraph [ref=f1e27]: 흩어진 연락처와 인연 정보를 keppin에서 깔끔하게 정리할 수 있어요
+            - generic [ref=f1e28]:
+              - generic [ref=f1e29]:
+                - generic "슬라이드 1 (현재)" [ref=f1e30]
+                - generic "슬라이드 2" [ref=f1e31]
+                - generic "슬라이드 3" [ref=f1e32]
+                - generic "슬라이드 4" [ref=f1e33]
+              - button "다음" [ref=f1e35]
+        - status [ref=f1e17]
+        - alert [ref=f1e18]

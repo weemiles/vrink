@@ -1,0 +1,87 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - generic [ref=e7]: 디바이스
+        - button "iPhone 16 ▾" [ref=e9]:
+          - generic [ref=e10]: iPhone 16
+          - generic [ref=e11]: ▾
+      - generic [ref=e12]:
+        - generic [ref=e13]: 화면
+        - combobox "화면 이동" [ref=e15]:
+          - option "스플래시" [selected]
+          - option "온보딩"
+          - option "로그인"
+          - option "회원가입"
+          - option "비밀번호 재설정"
+          - option "전화번호 인증"
+          - option "이용약관"
+          - option "개인정보처리방침"
+          - option "홈"
+          - option "연락처 동기화"
+          - option "연락처 목록"
+          - option "연락처 추가"
+          - option "캘린더"
+          - option "마이페이지"
+          - option "설정"
+          - option "인사이트"
+          - option "자동메시지"
+          - option "관계그룹 메시지"
+          - option "연락처 가져오기"
+          - option "태그 관리"
+          - option "중복 정리"
+          - option "FAQ"
+          - option "문의하기"
+          - option "개인정보 보호"
+          - option "이용약관(앱)"
+          - option "개인정보처리방침(앱)"
+          - option "프로필 편집"
+          - option "홈 Variations"
+    - generic [ref=e16]:
+      - group "Preview zoom" [ref=e17]:
+        - button "축소" [ref=e18]: −
+        - generic [ref=e19]: 100%
+        - button "확대" [ref=e20]: +
+        - combobox "확대 비율 선택" [ref=e21]:
+          - option "50%"
+          - option "60%"
+          - option "70%"
+          - option "80%"
+          - option "90%"
+          - option "100%" [selected]
+          - option "110%"
+          - option "120%"
+          - option "130%"
+          - option "140%"
+          - option "150%"
+          - option "160%"
+          - option "170%"
+          - option "180%"
+          - option "190%"
+          - option "200%"
+        - slider "확대 슬라이더" [ref=e22]: "100"
+        - button "줌 초기화" [ref=e23]: 맞춤
+      - generic [ref=e24]:
+        - generic [ref=e25]: W 393
+        - generic [ref=e26]: H 852
+  - main [ref=e27]:
+    - iframe [active] [ref=e30]:
+      - generic [ref=f1e3]:
+        - link "본문으로 건너뛰기" [ref=f1e4] [cursor=pointer]:
+          - /url: "#main-content"
+        - main [ref=f1e5]:
+          - generic [ref=f1e19]:
+            - button "건너뛰기" [ref=f1e21]
+            - generic [ref=f1e23]:
+              - img [ref=f1e25]
+              - heading "소중한 사람들을 한곳에서 관리하세요" [active] [level=1] [ref=f1e26]
+              - paragraph [ref=f1e27]: 흩어진 연락처와 인연 정보를 keppin에서 깔끔하게 정리할 수 있어요
+            - generic [ref=f1e28]:
+              - generic [ref=f1e29]:
+                - generic "슬라이드 1 (현재)" [ref=f1e30]
+                - generic "슬라이드 2" [ref=f1e31]
+                - generic "슬라이드 3" [ref=f1e32]
+                - generic "슬라이드 4" [ref=f1e33]
+              - button "다음" [ref=f1e35]
+        - status [ref=f1e17]
+        - alert [ref=f1e18]

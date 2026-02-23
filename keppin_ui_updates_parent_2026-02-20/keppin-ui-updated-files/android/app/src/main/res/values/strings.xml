@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Keppin</string>
+    <string name="title_activity_main">Keppin</string>
+    <string name="package_name">com.keppin.keppin</string>
+    <string name="custom_url_scheme">com.keppin.keppin</string>
+</resources>

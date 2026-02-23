@@ -1,0 +1,92 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - generic [ref=e7]: 디바이스
+        - button "iPhone 16 ▾" [ref=e9]:
+          - generic [ref=e10]: iPhone 16
+          - generic [ref=e11]: ▾
+      - generic [ref=e12]:
+        - generic [ref=e13]: 화면
+        - combobox "화면 이동" [ref=e15]:
+          - option "스플래시"
+          - option "온보딩"
+          - option "로그인"
+          - option "회원가입"
+          - option "비밀번호 재설정"
+          - option "전화번호 인증"
+          - option "이용약관"
+          - option "개인정보처리방침"
+          - option "홈" [selected]
+          - option "연락처 동기화"
+          - option "연락처 목록"
+          - option "연락처 추가"
+          - option "캘린더"
+          - option "마이페이지"
+          - option "설정"
+          - option "인사이트"
+          - option "자동메시지"
+          - option "관계그룹 메시지"
+          - option "연락처 가져오기"
+          - option "태그 관리"
+          - option "중복 정리"
+          - option "FAQ"
+          - option "문의하기"
+          - option "개인정보 보호"
+          - option "이용약관(앱)"
+          - option "개인정보처리방침(앱)"
+          - option "프로필 편집"
+          - option "홈 Variations"
+    - generic [ref=e16]:
+      - group "Preview zoom" [ref=e17]:
+        - button "축소" [ref=e18]: −
+        - generic [ref=e19]: 100%
+        - button "확대" [ref=e20]: +
+        - combobox "확대 비율 선택" [ref=e21]:
+          - option "50%"
+          - option "60%"
+          - option "70%"
+          - option "80%"
+          - option "90%"
+          - option "100%" [selected]
+          - option "110%"
+          - option "120%"
+          - option "130%"
+          - option "140%"
+          - option "150%"
+          - option "160%"
+          - option "170%"
+          - option "180%"
+          - option "190%"
+          - option "200%"
+        - slider "확대 슬라이더" [ref=e22]: "100"
+        - button "줌 초기화" [ref=e23]: 맞춤
+      - generic [ref=e24]:
+        - generic [ref=e25]: W 393
+        - generic [ref=e26]: H 852
+  - main [ref=e27]:
+    - iframe [active] [ref=e30]:
+      - generic [ref=f2e3]:
+        - link "본문으로 건너뛰기" [ref=f2e4] [cursor=pointer]:
+          - /url: "#main-content"
+        - main [ref=f2e5]:
+          - generic [ref=f2e6]:
+            - generic [ref=f2e7]:
+              - status "콘텐츠 로딩 중" [ref=f2e129]
+              - status "콘텐츠 로딩 중" [ref=f2e139]
+            - navigation "메인 탭 내비게이션" [ref=f2e103]:
+              - tablist "메인 탭" [ref=f2e104]:
+                - tab "홈" [selected] [ref=f2e105]:
+                  - img [ref=f2e106]
+                  - generic [ref=f2e109]: 홈
+                - tab "인연" [ref=f2e110]:
+                  - img [ref=f2e111]
+                  - generic [ref=f2e116]: 인연
+                - tab "캘린더" [ref=f2e117]:
+                  - img [ref=f2e118]
+                  - generic [ref=f2e120]: 캘린더
+                - tab "마이" [ref=f2e121]:
+                  - img [ref=f2e122]
+                  - generic [ref=f2e125]: 마이
+        - status [ref=f2e126]
+        - alert [ref=f2e127]

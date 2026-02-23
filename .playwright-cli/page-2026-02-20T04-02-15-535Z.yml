@@ -1,0 +1,32 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - button "iPhone 16 ▾" [ref=e6]:
+      - generic [ref=e7]: iPhone 16
+      - generic [ref=e8]: ▾
+    - generic [ref=e9]:
+      - generic [ref=e10]: W 393
+      - generic [ref=e11]: H 852
+  - main [ref=e12]:
+    - iframe [active] [ref=e15]:
+      - generic [ref=f2e3]:
+        - link "본문으로 건너뛰기" [ref=f2e4] [cursor=pointer]:
+          - /url: "#main-content"
+        - main [ref=f2e5]:
+          - generic [ref=f2e6]:
+            - button "건너뛰기" [ref=f2e8]
+            - generic [ref=f2e36]:
+              - img [ref=f2e38]
+              - heading "연락이 뜸한 사람도 챙겨드려요" [level=1] [ref=f2e39]
+              - paragraph [ref=f2e40]: 오랫동안 연락하지 못한 사람을 알려드려서 관계를 유지할 수 있어요
+            - generic [ref=f2e15]:
+              - generic [ref=f2e16]:
+                - generic "슬라이드 1" [ref=f2e30]
+                - generic "슬라이드 2" [ref=f2e41]
+                - generic "슬라이드 3 (현재)" [ref=f2e42]
+                - generic "슬라이드 4" [ref=f2e20]
+              - generic [ref=f2e21]:
+                - button "이전" [ref=f2e33]:
+                  - img [ref=f2e34]
+                - button "다음" [active] [ref=f2e22]
+        - status [ref=f2e23]
+        - alert [ref=f2e24]

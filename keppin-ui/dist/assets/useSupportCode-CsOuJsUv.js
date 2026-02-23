@@ -1,0 +1,1 @@
+const r="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";function n(o=10){let t="";for(let e=0;e<o;e++)t+=r[Math.floor(Math.random()*r.length)];return t}function a(o){var t;return((t=o.match(/.{1,4}/g))==null?void 0:t.join("-"))||o}function c(o,t,e){return{code:n(),createdAt:Date.now(),status:t,reason:e,screenName:o}}export{c,a as f};

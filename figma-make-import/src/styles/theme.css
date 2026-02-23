@@ -1,0 +1,1162 @@
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  color-scheme: light;
+  --font-size: 16px;
+  --font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+
+  /* ===== TDS Typography Tokens ===== */
+  /* Typography 1 ~ 7 + sub tokens (fontSize / lineHeight) */
+  --typo-1-size: 30px;
+  --typo-1-lh: 40px;
+  --typo-sub1-size: 29px;
+  --typo-sub1-lh: 38px;
+  --typo-sub2-size: 28px;
+  --typo-sub2-lh: 37px;
+  --typo-sub3-size: 27px;
+  --typo-sub3-lh: 36px;
+
+  --typo-2-size: 26px;
+  --typo-2-lh: 35px;
+  --typo-sub4-size: 25px;
+  --typo-sub4-lh: 34px;
+  --typo-sub5-size: 24px;
+  --typo-sub5-lh: 33px;
+  --typo-sub6-size: 23px;
+  --typo-sub6-lh: 32px;
+
+  --typo-3-size: 22px;
+  --typo-3-lh: 31px;
+  --typo-sub7-size: 21px;
+  --typo-sub7-lh: 30px;
+
+  --typo-4-size: 20px;
+  --typo-4-lh: 29px;
+  --typo-sub8-size: 19px;
+  --typo-sub8-lh: 28px;
+  --typo-sub9-size: 18px;
+  --typo-sub9-lh: 27px;
+
+  --typo-5-size: 17px;
+  --typo-5-lh: 25.5px;
+  --typo-sub10-size: 16px;
+  --typo-sub10-lh: 24px;
+
+  --typo-6-size: 15px;
+  --typo-6-lh: 22.5px;
+  --typo-sub11-size: 14px;
+  --typo-sub11-lh: 21px;
+
+  --typo-7-size: 13px;
+  --typo-7-lh: 19.5px;
+  --typo-sub12-size: 12px;
+  --typo-sub12-lh: 18px;
+  --typo-sub13-size: 11px;
+  --typo-sub13-lh: 16.5px;
+
+  /* Font Weight Tokens */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-normal: 400;
+
+  /* ===== Brand Colors — Keppin Mono ===== */
+  --toss-brand-blue: #171717;   /* Keppin Brand Black */
+  --toss-brand-grey: #212121;   /* Keppin Brand Dark Grey */
+
+  /* ===== Keppin Mono Color Palette ===== */
+
+  /* Primary Scale (Charcoal — replaces Blue) */
+  --toss-blue-50: #F5F5F5;
+  --toss-blue-100: #EBEBEB;
+  --toss-blue-200: #D9D9D9;
+  --toss-blue-300: #A3A3A3;
+  --toss-blue-400: #737373;
+  --toss-blue-500: #171717;
+  --toss-blue-600: #0F0F0F;
+  --toss-blue-700: #0A0A0A;
+  --toss-blue-800: #050505;
+  --toss-blue-900: #000000;
+
+  /* Grey Scale (Pure Neutral) */
+  --toss-grey-50: #FAFAFA;
+  --toss-grey-100: #F5F5F5;
+  --toss-grey-200: #EEEEEE;
+  --toss-grey-300: #E0E0E0;
+  --toss-grey-400: #BDBDBD;
+  --toss-grey-500: #9E9E9E;
+  --toss-grey-600: #757575;
+  --toss-grey-700: #616161;
+  --toss-grey-800: #424242;
+  --toss-grey-900: #212121;
+
+  /* Grey Opacity Tokens (Pure black base) */
+  --toss-grey-opacity-50: rgba(0, 0, 0, 0.02);
+  --toss-grey-opacity-100: rgba(0, 0, 0, 0.05);
+  --toss-grey-opacity-200: rgba(0, 0, 0, 0.1);
+  --toss-grey-opacity-300: rgba(0, 0, 0, 0.18);
+  --toss-grey-opacity-400: rgba(0, 0, 0, 0.31);
+  --toss-grey-opacity-500: rgba(0, 0, 0, 0.46);
+  --toss-grey-opacity-600: rgba(0, 0, 0, 0.58);
+  --toss-grey-opacity-700: rgba(0, 0, 0, 0.7);
+  --toss-grey-opacity-800: rgba(0, 0, 0, 0.8);
+  --toss-grey-opacity-900: rgba(0, 0, 0, 0.91);
+
+  /* Red Scale (functional — softened) */
+  --toss-red-50: #FEF2F2;
+  --toss-red-100: #FEE2E2;
+  --toss-red-200: #FECACA;
+  --toss-red-300: #FCA5A5;
+  --toss-red-400: #F87171;
+  --toss-red-500: #EF4444;
+  --toss-red-600: #DC2626;
+  --toss-red-700: #B91C1C;
+  --toss-red-800: #991B1B;
+  --toss-red-900: #7F1D1D;
+
+  /* Orange Scale (functional) */
+  --toss-orange-50: #FFF7ED;
+  --toss-orange-100: #FFEDD5;
+  --toss-orange-200: #FED7AA;
+  --toss-orange-300: #FDBA74;
+  --toss-orange-400: #FB923C;
+  --toss-orange-500: #F97316;
+  --toss-orange-600: #EA580C;
+  --toss-orange-700: #C2410C;
+  --toss-orange-800: #9A3412;
+  --toss-orange-900: #7C2D12;
+
+  /* Yellow Scale (functional) */
+  --toss-yellow-50: #FEFCE8;
+  --toss-yellow-100: #FEF9C3;
+  --toss-yellow-200: #FEF08A;
+  --toss-yellow-300: #FDE047;
+  --toss-yellow-400: #FACC15;
+  --toss-yellow-500: #EAB308;
+  --toss-yellow-600: #CA8A04;
+  --toss-yellow-700: #A16207;
+  --toss-yellow-800: #854D0E;
+  --toss-yellow-900: #713F12;
+
+  /* Green Scale (functional — softened) */
+  --toss-green-50: #F0FDF4;
+  --toss-green-100: #DCFCE7;
+  --toss-green-200: #BBF7D0;
+  --toss-green-300: #86EFAC;
+  --toss-green-400: #4ADE80;
+  --toss-green-500: #22C55E;
+  --toss-green-600: #16A34A;
+  --toss-green-700: #15803D;
+  --toss-green-800: #166534;
+  --toss-green-900: #14532D;
+
+  /* Teal Scale (functional) */
+  --toss-teal-50: #F0FDFA;
+  --toss-teal-100: #CCFBF1;
+  --toss-teal-200: #99F6E4;
+  --toss-teal-300: #5EEAD4;
+  --toss-teal-400: #2DD4BF;
+  --toss-teal-500: #14B8A6;
+  --toss-teal-600: #0D9488;
+  --toss-teal-700: #0F766E;
+  --toss-teal-800: #115E59;
+  --toss-teal-900: #134E4A;
+
+  /* Purple Scale (functional) */
+  --toss-purple-50: #FAF5FF;
+  --toss-purple-100: #F3E8FF;
+  --toss-purple-200: #E9D5FF;
+  --toss-purple-300: #D8B4FE;
+  --toss-purple-400: #C084FC;
+  --toss-purple-500: #A855F7;
+  --toss-purple-600: #9333EA;
+  --toss-purple-700: #7E22CE;
+  --toss-purple-800: #6B21A8;
+  --toss-purple-900: #581C87;
+
+  /* ===== Background Tokens ===== */
+  --toss-bg: #ffffff;
+  --toss-bg-grey: var(--toss-grey-100);
+  --toss-bg-layered: #ffffff;
+  --toss-bg-floated: #ffffff;
+  --toss-page-bg: var(--toss-grey-100);   /* 페이지 배경: 회색 (카드보다 어두움) */
+  --toss-card-bg: #ffffff;               /* 카드 배경: 흰색 (페이지 위 부유) */
+
+  /* ===== Semantic Color Tokens ===== */
+  /* Target × Role × Variant structure */
+  --toss-fill-brand: var(--toss-blue-500);
+  --toss-fill-brand-weak: var(--toss-blue-50);
+  --toss-fill-neutral: var(--toss-grey-100);
+  --toss-fill-neutral-weak: var(--toss-grey-50);
+  --toss-fill-primary: var(--toss-grey-900);
+  --toss-fill-secondary: var(--toss-grey-600);
+  --toss-fill-danger: var(--toss-red-500);
+  --toss-fill-danger-weak: var(--toss-red-50);
+  --toss-fill-success: var(--toss-green-500);
+  --toss-fill-success-weak: var(--toss-green-50);
+  --toss-fill-warning: var(--toss-orange-500);
+  --toss-fill-warning-weak: var(--toss-orange-50);
+
+  --toss-text-brand: var(--toss-blue-500);
+  --toss-text-primary: var(--toss-grey-900);
+  --toss-text-secondary: var(--toss-grey-700);
+  --toss-text-tertiary: var(--toss-grey-500);
+  --toss-text-disabled: var(--toss-grey-400);
+  --toss-text-danger: var(--toss-red-500);
+  --toss-text-on-color: #ffffff;
+
+  --toss-border-default: var(--toss-grey-200);
+  --toss-border-strong: var(--toss-grey-300);
+  --toss-border-brand: var(--toss-blue-500);
+
+  /* ===== Component-level Variables ===== */
+  --background: var(--toss-bg);
+  --foreground: var(--toss-grey-900);
+  --card: #ffffff;
+  --card-foreground: var(--toss-grey-900);
+  --popover: #ffffff;
+  --popover-foreground: var(--toss-grey-900);
+  --primary: var(--toss-blue-500);
+  --primary-foreground: #ffffff;
+  --secondary: var(--toss-grey-100);
+  --secondary-foreground: var(--toss-grey-900);
+  --muted: var(--toss-grey-100);
+  --muted-foreground: var(--toss-grey-500);
+  --accent: var(--toss-grey-50);
+  --accent-foreground: var(--toss-grey-900);
+  --destructive: var(--toss-red-500);
+  --destructive-foreground: #ffffff;
+  --border: var(--toss-grey-200);
+  --input: transparent;
+  --input-background: var(--toss-grey-100);
+  --switch-background: var(--toss-grey-300);
+  --ring: var(--toss-blue-500);
+  --chart-1: var(--toss-blue-500);
+  --chart-2: var(--toss-green-500);
+  --chart-3: var(--toss-orange-500);
+  --chart-4: var(--toss-purple-500);
+  --chart-5: var(--toss-red-500);
+  --radius: 0.75rem;
+  --sidebar: #ffffff;
+  --sidebar-foreground: var(--toss-grey-900);
+  --sidebar-primary: var(--toss-blue-500);
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: var(--toss-grey-50);
+  --sidebar-accent-foreground: var(--toss-grey-900);
+  --sidebar-border: var(--toss-grey-200);
+  --sidebar-ring: var(--toss-blue-500);
+
+  /* ===== TossButton CSS Variables ===== */
+  --button-color: #ffffff;
+  --button-background-color: var(--toss-blue-500);
+  --button-disabled-opacity-color: 0.4;
+  --button-disabled-text-opacity: 0.4;
+  --button-gradient-color: transparent;
+  --button-loader-color: #ffffff;
+  --button-loading-background-color: var(--toss-blue-500);
+  --button-loading-opacity: 0.7;
+  --button-pressed-background-color: var(--toss-blue-600);
+  --button-pressed-opacity: 1;
+
+  /* ===== Overlay Tokens ===== */
+  --toss-overlay-dim: rgba(0, 0, 0, 0.46);
+  --toss-overlay-dim-strong: rgba(0, 0, 0, 0.7);
+  --toss-modal-radius: 16px;
+  --toss-modal-padding: 24px;
+  --toss-bottomsheet-radius: 16px;
+  --toss-bottomsheet-padding: 24px;
+
+  /* ===== TDS Toast Tokens ===== */
+  --toss-toast-bg: var(--toss-grey-800);
+  --toss-toast-radius: 12px;
+  --toss-toast-padding: 12px 16px;
+  --toss-toast-duration: 3s;
+  --toss-toast-duration-with-button: 5s;
+  --toss-toast-bottom-offset: 20px;
+
+  /* ===== TDS Skeleton Tokens ===== */
+  --toss-skeleton-bg-white: #ffffff;
+  --toss-skeleton-bg-grey: var(--toss-grey-100);
+  --toss-skeleton-bg-grey-opacity: var(--toss-grey-opacity-100);
+  --toss-skeleton-shimmer: var(--toss-grey-200);
+
+  /* ===== TDS Layout Tokens ===== */
+  --toss-safe-area-margin: 24px;
+  --toss-nav-bar-height: 44px;
+  --toss-tab-bar-height: 49px;
+  --toss-tab-bar-height-with-indicator: 83px;
+  --toss-home-indicator-height: 34px;
+  --toss-list-cell-height: 56px;
+  --toss-touch-target-min: 44px;
+  --toss-card-radius: 16px;
+  --toss-button-gap: 8px;
+
+  /* ===== TDS BottomCTA Tokens ===== */
+  --toss-bottom-cta-padding-bottom: max(var(--toss-safe-area-bottom, 0px), env(safe-area-inset-bottom), 20px);
+  --toss-bottom-cta-bg: #ffffff;
+
+  /* ===== TDS TextField Tokens ===== */
+  --toss-textfield-bg: var(--toss-grey-100);
+  --toss-textfield-bg-error: var(--toss-red-50);
+  --toss-textfield-border-focus: var(--toss-blue-500);
+  --toss-textfield-border-error: var(--toss-red-500);
+  --toss-textfield-label-color: var(--toss-grey-600);
+  --toss-textfield-help-color: var(--toss-grey-500);
+  --toss-textfield-error-color: var(--toss-red-500);
+
+  /* ===== TDS Switch Tokens ===== */
+  --toss-switch-on: var(--toss-blue-500);
+  --toss-switch-off: var(--toss-grey-300);
+  --toss-switch-thumb: #ffffff;
+  --toss-switch-width: 51px;
+  --toss-switch-height: 31px;
+  --toss-switch-thumb-size: 27px;
+
+  /* ===== TDS SegmentedControl Tokens ===== */
+  --toss-segment-bg: var(--toss-grey-100);
+  --toss-segment-active-bg: #ffffff;
+  --toss-segment-text: var(--toss-grey-500);
+  --toss-segment-active-text: var(--toss-grey-900);
+
+  /* ===== TDS ProgressStepper Tokens ===== */
+  --toss-stepper-active: var(--toss-blue-500);
+  --toss-stepper-inactive: var(--toss-grey-300);
+  --toss-stepper-completed: var(--toss-blue-500);
+  --toss-stepper-padding-default: 16px;
+  --toss-stepper-padding-wide: 24px;
+
+  /* ===== TDS Highlight Tokens ===== */
+  --toss-highlight-dim: rgba(0, 0, 0, 0.6);
+  --toss-highlight-message-color: #ffffff;
+
+  /* ===== TDS Checkbox Tokens ===== */
+  --toss-checkbox-checked: var(--toss-blue-500);
+  --toss-checkbox-unchecked: var(--toss-grey-300);
+  --toss-checkbox-size: 24px;
+
+  /* ===== TDS TextButton Tokens ===== */
+  --toss-textbutton-color: var(--toss-blue-500);
+  --toss-textbutton-disabled: var(--toss-grey-400);
+  --toss-textbutton-pressed-opacity: 0.6;
+
+  /* ===== TDS IconButton Tokens ===== */
+  --toss-iconbutton-default-bg: var(--toss-grey-opacity-100);
+  --toss-iconbutton-icon-size: 24px;
+  --toss-iconbutton-border-color: var(--toss-grey-300);
+
+  /* ===== TDS Result Tokens ===== */
+  --toss-result-title-color: var(--toss-grey-900);
+  --toss-result-desc-color: var(--toss-grey-500);
+  --toss-result-title-size: 20px;
+  --toss-result-desc-size: 14px;
+
+  /* ===== TDS Slider Tokens ===== */
+  --toss-slider-track-bg: var(--toss-grey-200);
+  --toss-slider-fill-color: var(--toss-blue-400);
+  --toss-slider-thumb-size: 24px;
+  --toss-slider-thumb-bg: #ffffff;
+  --toss-slider-thumb-shadow: 0 1px 4px rgba(0,0,0,0.15);
+  --toss-slider-label-color: var(--toss-grey-500);
+  --toss-slider-tooltip-bg: var(--toss-grey-900);
+  --toss-slider-tooltip-color: #ffffff;
+
+  /* ===== TDS ProgressBar Tokens ===== */
+  --toss-progressbar-bg: var(--toss-grey-200);
+  --toss-progressbar-fill: var(--toss-blue-400);
+  --toss-progressbar-height-light: 2px;
+  --toss-progressbar-height-normal: 4px;
+  --toss-progressbar-height-bold: 8px;
+  --toss-progressbar-radius: 999px;
+
+  /* ===== TDS Stepper Tokens ===== */
+  --toss-stepper-line-color: var(--toss-grey-200);
+  --toss-stepper-line-active: var(--toss-blue-500);
+  --toss-stepper-number-bg: var(--toss-blue-500);
+  --toss-stepper-number-color: #ffffff;
+  --toss-stepper-number-size: 28px;
+
+  /* ===== TDS ListFooter Tokens ===== */
+  --toss-listfooter-text-color: var(--toss-blue-500);
+  --toss-listfooter-icon-color: var(--toss-blue-500);
+  --toss-listfooter-border-color: var(--toss-grey-100);
+  --toss-listfooter-pressed-bg: var(--toss-grey-50);
+
+  /* ===== TDS Form Tokens (실무 운영 규칙 7, §1) ===== */
+  --toss-form-field-gap: 12px;           /* 1.1 필드 사이 기본 간격 */
+  --toss-form-section-gap: 24px;         /* 1.1 필드 그룹(섹션) 간격 */
+  --toss-form-label-gap: 8px;            /* 1.1 라벨 ↔ 입력칸 간격 */
+  --toss-form-helper-gap: 6px;           /* 1.1 입력칸 ↔ 헬퍼/에러 간격 */
+  --toss-form-debounce: 250;             /* 1.4 검색/자동완성 debounce ms */
+  --toss-form-debounce-heavy: 350;       /* 1.4 비싼 서버 호출 debounce ms */
+  --toss-form-min-search-chars: 2;       /* 1.4 최소 검색 글자 수 */
+  --toss-form-loading-delay: 200;        /* 1.5 & 3.1 로딩 표시 지연 ms */
+
+  /* ===== TDS Feedback Tokens (실무 운영 규칙 7, §3) ===== */
+  --toss-toast-bottom-offset: 20px;      /* 3.2 기본 하단 오프셋 */
+  --toss-toast-bottom-offset-cta: 90px;  /* 3.2 CTA 위 오프셋 */
+  --toss-toast-home-indicator: 34px;     /* 3.2 홈 인디케이터 추가분 */
+
+  /* ===== TDS Overlay Opacity (실무 운영 규칙 7, §5.2) ===== */
+  --toss-overlay-opacity-start: 0.18;
+  --toss-overlay-opacity-max: 0.31;
+
+  /* ===== TDS Operation Tokens — 제품 운영 심화 8 ===== */
+
+  /* §1 내비게이션/IA 수치 */
+  --toss-nav-max-right-icons: 2;             /* 1.1 우측 아이콘 최대 2개 */
+  --toss-nav-max-top-actions: 1;             /* 1.1 상단 텍스트 액션 최대 1개 */
+  --toss-nav-back-dirty-delay: 2000;         /* 1.2 dirty 경고 최소 경과시간 ms */
+  --toss-nav-save-back-delay: 300;           /* 1.2 저장 후 자동 뒤로가기 delay ms */
+  --toss-nav-edit-toast-back-delay: 600;     /* 1.3 수정 완료 토스트 후 뒤로가기 ms */
+
+  /* §2 비동기/에러/재시도/캐시 수치 */
+  --toss-async-loading-skip: 200;            /* 2.1 로딩 미표시 ms */
+  --toss-async-slow-threshold: 2000;         /* 2.1 '느림' 판단 ms */
+  --toss-async-explicit-threshold: 7000;     /* 2.1 명시적 안내 ms */
+  --toss-async-fail-threshold: 12000;        /* 2.1 실패 처리 ms */
+  --toss-retry-manual-max: 3;               /* 2.2 수동 재시도 최대 횟수 */
+  --toss-retry-button-cooldown: 1000;        /* 2.2 재시도 버튼 비활성 ms */
+  --toss-retry-auto-1: 500;                 /* 2.3 자동 재시도 1차 ms */
+  --toss-retry-auto-2: 1500;                /* 2.3 자동 재시도 2차 ms */
+  --toss-retry-auto-3: 3000;                /* 2.3 자동 재시도 3차 ms */
+  --toss-cache-stale-time: 60000;            /* 2.4 캐시 stale time ms */
+  --toss-cache-refresh-max: 2000;            /* 2.4 갱신 표시 최대 ms */
+
+  /* §3 데이터 표기 수치 */
+  --toss-format-large-amount-threshold: 10000;  /* 3.1 만원 단위 기준 */
+  --toss-format-relative-time-limit: 86400000;  /* 3.3 상대시간 한계 ms (24h) */
+
+  /* §4 보안/프라이버시 UX 수치 */
+  --toss-otp-resend-cooldown: 30000;         /* 4.1 재전송 대기 ms */
+  --toss-otp-resend-max: 5;                 /* 4.1 시간당 최대 재전송 */
+  --toss-otp-fail-lock: 5;                  /* 4.1 연속 실패 횟수 → 잠금 */
+  --toss-otp-lock-duration: 600000;          /* 4.1 잠금 시간 ms (10분) */
+  --toss-session-timeout: 300000;            /* 4.2 비활성 자동잠금 ms (5분) */
+
+  /* §5 Analytics 수치 */
+  --toss-analytics-click-debounce: 500;      /* 5.2 클릭 이벤트 디바운스 ms */
+
+  /* ===== TDS QA·변경관리·퍼포먼스 프로세스 — 제품 품질/운영 확장 규칙 9 (추가) ===== */
+
+  /* §1 디자인 QA 규칙 (수치) */
+  --toss-qa-min-cases: 12;                     /* 1.1 화면당 최소 QA 케이스 */
+  --toss-qa-expanded-cases: 18;                /* 2.3 영향 화면 3~9개일 때 확대 QA */
+  --toss-qa-snapshot-min-light: 2;             /* 1.4 PR당 최소 스냅샷 (라이트) */
+  --toss-qa-snapshot-min-dark: 4;              /* 1.4 PR당 최소 스냅샷 (라이트+다크) */
+  --toss-qa-hotfix-exit-increase: 30;          /* 1.5 이탈 증가 +30% → 당일 핫픽스 */
+  --toss-qa-hotfix-crash-rate: 0.5;            /* 1.5 크래시율 0.5% 초과 → 핫픽스 */
+  --toss-qa-hotfix-5xx-rate: 2;                /* 1.5 서버 5xx 실패율 2% 초과 → 핫픽스 */
+  --toss-qa-reduce-motion-jump-max: 1;         /* 1.3 Reduce Motion 레이아웃 점프 최대 1회 */
+
+  /* §2 변경관리 (수치) */
+  --toss-change-rollout-step-1: 5;             /* 2.4 단계적 배포 1단계 (%) */
+  --toss-change-rollout-step-2: 25;            /* 2.4 단계적 배포 2단계 (%) */
+  --toss-change-rollout-step-3: 100;           /* 2.4 단계적 배포 3단계 (%) */
+  --toss-change-rollout-observe-min: 7200000;  /* 2.4 각 스텝 최소 관찰 시간 ms (2시간) */
+  --toss-change-rollout-fail-delta: 1;         /* 2.4 중단 기준 실패율 증가 +1%p */
+  --toss-change-rollout-complaint-max: 5;      /* 2.4 중단 기준 동일 키워드 문의 5건 */
+  --toss-change-impact-staged-threshold: 10;   /* 2.3 영향 화면 ≥10 → 단계적 배포 */
+  --toss-change-s2-min-cases: 6;               /* 2.2 S2 변경 최소 QA 케이스 */
+
+  /* §4.2 i18n 줄바꿈 규칙 (수치) */
+  --toss-i18n-title-max-lines: 2;              /* 4.2 타이틀 최대 줄 수 */
+  --toss-i18n-button-max-lines: 1;             /* 4.2 버튼 최대 줄 수 (반드시 1줄) */
+  --toss-i18n-label-truncate-threshold: 12;    /* 1.2 라벨 잘림 허용 기준 글자 수 */
+
+  /* §5.1 퍼포먼스 프레임/응답성 목표 (수치) */
+  --toss-perf-fps-target: 60;                  /* 5.1 스크롤/드래그 목표 fps */
+  --toss-perf-fps-min: 50;                     /* 5.1 최소 허용 fps */
+  --toss-perf-prefetch-ctr-threshold: 30;      /* 5.3 프리패치 허용 CTR 기준 (%) */
+
+  /* ===== TDS 보안·CS·성장 — 제품 운영 확장 3-11 ===== */
+
+  /* §1.2 로그인 보안 */
+  --toss-login-fail-max: 5;                   /* 1.2 연속 실패 최대 횟수 → 잠금 */
+  --toss-login-lock-duration: 600000;         /* 1.2 잠금 시간 ms (10분) */
+  --toss-reauth-timeout: 300000;              /* 1.2 고위험 재인증 경과 ms (5분) */
+
+  /* §4.2 지원 코드 */
+  --toss-support-code-length: 10;             /* 4.2 지원 코드 길이 (8~12) */
+  --toss-support-code-validity: 2592000000;   /* 4.2 유효기간 ms (30일) */
+
+  /* §4.3 문의 감소 UI */
+  --toss-error-consecutive-for-cs: 3;         /* 4.3 동일 에러 N회 연속 → 문의 CTA */
+
+  /* §5.3 메시지 피로도 */
+  --toss-push-weekly-max: 3;                  /* 5.3 사용자당 주간 푸시 상한 */
+  --toss-inapp-session-max: 1;                /* 5.3 동일 캠페인 세션당 1회 */
+  --toss-inapp-dismiss-suppress-days: 7;      /* 5.3 닫기 후 재노출 금지 일수 */
+
+  /* §5.2 온보딩 */
+  --toss-onboarding-screens-max: 5;           /* 5.2 첫 가치 도달까지 최대 화면 수 */
+
+  /* ===== TDS 제품 운영 확장 2-10 — A11y 실운용·정보구조·상태/데이터 모델·실험 해석·DS 기여 ===== */
+
+  /* §1.1 스크린리더 라벨 품질 기준 */
+  --toss-a11y-label-min: 10;                   /* 1.1 라벨 최소 글자 수 (권장) */
+  --toss-a11y-label-max: 30;                   /* 1.1 라벨 권장 최대 글자 수 */
+  --toss-a11y-label-hard-max: 45;              /* 1.1 라벨 절대 최대 (초과 시 분리) */
+
+  /* §1.3 모달/바텀시트 포커스 트랩 */
+  --toss-a11y-focus-trap-escape: 0;            /* 1.3 외부 포커스 탈출 허용 횟수 (0 = 불가) */
+
+  /* §1.4 동적 콘텐츠 읽힘 규칙 */
+  --toss-a11y-loading-announce-threshold: 2000; /* 1.4 로딩 2초 초과 시 스크린리더 안내 */
+  --toss-a11y-announce-max: 1;                  /* 1.4 상태 변경 공지 최대 1회 */
+  --toss-a11y-announce-dedup-ms: 10000;         /* 1.4 동일 이벤트 재공지 금지 간격 ms */
+
+  /* §1.5 입력 오류(Validation) 접근성 */
+  --toss-a11y-error-per-field-max: 1;          /* 1.5 필드당 오류 메시지 최대 1개 */
+  --toss-a11y-error-msg-max-chars: 40;         /* 1.5 오류 메시지 최대 40자 */
+  --toss-a11y-error-summary-threshold: 2;      /* 1.5 오류 2개+ → 상단 요약 1개 */
+
+  /* §2.1 정보구조(IA) — 화면 섹션 규칙 */
+  --toss-ia-sections-min: 3;                   /* 2.1 화면 주요 섹션 최소 (권장) */
+  --toss-ia-sections-max: 5;                   /* 2.1 화면 주요 섹션 최대 (권장) */
+  --toss-ia-sections-split-threshold: 6;       /* 2.1 6개+ → 2단계 분리 */
+  --toss-ia-rows-per-section-min: 5;           /* 2.1 섹션 내 정보 행 최소 (권장) */
+  --toss-ia-rows-per-section-max: 12;          /* 2.1 섹션 내 정보 행 최대 */
+
+  /* §2.2 요약 → 상세 계층 */
+  --toss-ia-summary-stats-max: 3;              /* 2.2 요약 카드 핵심 수치 최대 3개 */
+  --toss-ia-summary-cta-max: 1;               /* 2.2 요약 카드 CTA 최대 1개 */
+
+  /* §2.3 설정 화면 템플릿 */
+  --toss-ia-settings-groups-max: 4;            /* 2.3 설정 그룹 최대 4개 */
+  --toss-ia-settings-items-per-group-max: 8;   /* 2.3 그룹당 항목 최대 8개 */
+
+  /* §2.4 결제/신청 플로우 */
+  --toss-ia-flow-steps-min: 3;                 /* 2.4 단계 최소 (권장) */
+  --toss-ia-flow-steps-max: 5;                 /* 2.4 단계 최대 (권장) */
+  --toss-ia-flow-inputs-per-step-max: 7;       /* 2.4 단계당 입력 최대 7개 */
+
+  /* §2.5 약관/고지 */
+  --toss-ia-terms-required-max: 3;             /* 2.5 필수 약관 최대 3개 */
+  --toss-ia-terms-optional-max: 5;             /* 2.5 선택 약관 최대 5개 */
+
+  /* §3.1 화면 상태 머신 */
+  --toss-state-machine-base-count: 4;          /* 3.1 기본 상태 수 (idle/loading/success/error) */
+  --toss-state-machine-list-extra: 2;          /* 3.1 리스트 추가 상태 (refreshing/paginating) */
+
+  /* §3.2 로딩 중첩 금지 */
+  --toss-loading-concurrent-max: 1;            /* 3.2 동시 로딩 표현 최대 1종 */
+  --toss-loading-inline-items-max: 3;          /* 3.2 인라인 로딩 아이템 최대 3개 */
+
+  /* §3.4 에러 코드 체계 */
+  --toss-error-code-types: 6;                  /* 3.4 에러 코드 최소 6종 */
+
+  /* §4.1 실험 메트릭 최소 세트 */
+  --toss-experiment-metric-types: 3;           /* 4.1 Primary + Guardrail + Diagnostic */
+
+  /* §4.2 실험 최소 관측 기간 */
+  --toss-experiment-min-days: 7;               /* 4.2 최소 관측 7일 */
+  --toss-experiment-recommended-days: 14;      /* 4.2 권장 14일 */
+  --toss-experiment-min-sessions: 1000;        /* 4.2 그룹당 최소 유효 세션 */
+
+  /* §4.3 실험 중단 규칙 */
+  --toss-experiment-stop-crash-delta: 0.2;     /* 4.3 크래시율 +0.2%p → 중단 */
+  --toss-experiment-stop-payment-delta: 1.0;   /* 4.3 결제/인증 실패율 +1.0%p → 중단 */
+
+  /* §4.4 실험 세그먼트 분해 */
+  --toss-experiment-min-segments: 3;           /* 4.4 최소 3세그먼트 분해 */
+
+  /* §5.2 DS 리뷰 게이트 */
+  --toss-ds-review-min-approvals: 2;           /* 5.2 최소 2승인 (디자인1+개발1) */
+  --toss-ds-review-high-risk-approvals: 3;     /* 5.2 고위험 변경 시 3승인 */
+
+  /* §5.3 디프리케이션 */
+  --toss-ds-deprecation-notice-weeks: 4;       /* 5.3 Deprecated 공지 기간 4주 */
+
+  /* §5.4 릴리즈 노트 */
+  --toss-ds-release-note-max-lines: 3;         /* 5.4 항목당 3줄 제한 */
+
+  /* ===== TDS 제품 운영 확장 3-11 심화 — 보안·컴플라이언스·장애대응·CS·성장 ===== */
+
+  /* §1.2 인증/로그인 심화 (기존 login-fail-max, login-lock-duration, reauth-timeout 보완) */
+  --toss-ip-rate-limit-count: 20;              /* 1.2 동일 IP 10분 내 최대 요청 횟수 */
+  --toss-ip-rate-limit-window: 600000;         /* 1.2 IP 레이트리밋 윈도우 ms (10분) */
+
+  /* §1.3 리플레이/멱등키 */
+  --toss-idempotency-validity: 86400000;       /* 1.3 멱등키 유효기간 ms (24시간) */
+
+  /* §2.2 PII 수집 최소화 */
+  --toss-pii-required-fields-max: 3;           /* 2.2 필수 PII 최대 3필드 */
+
+  /* §2.3 보관기간 기본값 */
+  --toss-retention-auth-log: 7776000000;       /* 2.3 인증 로그 보관 ms (90일) */
+  --toss-retention-usage-log: 15552000000;     /* 2.3 서비스 사용 로그 ms (180일) */
+  --toss-retention-cs-ticket: 31536000000;     /* 2.3 CS 티켓 보관 ms (1년) */
+
+  /* §2.4 로그/이벤트 PII 혼입 방지 — 샘플링 */
+  --toss-event-sample-rate-default: 10;        /* 2.4 고빈도 이벤트 기본 샘플링 (%) */
+  --toss-event-sample-rate-critical: 100;      /* 2.4 장애/결제/인증 이벤트 100% */
+
+  /* §3.1 SLO 최소 세트 */
+  --toss-slo-metrics-per-feature: 2;           /* 3.1 기능당 SLO 최소 2개 */
+
+  /* §3.2 SLO 기본 임계값 */
+  --toss-slo-availability-threshold: 99.5;     /* 3.2 일반 가용성 (%) */
+  --toss-slo-latency-p95: 2000;                /* 3.2 일반 p95 지연 ms */
+  --toss-slo-critical-availability: 99.8;      /* 3.2 결제/인증 가용성 (%) */
+  --toss-slo-critical-latency-p95: 1500;       /* 3.2 결제/인증 p95 ms */
+
+  /* §3.3 알림 피로도 */
+  --toss-alert-max-per-30min: 1;               /* 3.3 기능당 30분 최대 알림 1회 */
+  --toss-alert-same-cause-suppress: 7200000;   /* 3.3 동일 원인 2시간 내 반복 금지 ms */
+
+  /* §3.4 인시던트 등급 — 사용자 영향 비율 (%) */
+  --toss-incident-sev1-user-pct: 5;            /* 3.4 SEV1: 5% 이상 영향 */
+  --toss-incident-sev2-user-pct: 1;            /* 3.4 SEV2: 1% 이상 영향 */
+
+  /* §3.5 대응 타임라인 목표 ms */
+  --toss-incident-sev1-ttd: 300000;            /* 3.5 SEV1 탐지 5분 */
+  --toss-incident-sev1-ttm: 1800000;           /* 3.5 SEV1 완화 30분 */
+  --toss-incident-sev2-ttd: 900000;            /* 3.5 SEV2 탐지 15분 */
+  --toss-incident-sev2-ttm: 7200000;           /* 3.5 SEV2 완화 2시간 */
+
+  /* §3.6 사후 회고 */
+  --toss-postmortem-min-items: 7;              /* 3.6 사후 회고 최소 7항목 */
+
+  /* §4.1 CS 티켓 */
+  --toss-cs-ticket-categories: 6;              /* 4.1 티켓 분류 최소 6종 */
+
+  /* §4.4 환불/취소 */
+  --toss-refund-max-business-days: 3;          /* 4.4 환불 완료 최대 3영업일 */
+
+  /* §5.1 Activation */
+  --toss-activation-core-actions: 1;           /* 5.1 핵심 가치 행동 1개만 */
+
+  /* §5.4 리텐션 코호트 */
+  --toss-retention-cohorts-min: 3;             /* 5.4 최소 3코호트 확인 */
+  --toss-retention-significant-delta: 2;       /* 5.4 유의미 판단 +2%p */
+
+  /* §5.5 성장 실험 가드레일 */
+  --toss-growth-guardrail-unsub-delta: 0.3;    /* 5.5 unsubscribe +0.3%p → 중단 */
+  --toss-growth-guardrail-complaint-max: 10;   /* 5.5 동일 키워드 문의 10건/일 → 중단 */
+
+  /* ===== TDS Input 운영 규칙 — 제품 운영 확장 4-12, §1 ===== */
+
+  /* §1.1 입력 길이 최소 기준 */
+  --toss-input-max-name: 30;                     /* 1.1 이름/일반 텍스트 최대 30자 */
+  --toss-input-max-address: 200;                 /* 1.1 주소/상세 설명 최대 200자 */
+  --toss-input-max-search: 50;                   /* 1.1 검색어 최대 50자 */
+  --toss-input-pin-length: 6;                    /* 1.1 인증코드/핀 고정 6자리 */
+  --toss-input-gov-id-length: 13;                /* 1.1 주민번호/정부ID 고정 13자리 */
+
+  /* §1.3 에러 메시지 규칙 */
+  --toss-input-error-max-chars: 30;              /* 1.3 에러 메시지 최대 30자 권장 */
+  --toss-input-error-max-per-field: 1;           /* 1.3 필드당 에러 동시 노출 최대 1개 */
+
+  /* §1.5 키보드/포커스 */
+  --toss-input-fields-group-threshold: 7;        /* 1.5 7개 이상 → 섹션 분리 + 단계형 CTA */
+
+  /* §1.6 삭제/초기화 */
+  --toss-input-clear-all-threshold: 3;           /* 1.6 3개 이상 폼 → '전체 지우기' CTA */
+
+  /* ===== TDS BottomCTA 운영 규칙 — 제품 운영 확장 4-12, §2 ===== */
+
+  /* §2.2 버튼 개수 */
+  --toss-bottom-cta-max-buttons: 2;              /* 2.2 CTA 최대 2개 (1개 원칙, 2개 예외) */
+
+  /* §2.3 스크롤 hide/show 임계값 */
+  --toss-bottom-cta-scroll-threshold: 24;        /* 2.3 작은 떨림 방지 24px (기본 1px 금지) */
+
+  /* §2.5 Safe Area 하단 여백 */
+  --toss-bottom-cta-safe-bottom-min: 20;         /* 2.5 하단 여백 최소 20px */
+  --toss-bottom-cta-safe-bottom-ios: 34;         /* 2.5 iOS 홈 인디케이터 포함 34px 이상 */
+
+  /* ===== TDS 선택/토글 운영 규칙 — 제품 운영 확장 4-12, §3 ===== */
+
+  /* §3.2 옵션 개수 제한 */
+  --toss-segment-options-min: 2;                 /* 3.2 SegmentedControl 최소 2개 */
+  --toss-segment-options-max: 5;                 /* 3.2 SegmentedControl 최대 5개 */
+  --toss-radio-options-min: 2;                   /* 3.2 Radio 최소 2개 */
+  --toss-radio-options-max: 7;                   /* 3.2 Radio 최대 7개 (8+ → 검색/필터) */
+  --toss-checkbox-group-threshold: 10;           /* 3.2 Checkbox 10개+ → 카테고리/접기/검색 */
+
+  /* ===== TDS DS 운영 규칙 — 제품 운영 확장 4-12, §4 ===== */
+
+  /* §4.1 변경 요청 최소 패키지 */
+  --toss-ds-change-package-items: 6;             /* 4.1 변경 1건당 6가지 문서화 필수 */
+
+  /* §4.2 Deprecation 운영 */
+  --toss-ds-deprecation-min-releases: 2;         /* 4.2 제거까지 최소 2릴리즈 유예 */
+  --toss-ds-deprecation-min-weeks: 4;            /* 4.2 스토어 업데이트 주기 감안 4주 유예 */
+
+  /* §4.3 가이드 품질 체크 */
+  --toss-ds-guide-checklist-min: 8;              /* 4.3 새 가이드 최소 8항목 포함 */
+
+  /* ===== TDS Chart 운영 규칙 — 제품 운영 확장 4-12, §5 ===== */
+
+  /* §5.1 데이터 스케일 */
+  --toss-chart-unit-max: 1;                      /* 5.1 단위는 1개만 (혼용 금지) */
+
+  /* §5.2 축/라벨 규칙 */
+  --toss-chart-x-labels-max: 7;                  /* 5.2 x축 라벨 한 화면 최대 7개 */
+  --toss-chart-y-decimal-max: 1;                 /* 5.2 y축 소수점 최대 1자리 */
+
+  /* §5.4 해석 가드레일 */
+  --toss-chart-y-start-zero: 1;                  /* 5.4 y축 기본 0 시작 (1=true, 0=false) */
+
+  /* ===== TDS 제품 운영 확장 5-13 — 모션·딥링크/푸시·오프라인·권한 UX·A11y·SDUI ===== */
+
+  /* §1.2 모션 기본 시간 (ms) */
+  --toss-motion-pressed: 100;                      /* 1.2 탭/버튼 pressed 피드백 80~120ms 중간값 */
+  --toss-motion-pressed-min: 80;                   /* 1.2 pressed 최소 */
+  --toss-motion-pressed-max: 120;                  /* 1.2 pressed 최대 */
+  --toss-motion-small: 175;                        /* 1.2 작은 전환(토글, 펼침/접기) 150~200ms */
+  --toss-motion-small-min: 150;                    /* 1.2 작은 전환 최소 */
+  --toss-motion-small-max: 200;                    /* 1.2 작은 전환 최대 */
+  --toss-motion-screen: 250;                       /* 1.2 화면 전환/오버레이 200~300ms */
+  --toss-motion-screen-min: 200;                   /* 1.2 화면 전환 최소 */
+  --toss-motion-screen-max: 300;                   /* 1.2 화면 전환 최대 */
+  --toss-motion-emphasis: 375;                     /* 1.2 로딩→완료 강조 300~450ms */
+  --toss-motion-emphasis-min: 300;                 /* 1.2 강조 최소 */
+  --toss-motion-emphasis-max: 450;                 /* 1.2 강조 최대 */
+
+  /* §1.4 모션 거리/크기 제한 */
+  --toss-motion-micro-distance-max: 12;            /* 1.4 마이크로 인터랙션 최대 12px */
+  --toss-motion-overlay-distance-max: 24;          /* 1.4 오버레이 등장 최대 24px */
+  --toss-motion-scale-min: 0.98;                   /* 1.4 스케일 최소 */
+  --toss-motion-scale-max: 1.02;                   /* 1.4 스케일 최대 */
+
+  /* §1.5 Reduce Motion 대체 */
+  --toss-motion-reduced-opacity-duration: 150;     /* 1.5 opacity 전환만 허용 150ms */
+
+  /* §2.3 푸시 빈도 상한 */
+  --toss-push-marketing-weekly-max: 3;             /* 2.3 마케팅/리텐션 사용자 1인당 주 3회 */
+  --toss-push-ops-weekly-max: 1;                   /* 2.3 제품/운영 공지 주 1회 */
+
+  /* §2.4 푸시 발송 시간대 */
+  --toss-push-send-start-hour: 9;                  /* 2.4 기본 발송 시작 09:00 */
+  --toss-push-send-end-hour: 20;                   /* 2.4 기본 발송 종료 20:00 */
+
+  /* §2.5 푸시 메시지 길이 */
+  --toss-push-title-max-chars: 20;                 /* 2.5 제목 최대 20자 */
+  --toss-push-body-max-chars: 50;                  /* 2.5 본문 최대 50자 */
+  --toss-push-cta-max: 1;                          /* 2.5 CTA 1개만 */
+
+  /* §2.6 알림 권한 요청 타이밍 */
+  --toss-push-permission-re-ask-days: 7;           /* 2.6 거절 후 재요청까지 7일 */
+
+  /* §3.2 오프라인 재시도 backoff (ms) */
+  --toss-offline-retry-1: 1000;                    /* 3.2 즉시 재시도 후 1초 */
+  --toss-offline-retry-2: 2000;                    /* 3.2 2초 */
+  --toss-offline-retry-3: 4000;                    /* 3.2 4초 */
+  --toss-offline-retry-4: 8000;                    /* 3.2 8초 */
+  --toss-offline-retry-5: 16000;                   /* 3.2 16초 */
+  --toss-offline-retry-max-interval: 30000;        /* 3.2 최대 간격 상한 30초 */
+  --toss-offline-retry-max-count: 5;               /* 3.2 자동 재시도 최대 5회 */
+
+  /* §4.2 권한 거절 대응 */
+  --toss-permission-re-ask-days: 7;                /* 4.2 1회 거절 후 재요청까지 7일 */
+  --toss-permission-settings-cta-session-max: 1;   /* 4.2 영구거절 → 설정 이동 CTA 세션당 1회 */
+
+  /* §6.2 Feature Flag 롤아웃 단계 (%) */
+  --toss-flag-rollout-step-1: 0.5;                 /* 6.2 내부 */
+  --toss-flag-rollout-step-2: 5;                   /* 6.2 */
+  --toss-flag-rollout-step-3: 25;                  /* 6.2 */
+  --toss-flag-rollout-step-4: 50;                  /* 6.2 */
+  --toss-flag-rollout-step-5: 100;                 /* 6.2 */
+  --toss-flag-rollout-observe-min: 86400000;       /* 6.2 각 단계 최소 24시간 관찰 ms */
+
+  /* §6.3 롤백 기준 */
+  --toss-flag-rollback-crash-delta: 0.2;           /* 6.3 crash-free -0.2%p → 롤백 */
+  --toss-flag-rollback-conversion-delta: 1.0;      /* 6.3 핵심 전환 -1%p → 롤백 */
+  --toss-flag-rollback-cs-daily-max: 10;           /* 6.3 CS/리뷰 키워드 하루 10건+ → 롤백 */
+
+  /* ===== TDS 컴포넌트 시스템화/운영 규칙 — 보강판 ===== */
+
+  /* 컴포넌트화 판단 기준 (주석 참조용) */
+  /* 반복 사용 2화면+ / 팀 간 일관성 비용 발생 / 옵션 추가 시작 → 컴포넌트 격상 */
+
+  /* §4 접근성/큰 글자/줄바꿈 "컴포넌트 책임" */
+  --tds-icon-scale-with-text: 1;                     /* 4. 아이콘이 텍스트와 동일 비율 스케일 (1=em기반) */
+  --tds-word-break-policy: keep-all;                 /* 4. 한국어: 단어 단위 개행 → 글자 단위 개행 전환 */
+
+  /* §Tooltip 운영 규칙 (Slider) */
+  --tds-slider-tooltip-auto: 1;                      /* 정밀 조절 입력은 Tooltip 기본 켜기 */
+  --tds-slider-tooltip-padding-top: 55;              /* Tooltip 활성 시 상단 여백 px */
+
+  /* §Empty/Error/Retry 수치 규칙 */
+  --tds-retry-debounce-ms: 1000;                     /* 재시도 버튼 최소 쿨다운 ms */
+  --tds-retry-max-consecutive: 3;                    /* 연속 재시도 최대 횟수 */
+  --tds-empty-min-actions: 1;                        /* Empty 상태 최소 다음 행동 CTA 개수 */
+
+  /* §Overlay 선택 기준 (주석 참조용) */
+  /* Dialog: 확인/선택 필수 흐름, closeOnDimmerClick 정책 고정 */
+  /* BottomSheet: 옵션 탐색, 보조 정보. 닫히면 안 되는 플로우 → closeOnDimmerClick=false 잠금 */
+  /* Modal: 집중 콘텐츠, onExited에서만 정리 작업 */
+
+  /* §Toast 사용 경계 */
+  --tds-toast-max-duration: 5;                       /* 버튼 포함 Toast 최대 5초, 중요 메시지는 Dialog 격상 */
+  --tds-toast-status-only: 1;                        /* Toast는 상태 알림만. 선택/확인은 Dialog/BottomSheet */
+
+  /* §표준 컴포넌트 통일 우선순위 (주석 참조용) */
+  /* 설정/목록 → ListRow 통일 / 리스트 확장 → ListFooter / 아이콘 액션 → IconButton + aria-label 필수 */
+
+  /* ===== TDS Menu 컴포넌트 — 아티클 참고 (2024-02-19 / 2024-03-05) ===== */
+  /*
+   * §1.1 물리적 거리 사용성: 옵션 3~6개인 선택에서 BottomSheet 대신 Menu 사용
+   *   → 버튼(트리거) 위치에서 바로 펼쳐져 시선/인지 이동 최소화
+   * §1.3 검증 규칙: A/B 테스트 10일, iOS/Android OS 기본 메뉴로 빠르게 실험
+   * §1.4 의사결정: CTR 동일 or 상승 → 시스템화, CTR 하락 → 보류
+   *   - 사례: Android 메뉴 아이템 클릭율 바텀시트 대비 +10%
+   * §1.5 빠르게 구현: 처음부터 완벽 집착 금지, OS 기본 → 나중 디벨롭
+   * §2.4 패턴 (실사용 데이터): 체크형 50% → 좌측 승격 / 5자+ → 너비 정책 / 7개+ → 스크롤 페이드
+   * §2.5 심미성: 블러(20px) + 밝은 외곽선 + 트리거 위치 기준 origin
+   * §2.6 접근성: 열림/닫힘 포커스 지정, 스크린리더용 투명 닫기 버튼, 장식 아이콘 읽지 않기
+   *   - 큰 텍스트: 글자 단위 개행 전환 + 아이콘 함께 스케일
+   * §2.7 결과: 개선 후 제작 속도 약 3~5배 향상
+   */
+  --tds-menu-blur: 20px;
+  --tds-menu-bg: rgba(255, 255, 255, 0.85);
+  --tds-menu-border: rgba(0, 0, 0, 0.08);
+  --tds-menu-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  --tds-menu-radius: 14px;
+  --tds-menu-item-height: 44px;
+  --tds-menu-item-padding: 16px;
+  --tds-menu-min-width: 160px;                         /* §2.4B: 5자+ 단어 빈번 → 충분한 너비 보장 */
+  --tds-menu-max-width: 280px;                         /* §2.4B: 화면 대비 과도한 확장 방지 */
+  --tds-menu-scroll-fade-threshold: 7;                 /* §2.4C: 7개+ 아이템 → 스크롤 페이드 */
+  --tds-menu-max-visible-items: 6.5;                   /* §2.4C: 6.5개까지 노출, 나머지 스크롤 */
+
+  /* §1.3~1.4 실험/의사결정 참조 수치 (런타임 미사용, 의사결정 근거 문서화) */
+  --tds-menu-experiment-days: 10;                      /* §1.3 실험 기간 10일 */
+  --tds-menu-ctr-android-uplift-pct: 10;               /* §1.4 Android: 바텀시트 대비 CTR +10% */
+  --tds-menu-check-pattern-usage-pct: 50;              /* §2.4A 체크형 패턴 사용 비율 ~50% */
+  --tds-menu-long-word-threshold: 5;                   /* §2.4B 5자+ 단어가 절반 이상 */
+  --tds-menu-production-speed-multiplier: 4;           /* §2.7 제작 속도 약 3~5배 향상 (중간값 4) */
+
+  /*
+   * ═══ 아티클 2편 — 바로 적용용 1페이지 체크리스트 ═══
+   * [ ] 새 컴포넌트 필요 시 → "물리적 거리/인지 비용" 문제를 문장으로 정의
+   * [ ] 의심 시 → A/B 또는 UT로 검증 (iOS/Android OS 기본으로 빠르게 실험 허용)
+   * [ ] 실사용 데이터 패턴화:
+   *       - 체크형 50%+ → 독립 패턴 승격
+   *       - 5자+/7자+ 단어 → 너비 정책 기본 적용
+   *       - 7개+ 아이템 → 스크롤 인지(페이드) 기본 스펙
+   * [ ] 심미성 = "가벼움" 우선 → 블러/외곽선/모션 수치로 설계
+   * [ ] 큰 텍스트/화면읽기 = 화면이 아니라 **컴포넌트 책임**으로 끌어올리기
+   */
+
+  /* ===== TDS 아티클 4편 참고 규칙 (2024-04-05 ~ 2026-01-08) ===== */
+
+  /*
+   * ── 아티클 1: 디자인 시스템 다시 생각해보기 (2026-01-08) ──
+   *
+   * §1.1 우회(detach/fork) = "미충족 수요"의 신호
+   *   - 우회가 보이면 통제 강화가 아니라 → "무엇이 부족한가"를 기록한다.
+   *
+   * §1.2 디자인 시스템 = 제품 → 우회할 이유를 줄이는 설계가 목표
+   *
+   * §1.3 컴포넌트 API: Flat vs Compound
+   *   Flat  — 내부 구조 숨김, props로 변형. 간단하지만 props 폭발 위험.
+   *   Compound — 하위 컴포넌트 조립. 유연하지만 verbose, 학습 포인트 증가.
+   *
+   * §1.4 하이브리드 제공 규칙:
+   *   [ ] 단순·고빈도 → Flat API
+   *   [ ] 복잡·변형 잦음 → Compound API
+   *   [ ] 내부 구현은 하나의 primitive 레이어로 통합
+   *
+   * §1.5 AI/사람용 결정 트리:
+   *   Q1: 구조가 거의 고정인가?  예→Flat 우선 / 아니오→Q2
+   *   Q2: 예외/커스텀 요구 빈번?  예→Compound / 아니오→Flat 시작, 우회 시 Compound 추가
+   */
+
+  /*
+   * ── 아티클 2: 7년만의 컬러 시스템 업데이트 (2025-12-15) ──
+   *
+   * §2.1 문제: 같은 단계인데 명도/대비 불균일 → UI 얼룩 (Grey 100 1.1:1 vs Red 100 1.34:1)
+   * §2.2 팔레트 연결: 한 색만 고치면 연쇄 수정 → 부분 수정 실패
+   * §2.4 규칙:
+   *   [ ] 명도 = 인지적 균일 색공간(OKLCH 등) 기준 통일
+   *   [ ] 수치 균일 ≠ 시각 균일 → 시각 보정 필수 (Dark Yellow Problem)
+   *   [ ] 다크모드 전용 명도 기준 (APCA 참고)
+   *   [ ] 시맨틱 토큰: "같은 의도 → 같은 색" 보장
+   * §2.5 토큰 자동화:
+   *   [ ] 원본 = 사람+기계 모두 읽는 구조
+   *   [ ] 전처리: 이름/구조/포맷 정규화 (Blue 50→blue-50, hex→rgba)
+   *   [ ] 코드젠 파이프라인: Token Studio → CSS/TS 자동 생성
+   * §2.6 마이그레이션 3단계:
+   *   1) 내부 프로세스 통합 (구조 v1 + 값 v2 분리)
+   *   2) 서비스에 토큰 시스템 적용 (일괄 전파)
+   *   3) 시맨틱/컴포넌트 토큰 의미 매핑 → 점진 적용
+   */
+
+  /*
+   * ── 아티클 3: 디자인 시스템 가이드 개선 (2024-04-05) ──
+   *
+   * §3.2 가이드 작성 규칙 (JSDoc 표준 템플릿):
+   *   A. 읽는 방향 강제: 위→아래 흐름
+   *   B. 큰 구조→상세: 1) 상위 타입 2) 구성 요소 3) 상태 변화 디테일
+   *   C. worst case 상단: 모든 옵션 최대 사용 케이스를 맨 위에
+   *   D. 접근성 하단 고정: 큰 텍스트/VoiceOver/동작 줄이기 → 마지막 슬롯
+   *   E. 타입별 분기:
+   *      - 조합형(Toast/CTA/List): 공통 체크리스트
+   *      - 아토믹(Button/Checkbox): 예측 가능 구조만
+   *      - 오버레이(Dialog/BottomSheet): position 항목 추가
+   * §3.3 KPI: 규칙 없음→1주/1개, 정착→3개/1일
+   */
+
+  /*
+   * ── 아티클 4: 문제의 근원을 해결하기 (2024-06-14) ──
+   *
+   * §4.3 리소스 부족 시:
+   *   [ ] 운영 업무 위임/분리 → 집중 환경 확보
+   *   [ ] 제로베이스 어려우면 → 오픈소스 차용
+   *   [ ] 검증 미루지 말고 → 주 단위 "스펙 + UT" 동시 진행
+   * §4.4 정량: 개발1 + 디자인1 → 약 2달
+   * §4.5 시스템 개선 3원칙:
+   *   1) Question every assumption — 전제 의심이 가장 빠른 해결
+   *   2) Ask for feedback — 피드백 없음 ≠ 문제 없음
+   *   3) Focus on impact — 가장 큰 임팩트에 집중
+   */
+
+  /*
+   * ═══ 통합 공통 실행 체크리스트 (아티클 2+4편) ═══
+   * [ ] 우회(detach/fork) → "통제 강화" 아닌 "미충족 수요"로 기록
+   * [ ] 컴포넌트 API → Flat/Compound 상황별, 내부 primitive 통합
+   * [ ] 토큰 → 사람+기계 구조 정규화, 코드젠 파이프라인
+   * [ ] 가이드 → 위→아래, 큰 구조→상세, worst case 상단, A11y 하단
+   * [ ] 복잡 문제 → 오픈소스 + 주간 UT + 리소스 집중
+   * [ ] 새 컴포넌트 → "물리적 거리/인지 비용" 문제 정의 먼저
+   * [ ] 검증 → A/B 또는 UT (OS 기본으로 빠르게 실험)
+   * [ ] 패턴화 → 체크 50%+ 승격, 5자+ 너비, 7개+ 스크롤 페이드
+   * [ ] 심미성 → "가벼움" (블러/외곽선/모션)
+   * [ ] 접근성 → 컴포넌트 책임으로 끌어올리기
+   */
+}
+
+/* ═══════════════════════════════════════════════
+   DARK MODE — TDS 다크모드 시맨틱 토큰 오버라이드
+   ═══════════════════════════════════════════════ */
+/*
+ * §아티클2 §2.4: 다크모드 전용 명도 기준
+ * - 어두운 배경에서 시인성 착시 보정 (APCA 메트릭 참고)
+ * - 같은 단계 토큰이라도 다크 전용 값을 별도 지정 (Grey 반전 + 불투명도 보정)
+ * - 수치적 균일 ≠ 시각적 균일 → 시각 보정 적용됨
+ */
+.dark {
+  color-scheme: dark;
+  /* ── Base Grey (반전 — pure neutral) ── */
+  --toss-grey-50: #1A1A1A;
+  --toss-grey-100: #222222;
+  --toss-grey-200: #2E2E2E;
+  --toss-grey-300: #3D3D3D;
+  --toss-grey-400: #757575;
+  --toss-grey-500: #9E9E9E;
+  --toss-grey-600: #BDBDBD;
+  --toss-grey-700: #E0E0E0;
+  --toss-grey-800: #EEEEEE;
+  --toss-grey-900: #F5F5F5;
+
+  /* ── Grey Opacity (다크 전용) ── */
+  --toss-grey-opacity-50: rgba(255, 255, 255, 0.02);
+  --toss-grey-opacity-100: rgba(255, 255, 255, 0.05);
+  --toss-grey-opacity-200: rgba(255, 255, 255, 0.1);
+  --toss-grey-opacity-300: rgba(255, 255, 255, 0.18);
+
+  /* ── Primary Scale (다크모드: 밝은 neutral — 전체 스케일) ── */
+  --toss-blue-50: rgba(160, 160, 160, 0.1);
+  --toss-blue-100: rgba(160, 160, 160, 0.18);
+  --toss-blue-200: rgba(160, 160, 160, 0.25);
+  --toss-blue-300: #9E9E9E;
+  --toss-blue-400: #BDBDBD;
+  --toss-blue-500: #E0E0E0;
+  --toss-blue-600: #CCCCCC;
+  --toss-blue-700: #B0B0B0;
+  --toss-blue-800: #999999;
+  --toss-blue-900: #858585;
+
+  /* ── Red Scale (다크 보정) ── */
+  --toss-red-50: rgba(239, 68, 68, 0.12);
+  --toss-red-100: rgba(239, 68, 68, 0.2);
+  --toss-red-200: rgba(239, 68, 68, 0.3);
+
+  /* ── Orange Scale (다크 보정) ── */
+  --toss-orange-50: rgba(249, 115, 22, 0.12);
+  --toss-orange-100: rgba(249, 115, 22, 0.2);
+  --toss-orange-200: rgba(249, 115, 22, 0.3);
+
+  /* ── Green Scale (다크 보정) ── */
+  --toss-green-50: rgba(34, 197, 94, 0.12);
+  --toss-green-100: rgba(34, 197, 94, 0.2);
+
+  /* ── Background Tokens ── */
+  --toss-bg: #111111;
+  --toss-bg-grey: #1A1A1A;
+  --toss-bg-layered: #1A1A1A;
+  --toss-bg-floated: #222222;
+  --toss-page-bg: #111111;               /* 다크: 가장 어두운 베이스 */
+  --toss-card-bg: #1A1A1A;               /* 다크: 카드는 페이지보다 밝음 */
+
+  /* ── Semantic Fill ── */
+  --toss-fill-neutral: var(--toss-grey-100);
+  --toss-fill-neutral-weak: var(--toss-grey-50);
+  --toss-fill-primary: var(--toss-grey-900);
+  --toss-fill-secondary: var(--toss-grey-600);
+  --toss-fill-brand-weak: rgba(160, 160, 160, 0.12);
+  --toss-fill-danger-weak: rgba(239, 68, 68, 0.15);
+  --toss-fill-success-weak: rgba(34, 197, 94, 0.15);
+  --toss-fill-warning-weak: rgba(249, 115, 22, 0.15);
+
+  /* ── Text Tokens ── */
+  --toss-text-primary: #F5F5F5;
+  --toss-text-secondary: #E0E0E0;
+  --toss-text-tertiary: #9E9E9E;
+  --toss-text-disabled: #757575;
+  --toss-text-on-color: #ffffff;
+  --toss-text-brand: var(--toss-blue-500);
+
+  /* ── Border Tokens ── */
+  --toss-border-default: #2E2E2E;
+  --toss-border-strong: #3D3D3D;
+
+  /* ── Component Tokens ── */
+  --background: var(--toss-bg);
+  --foreground: var(--toss-grey-900);
+  --card: #1A1A1A;
+  --card-foreground: var(--toss-grey-900);
+  --popover: #222222;
+  --popover-foreground: var(--toss-grey-900);
+  --primary: var(--toss-blue-500);
+  --primary-foreground: #171717;
+  --secondary: var(--toss-grey-100);
+  --secondary-foreground: var(--toss-grey-900);
+  --muted: var(--toss-grey-100);
+  --muted-foreground: var(--toss-grey-500);
+  --accent: var(--toss-grey-50);
+  --accent-foreground: var(--toss-grey-900);
+  --border: var(--toss-grey-200);
+  --input: transparent;
+  --input-background: var(--toss-grey-100);
+  --switch-background: var(--toss-grey-300);
+  --ring: var(--toss-blue-500);
+
+  /* ── Overlay ── */
+  --toss-overlay-dim: rgba(0, 0, 0, 0.6);
+  --toss-overlay-dim-strong: rgba(0, 0, 0, 0.8);
+
+  /* ── Toast ── */
+  --toss-toast-bg: #3D3D3D;
+
+  /* ── Skeleton ── */
+  --toss-skeleton-bg-white: #1A1A1A;
+  --toss-skeleton-bg-grey: #222222;
+  --toss-skeleton-shimmer: #2E2E2E;
+
+  /* ── TextField ── */
+  --toss-textfield-bg: var(--toss-grey-100);
+  --toss-textfield-bg-error: rgba(239, 68, 68, 0.1);
+
+  /* ── SegmentedControl ── */
+  --toss-segment-bg: var(--toss-grey-100);
+  --toss-segment-active-bg: #2E2E2E;
+  --toss-segment-text: var(--toss-grey-500);
+  --toss-segment-active-text: var(--toss-grey-900);
+
+  /* ── BottomCTA ── */
+  --toss-bottom-cta-bg: #111111;
+
+  /* ── ListFooter ── */
+  --toss-listfooter-border-color: var(--toss-grey-100);
+  --toss-listfooter-pressed-bg: var(--toss-grey-50);
+
+  /* ── Highlight ── */
+  --toss-highlight-dim: rgba(0, 0, 0, 0.7);
+
+  /* ── TossButton (다크모드: 밝은 bg + 어두운 텍스트) ── */
+  --button-color: #171717;
+  --button-background-color: var(--toss-blue-500);
+  --button-loader-color: #171717;
+  --button-loading-background-color: var(--toss-blue-500);
+  --button-loading-opacity: 0.7;
+  --button-pressed-background-color: var(--toss-blue-600);
+  --button-pressed-opacity: 1;
+
+  /* ── Slider / ProgressBar (다크모드 보정) ── */
+  --toss-slider-fill-color: var(--toss-blue-400);
+  --toss-slider-thumb-bg: #2E2E2E;
+  --toss-slider-thumb-shadow: 0 1px 4px rgba(0,0,0,0.4);
+  --toss-progressbar-fill: var(--toss-blue-400);
+
+  /* ── Checkbox / Switch ── */
+  --toss-checkbox-checked: var(--toss-blue-500);
+  --toss-switch-on: var(--toss-blue-500);
+  --toss-switch-thumb: #111111;
+
+  /* ── ProgressStepper ── */
+  --toss-stepper-active: var(--toss-blue-500);
+  --toss-stepper-completed: var(--toss-blue-500);
+  --toss-stepper-inactive: var(--toss-grey-300);
+  --toss-stepper-number-bg: var(--toss-blue-500);
+  --toss-stepper-number-color: #171717;
+
+  /* ── Menu (다크모드) ── */
+  --tds-menu-bg: rgba(30, 30, 30, 0.88);
+  --tds-menu-border: rgba(255, 255, 255, 0.1);
+  --tds-menu-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* ═══════════════════════════════════════════════
+   TDS 컴포넌트 시스템화 — §4 글로벌 텍스트 줄바꿈/접근성 정책
+   ═══════════════════════════════════════════════ */
+
+/* §4.1 한국어 텍스트 줄바꿈: 단어 단위 개행 기본, 좁은 공간에서 글자 단위 개행으로 전환 */
+html:lang(ko), [lang="ko"] {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+/* §4.2 아이콘 크기가 텍스트와 함께 스케일 — em 기반 아이콘 사이징 유틸리티 */
+.icon-scale-with-text {
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+}
+
+/* §4.3 좁은 공간 글자 단위 개행 전환 */
+.break-all-narrow {
+  word-break: break-all;
+  overflow-wrap: anywhere;
+}
+
+/* §4 VoiceOver/TalkBack 장식 아이콘 숨김 유틸리티 */
+.decorative-icon {
+  pointer-events: none;
+}
+
+/* §5 컴포넌트 추가 체크리스트 — focus-visible 강화 (접근성)
+   input/textarea/select는 자체 포커스 스타일(boxShadow)을 사용하므로 제외 */
+:focus-visible:not(input):not(textarea):not(select) {
+  outline: 2px solid var(--toss-blue-500);
+  outline-offset: 2px;
+}
+.dark :focus-visible:not(input):not(textarea):not(select) {
+  outline-color: var(--toss-blue-400);
+}
+
+/* ═══════════════════════════════════════════════
+   GLOBAL — App Shell (반응형 모바일 레이아웃)
+   ═══════════════════════════════════════════════ */
+html, body {
+  background-color: var(--toss-bg);
+  overflow-x: hidden;
+}
+
+.dark html, .dark body,
+html.dark, body.dark {
+  background-color: #111111;
+}
+
+/* 앱 전체를 감싸는 래퍼 — 모든 모바일 기기에서 반응형 */
+#app-shell {
+  position: relative;
+  width: 100%;
+  min-height: 100dvh;
+  background-color: var(--toss-bg);
+  overflow-x: hidden;
+}

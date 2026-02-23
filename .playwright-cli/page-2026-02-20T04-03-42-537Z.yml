@@ -1,0 +1,48 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - button "iPhone 16 ▾" [ref=e6]:
+      - generic [ref=e7]: iPhone 16
+      - generic [ref=e8]: ▾
+    - generic [ref=e9]:
+      - generic [ref=e10]: W 393
+      - generic [ref=e11]: H 852
+  - main [ref=e12]:
+    - iframe [active] [ref=e15]:
+      - generic [ref=f2e3]:
+        - link "본문으로 건너뛰기" [ref=f2e4] [cursor=pointer]:
+          - /url: "#main-content"
+        - main [ref=f2e5]:
+          - generic [ref=f2e128]:
+            - generic [ref=f2e129]:
+              - img [ref=f2e131]
+              - heading "keppin" [level=1] [ref=f2e136]
+              - paragraph [ref=f2e137]: 소중한 인연을 쉽고 똑똑하게
+            - generic [ref=f2e138]:
+              - button "카카오로 로그인" [ref=f2e139]:
+                - img [ref=f2e140]
+                - generic [ref=f2e142]: 카카오로 로그인
+              - button "네이버로 로그인" [ref=f2e143]:
+                - img [ref=f2e144]
+                - generic [ref=f2e146]: 네이버로 로그인
+              - button "구글로 로그인" [ref=f2e147]:
+                - img [ref=f2e148]
+                - generic [ref=f2e153]: Google로 로그인
+            - generic [ref=f2e156]: 또는 이메일로 로그인
+            - generic [ref=f2e158]:
+              - textbox "이메일 주소" [ref=f2e161]
+              - generic [ref=f2e163]:
+                - textbox "비밀번호" [ref=f2e164]
+                - button "비밀번호 보기" [ref=f2e165]:
+                  - img [ref=f2e166]
+              - button "로그인" [disabled] [ref=f2e169]
+              - generic [ref=f2e170]:
+                - button "비밀번호를 잊으셨나요?" [ref=f2e171]
+                - button "회원가입" [ref=f2e172]
+            - generic [ref=f2e173]:
+              - link "이용약관" [ref=f2e174] [cursor=pointer]:
+                - /url: /terms
+              - generic [ref=f2e175]: "|"
+              - link "개인정보처리방침" [ref=f2e176] [cursor=pointer]:
+                - /url: /privacy-policy
+        - status [ref=f2e23]
+        - alert [ref=f2e24]
