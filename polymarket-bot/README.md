@@ -86,12 +86,28 @@ cd /Users/minwoo/Documents/New\ project/polymarket-bot
 python3 -m polymarket_bot compile-signals
 ```
 
+8. Check live-trading readiness without sending an order:
+
+```bash
+cd /Users/minwoo/Documents/New\ project/polymarket-bot
+python3 -m polymarket_bot validate-live
+```
+
+9. Build dry-run live orders from current BUY signals:
+
+```bash
+cd /Users/minwoo/Documents/New\ project/polymarket-bot
+python3 -m polymarket_bot dry-run-live --top 3 --focus world-politics --min-hours-to-close 12 --max-hours-to-close 720 --fetch-limit 400
+```
+
 Outputs are written into `reports/`:
 
 - `latest_report.md`
 - `latest_opportunities.json`
 - `paper_orders.jsonl`
 - `paper_state.json`
+- `live_readiness.json`
+- `latest_dry_run_orders.json`
 
 Research packets are written into `research/<market-slug>/`:
 
@@ -127,6 +143,7 @@ Use the built-in workflow when you do not yet trust your fair value:
 
 The full playbook lives in [docs/RESEARCH_PLAYBOOK.md](./docs/RESEARCH_PLAYBOOK.md).
 Market-family specific fair-value guidance lives in [docs/FAIR_VALUE_GUIDE.md](./docs/FAIR_VALUE_GUIDE.md).
+Live rollout guidance lives in [docs/LIVE_SETUP_CHECKLIST.md](./docs/LIVE_SETUP_CHECKLIST.md).
 
 Example short-universe scans:
 

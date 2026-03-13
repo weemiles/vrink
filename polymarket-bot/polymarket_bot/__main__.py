@@ -45,6 +45,28 @@ def main(argv=None) -> int:
         help="Write the computed fair probability back into the thesis.json file",
     )
 
+    validate_live_parser = subparsers.add_parser(
+        "validate-live",
+        help="Check local live-trading readiness without sending any order",
+    )
+    validate_live_parser.add_argument(
+        "--json",
+        action="store_true",
+        help="Print the live-readiness payload as JSON",
+    )
+
+    dry_run_parser = subparsers.add_parser(
+        "dry-run-live",
+        help="Create would-be live orders from current BUY signals without sending them",
+    )
+    dry_run_parser.add_argument("--top", type=int, default=3, help="Maximum number of dry-run orders to print")
+    _add_filter_args(dry_run_parser)
+
+    subparsers.add_parser(
+        "reset-paper",
+        help="Reset paper cash and clear paper order history",
+    )
+
     args = parser.parse_args(argv)
     project_root = Path(__file__).resolve().parent.parent
     app = ResearchBotApp(project_root)
@@ -88,6 +110,21 @@ def main(argv=None) -> int:
 
     if args.command == "poll-model":
         result = run_poll_model(Path(args.config), write_thesis=args.write_thesis)
+        print(json.dumps(result, indent=2, ensure_ascii=True))
+        return 0
+
+    if args.command == "validate-live":
+        result = app.validate_live()
+        print(json.dumps(result, indent=2, ensure_ascii=True))
+        return 0
+
+    if args.command == "dry-run-live":
+        result = app.dry_run_live(filters=filters, fetch_limit=fetch_limit, max_orders=args.top)
+        print(json.dumps(result, indent=2, ensure_ascii=True))
+        return 0
+
+    if args.command == "reset-paper":
+        result = app.reset_paper()
         print(json.dumps(result, indent=2, ensure_ascii=True))
         return 0
 

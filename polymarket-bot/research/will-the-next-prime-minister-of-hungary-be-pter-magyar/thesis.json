@@ -10,12 +10,14 @@
   "hours_to_close_snapshot": 715.9823720311111,
   "fair_yes_probability": 0.6506,
   "confidence": 0.508,
-  "rationale": "Working estimate: fair YES is about 67%. Multiple March 2026 reports say Peter Magyar and Tisza are leading Viktor Orban's Fidesz ahead of the April 12, 2026 election, so the market's roughly 62% price still looks a bit low. I am discounting that polling edge because Hungary's electoral system, incumbency advantage, media environment, and possible late-cycle pressure campaigns still create meaningful downside risk.",
+  "rationale": "Polling model estimate for Peter Magyar: weighted polling margin is 7.2 points versus Viktor Orban. After applying explicit structural adjustments of -3.5 points, the model maps the adjusted margin into a fair YES probability of 65.1%. Working estimate: fair YES is about 67%. Multiple March 2026 reports say Peter Magyar and Tisza are leading Viktor Orban's Fidesz ahead of the April 12, 2026 election, so the market's roughly 62% price still looks a bit low. I am discounting that polling edge because Hungary's electoral system, incumbency advantage, media environment, and possible late-cycle pressure campaigns still create meaningful downside risk.",
   "sources": [
     "https://apnews.com/article/1c71a8b1f94e5f706fcea92cfec5fbb7",
     "https://www.theguardian.com/world/2026/mar/12/orban-ukraine-claims-hungary-election",
     "https://www.ft.com/content/34df20f9-487b-4cb6-9dc9-d676d959d1ed",
-    "https://www.hungarianconservative.com/articles/current/election-date-hungary-april-12/"
+    "https://www.hungarianconservative.com/articles/current/election-date-hungary-april-12/",
+    "https://wtaq.com/2026/03/11/hungarys-opposition-tisza-party-maintains-lead-as-election-nears-poll-shows/",
+    "https://krro.com/2026/03/04/hungarys-opposition-leads-in-polls-far-right-party-gains-support/"
   ],
   "starter_context": [
     "As of March 13, 2026, Hungary's general election is set for April 12, 2026.",
@@ -46,7 +48,7 @@
     "max_position_pct_override": null
   },
   "created_at": "2026-03-13T04:01:03.474850+00:00",
-  "updated_at": "2026-03-13T05:06:46.249205+00:00",
+  "updated_at": "2026-03-13T05:13:22.540727+00:00",
   "poll_model_output": {
     "as_of": "2026-03-13T04:15:00+00:00",
     "weighted_margin_points": 7.229,

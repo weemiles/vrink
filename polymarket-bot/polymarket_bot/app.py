@@ -7,6 +7,7 @@ from .clob import ClobMarketDataClient
 from .config import BotConfig, load_config
 from .filters import ScanFilters, apply_scan_filters
 from .gamma import GammaClient
+from .live import build_dry_run_orders, validate_live_setup
 from .paper import PaperTrader
 from .report import write_report
 from .research import compile_research_signals, prepare_research_packets
@@ -69,6 +70,28 @@ class ResearchBotApp:
             research_dir=self.config.research_dir,
             output_path=self.config.manual_signals_path,
         )
+
+    def validate_live(self) -> dict:
+        return validate_live_setup(self.config.project_root, self.config)
+
+    def dry_run_live(
+        self,
+        filters: ScanFilters = ScanFilters(),
+        fetch_limit: Optional[int] = None,
+        max_orders: int = 3,
+    ) -> dict:
+        markets, opportunities = self._scan_objects(filters=filters, fetch_limit=fetch_limit)
+        result = build_dry_run_orders(
+            reports_dir=self.config.reports_dir,
+            config=self.config,
+            markets=markets,
+            opportunities=opportunities,
+            max_orders=max_orders,
+        )
+        return result
+
+    def reset_paper(self) -> dict:
+        return self.paper.reset()
 
     def loop_paper(
         self,

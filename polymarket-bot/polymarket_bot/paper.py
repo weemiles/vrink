@@ -66,3 +66,14 @@ class PaperTrader:
             json.dumps(state.to_dict(), indent=2, ensure_ascii=True),
             encoding="utf-8",
         )
+
+    def reset(self) -> dict:
+        state = PaperState(cash_usd=self.starting_cash, open_positions={})
+        self._save_state(state)
+        self.orders_path.write_text("", encoding="utf-8")
+        return {
+            "cash_usd": self.starting_cash,
+            "open_positions": {},
+            "orders_path": str(self.orders_path),
+            "state_path": str(self.state_path),
+        }
