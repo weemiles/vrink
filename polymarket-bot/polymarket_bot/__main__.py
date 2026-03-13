@@ -5,6 +5,7 @@ from pathlib import Path
 
 from .app import ResearchBotApp
 from .filters import build_scan_filters
+from .poll_model import run_poll_model
 
 
 def main(argv=None) -> int:
@@ -31,6 +32,17 @@ def main(argv=None) -> int:
     subparsers.add_parser(
         "compile-signals",
         help="Compile ready research dossiers into manual_signals.json",
+    )
+
+    poll_model_parser = subparsers.add_parser(
+        "poll-model",
+        help="Run a polling model from a research config JSON",
+    )
+    poll_model_parser.add_argument("--config", required=True, help="Path to poll model config JSON")
+    poll_model_parser.add_argument(
+        "--write-thesis",
+        action="store_true",
+        help="Write the computed fair probability back into the thesis.json file",
     )
 
     args = parser.parse_args(argv)
@@ -71,6 +83,11 @@ def main(argv=None) -> int:
 
     if args.command == "compile-signals":
         result = app.compile_research()
+        print(json.dumps(result, indent=2, ensure_ascii=True))
+        return 0
+
+    if args.command == "poll-model":
+        result = run_poll_model(Path(args.config), write_thesis=args.write_thesis)
         print(json.dumps(result, indent=2, ensure_ascii=True))
         return 0
 

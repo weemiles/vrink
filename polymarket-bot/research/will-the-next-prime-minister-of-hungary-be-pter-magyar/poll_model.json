@@ -1,0 +1,42 @@
+{
+  "market_slug": "will-the-next-prime-minister-of-hungary-be-pter-magyar",
+  "candidate_name": "Peter Magyar",
+  "opponent_name": "Viktor Orban",
+  "as_of": "2026-03-13T13:15:00+09:00",
+  "election_date": "2026-04-12T00:00:00+02:00",
+  "thesis_path": "/Users/minwoo/Documents/New project/polymarket-bot/research/will-the-next-prime-minister-of-hungary-be-pter-magyar/thesis.json",
+  "half_life_days": 10,
+  "logistic_scale_points": 6,
+  "adjustments": {
+    "incumbency_points": -2.0,
+    "system_points": -1.0,
+    "late_campaign_risk_points": -0.5,
+    "other_points": 0.0
+  },
+  "notes": [
+    "Use all-voter polls where possible to avoid overstating the challenger.",
+    "Negative adjustments reflect Fidesz incumbency and Hungary's electoral system."
+  ],
+  "polls": [
+    {
+      "pollster": "21 Research Centre",
+      "field_date_end": "2026-03-06T00:00:00+01:00",
+      "candidate_support": 38,
+      "opponent_support": 30,
+      "population": "all_voters",
+      "sample_size": null,
+      "quality": 1.0,
+      "source": "https://wtaq.com/2026/03/11/hungarys-opposition-tisza-party-maintains-lead-as-election-nears-poll-shows/"
+    },
+    {
+      "pollster": "Zavecz Research",
+      "field_date_end": "2026-02-28T00:00:00+01:00",
+      "candidate_support": 38,
+      "opponent_support": 32,
+      "population": "all_voters",
+      "sample_size": null,
+      "quality": 0.95,
+      "source": "https://krro.com/2026/03/04/hungarys-opposition-leads-in-polls-far-right-party-gains-support/"
+    }
+  ]
+}

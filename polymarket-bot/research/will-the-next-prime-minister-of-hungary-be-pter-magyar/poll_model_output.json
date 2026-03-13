@@ -1,0 +1,41 @@
+{
+  "candidate_name": "Peter Magyar",
+  "opponent_name": "Viktor Orban",
+  "market_slug": "will-the-next-prime-minister-of-hungary-be-pter-magyar",
+  "as_of": "2026-03-13T04:15:00+00:00",
+  "election_date": "2026-04-11T22:00:00+00:00",
+  "days_to_election": 29.74,
+  "weighted_margin_points": 7.229,
+  "adjustment_points": -3.5,
+  "adjusted_margin_points": 3.729,
+  "fair_yes_probability": 0.6506,
+  "confidence": 0.508,
+  "poll_count": 2,
+  "polls": [
+    {
+      "pollster": "21 Research Centre",
+      "field_date_end": "2026-03-05T23:00:00+00:00",
+      "candidate_support": 38.0,
+      "opponent_support": 30.0,
+      "margin_points": 8.0,
+      "population": "all_voters",
+      "sample_size": null,
+      "quality": 1.0,
+      "weight": 0.6063,
+      "source": "https://wtaq.com/2026/03/11/hungarys-opposition-tisza-party-maintains-lead-as-election-nears-poll-shows/"
+    },
+    {
+      "pollster": "Zavecz Research",
+      "field_date_end": "2026-02-27T23:00:00+00:00",
+      "candidate_support": 38.0,
+      "opponent_support": 32.0,
+      "margin_points": 6.0,
+      "population": "all_voters",
+      "sample_size": null,
+      "quality": 0.95,
+      "weight": 0.38,
+      "source": "https://krro.com/2026/03/04/hungarys-opposition-leads-in-polls-far-right-party-gains-support/"
+    }
+  ],
+  "explanation": "Polling model estimate for Peter Magyar: weighted polling margin is 7.2 points versus Viktor Orban. After applying explicit structural adjustments of -3.5 points, the model maps the adjusted margin into a fair YES probability of 65.1%."
+}

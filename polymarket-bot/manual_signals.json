@@ -1,3 +1,16 @@
 {
-  "markets": []
+  "markets": [
+    {
+      "slug": "will-the-next-prime-minister-of-hungary-be-pter-magyar",
+      "fair_yes_probability": 0.6506,
+      "rationale": "Working estimate: fair YES is about 67%. Multiple March 2026 reports say Peter Magyar and Tisza are leading Viktor Orban's Fidesz ahead of the April 12, 2026 election, so the market's roughly 62% price still looks a bit low. I am discounting that polling edge because Hungary's electoral system, incumbency advantage, media environment, and possible late-cycle pressure campaigns still create meaningful downside risk.",
+      "notes": [
+        "Research confidence: 0.508",
+        "Source: https://apnews.com/article/1c71a8b1f94e5f706fcea92cfec5fbb7",
+        "Source: https://www.theguardian.com/world/2026/mar/12/orban-ukraine-claims-hungary-election",
+        "Source: https://www.ft.com/content/34df20f9-487b-4cb6-9dc9-d676d959d1ed",
+        "Source: https://www.hungarianconservative.com/articles/current/election-date-hungary-april-12/"
+      ]
+    }
+  ]
 }

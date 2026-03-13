@@ -1,16 +1,16 @@
 {
   "slug": "will-the-next-prime-minister-of-hungary-be-pter-magyar",
   "question": "Will the next Prime Minister of Hungary be P\u00e9ter Magyar?",
-  "status": "researching",
+  "status": "ready",
   "category": "World",
   "yes_ask_snapshot": 0.62,
   "no_ask_snapshot": 0.39,
   "liquidity_snapshot": 156582.5276,
   "volume_snapshot": 42241.433834,
   "hours_to_close_snapshot": 715.9823720311111,
-  "fair_yes_probability": null,
-  "confidence": null,
-  "rationale": "Starter angle: market asks roughly 62% for Peter Magyar. The core question is whether his apparent polling edge is strong enough to justify a price above 62% after accounting for Fidesz incumbency, district mechanics, media environment, and possible late-cycle shocks.",
+  "fair_yes_probability": 0.6506,
+  "confidence": 0.508,
+  "rationale": "Working estimate: fair YES is about 67%. Multiple March 2026 reports say Peter Magyar and Tisza are leading Viktor Orban's Fidesz ahead of the April 12, 2026 election, so the market's roughly 62% price still looks a bit low. I am discounting that polling edge because Hungary's electoral system, incumbency advantage, media environment, and possible late-cycle pressure campaigns still create meaningful downside risk.",
   "sources": [
     "https://apnews.com/article/1c71a8b1f94e5f706fcea92cfec5fbb7",
     "https://www.theguardian.com/world/2026/mar/12/orban-ukraine-claims-hungary-election",
@@ -35,16 +35,27 @@
   },
   "checklist": {
     "resolution_rules_checked": false,
-    "primary_sources_checked": false,
-    "liquidity_checked": false,
+    "primary_sources_checked": true,
+    "liquidity_checked": true,
     "catalyst_timeline_checked": false,
-    "reason_for_mispricing_written": false
+    "reason_for_mispricing_written": true
   },
   "entry_plan": {
-    "desired_yes_price_below": 0.58,
+    "desired_yes_price_below": 0.61,
     "desired_no_price_below": 0.44,
     "max_position_pct_override": null
   },
   "created_at": "2026-03-13T04:01:03.474850+00:00",
-  "updated_at": "2026-03-13T04:33:00+00:00"
+  "updated_at": "2026-03-13T05:06:46.249205+00:00",
+  "poll_model_output": {
+    "as_of": "2026-03-13T04:15:00+00:00",
+    "weighted_margin_points": 7.229,
+    "adjustment_points": -3.5,
+    "adjusted_margin_points": 3.729,
+    "fair_yes_probability": 0.6506,
+    "confidence": 0.508,
+    "poll_count": 2,
+    "report_path": "/Users/minwoo/Documents/New project/polymarket-bot/research/will-the-next-prime-minister-of-hungary-be-pter-magyar/poll_model_output.json",
+    "explanation": "Polling model estimate for Peter Magyar: weighted polling margin is 7.2 points versus Viktor Orban. After applying explicit structural adjustments of -3.5 points, the model maps the adjusted margin into a fair YES probability of 65.1%."
+  }
 }
