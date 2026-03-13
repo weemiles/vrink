@@ -15,7 +15,7 @@ import {
 import { ContactAvatar } from '../components/ContactAvatar';
 import { Skeleton } from '../components/Skeleton';
 import { IconButton } from '../components/IconButton';
-import { KeppinLogo } from '../components/KeppinLogo';
+import { KeepinLogo } from '../components/KeepinLogo';
 import { useDebounce, useDelayedLoading } from '../components/useDebounce';
 import { useAnalytics } from '../components/useAnalytics';
 import { formatBirthday } from '../components/useFormatters';
@@ -471,8 +471,8 @@ export function HomePage() {
       {/* Header */}
       <div className="flex items-center justify-between" style={{ padding: `16px ${PX}px 4px` }}>
         <div className="flex items-center gap-1.5">
-          <KeppinLogo size={22} className="text-toss-blue" />
-          <h1 className="text-toss-grey-900" style={{ ...TYPO.t4, fontWeight: W.bold }}>keppin</h1>
+          <KeepinLogo size={22} className="text-toss-blue" />
+          <h1 className="text-toss-grey-900" style={{ ...TYPO.t4, fontWeight: W.bold }}>keepin</h1>
         </div>
         <div className="flex items-center gap-1">
           <IconButton

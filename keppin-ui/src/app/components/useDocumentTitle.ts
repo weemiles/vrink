@@ -7,9 +7,9 @@ import { useEffect } from 'react';
  * 모든 페이지에서 이 훅을 호출하여 컨텍스트를 제공합니다.
  *
  * @param pageTitle 페이지 제목 (예: "인연 목록")
- * @param appName 앱 이름 (기본: "keppin")
+ * @param appName 앱 이름 (기본: "keepin")
  */
-export function useDocumentTitle(pageTitle: string, appName: string = 'keppin') {
+export function useDocumentTitle(pageTitle: string, appName: string = 'keepin') {
   useEffect(() => {
     const prev = document.title;
     document.title = pageTitle ? `${pageTitle} — ${appName}` : appName;

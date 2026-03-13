@@ -1,0 +1,32 @@
+{
+  "count": 3,
+  "candidates": [
+    {
+      "url": "https://framerusercontent.com/images/WCFNuEOL8bKkS55urpuyv7BWbPk.svg?width=1312&height=600",
+      "kind": "image",
+      "ext": ".svg",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/WCFNuEOL8bKkS55urpuyv7BWbPk_1312x600.svg",
+      "size_bytes": 232180,
+      "status": "ok",
+      "logo_copy": "/Users/minwoo/Documents/New project/output/vrink-media-assets/logos/WCFNuEOL8bKkS55urpuyv7BWbPk_1312x600.svg"
+    },
+    {
+      "url": "https://framerusercontent.com/images/h3T4fye8lPV6NdzXiG5dFBe7UMw.svg",
+      "kind": "image",
+      "ext": ".svg",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/h3T4fye8lPV6NdzXiG5dFBe7UMw.svg",
+      "size_bytes": 489,
+      "status": "ok",
+      "logo_copy": "/Users/minwoo/Documents/New project/output/vrink-media-assets/logos/h3T4fye8lPV6NdzXiG5dFBe7UMw.svg"
+    },
+    {
+      "url": "https://framerusercontent.com/images/sRGkCfZLsWHwu8fxHoe8P2QVUzM.svg?width=532&height=152",
+      "kind": "image",
+      "ext": ".svg",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/sRGkCfZLsWHwu8fxHoe8P2QVUzM_532x152.svg",
+      "size_bytes": 1412,
+      "status": "ok",
+      "logo_copy": "/Users/minwoo/Documents/New project/output/vrink-media-assets/logos/sRGkCfZLsWHwu8fxHoe8P2QVUzM_532x152.svg"
+    }
+  ]
+}

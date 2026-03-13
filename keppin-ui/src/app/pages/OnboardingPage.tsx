@@ -6,7 +6,7 @@ import {
   ChevronRight, ChevronLeft, Shield, Check, Star,
 } from 'lucide-react';
 import { TossButton } from '../components/TossButton';
-import { KeppinLogo } from '../components/KeppinLogo';
+import { KeepinLogo } from '../components/KeepinLogo';
 import { BottomSheet } from '../components/BottomSheet';
 import { MOTION_TIMING } from '../components/useMotionConfig';
 import { useReducedMotion } from '../components/usePerformanceUX';
@@ -65,7 +65,7 @@ const SLIDES = [
     iconColor: 'text-toss-blue',
     image3D: networkIcon3D,
     title: '소중한 사람들을\n한곳에서 관리하세요',
-    description: '흩어진 연락처와 인연 정보를\nkeppin에서 깔끔하게 정리할 수 있어요',
+    description: '흩어진 연락처와 인연 정보를\nkeepin에서 깔끔하게 정리할 수 있어요',
   },
   {
     icon: Cake,
@@ -282,7 +282,7 @@ export function OnboardingPage() {
                   aria-hidden="true"
                 />
               ) : currentSlide === 0 ? (
-                <KeppinLogo size={48} className={slide.iconColor} />
+                <KeepinLogo size={48} className={slide.iconColor} />
               ) : (
                 <Icon size={48} className={slide.iconColor} strokeWidth={1.6} />
               )}

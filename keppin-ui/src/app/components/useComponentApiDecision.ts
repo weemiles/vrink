@@ -87,11 +87,11 @@ export function decideComponentApiStyle(
 }
 
 /**
- * keppin 컴포넌트별 API 메타 — 현재 코드베이스 현황
+ * keepin 컴포넌트별 API 메타 — 현재 코드베이스 현황
  *
  * §3.2C worst case: 모든 컴포넌트를 한눈에 파악할 수 있도록 전체 목록 제공
  */
-export const KEPPIN_COMPONENT_API_MAP: ComponentApiMeta[] = [
+export const KEEPIN_COMPONENT_API_MAP: ComponentApiMeta[] = [
   // ── 아토믹 (§3.2E: 예측 가능 구조만) ──
   { name: 'TossButton',       apiStyle: 'flat',     isStructureFixed: true,  hasFrequentCustomRequests: false },
   { name: 'IconButton',       apiStyle: 'flat',     isStructureFixed: true,  hasFrequentCustomRequests: false },

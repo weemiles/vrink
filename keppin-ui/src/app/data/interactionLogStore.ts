@@ -47,7 +47,7 @@ export const ALL_INTERACTION_TYPES: InteractionType[] = ['call', 'message', 'mee
    상수
    ═══════════════════════════════════════════════ */
 const SERVER_BASE = `https://${projectId}.supabase.co/functions/v1/make-server-0984a125`;
-const LS_KEY = 'keppin_interaction_logs';
+const LS_KEY = 'keepin_interaction_logs';
 const MAX_LOGS = 2000;
 
 /* ═══════════════════════════════════════════════

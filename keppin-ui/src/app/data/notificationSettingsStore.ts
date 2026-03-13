@@ -10,7 +10,7 @@ import { authenticatedFetch } from './authStore';
 import { projectId } from '/utils/supabase/info';
 
 const SERVER_BASE = `https://${projectId}.supabase.co/functions/v1/make-server-0984a125`;
-const LS_KEY = 'keppin_notif_settings';
+const LS_KEY = 'keepin_notif_settings';
 
 /* ═══════════════════════════════════════════════
    Types

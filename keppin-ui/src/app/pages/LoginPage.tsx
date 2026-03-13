@@ -3,19 +3,20 @@ import { useNavigate, Link } from 'react-router';
 import { motion } from 'motion/react';
 import { Lock, AlertTriangle, Eye, EyeOff, X } from 'lucide-react';
 import { TossButton } from '../components/TossButton';
-import { KeppinAppIcon } from '../components/KeppinLogo';
+import { KeepinAppIcon } from '../components/KeepinLogo';
 import { useAnalytics } from '../components/useAnalytics';
 import { useLoginGuard } from '../components/useLoginGuard';
 import { createSupportCode, formatSupportCode } from '../components/useSupportCode';
 import { checkIPRateLimit } from '../components/useThreatModel';
 import { isOnboardingComplete } from './ContactSyncPage';
-import { setDemoAuthBypassEnabled, signIn, signInWithOAuth, useAuth } from '../data/authStore';
+import { setDemoAuthBypassEnabled, signIn, signInWithOAuth } from '../data/authStore';
+import { useAuth } from '../components/AuthContext';
 import { pullFromServer } from '../data/contactsStore';
 import { pullAutoMessagesFromServer } from '../data/autoMessageStore';
 import { useDocumentTitle } from '../components/useDocumentTitle';
 
 /**
- * LoginPage — keppin TDS 로그인
+ * LoginPage — keepin TDS 로그인
  *
  * - 소셜 로그인: 카카오톡, 네이버, 구글 (실제 브랜드 UI)
  * - 이메일 로그인 폼 → Supabase Auth 연동
@@ -167,12 +168,12 @@ export function LoginPage() {
           className="px-6"
           style={{ paddingTop: 64, paddingBottom: 40 }}
         >
-          <KeppinAppIcon size={52} variant="blue" borderRadius={16} className="mb-5" />
+          <KeepinAppIcon size={52} variant="blue" borderRadius={16} className="mb-5" />
           <h1
             className="text-toss-grey-900"
             style={{ fontSize: 26, fontWeight: 800, letterSpacing: -0.5 }}
           >
-            keppin
+            keepin
           </h1>
           <p className="text-toss-grey-500" style={{ fontSize: 15, marginTop: 6 }}>
             소중한 인연을 쉽고 똑똑하게

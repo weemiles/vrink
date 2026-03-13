@@ -2,7 +2,7 @@ import { Capacitor } from '@capacitor/core';
 import { DevicePreviewShell, EmbeddedRouterApp } from './components/DevicePreviewShell';
 
 /**
- * App entry point — keppin
+ * App entry point — keepin
  *
  * createBrowserRouter + RouterProvider (Data Router) 패턴을 사용합니다.
  * Figma Make에서 페이지 목록을 올바르게 감지하려면 이 패턴이 필요합니다.

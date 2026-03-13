@@ -1,10 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace = "com.keppin.keppin"
+    namespace = "com.keepin.keepin"
     compileSdk = rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "com.keppin.keppin"
+        applicationId "com.keepin.keepin"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

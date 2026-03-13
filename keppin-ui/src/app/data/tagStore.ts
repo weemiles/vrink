@@ -28,7 +28,7 @@ export interface Tag {
    상수
    ═══════════════════════════════════════════════ */
 const SERVER_BASE = `https://${projectId}.supabase.co/functions/v1/make-server-0984a125`;
-const LS_KEY = 'keppin_tags';
+const LS_KEY = 'keepin_tags';
 
 /** 기본 태그 색상 팔레트 (Mono 디자인 시스템) */
 export const TAG_COLORS = [

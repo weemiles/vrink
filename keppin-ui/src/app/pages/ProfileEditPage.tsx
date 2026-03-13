@@ -11,7 +11,7 @@ import { useToast } from '../components/useToast';
 import { useAnalytics } from '../components/useAnalytics';
 import { useMotionConfig, MOTION_DISTANCE } from '../components/useMotionConfig';
 import { INPUT_MAX_LENGTH } from '../components/useInputValidation';
-import { useAuth } from '../data/authStore';
+import { useAuth } from '../components/AuthContext';
 import {
   useProfile,
   setProfile as setStoreProfile,

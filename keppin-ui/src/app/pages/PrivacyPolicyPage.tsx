@@ -98,7 +98,7 @@ export function PrivacyPolicyPage() {
         </h2>
         <p className="text-toss-grey-500" style={{ fontSize: 13, lineHeight: 1.6 }}>
           시행일: 2026년 2월 19일
-          {'\n'}keppin은 회원의 개인정보를 소중하게 다루고 있습니다.
+          {'\n'}keepin은 회원의 개인정보를 소중하게 다루고 있습니다.
         </p>
       </div>
 
@@ -168,7 +168,7 @@ export function PrivacyPolicyPage() {
           </p>
         </div>
         <p className="text-toss-grey-400 text-center mt-4" style={{ fontSize: 11 }}>
-          keppin v1.0.0
+          keepin v1.0.0
         </p>
       </div>
     </div>

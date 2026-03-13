@@ -1,21 +1,17 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { motion } from 'motion/react';
-import { KeppinAppIcon } from '../components/KeppinLogo';
+import { KeepinAppIcon } from '../components/KeepinLogo';
 import { useReducedMotion } from '../components/usePerformanceUX';
 import { isOnboardingIntroDone } from './OnboardingPage';
-import { initAuth, isDemoAuthBypassEnabled, useAuth } from '../data/authStore';
+import { isDemoAuthBypassEnabled } from '../data/authStore';
+import { useAuth } from '../components/AuthContext';
 import { isOnboardingComplete } from './ContactSyncPage';
 
 export function SplashPage() {
   const navigate = useNavigate();
   const prefersReducedMotion = useReducedMotion();
   const auth = useAuth();
-
-  useEffect(() => {
-    // 앱 시작 시 기존 세션 확인
-    initAuth();
-  }, []);
 
   useEffect(() => {
     // 아직 초기화 안 됐으면 대기
@@ -40,14 +36,14 @@ export function SplashPage() {
   }, [auth.initialized, auth.user, navigate, prefersReducedMotion]);
 
   return (
-    <div className="h-dvh flex flex-col items-center justify-center bg-toss-blue" role="status" aria-label="keppin 앱 로딩 중">
+    <div className="h-dvh flex flex-col items-center justify-center bg-toss-blue" role="status" aria-label="keepin 앱 로딩 중">
       <motion.div
         initial={prefersReducedMotion ? { opacity: 0 } : { scale: 0.5, opacity: 0 }}
         animate={prefersReducedMotion ? { opacity: 1 } : { scale: 1, opacity: 1 }}
         transition={prefersReducedMotion ? { duration: 0.15 } : { type: 'spring', damping: 15, stiffness: 150 }}
         className="flex flex-col items-center gap-4"
       >
-        <KeppinAppIcon size={80} variant="white" borderRadius={24} />
+        <KeepinAppIcon size={80} variant="white" borderRadius={24} />
         <motion.div
           initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -55,7 +51,7 @@ export function SplashPage() {
           className="text-center"
         >
           <h1 className="text-[var(--primary-foreground)]" style={{ fontSize: 28, fontWeight: 800, letterSpacing: -0.5 }}>
-            keppin
+            keepin
           </h1>
           <p className="text-[var(--primary-foreground)] opacity-70 mt-1" style={{ fontSize: 14 }}>
             소중한 인연을 관리하세요

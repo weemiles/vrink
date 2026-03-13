@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: var(--page-bg);
+  --color-foreground: var(--ink);
+  --color-card: var(--surface-1);
+  --color-card-foreground: var(--ink);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --font-sans: var(--font-body);
+}
+
+:root {
+  --font-body:
+    "Instrument Sans", "Aptos", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --page-bg:
+    radial-gradient(circle at top left, rgba(248, 243, 230, 0.88), transparent 26%),
+    radial-gradient(circle at top right, rgba(233, 227, 210, 0.62), transparent 28%),
+    linear-gradient(180deg, #f7f5ef 0%, #f2eee4 100%);
+  --surface-1: rgba(255, 255, 255, 0.8);
+  --surface-2: rgba(248, 245, 236, 0.88);
+  --surface-3: rgba(237, 231, 218, 0.92);
+  --ink: #171513;
+  --ink-strong: #0d0b09;
+  --ink-muted: #5d584f;
+  --ink-subtle: #8c857a;
+  --border: rgba(27, 24, 20, 0.08);
+  --border-strong: rgba(27, 24, 20, 0.16);
+  --ring: #75654d;
+  --ring-soft: rgba(117, 101, 77, 0.16);
+  --warning-bg: rgba(255, 245, 213, 0.92);
+  --warning-border: rgba(173, 122, 28, 0.18);
+  --warning-text: #8d5f00;
+  --success-bg: rgba(231, 249, 236, 0.9);
+  --success-border: rgba(40, 129, 73, 0.14);
+  --success-text: #22693b;
+  --shadow-soft: 0 12px 30px rgba(30, 24, 17, 0.08);
+  --shadow-card: 0 22px 60px rgba(29, 25, 18, 0.08);
+  --shadow-inner: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--page-bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    text-rendering: optimizeLegibility;
+  }
+
+  button,
+  input,
+  textarea {
+    font: inherit;
+  }
+
+  ::selection {
+    background: rgba(117, 101, 77, 0.16);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

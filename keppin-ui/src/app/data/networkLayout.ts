@@ -49,7 +49,7 @@ export interface GraphData {
 }
 
 /* ═══════════════════════════════════════════════
-   무채색 관계 색상 매핑 (Keppin Mono)
+   무채색 관계 색상 매핑 (Keepin Mono)
    ═══════════════════════════════════════════════ */
 
 export const RELATIONSHIP_SHADES: Record<string, string> = {

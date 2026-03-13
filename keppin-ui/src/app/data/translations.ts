@@ -1,7 +1,7 @@
 /**
  * translations.ts
  * ─────────────────────────────────────────
- * keppin i18n 번역 사전
+ * keepin i18n 번역 사전
  * 지원 언어: ko (한국어), en (English)
  */
 

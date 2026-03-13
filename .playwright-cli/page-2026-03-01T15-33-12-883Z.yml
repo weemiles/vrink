@@ -1,0 +1,212 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - link "VRINK" [ref=e5] [cursor=pointer]:
+        - /url: "#"
+        - text: VRINK
+      - navigation "Primary" [ref=e7]:
+        - link "솔루션" [ref=e8] [cursor=pointer]:
+          - /url: "#solution"
+        - link "도입 가치" [ref=e9] [cursor=pointer]:
+          - /url: "#value"
+        - link "핵심 기능" [ref=e10] [cursor=pointer]:
+          - /url: "#features"
+        - link "추천 공간" [ref=e11] [cursor=pointer]:
+          - /url: "#spaces"
+        - link "도입 문의" [ref=e12] [cursor=pointer]:
+          - /url: "#contact"
+    - link "상담 신청" [ref=e13] [cursor=pointer]:
+      - /url: "#contact"
+      - text: 상담 신청
+  - generic [ref=e15]:
+    - paragraph [ref=e16]: 브링크 제로스테이션
+    - heading "대한민국 최초 A.I 스마트 디스펜서. 건강을 운영하는 새로운 기준." [level=1] [ref=e17]:
+      - text: 대한민국 최초 A.I 스마트 디스펜서.
+      - text: 건강을 운영하는 새로운 기준.
+    - paragraph [ref=e18]: 브링크는 단순한 음료 기기가 아니라, 공간의 경험·복지·운영 효율을 함께 설계하는 AI 기반 음료 운영 시스템입니다. 복잡한 선택 대신 개인 기준에 맞는 한 잔을 빠르게 제공합니다.
+    - generic [ref=e19]:
+      - link "도입 상담 신청" [ref=e20] [cursor=pointer]:
+        - /url: "#contact"
+        - text: 도입 상담 신청
+      - link "핵심 기능 보기" [ref=e22] [cursor=pointer]:
+        - /url: "#features"
+        - text: 핵심 기능 보기
+    - generic [ref=e24]:
+      - generic [ref=e25]:
+        - strong [ref=e26]: 1,750
+        - generic [ref=e27]: 기능성 샷·플레이버·농도·탄산 조합 기준
+      - generic [ref=e28]:
+        - strong [ref=e29]: 11초
+        - generic [ref=e30]: 350ml 기준 1잔 평균 제조 시간
+      - generic [ref=e31]:
+        - strong [ref=e32]: 24/7
+        - generic [ref=e33]: 상시 운영을 전제로 설계된 운영 구조
+      - generic [ref=e34]:
+        - strong [ref=e35]: 3 Zero
+        - generic [ref=e36]: Zero 칼로리 · Zero 슈거 · Zero 부담
+    - generic "브링크 제로스테이션 시각화" [ref=e37]
+  - generic [ref=e40]:
+    - generic [ref=e41]:
+      - heading "브링크의 솔루션. 복잡한 선택을 줄이고 일상 안에서 건강 루틴을 만듭니다." [level=2] [ref=e42]
+      - paragraph [ref=e43]: AI 기반 분석으로 개인에게 맞는 영양을 제안하고, 일상 공간에서 자연스럽게 음료로 섭취하도록 설계했습니다. 데이터 기반 피드백은 재미와 반복을 만들고, 결국 건강 습관 형성으로 이어집니다.
+      - link "운영 구조 자세히 보기" [ref=e44] [cursor=pointer]:
+        - /url: "#features"
+        - text: 운영 구조 자세히 보기
+    - complementary "브링크 솔루션 축" [ref=e46]:
+      - heading "운영 구조 4가지" [level=3] [ref=e47]
+      - list [ref=e48]:
+        - listitem [ref=e49]: AI 기반 분석으로 개인 맞춤 영양 제안
+        - listitem [ref=e50]: 일상 공간에서 자연스럽게 음료로 섭취
+        - listitem [ref=e51]: 데이터 기반 피드백으로 습관화 지원
+        - listitem [ref=e52]: 공간 차별화와 재방문율 향상을 동시에
+  - generic [ref=e54]:
+    - generic [ref=e55]:
+      - heading "마시는 경험 자체를 개인화합니다. 기능 샷 + 맛 + 농도 + 탄산." [level=2] [ref=e56]
+      - paragraph [ref=e57]: No Thinking, No Sugar, No Prep. 사용자는 5단계로 음료를 선택하고 약 11초 후 바로 마실 수 있습니다. 정해진 레시피가 아니라, 그날의 컨디션과 취향에 맞는 한 잔을 만드는 방식입니다.
+      - link "음료 조합 구조 확인" [ref=e59] [cursor=pointer]:
+        - /url: "#features"
+        - text: 음료 조합 구조 확인
+    - complementary [ref=e61]:
+      - heading "대표 기능 샷 & 성분" [level=3] [ref=e62]
+      - generic [ref=e63]:
+        - generic [ref=e64]: 부스터 샷
+        - generic [ref=e65]: 컷팅 샷
+        - generic [ref=e66]: 비타민 샷
+        - generic [ref=e67]: 릴렉스 샷
+        - generic [ref=e68]: 아미노 샷
+        - generic [ref=e69]: 필수 아미노산 9종
+        - generic [ref=e70]: 비타민 B/C
+        - generic [ref=e71]: 타우린
+        - generic [ref=e72]: L-카르니틴
+        - generic [ref=e73]: L-테아닌
+  - generic [ref=e74]:
+    - heading "제로스테이션이 답이 되는 이유" [level=2] [ref=e75]
+    - link "브링크 도입 상담하기" [ref=e77] [cursor=pointer]:
+      - /url: "#contact"
+      - text: 브링크 도입 상담하기
+    - generic [ref=e79]:
+      - article [ref=e80]:
+        - heading "AI 기반 맞춤 음료 추천" [level=3] [ref=e81]
+        - generic [ref=e82]: AI
+        - paragraph [ref=e83]: 사용자 취향·선택 데이터 기반으로 약 1,750가지 조합 중 최적의 음료를 제안합니다.
+      - article [ref=e84]:
+        - heading "직접 만드는 커스터마이징 경험" [level=3] [ref=e85]
+        - generic [ref=e86]: ⚙
+        - paragraph [ref=e87]: 기능 샷·맛·농도·탄산을 조합해 상황과 목표에 맞는 개인 기준의 한 잔을 완성합니다.
+      - article [ref=e88]:
+        - heading "11초 완성의 즉시성" [level=3] [ref=e89]
+        - generic [ref=e90]: "11"
+        - paragraph [ref=e91]: 350ml 기준 1잔 평균 11초 제조. 도입 공간에서 빠른 회전과 사용자 만족을 동시에 확보합니다.
+      - article [ref=e92]:
+        - heading "지속 가능한 운영 시스템" [level=3] [ref=e93]
+        - generic [ref=e94]: "24"
+        - paragraph [ref=e95]: 24/7 운영, 소진 시점 기반 원액 공급, 통합 관리 구조로 운영 부담을 낮추고 효율을 높입니다.
+  - generic [ref=e96]:
+    - heading "브링크가 잘 맞는 설치 공간" [level=2] [ref=e97]
+    - link "우리 공간 적합도 상담" [ref=e99] [cursor=pointer]:
+      - /url: "#contact"
+      - text: 우리 공간 적합도 상담
+    - generic [ref=e101]:
+      - article [ref=e102]:
+        - generic [ref=e103]: FITNESS
+        - heading "피트니스·헬스장" [level=3] [ref=e104]
+        - paragraph [ref=e105]: 운동 전후 영양 섭취를 간편화해 회원 경험을 강화하고 재방문율 향상 포인트를 만듭니다.
+        - link "도입 사례 문의" [ref=e106] [cursor=pointer]:
+          - /url: "#contact"
+          - text: 도입 사례 문의
+      - article [ref=e108]:
+        - generic [ref=e109]: OFFICE
+        - heading "기업 복지·오피스 라운지" [level=3] [ref=e110]
+        - paragraph [ref=e111]: 직원들이 일상적으로 수분·영양을 챙길 수 있는 복지 경험을 만들고 운영 관리는 단순화합니다.
+        - link "운영 방식 보기" [ref=e112] [cursor=pointer]:
+          - /url: "#contact"
+          - text: 운영 방식 보기
+      - article [ref=e114]:
+        - generic [ref=e115]: WELLNESS
+        - heading "병원·클리닉·웰니스 공간" [level=3] [ref=e116]
+        - paragraph [ref=e117]: 깔끔하고 신뢰도 높은 음료 경험을 제공해 방문객 만족도를 높이고 공간 이미지를 강화합니다.
+        - link "설치 조건 확인" [ref=e118] [cursor=pointer]:
+          - /url: "#contact"
+          - text: 설치 조건 확인
+  - generic [ref=e120]:
+    - heading "운영 신뢰를 위한 인증과 스펙" [level=2] [ref=e121]
+    - link "사양서 요청하기" [ref=e123] [cursor=pointer]:
+      - /url: "#contact"
+      - text: 사양서 요청하기
+    - generic [ref=e125]:
+      - article [ref=e126]:
+        - heading "공식 인증 & 품질 기준" [level=3] [ref=e127]
+        - generic [ref=e128]:
+          - generic [ref=e129]: CERTIFIED 2026
+          - generic [ref=e130]: HACCP
+        - generic [ref=e131]: 국내 공식 본사 인증 제품
+        - paragraph [ref=e132]: 특허 인증 완료, Made in Korea 설계·제조, 본사 직영 단독 모델 운영 기준.
+      - article [ref=e133]:
+        - heading "하드웨어 경쟁력" [level=3] [ref=e134]
+        - generic [ref=e135]:
+          - generic [ref=e136]: 30% Compact
+          - generic [ref=e137]: Stainless
+        - generic [ref=e138]: 최소 설치 공간 900×600×1050
+        - paragraph [ref=e139]: 약 30% 크기 감소 설계와 프리미엄 스테인리스 마감으로 내구성과 위생 관리성을 강화했습니다.
+      - article [ref=e140]:
+        - heading "운영 자동화 시스템" [level=3] [ref=e141]
+        - generic [ref=e142]:
+          - generic [ref=e143]: 24/7 Auto
+          - generic [ref=e144]: Data
+        - generic [ref=e145]: 상시 모니터링 + 통합 제어
+        - paragraph [ref=e146]: 소진 시점 기반 원액 공급, 상태 모니터링, 중앙 관리 구조로 운영 중단 리스크를 줄입니다.
+      - article [ref=e147]:
+        - heading "관리자 대시보드" [level=3] [ref=e148]
+        - generic [ref=e149]:
+          - generic [ref=e150]: B2B
+          - generic [ref=e151]: Analytics
+        - generic [ref=e152]: 재고·매출·회원·주문 통합
+        - paragraph [ref=e153]: 지점 운영 데이터를 한 화면에서 확인하고, 의사결정에 필요한 지표를 빠르게 점검할 수 있습니다.
+  - generic [ref=e155]:
+    - heading "브링크 도입을 검토 중이라면, 지금 상담을 시작하세요." [level=2] [ref=e156]
+    - paragraph [ref=e157]: 초기 프로모션, 공간별 설치 조건, 운영 모델(구매/렌탈)을 한 번에 안내해드립니다. 문의 후 일정 협의를 통해 도입 절차를 빠르게 진행할 수 있습니다.
+    - link "contact@vrink.kr" [ref=e158] [cursor=pointer]:
+      - /url: mailto:contact@vrink.kr
+      - text: contact@vrink.kr
+    - generic [ref=e160]:
+      - paragraph [ref=e161]: "초기 프로모션: 2개월 한정 무료 체험(총 20잔 제공)"
+      - paragraph [ref=e162]: "얼리버드 문의 혜택: 400만원 공제 조건 별도 안내"
+      - paragraph [ref=e163]: "대표 문의: 010-7362-6070 / @vrink_official"
+  - contentinfo [ref=e165]:
+    - separator [ref=e166]
+    - generic [ref=e167]:
+      - link "VRINK" [ref=e169] [cursor=pointer]:
+        - /url: "#"
+        - text: VRINK
+      - generic [ref=e171]:
+        - heading "브링크" [level=4] [ref=e172]
+        - list [ref=e173]:
+          - listitem [ref=e174]:
+            - link "브랜드 소개" [ref=e175] [cursor=pointer]:
+              - /url: "#solution"
+          - listitem [ref=e176]:
+            - link "핵심 기능" [ref=e177] [cursor=pointer]:
+              - /url: "#features"
+          - listitem [ref=e178]:
+            - link "도입 문의" [ref=e179] [cursor=pointer]:
+              - /url: "#contact"
+      - generic [ref=e180]:
+        - heading "인증/신뢰" [level=4] [ref=e181]
+        - list [ref=e182]:
+          - listitem [ref=e183]: 국내 공식 본사 인증
+          - listitem [ref=e184]: 특허 인증 완료
+          - listitem [ref=e185]: HACCP 인증
+      - generic [ref=e186]:
+        - heading "연락처" [level=4] [ref=e187]
+        - list [ref=e188]:
+          - listitem [ref=e189]: "Email: contact@vrink.kr"
+          - listitem [ref=e190]: "Tel: 010-7362-6070"
+          - listitem [ref=e191]: "Website: vrink.kr"
+      - generic [ref=e192]:
+        - heading "회사 정보" [level=4] [ref=e193]
+        - list [ref=e194]:
+          - listitem [ref=e195]: 주식회사 브링크
+          - listitem [ref=e196]: 사업자번호 162-81-03420
+          - listitem [ref=e197]: 대표자 김민수
+          - listitem [ref=e198]: 경기 남양주시 별내 중앙로 30, 제305-1821호
+    - paragraph [ref=e199]: Copyright © 2026 VRINK. All rights reserved.

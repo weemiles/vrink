@@ -7,7 +7,7 @@
  *  - UTF-8 / UTF-8 BOM
  *  - 쉼표(,) 또는 탭(\t) 구분
  *  - 큰따옴표 이스케이프 (RFC 4180)
- *  - keppin 내보내기 CSV, 구글 연락처 CSV, 네이버 주소록 CSV 등
+ *  - keepin 내보내기 CSV, 구글 연락처 CSV, 네이버 주소록 CSV 등
  */
 
 import type { Relationship, Closeness, FamilyStatus } from './contacts';
@@ -21,8 +21,8 @@ export interface CsvRow {
   [header: string]: string;
 }
 
-/** 매핑 가능한 keppin 필드 */
-export type KeppinField =
+/** 매핑 가능한 keepin 필드 */
+export type KeepinField =
   | 'name'
   | 'phone'
   | 'birthday'
@@ -36,7 +36,7 @@ export type KeppinField =
 /** 필드 매핑 결과 */
 export interface FieldMapping {
   csvHeader: string;
-  keppinField: KeppinField;
+  keepinField: KeepinField;
   confidence: number; // 0~1 자동 매핑 신뢰도
 }
 
@@ -153,7 +153,7 @@ export function parseCsv(text: string): ParseResult {
    자동 필드 매핑
    ═══════════════════════════════════════════════ */
 
-const FIELD_PATTERNS: Record<KeppinField, RegExp[]> = {
+const FIELD_PATTERNS: Record<KeepinField, RegExp[]> = {
   name: [
     /^이름$/i, /^name$/i, /^성명$/i, /^full\s*name$/i, /^first\s*name$/i,
     /^display\s*name$/i, /^given\s*name$/i, /^연락처\s*이름$/i,
@@ -188,13 +188,13 @@ const FIELD_PATTERNS: Record<KeppinField, RegExp[]> = {
 };
 
 export function autoMapFields(headers: string[]): FieldMapping[] {
-  const usedFields = new Set<KeppinField>();
+  const usedFields = new Set<KeepinField>();
 
   return headers.map((header): FieldMapping => {
-    let bestField: KeppinField = 'skip';
+    let bestField: KeepinField = 'skip';
     let bestConfidence = 0;
 
-    for (const [field, patterns] of Object.entries(FIELD_PATTERNS) as [KeppinField, RegExp[]][]) {
+    for (const [field, patterns] of Object.entries(FIELD_PATTERNS) as [KeepinField, RegExp[]][]) {
       if (field === 'skip' || usedFields.has(field)) continue;
       for (const pattern of patterns) {
         if (pattern.test(header)) {
@@ -210,7 +210,7 @@ export function autoMapFields(headers: string[]): FieldMapping[] {
     // 부분 매칭 (헤더에 키워드가 포함된 경우)
     if (bestField === 'skip') {
       const h = header.toLowerCase();
-      const partialMap: [string[], KeppinField][] = [
+      const partialMap: [string[], KeepinField][] = [
         [['이름', 'name', '성명'], 'name'],
         [['전화', 'phone', 'mobile', '폰', 'tel'], 'phone'],
         [['생일', 'birth', '생년'], 'birthday'],
@@ -231,7 +231,7 @@ export function autoMapFields(headers: string[]): FieldMapping[] {
       usedFields.add(bestField);
     }
 
-    return { csvHeader: header, keppinField: bestField, confidence: bestConfidence };
+    return { csvHeader: header, keepinField: bestField, confidence: bestConfidence };
   });
 }
 
@@ -239,7 +239,7 @@ export function autoMapFields(headers: string[]): FieldMapping[] {
    필드 옵션 목록 (UI용)
    ═══════════════════════════════════════════════ */
 
-export const KEPPIN_FIELD_OPTIONS: { value: KeppinField; labelKo: string; labelEn: string }[] = [
+export const KEEPIN_FIELD_OPTIONS: { value: KeepinField; labelKo: string; labelEn: string }[] = [
   { value: 'name', labelKo: '이름', labelEn: 'Name' },
   { value: 'phone', labelKo: '전화번호', labelEn: 'Phone' },
   { value: 'birthday', labelKo: '생일', labelEn: 'Birthday' },
@@ -330,8 +330,8 @@ export function rowToCandidate(
   mappings: FieldMapping[],
   rowIndex: number,
 ): ImportCandidate {
-  const get = (field: KeppinField): string => {
-    const mapping = mappings.find((m) => m.keppinField === field);
+  const get = (field: KeepinField): string => {
+    const mapping = mappings.find((m) => m.keepinField === field);
     if (!mapping) return '';
     return (row[mapping.csvHeader] || '').trim();
   };

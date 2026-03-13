@@ -18,11 +18,11 @@ import {
   rowToCandidate,
   markDuplicates,
   readFileAsText,
-  KEPPIN_FIELD_OPTIONS,
+  KEEPIN_FIELD_OPTIONS,
   type ParseResult,
   type FieldMapping,
   type ImportCandidate,
-  type KeppinField,
+  type KeepinField,
 } from '../data/csvImporter';
 
 /* ─── 상수 ─── */
@@ -112,7 +112,7 @@ export function ContactImportPage() {
      Step 1 → 2: 매핑 확정 후 미리보기 생성
      ═══════════════════════════════════════════════ */
 
-  const hasNameMapping = mappings.some((m) => m.keppinField === 'name');
+  const hasNameMapping = mappings.some((m) => m.keepinField === 'name');
 
   const handleMappingConfirm = useCallback(() => {
     if (!parseResult || !hasNameMapping) return;
@@ -270,7 +270,7 @@ export function ContactImportPage() {
               mappings={mappings}
               onUpdateMapping={(idx, field) => {
                 setMappings((prev) =>
-                  prev.map((m, i) => (i === idx ? { ...m, keppinField: field } : m)),
+                  prev.map((m, i) => (i === idx ? { ...m, keepinField: field } : m)),
                 );
               }}
               hasNameMapping={hasNameMapping}
@@ -385,7 +385,7 @@ function StepFileUpload({
         <ul className="space-y-2 text-toss-grey-600" style={{ fontSize: 13 }}>
           <li className="flex items-start gap-2">
             <span className="shrink-0 mt-0.5">•</span>
-            <span>{ko ? 'keppin에서 내보낸 CSV 파일' : 'CSV files exported from keppin'}</span>
+            <span>{ko ? 'keepin에서 내보낸 CSV 파일' : 'CSV files exported from keepin'}</span>
           </li>
           <li className="flex items-start gap-2">
             <span className="shrink-0 mt-0.5">•</span>
@@ -423,7 +423,7 @@ function StepFieldMapping({
   fileName: string;
   parseResult: ParseResult;
   mappings: FieldMapping[];
-  onUpdateMapping: (idx: number, field: KeppinField) => void;
+  onUpdateMapping: (idx: number, field: KeepinField) => void;
   hasNameMapping: boolean;
   onBack: () => void;
   onConfirm: () => void;
@@ -450,7 +450,7 @@ function StepFieldMapping({
       </div>
 
       <h3 className="text-toss-grey-900 mb-3" style={{ fontSize: 15, fontWeight: 700 }}>
-        {ko ? 'CSV 열 → keppin 필드 매핑' : 'Map CSV columns to fields'}
+        {ko ? 'CSV 열 → keepin 필드 매핑' : 'Map CSV columns to fields'}
       </h3>
 
       {!hasNameMapping && (
@@ -493,15 +493,15 @@ function StepFieldMapping({
             )}
             {/* 드롭다운 */}
             <select
-              value={mapping.keppinField}
-              onChange={(e) => onUpdateMapping(idx, e.target.value as KeppinField)}
+              value={mapping.keepinField}
+              onChange={(e) => onUpdateMapping(idx, e.target.value as KeepinField)}
               className="w-full bg-toss-grey-50 border border-toss-grey-200 rounded-lg text-toss-grey-900 outline-none"
               style={{ fontSize: 13, fontWeight: 500, padding: '8px 12px', appearance: 'auto' }}
             >
-              {KEPPIN_FIELD_OPTIONS.map((opt) => (
+              {KEEPIN_FIELD_OPTIONS.map((opt) => (
                 <option key={opt.value} value={opt.value}>
                   {ko ? opt.labelKo : opt.labelEn}
-                  {mapping.keppinField === opt.value && opt.value !== 'skip' ? ' ✓' : ''}
+                  {mapping.keepinField === opt.value && opt.value !== 'skip' ? ' ✓' : ''}
                 </option>
               ))}
             </select>

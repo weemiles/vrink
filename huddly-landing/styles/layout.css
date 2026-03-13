@@ -1,0 +1,364 @@
+.header {
+  align-items: center;
+  display: flex;
+  height: 80px;
+  justify-content: space-between;
+  padding: 0 var(--layout-side-padding);
+}
+
+.brand {
+  align-items: center;
+  display: flex;
+  gap: 26px;
+}
+
+.nav {
+  display: flex;
+  font-size: var(--font-size-body);
+  gap: 26px;
+}
+
+.hero,
+.split-hero,
+.olive-hero,
+.cta {
+  overflow: hidden;
+  position: relative;
+}
+
+.hero {
+  background: #000000;
+  color: var(--color-inverse);
+  min-height: 1516px;
+  padding: 34px var(--space-80) 0;
+}
+
+.hero h1,
+.split-hero h2,
+.olive-hero h2,
+.cta-copy h2 {
+  font-size: var(--font-size-display);
+  letter-spacing: var(--tracking-display);
+  line-height: var(--line-height-display);
+  margin: 0;
+}
+
+.hero p,
+.olive-hero p,
+.split-hero .body,
+.cta-copy p,
+.challenge-card p,
+.story-card p,
+.product-card .desc {
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+}
+
+.hero p,
+.olive-hero p {
+  margin: 110px 0 var(--space-20);
+  max-width: 478px;
+}
+
+.hero-media {
+  display: block;
+  height: 1080px;
+  margin-left: calc(-1 * var(--space-80));
+  margin-top: 34px;
+  object-fit: cover;
+  width: calc(100% + 160px);
+}
+
+.split-hero {
+  color: var(--color-inverse);
+  min-height: 1382px;
+}
+
+.split-hero .bg {
+  inset: 0;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  width: 100%;
+}
+
+.split-hero .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 1382px;
+  padding: 34px var(--space-80) var(--space-74);
+  position: relative;
+}
+
+.split-hero .body {
+  max-width: 490px;
+}
+
+.olive-hero {
+  background: var(--color-olive);
+  min-height: 1534px;
+}
+
+.olive-hero .top-media {
+  display: block;
+  height: 1080px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.olive-hero .copy {
+  padding: 34px var(--space-80) var(--space-50);
+}
+
+.section {
+  padding: 0 var(--layout-side-padding);
+}
+
+.challenge,
+.stories,
+.products {
+  padding-top: var(--space-74);
+}
+
+.challenge-grid,
+.stories-grid,
+.products-grid {
+  display: grid;
+  gap: var(--space-20);
+  margin-top: 28px;
+}
+
+.challenge-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.challenge-card {
+  background: var(--color-surface-01);
+  min-height: 667px;
+  padding: var(--space-20);
+  position: relative;
+}
+
+.challenge-card .icon-wrap {
+  align-items: center;
+  display: flex;
+  height: 48px;
+  justify-content: center;
+  margin: 250px auto 0;
+  width: 48px;
+}
+
+.challenge-card p {
+  bottom: var(--space-20);
+  left: var(--space-20);
+  margin: 0;
+  position: absolute;
+  right: var(--space-20);
+}
+
+.stories-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.story-card img {
+  aspect-ratio: 2 / 3;
+  display: block;
+  object-fit: cover;
+  width: 100%;
+}
+
+.story-card h3,
+.product-card h3 {
+  font-size: var(--font-size-title);
+  letter-spacing: var(--tracking-title);
+  line-height: var(--line-height-title);
+}
+
+.story-card h3 {
+  margin: var(--space-20) 0 var(--space-10);
+}
+
+.story-card p {
+  margin: 0 0 var(--space-20);
+}
+
+.products-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.product-card {
+  background: var(--color-surface-02);
+  min-height: 610px;
+  padding: var(--space-40);
+  position: relative;
+}
+
+.product-card h3 {
+  margin: 0;
+}
+
+.product-card .desc {
+  bottom: var(--space-40);
+  left: var(--space-40);
+  margin: 0;
+  position: absolute;
+}
+
+.product-image {
+  display: block;
+  margin: var(--space-70) auto 0;
+  max-width: min(415px, 100%);
+}
+
+.cta {
+  background: #000000;
+  color: var(--color-inverse);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: var(--space-40);
+  min-height: 540px;
+}
+
+.cta-copy {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-40) var(--space-80);
+}
+
+.cta-copy p {
+  margin-top: auto;
+  max-width: 320px;
+}
+
+.cta-image {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.footer {
+  padding: var(--space-40) var(--layout-side-padding) var(--space-50);
+}
+
+.footer hr {
+  border: 0;
+  border-top: 1px solid var(--color-border-soft);
+  margin: 0 0 var(--space-32);
+}
+
+.footer-top {
+  display: grid;
+  gap: var(--space-32);
+  grid-template-columns: 1fr repeat(4, minmax(140px, 1fr));
+}
+
+.footer h4 {
+  font-size: var(--font-size-body);
+  margin: 0 0 var(--space-18);
+}
+
+.footer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer li {
+  font-size: var(--font-size-body);
+  line-height: 1.9;
+}
+
+.copyright {
+  font-size: var(--font-size-body-sm);
+  margin-top: 86px;
+}
+
+@media (max-width: 1100px) {
+  .header,
+  .section,
+  .footer {
+    padding-left: var(--layout-side-padding-mobile);
+    padding-right: var(--layout-side-padding-mobile);
+  }
+
+  .nav {
+    display: none;
+  }
+
+  .hero,
+  .split-hero .content,
+  .olive-hero .copy,
+  .cta-copy {
+    padding-left: var(--layout-side-padding-mobile);
+    padding-right: var(--layout-side-padding-mobile);
+  }
+
+  .hero {
+    min-height: auto;
+    padding-bottom: var(--layout-side-padding-mobile);
+  }
+
+  .hero p,
+  .olive-hero p {
+    margin-top: var(--space-28);
+  }
+
+  .hero-media {
+    height: auto;
+    margin-left: calc(-1 * var(--layout-side-padding-mobile));
+    width: calc(100% + 48px);
+  }
+
+  .split-hero,
+  .split-hero .content,
+  .olive-hero {
+    min-height: auto;
+  }
+
+  .split-hero .content {
+    gap: var(--layout-side-padding-mobile);
+    padding-bottom: var(--layout-side-padding-mobile);
+    padding-top: var(--space-28);
+  }
+
+  .challenge-grid,
+  .stories-grid,
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .challenge-card {
+    min-height: 380px;
+  }
+
+  .challenge-card .icon-wrap {
+    margin-top: 110px;
+  }
+
+  .product-card {
+    min-height: 480px;
+    padding: var(--layout-side-padding-mobile);
+  }
+
+  .product-card .desc {
+    bottom: var(--layout-side-padding-mobile);
+    left: var(--layout-side-padding-mobile);
+  }
+
+  .cta {
+    grid-template-columns: 1fr;
+  }
+
+  .cta-image {
+    min-height: 260px;
+  }
+
+  .footer-top {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .copyright {
+    margin-top: var(--space-32);
+  }
+}

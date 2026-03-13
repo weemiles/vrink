@@ -1,0 +1,510 @@
+{
+  "summary": {
+    "pages_scanned": [
+      "https://www.vrink.kr/",
+      "https://www.vrink.kr/old-home/old-home",
+      "https://www.vrink.kr/old-home/404",
+      "https://www.vrink.kr/old-home/%ED%8C%8C%ED%8A%B8%EB%84%88",
+      "https://www.vrink.kr/%EC%84%9C%EB%B9%84%EC%8A%A4-%EC%86%8C%EA%B0%9C",
+      "https://www.vrink.kr/%EC%A0%9C%ED%92%88",
+      "https://www.vrink.kr/%EB%8F%84%EC%9E%85-%EB%AC%B8%EC%9D%98"
+    ],
+    "total_assets_found": 53,
+    "total_downloaded_ok": 53,
+    "counts_by_kind": {
+      "images": 51,
+      "videos": 2
+    },
+    "counts_by_ext": {
+      ".jpg": 18,
+      ".mp4": 2,
+      ".png": 30,
+      ".svg": 3
+    },
+    "output_dirs": {
+      "root": "/Users/minwoo/Documents/New project/output/vrink-media-assets",
+      "images": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images",
+      "videos": "/Users/minwoo/Documents/New project/output/vrink-media-assets/videos",
+      "logos": "/Users/minwoo/Documents/New project/output/vrink-media-assets/logos"
+    }
+  },
+  "assets": [
+    {
+      "url": "https://framerusercontent.com/assets/82tbveIcHgDaoKU9tjBhibErMY.mp4",
+      "kind": "video",
+      "ext": ".mp4",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/videos/82tbveIcHgDaoKU9tjBhibErMY.mp4",
+      "size_bytes": 846742,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/assets/L0TBEoNV5XoBbSLREbDrvfUPAk.mp4",
+      "kind": "video",
+      "ext": ".mp4",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/videos/L0TBEoNV5XoBbSLREbDrvfUPAk.mp4",
+      "size_bytes": 2002648,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/1HPymwGDKX3Zv5zv4qjvL0c.png?width=1920&height=1080",
+      "kind": "image",
+      "ext": ".png",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/1HPymwGDKX3Zv5zv4qjvL0c_1920x1080.png",
+      "size_bytes": 759313,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/29i0YwJSZUesPjKX15gej0fCSBQ.png?width=1089&height=1662",
+      "kind": "image",
+      "ext": ".png",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/29i0YwJSZUesPjKX15gej0fCSBQ_1089x1662.png",
+      "size_bytes": 49644,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/2h7ao7PanDTX9P5bOffaSUK6eVQ.png?width=1024&height=1536",
+      "kind": "image",
+      "ext": ".png",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/2h7ao7PanDTX9P5bOffaSUK6eVQ_1024x1536.png",
+      "size_bytes": 738584,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/3uNSbI2amAnuVIdiotKBj82UqiQ.jpg?width=1666&height=2499",
+      "kind": "image",
+      "ext": ".jpg",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/3uNSbI2amAnuVIdiotKBj82UqiQ_1666x2499.jpg",
+      "size_bytes": 797564,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/5BTSK5ZgKKGm1Rs1JVEWYrKGR5o.png?width=1920&height=1080",
+      "kind": "image",
+      "ext": ".png",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/5BTSK5ZgKKGm1Rs1JVEWYrKGR5o_1920x1080.png",
+      "size_bytes": 255461,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/67a46L5I5GB3fScgtuCYC1Oa60.jpg?width=2499&height=1666",
+      "kind": "image",
+      "ext": ".jpg",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/67a46L5I5GB3fScgtuCYC1Oa60_2499x1666.jpg",
+      "size_bytes": 718180,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/6RRA9AjdSz58jUYs1PQBTnrU.png?width=1264&height=848",
+      "kind": "image",
+      "ext": ".png",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/6RRA9AjdSz58jUYs1PQBTnrU_1264x848.png",
+      "size_bytes": 383495,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/6rKPIbpt03pGaYNuLaucdOD4LI.png?width=1920&height=1080",
+      "kind": "image",
+      "ext": ".png",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/6rKPIbpt03pGaYNuLaucdOD4LI_1920x1080.png",
+      "size_bytes": 21203,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/7X41jPfC2xT2b35kQwcaZyyE.jpg?width=2500&height=2000",
+      "kind": "image",
+      "ext": ".jpg",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/7X41jPfC2xT2b35kQwcaZyyE_2500x2000.jpg",
+      "size_bytes": 830803,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/7l6VxEHQF5TrMt5F301oplSnB3g.png?width=1024&height=1024",
+      "kind": "image",
+      "ext": ".png",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/7l6VxEHQF5TrMt5F301oplSnB3g_1024x1024.png",
+      "size_bytes": 79344,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/AMQC26JLzcnkgLV4gwvhxzbYL8.jpg?width=1666&height=2499",
+      "kind": "image",
+      "ext": ".jpg",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/AMQC26JLzcnkgLV4gwvhxzbYL8_1666x2499.jpg",
+      "size_bytes": 555492,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/BS5P3cgcnIO9J9a3Yf5sLxoZKg.png?width=2173&height=1545",
+      "kind": "image",
+      "ext": ".png",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/BS5P3cgcnIO9J9a3Yf5sLxoZKg_2173x1545.png",
+      "size_bytes": 107326,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/Dx1E25M3f98qxeiJ2ufnBpLZY.jpg?width=4398&height=4608",
+      "kind": "image",
+      "ext": ".jpg",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/Dx1E25M3f98qxeiJ2ufnBpLZY_4398x4608.jpg",
+      "size_bytes": 652441,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/ECrCwzt3aXVVBemwnnQ7f51F7ZI.jpg?width=1024&height=1024",
+      "kind": "image",
+      "ext": ".jpg",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/ECrCwzt3aXVVBemwnnQ7f51F7ZI_1024x1024.jpg",
+      "size_bytes": 125138,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/EUdT0DgZPTSMsjzuq8My6zW9rJc.png?width=1280&height=2200",
+      "kind": "image",
+      "ext": ".png",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/EUdT0DgZPTSMsjzuq8My6zW9rJc_1280x2200.png",
+      "size_bytes": 628546,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/EVDvuI5KOIFaF32HTnHWjJuZ9Q.png?width=1920&height=1080",
+      "kind": "image",
+      "ext": ".png",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/EVDvuI5KOIFaF32HTnHWjJuZ9Q_1920x1080.png",
+      "size_bytes": 224168,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/EyzHJFdSNYTc9jqcZeBt9WR0.png?width=1201&height=1201",
+      "kind": "image",
+      "ext": ".png",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/EyzHJFdSNYTc9jqcZeBt9WR0_1201x1201.png",
+      "size_bytes": 4335,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/FoCkpJEK3jQp1WgPED59IniOBmE.jpg?width=1668&height=2499",
+      "kind": "image",
+      "ext": ".jpg",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/FoCkpJEK3jQp1WgPED59IniOBmE_1668x2499.jpg",
+      "size_bytes": 640736,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/GUiP2xsTpsQylROCmy8xguEe4I.png?width=4000&height=1983",
+      "kind": "image",
+      "ext": ".png",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/GUiP2xsTpsQylROCmy8xguEe4I_4000x1983.png",
+      "size_bytes": 145513,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/HrhKnuocrXnuJIuVI9l8Ho8sUk0.jpg?width=7680&height=4320",
+      "kind": "image",
+      "ext": ".jpg",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/HrhKnuocrXnuJIuVI9l8Ho8sUk0_7680x4320.jpg",
+      "size_bytes": 945077,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/Ikp3e9hcKJYEPTfgmThtbTOfK8.png?width=1360&height=2000",
+      "kind": "image",
+      "ext": ".png",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/Ikp3e9hcKJYEPTfgmThtbTOfK8_1360x2000.png",
+      "size_bytes": 727972,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/KbxzFjuQw4Gjdk20hNl9BYrWJ4.jpg?width=3379&height=1931",
+      "kind": "image",
+      "ext": ".jpg",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/KbxzFjuQw4Gjdk20hNl9BYrWJ4_3379x1931.jpg",
+      "size_bytes": 962813,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/LQDvSKCZ53t52MVU4rswrLDbig.jpg?width=2500&height=1406",
+      "kind": "image",
+      "ext": ".jpg",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/LQDvSKCZ53t52MVU4rswrLDbig_2500x1406.jpg",
+      "size_bytes": 788090,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/NbMFQXsW4dOBmDCOPYtY2JBlX5Y.png?width=90&height=90",
+      "kind": "image",
+      "ext": ".png",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/NbMFQXsW4dOBmDCOPYtY2JBlX5Y_90x90.png",
+      "size_bytes": 610,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/PtDTRXVGGlGKYt7N9fbEQnM6f4M.jpg?width=5809&height=3873",
+      "kind": "image",
+      "ext": ".jpg",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/PtDTRXVGGlGKYt7N9fbEQnM6f4M_5809x3873.jpg",
+      "size_bytes": 2092219,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/TeXsnoYjqIQhnMhq9aIpDc7ikk.jpg?width=3364&height=3520",
+      "kind": "image",
+      "ext": ".jpg",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/TeXsnoYjqIQhnMhq9aIpDc7ikk_3364x3520.jpg",
+      "size_bytes": 196639,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/TqInR0EEbtV1QkGKiMLsqr64s.png?width=1084&height=1080",
+      "kind": "image",
+      "ext": ".png",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/TqInR0EEbtV1QkGKiMLsqr64s_1084x1080.png",
+      "size_bytes": 24831,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/UKUL5Bw76yS9nArD9pkmpQnVnLg.jpg?width=8916&height=4884",
+      "kind": "image",
+      "ext": ".jpg",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/UKUL5Bw76yS9nArD9pkmpQnVnLg_8916x4884.jpg",
+      "size_bytes": 553068,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/WCFNuEOL8bKkS55urpuyv7BWbPk.svg?width=1312&height=600",
+      "kind": "image",
+      "ext": ".svg",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/WCFNuEOL8bKkS55urpuyv7BWbPk_1312x600.svg",
+      "size_bytes": 232180,
+      "status": "ok",
+      "logo_copy": "/Users/minwoo/Documents/New project/output/vrink-media-assets/logos/WCFNuEOL8bKkS55urpuyv7BWbPk_1312x600.svg"
+    },
+    {
+      "url": "https://framerusercontent.com/images/XhECe9ZUI95OQBdKGbWKparys.png?width=1024&height=1536",
+      "kind": "image",
+      "ext": ".png",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/XhECe9ZUI95OQBdKGbWKparys_1024x1536.png",
+      "size_bytes": 390289,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/ZqP8L70LHgc3IT5E9sW9X0FU.jpg?width=7680&height=4320",
+      "kind": "image",
+      "ext": ".jpg",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/ZqP8L70LHgc3IT5E9sW9X0FU_7680x4320.jpg",
+      "size_bytes": 784720,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/aHAz6mzUToH8FZEgJwV52BfW51Q.png?width=816&height=1024",
+      "kind": "image",
+      "ext": ".png",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/aHAz6mzUToH8FZEgJwV52BfW51Q_816x1024.png",
+      "size_bytes": 76810,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/aaAMyCaipadaQWV3Ybw3J7W02U.png?width=1853&height=2084",
+      "kind": "image",
+      "ext": ".png",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/aaAMyCaipadaQWV3Ybw3J7W02U_1853x2084.png",
+      "size_bytes": 355058,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/eouMvKNadE1M8QnmtnaApbD5g8.png?width=1280&height=2200",
+      "kind": "image",
+      "ext": ".png",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/eouMvKNadE1M8QnmtnaApbD5g8_1280x2200.png",
+      "size_bytes": 1055010,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/f5XK5ZsURdsJ93NnNy9Sktuo8.png?width=1920&height=1080",
+      "kind": "image",
+      "ext": ".png",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/f5XK5ZsURdsJ93NnNy9Sktuo8_1920x1080.png",
+      "size_bytes": 453216,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/fKOI4iz4M6SHNRYZj1Y5hkz2HRE.png?width=1920&height=1080",
+      "kind": "image",
+      "ext": ".png",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/fKOI4iz4M6SHNRYZj1Y5hkz2HRE_1920x1080.png",
+      "size_bytes": 178285,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/h3T4fye8lPV6NdzXiG5dFBe7UMw.svg",
+      "kind": "image",
+      "ext": ".svg",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/h3T4fye8lPV6NdzXiG5dFBe7UMw.svg",
+      "size_bytes": 489,
+      "status": "ok",
+      "logo_copy": "/Users/minwoo/Documents/New project/output/vrink-media-assets/logos/h3T4fye8lPV6NdzXiG5dFBe7UMw.svg"
+    },
+    {
+      "url": "https://framerusercontent.com/images/h4W1J1FvuhUEq5hB5AH6Ds3Qui0.jpg?width=2000&height=2500",
+      "kind": "image",
+      "ext": ".jpg",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/h4W1J1FvuhUEq5hB5AH6Ds3Qui0_2000x2500.jpg",
+      "size_bytes": 683622,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/ioDt5M5yUvLF7NqXff6uz8j1E.png?width=1920&height=1080",
+      "kind": "image",
+      "ext": ".png",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/ioDt5M5yUvLF7NqXff6uz8j1E_1920x1080.png",
+      "size_bytes": 190476,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/jknUab4QbXL4Zs8ohsz03L5KCs.png?width=4000&height=2207",
+      "kind": "image",
+      "ext": ".png",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/jknUab4QbXL4Zs8ohsz03L5KCs_4000x2207.png",
+      "size_bytes": 215850,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/jmynHFI88eYrteXyOP5ilwMKs.jpg?width=2500&height=1875",
+      "kind": "image",
+      "ext": ".jpg",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/jmynHFI88eYrteXyOP5ilwMKs_2500x1875.jpg",
+      "size_bytes": 934779,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/kLHel3SDRRm60nrvIInMgdYHw.png?width=2808&height=1548",
+      "kind": "image",
+      "ext": ".png",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/kLHel3SDRRm60nrvIInMgdYHw_2808x1548.png",
+      "size_bytes": 65252,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/leoOhtH15fgXvOX078BlOsVwCks.png?width=1920&height=1080",
+      "kind": "image",
+      "ext": ".png",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/leoOhtH15fgXvOX078BlOsVwCks_1920x1080.png",
+      "size_bytes": 17686,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/pNCIbA72FuNKLcR0gKJr9uie8a8.png",
+      "kind": "image",
+      "ext": ".png",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/pNCIbA72FuNKLcR0gKJr9uie8a8.png",
+      "size_bytes": 27046,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/rNeQmFn0cHc3TFVnbzqC3I3hdJc.png?width=1200&height=675",
+      "kind": "image",
+      "ext": ".png",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/rNeQmFn0cHc3TFVnbzqC3I3hdJc_1200x675.png",
+      "size_bytes": 419323,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/sRGkCfZLsWHwu8fxHoe8P2QVUzM.svg?width=532&height=152",
+      "kind": "image",
+      "ext": ".svg",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/sRGkCfZLsWHwu8fxHoe8P2QVUzM_532x152.svg",
+      "size_bytes": 1412,
+      "status": "ok",
+      "logo_copy": "/Users/minwoo/Documents/New project/output/vrink-media-assets/logos/sRGkCfZLsWHwu8fxHoe8P2QVUzM_532x152.svg"
+    },
+    {
+      "url": "https://framerusercontent.com/images/wMiWjY8eIdsi28pdHYmHqvTcmqs.jpg?width=2499&height=1666",
+      "kind": "image",
+      "ext": ".jpg",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/wMiWjY8eIdsi28pdHYmHqvTcmqs_2499x1666.jpg",
+      "size_bytes": 625554,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/wyHrWMYG89zK2tWoT8Y50bMOVLI.jpg?width=2499&height=1406",
+      "kind": "image",
+      "ext": ".jpg",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/wyHrWMYG89zK2tWoT8Y50bMOVLI_2499x1406.jpg",
+      "size_bytes": 586379,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/x89czhSCz2CAiRqDsFPk2mroztw.png?width=4000&height=4000",
+      "kind": "image",
+      "ext": ".png",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/x89czhSCz2CAiRqDsFPk2mroztw_4000x4000.png",
+      "size_bytes": 812647,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/xUVN1jwsP5anIGCNlkujwEKqX8.png?width=759&height=1543",
+      "kind": "image",
+      "ext": ".png",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/xUVN1jwsP5anIGCNlkujwEKqX8_759x1543.png",
+      "size_bytes": 24176,
+      "status": "ok",
+      "logo_copy": ""
+    },
+    {
+      "url": "https://framerusercontent.com/images/yWLrRIIGexzNUtQnVArSJSftkcQ.png?width=2173&height=1626",
+      "kind": "image",
+      "ext": ".png",
+      "local_path": "/Users/minwoo/Documents/New project/output/vrink-media-assets/images/yWLrRIIGexzNUtQnVArSJSftkcQ_2173x1626.png",
+      "size_bytes": 96207,
+      "status": "ok",
+      "logo_copy": ""
+    }
+  ]
+}

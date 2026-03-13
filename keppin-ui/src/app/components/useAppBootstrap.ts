@@ -18,7 +18,8 @@
  * 토큰 유효성 체크 + 프로필 signed URL 갱신을 수행합니다.
  */
 import { useEffect, useRef, useCallback } from 'react';
-import { useAuth, supabase } from '../data/authStore';
+import { supabase } from '../data/authStore';
+import { useAuth } from './AuthContext';
 import { pullFromServer } from '../data/contactsStore';
 import { pullAutoMessagesFromServer } from '../data/autoMessageStore';
 import { refreshFromServer as refreshProfile } from '../data/profileStore';

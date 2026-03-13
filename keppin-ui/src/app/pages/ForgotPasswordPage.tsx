@@ -7,7 +7,7 @@ import { TossButton } from '../components/TossButton';
 import { NavigationBar } from '../components/NavigationBar';
 import { FixedBottomCTA } from '../components/FixedBottomCTA';
 import { INPUT_MAX_LENGTH } from '../components/useInputValidation';
-import { resetPasswordForEmail, updatePassword, useAuth, supabase } from '../data/authStore';
+import { resetPasswordForEmail, updatePassword, supabase } from '../data/authStore';
 
 /**
  * ForgotPasswordPage — 비밀번호 찾기 (Supabase Auth 연동)
@@ -24,7 +24,6 @@ import { resetPasswordForEmail, updatePassword, useAuth, supabase } from '../dat
 
 export function ForgotPasswordPage() {
   const navigate = useNavigate();
-  const auth = useAuth();
 
   const [step, setStep] = useState(0);
   const [email, setEmail] = useState('');

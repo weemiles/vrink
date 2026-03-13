@@ -5,8 +5,9 @@
  * 인증 완료 후 useAppBootstrap으로 서버 데이터 하이드레이션 + 토큰 갱신.
  */
 import { Navigate, Outlet } from 'react-router';
-import { isDemoAuthBypassEnabled, useAuth } from '../data/authStore';
-import { KeppinAppIcon } from './KeppinLogo';
+import { isDemoAuthBypassEnabled } from '../data/authStore';
+import { useAuth } from './AuthContext';
+import { KeepinAppIcon } from './KeepinLogo';
 import { useAppBootstrap } from './useAppBootstrap';
 import { useScrollRestoration } from './useScrollRestoration';
 
@@ -24,7 +25,7 @@ export function AuthGuard() {
   if (!auth.initialized || auth.loading) {
     return (
       <div className="h-dvh flex flex-col items-center justify-center bg-[var(--toss-bg)]" role="status" aria-label="인증 확인 중">
-        <KeppinAppIcon size={48} variant="blue" borderRadius={16} />
+        <KeepinAppIcon size={48} variant="blue" borderRadius={16} />
         <p className="text-toss-grey-400 mt-4" style={{ fontSize: 14 }}>
           로딩 중...
         </p>

@@ -1,1 +1,0 @@
-import{r as s}from"./index-BygD8db2.js";function c(e,t=300){const[r,o]=s.useState(e);return s.useEffect(()=>{const u=setTimeout(()=>o(e),t);return()=>clearTimeout(u)},[e,t]),r}function i(e,t=200){const[r,o]=s.useState(!1);return s.useEffect(()=>{if(e){const u=setTimeout(()=>o(!0),t);return()=>clearTimeout(u)}else o(!1)},[e,t]),r}export{i as a,c as u};

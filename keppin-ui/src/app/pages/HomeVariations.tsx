@@ -301,7 +301,7 @@ function VariantB() {
       {/* Header */}
       <div style={{ padding: `8px ${PX}px 16px` }}>
         <p className="text-toss-grey-500" style={TYPO.t7}>{getGreeting(lang)}</p>
-        <h1 className="text-toss-grey-900" style={{ ...TYPO.t4, fontWeight: W.bold, marginTop: 4 }}>keppin</h1>
+        <h1 className="text-toss-grey-900" style={{ ...TYPO.t4, fontWeight: W.bold, marginTop: 4 }}>keepin</h1>
       </div>
 
       {/* 통계 3카드 — §2.2 summary-stats-max: 3 */}

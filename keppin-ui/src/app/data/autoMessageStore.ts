@@ -231,8 +231,8 @@ function getNextOccasionDate(occasion: OccasionKey, birthday?: string): { date: 
    localStorage 키 & 초기 로드
    ═══════════════════════════════════════════════ */
 
-const LS_AUTO_MSG_KEY = 'keppin_auto_messages';
-const LS_SENT_MSG_KEY = 'keppin_sent_messages';
+const LS_AUTO_MSG_KEY = 'keepin_auto_messages';
+const LS_SENT_MSG_KEY = 'keepin_sent_messages';
 
 /* ═══════════════════════════════════════════════
    서버 동기화 설정
@@ -768,7 +768,7 @@ export function resetAutoMessageStore() {
    태그 기반 메시지 템플릿 — 스토어
    ═══════════════════════════════════════════════ */
 
-const LS_TAGGED_TPL_KEY = 'keppin_tagged_templates';
+const LS_TAGGED_TPL_KEY = 'keepin_tagged_templates';
 
 let _taggedTemplates: TaggedTemplate[] = loadTaggedTemplates();
 let _tplListeners = new Set<Listener>();

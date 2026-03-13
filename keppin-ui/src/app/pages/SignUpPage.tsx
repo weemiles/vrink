@@ -8,15 +8,15 @@ import { FixedBottomCTA } from '../components/FixedBottomCTA';
 import { Popup } from '../components/Popup';
 import { Check, ArrowRight, ShieldCheck } from 'lucide-react';
 import { useAnalytics } from '../components/useAnalytics';
-import { KeppinAppIcon } from '../components/KeppinLogo';
+import { KeepinAppIcon } from '../components/KeepinLogo';
 import { INPUT_MAX_LENGTH } from '../components/useInputValidation';
-import { signUp, useAuth } from '../data/authStore';
+import { signUp } from '../data/authStore';
 import { pullFromServer } from '../data/contactsStore';
 import { pullAutoMessagesFromServer } from '../data/autoMessageStore';
 import { useDocumentTitle } from '../components/useDocumentTitle';
 
 /**
- * SignUpPage — keppin 회원가입 (Supabase Auth 연동)
+ * SignUpPage — keepin 회원가입 (Supabase Auth 연동)
  *
  * 한 화면 안에서 카드 기반 스텝 전환:
  * Step 0: 이메일 + 비밀번호 입력
@@ -31,7 +31,6 @@ export function SignUpPage() {
   const navigate = useNavigate();
   const analytics = useAnalytics();
   useDocumentTitle('회원가입');
-  const auth = useAuth();
   const [step, setStep] = useState(0);
 
   /* ──── Step 0: 이메일 + 비밀번호 ─── */
@@ -581,14 +580,14 @@ export function SignUpPage() {
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ delay: 0.1, type: 'spring', damping: 12, stiffness: 200 }}
               >
-                <KeppinAppIcon size={80} variant="blue" borderRadius={40} />
+                <KeepinAppIcon size={80} variant="blue" borderRadius={40} />
               </motion.div>
 
               <h2 className="text-toss-grey-900 text-center" style={{ fontSize: 24, fontWeight: 800, marginTop: 24 }}>
                 환영해요, {name}님!
               </h2>
               <p className="text-toss-grey-500 text-center" style={{ fontSize: 15, marginTop: 8, lineHeight: 1.5 }}>
-                keppin에서 소중한 사람들과의
+                keepin에서 소중한 사람들과의
                 <br />관계를 관리해보세요
               </p>
 

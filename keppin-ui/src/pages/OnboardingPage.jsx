@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'motion/react';
 import { Bell, Cake, Check, ChevronLeft, ChevronRight, Shield, Star, Users } from 'lucide-react';
 import { BottomSheet } from '../components/BottomSheet';
-import { KeppinLogo } from '../components/KeppinLogo';
+import { KeepinLogo } from '../components/KeepinLogo';
 import { TossButton } from '../components/TossButton';
 import { MOTION_TIMING } from '../components/useMotionConfig';
 import { useReducedMotion } from '../components/usePerformanceUX';
@@ -16,7 +16,7 @@ const SLIDES = [
     iconBg: 'var(--toss-blue-50)',
     iconColor: 'var(--toss-blue-500)',
     title: '소중한 사람들을\n한곳에서 관리하세요',
-    description: '흩어진 연락처와 인연 정보를\nkeppin에서 깔끔하게 정리할 수 있어요',
+    description: '흩어진 연락처와 인연 정보를\nkeepin에서 깔끔하게 정리할 수 있어요',
   },
   {
     icon: Cake,
@@ -152,7 +152,7 @@ export function OnboardingPage() {
             >
               <div className="icon-wrap" style={{ backgroundColor: slide.iconBg }}>
                 {currentSlide === 0 ? (
-                  <KeppinLogo size={48} className="text-toss-blue" />
+                  <KeepinLogo size={48} className="text-toss-blue" />
                 ) : (
                   <Icon size={48} color={slide.iconColor} strokeWidth={1.6} />
                 )}

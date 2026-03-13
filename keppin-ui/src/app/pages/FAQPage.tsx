@@ -13,13 +13,13 @@ interface FAQItem {
 const FAQ_DATA_KO: FAQItem[] = [
   {
     category: '일반',
-    question: 'keppin은 어떤 앱인가요?',
-    answer: 'keppin은 소중한 인연들과의 관계를 관리하고 유지할 수 있도록 도와주는 인연 관리 앱이에요. 생일 알림, 연락 주기 관리, 메모 기능 등으로 중요한 관계를 놓치지 않게 해줘요.',
+    question: 'keepin은 어떤 앱인가요?',
+    answer: 'keepin은 소중한 인연들과의 관계를 관리하고 유지할 수 있도록 도와주는 인연 관리 앱이에요. 생일 알림, 연락 주기 관리, 메모 기능 등으로 중요한 관계를 놓치지 않게 해줘요.',
   },
   {
     category: '일반',
     question: '무료로 사용할 수 있나요?',
-    answer: 'keppin의 기본 기능은 모두 무료로 사용할 수 있어요. 연락처 등록, 생일 알림, 연락 공백 확인 등 핵심 기능을 무료로 이용하실 수 있습니다.',
+    answer: 'keepin의 기본 기능은 모두 무료로 사용할 수 있어요. 연락처 등록, 생일 알림, 연락 공백 확인 등 핵심 기능을 무료로 이용하실 수 있습니다.',
   },
   {
     category: '계정',
@@ -69,7 +69,7 @@ const FAQ_DATA_KO: FAQItem[] = [
   {
     category: '데이터',
     question: '데이터는 안전하게 보관되나요?',
-    answer: '현재 keppin의 데이터는 기기 내부(localStorage)에 저장돼요. 앱을 삭제하거나 브라우저 데이터를 지우면 데이터가 사라질 수 있으니 주의해주세요. 향후 클라우드 동기화 기능을 제공할 예정이에요.',
+    answer: '현재 keepin의 데이터는 기기 내부(localStorage)에 저장돼요. 앱을 삭제하거나 브라우저 데이터를 지우면 데이터가 사라질 수 있으니 주의해주세요. 향후 클라우드 동기화 기능을 제공할 예정이에요.',
   },
   {
     category: '데이터',
@@ -81,13 +81,13 @@ const FAQ_DATA_KO: FAQItem[] = [
 const FAQ_DATA_EN: FAQItem[] = [
   {
     category: 'General',
-    question: 'What is keppin?',
-    answer: 'keppin is a relationship management app that helps you maintain and nurture your personal connections. With features like birthday reminders, contact frequency tracking, and notes, you\'ll never lose touch with the people who matter.',
+    question: 'What is keepin?',
+    answer: 'keepin is a relationship management app that helps you maintain and nurture your personal connections. With features like birthday reminders, contact frequency tracking, and notes, you\'ll never lose touch with the people who matter.',
   },
   {
     category: 'General',
     question: 'Is it free to use?',
-    answer: 'All core features of keppin are free to use, including contact registration, birthday alerts, and contact gap tracking.',
+    answer: 'All core features of keepin are free to use, including contact registration, birthday alerts, and contact gap tracking.',
   },
   {
     category: 'Account',

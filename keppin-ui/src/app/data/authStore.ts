@@ -23,7 +23,7 @@ export { supabase };
    Server base URL
    ═══════════════════════════════════════════════ */
 const SERVER_BASE = `${SUPABASE_URL}/functions/v1/make-server-0984a125`;
-const DEMO_AUTH_BYPASS_KEY = '__keppin_demo_auth_bypass';
+const DEMO_AUTH_BYPASS_KEY = '__keepin_demo_auth_bypass';
 
 export function isDemoAuthBypassEnabled(): boolean {
   try {
@@ -74,6 +74,53 @@ function setState(partial: Partial<AuthState>) {
   emit();
 }
 
+function readUserMetadataValue(
+  metadata: unknown,
+  key: string,
+): string | null {
+  if (!metadata || typeof metadata !== 'object') return null;
+  const value = (metadata as Record<string, unknown>)[key];
+  if (typeof value !== 'string') return null;
+  const trimmed = value.trim();
+  return trimmed.length > 0 ? trimmed : null;
+}
+
+/**
+ * OAuth/이메일 로그인 직후 사용자 레코드를 public.users에 보정 저장합니다.
+ * - DB 트리거가 기본 동기화를 담당하지만, 기존 계정/권한 지연 케이스를 위해 클라이언트에서도 보정.
+ * - 실패해도 로그인 흐름은 막지 않습니다.
+ */
+async function syncUserRecord(user: User | null): Promise<void> {
+  if (!user) return;
+
+  const fullName =
+    readUserMetadataValue(user.user_metadata, 'full_name')
+    ?? readUserMetadataValue(user.user_metadata, 'name');
+  const avatarUrl =
+    readUserMetadataValue(user.user_metadata, 'avatar_url')
+    ?? readUserMetadataValue(user.user_metadata, 'picture');
+  const provider =
+    readUserMetadataValue(user.app_metadata, 'provider')
+    ?? 'email';
+
+  const { error } = await supabase
+    .from('users')
+    .upsert(
+      {
+        id: user.id,
+        email: user.email ?? null,
+        full_name: fullName,
+        avatar_url: avatarUrl,
+        provider,
+      },
+      { onConflict: 'id' },
+    );
+
+  if (error) {
+    console.warn('[authStore] users sync warning:', error.message);
+  }
+}
+
 /* ═══════════════════════════════════════════════
    Initialize — check existing session
    ═══════════════════════════════════════════════ */
@@ -109,6 +156,9 @@ export function initAuth(): Promise<void> {
         loading: false,
         initialized: true,
       });
+
+      // 로그인된 사용자를 public.users에 즉시 반영
+      await syncUserRecord(activeSession?.user ?? null);
     } catch (err) {
       console.error('[authStore] init error:', err);
       setState({ loading: false, initialized: true });
@@ -121,6 +171,7 @@ export function initAuth(): Promise<void> {
       user: session?.user ?? null,
       session: session ?? null,
     });
+    void syncUserRecord(session?.user ?? null);
   });
 
   return _initPromise;
@@ -279,11 +330,11 @@ export async function deleteAccount(): Promise<{ success: boolean; error?: strin
       localStorage.removeItem('connection_contacts');
       localStorage.removeItem('connection_custom_relationships');
       localStorage.removeItem('connection_hidden_relationships');
-      localStorage.removeItem('keppin_auto_messages');
-      localStorage.removeItem('keppin_sent_messages');
-      localStorage.removeItem('keppin_onboarding_complete');
-      localStorage.removeItem('keppin_notif_settings');
-      localStorage.removeItem('keppin_interaction_logs');
+      localStorage.removeItem('keepin_auto_messages');
+      localStorage.removeItem('keepin_sent_messages');
+      localStorage.removeItem('keepin_onboarding_complete');
+      localStorage.removeItem('keepin_notif_settings');
+      localStorage.removeItem('keepin_interaction_logs');
     } catch { /* ignore */ }
     setDemoAuthBypassEnabled(false);
 
@@ -466,6 +517,14 @@ function subscribe(listener: Listener) {
 
 function getSnapshot(): AuthState {
   return _state;
+}
+
+export function subscribeAuth(listener: Listener) {
+  return subscribe(listener);
+}
+
+export function getAuthSnapshot(): AuthState {
+  return getSnapshot();
 }
 
 export function useAuth(): AuthState {

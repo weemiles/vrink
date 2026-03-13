@@ -16,6 +16,7 @@
     "supabase:check:oauth": "node scripts/check-supabase-oauth.mjs",
     "supabase:check:core": "npm run supabase:check && npm run supabase:check:routes && npm run supabase:check:auth && npm run supabase:check:data",
     "supabase:check:all": "npm run supabase:check && npm run supabase:check:routes && npm run supabase:check:auth && npm run supabase:check:data && npm run supabase:check:oauth",
+    "release:check": "npm run build && npm run supabase:check:all",
     "supabase:deploy": "npx supabase functions deploy make-server-0984a125 --project-ref odjnidzoerrygtaivuru --use-api"
   },
   "dependencies": {

@@ -1,0 +1,453 @@
+.page {
+  --ink: #0d0e0b;
+  --gold: #f8c576;
+  --bg: #ededed;
+  --line: rgba(13, 14, 11, 0.45);
+
+  background: var(--bg);
+  color: var(--ink);
+  margin: 0 auto;
+  max-width: 1920px;
+}
+
+.page a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.header {
+  align-items: start;
+  background: var(--bg);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  height: 98.94px;
+  padding: 20px;
+  position: relative;
+}
+
+.headerTagline,
+.headerNav,
+.headerActions {
+  color: var(--gold);
+  font-size: 13.4px;
+  letter-spacing: 0.56px;
+  line-height: 20.02px;
+  margin: 0;
+}
+
+.headerTagline {
+  justify-self: start;
+}
+
+.headerLogo {
+  justify-self: center;
+  margin-top: 2px;
+}
+
+.headerNav {
+  align-items: center;
+  bottom: 0;
+  display: flex;
+  gap: 20px;
+  left: 50%;
+  position: absolute;
+  transform: translateX(-50%);
+}
+
+.headerActions {
+  display: flex;
+  gap: 18px;
+  justify-self: end;
+}
+
+.heroSection {
+  height: 1200px;
+  overflow: hidden;
+  position: relative;
+}
+
+.heroImage {
+  object-fit: cover;
+}
+
+.heroOverlay {
+  background: rgba(0, 0, 0, 0.4);
+  inset: 0;
+  position: absolute;
+}
+
+.heroCopy {
+  bottom: 94px;
+  color: var(--gold);
+  left: 74px;
+  position: absolute;
+}
+
+.heroCopy h1 {
+  font-size: 49.8px;
+  font-weight: 900;
+  line-height: 50px;
+  margin: 0;
+}
+
+.heroCopy p,
+.heroCopy a {
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 0.56px;
+  line-height: 20.02px;
+  margin: 0;
+}
+
+.heroCopy a {
+  display: inline-block;
+  margin-top: 24px;
+  text-decoration: underline;
+}
+
+.duoSection {
+  background: var(--bg);
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr 1fr;
+  padding: 10px;
+}
+
+.duoCard {
+  background: transparent;
+}
+
+.duoImageWrap {
+  aspect-ratio: 945 / 1181.25;
+  position: relative;
+}
+
+.duoTextRow {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 215px 1fr;
+  min-height: 146px;
+  padding: 14px 10px 10px;
+}
+
+.duoTextRow h2 {
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 20px;
+  margin: 0;
+}
+
+.duoTextRow p,
+.duoTextRow a {
+  font-size: 13.3px;
+  letter-spacing: 0.56px;
+  line-height: 20.02px;
+  margin: 0;
+}
+
+.duoTextRow a {
+  display: inline-block;
+  margin-top: 12px;
+  text-decoration: underline;
+}
+
+.spaceSection,
+.collectionSection,
+.shareSection {
+  background: var(--bg);
+  padding: 90px 10px 50px;
+}
+
+.spaceSection h3,
+.collectionSection h3,
+.shareSection h3 {
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 20px;
+  margin: 0 0 46px;
+  text-align: center;
+}
+
+.fourGrid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.gridCard h4 {
+  font-size: 27px;
+  font-weight: 900;
+  line-height: 20px;
+  margin: 16px 0 0;
+  text-align: center;
+}
+
+.gridImageWrapTall,
+.gridImageWrapShort,
+.shareMain,
+.shareSmall,
+.bannerSection {
+  overflow: hidden;
+  position: relative;
+}
+
+.gridImageWrapTall {
+  aspect-ratio: 467.5 / 701.41;
+}
+
+.gridImageWrapShort {
+  aspect-ratio: 467.5 / 556.78;
+}
+
+.coverImage {
+  object-fit: cover;
+}
+
+.bannerSection {
+  height: 1050px;
+}
+
+.bannerOverlay {
+  background: rgba(0, 0, 0, 0.27);
+  inset: 0;
+  position: absolute;
+}
+
+.bannerCopy {
+  bottom: 39px;
+  color: #ffffff;
+  left: 94px;
+  position: absolute;
+}
+
+.bannerCopy h3 {
+  font-size: 36px;
+  font-weight: 900;
+  line-height: 46.08px;
+  margin: 0;
+  max-width: 350px;
+}
+
+.bannerCopy a {
+  display: inline-block;
+  font-size: 13.7px;
+  font-weight: 900;
+  letter-spacing: 0.56px;
+  line-height: 20.02px;
+  margin-top: 18px;
+  text-decoration: underline;
+}
+
+.shareSection {
+  padding-top: 40px;
+}
+
+.shareSection h3 {
+  font-size: 18.6px;
+  margin-bottom: 30px;
+}
+
+.shareGrid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: 467.5px 467.5px;
+}
+
+.shareMain {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.shareSmall {
+  position: relative;
+}
+
+.shareIcon {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.seeMoreSection {
+  align-items: center;
+  background: var(--bg);
+  display: flex;
+  justify-content: center;
+  min-height: 91px;
+  padding: 20px;
+}
+
+.seeMoreButton {
+  align-items: center;
+  border: 1px solid var(--ink);
+  display: inline-flex;
+  font-size: 14px;
+  height: 51px;
+  justify-content: center;
+  letter-spacing: 0.56px;
+  text-transform: uppercase;
+  width: 250px;
+}
+
+.footerGroupSection {
+  border-top: 1px solid var(--ink);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.footerGroupSection a {
+  align-items: center;
+  background: #ffffff;
+  display: flex;
+  font-size: 27px;
+  font-weight: 900;
+  height: 260px;
+  justify-content: center;
+  line-height: 36.12px;
+  text-align: center;
+}
+
+.footerGroupSection a + a {
+  border-left: 1px solid rgba(13, 14, 11, 0.5);
+}
+
+.footer {
+  border-top: 1px solid var(--ink);
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 1fr 1fr 1fr;
+  min-height: 349px;
+  padding: 32px 20px 40px;
+}
+
+.footerLeft p,
+.footerLinks a {
+  font-size: 13.5px;
+  line-height: 20.02px;
+  margin: 0 0 20px;
+}
+
+.footerLeft span {
+  font-weight: 500;
+}
+
+.footerLinks {
+  max-width: 220px;
+}
+
+.footerLinks a {
+  display: block;
+  margin-bottom: 2px;
+}
+
+.footerDivider {
+  border-top: 1px solid var(--line);
+  margin-left: auto;
+  width: min(451px, 100%);
+}
+
+@media (max-width: 1100px) {
+  .header {
+    gap: 12px;
+    grid-template-columns: 1fr;
+    height: auto;
+    justify-items: center;
+    padding: 18px 16px;
+  }
+
+  .headerTagline,
+  .headerActions,
+  .headerNav {
+    color: var(--ink);
+  }
+
+  .headerNav {
+    position: static;
+    transform: none;
+  }
+
+  .heroSection {
+    height: 70vw;
+    min-height: 360px;
+  }
+
+  .heroCopy {
+    bottom: 24px;
+    left: 16px;
+    right: 16px;
+  }
+
+  .heroCopy h1 {
+    font-size: clamp(32px, 8vw, 50px);
+    line-height: 1;
+  }
+
+  .duoSection,
+  .fourGrid,
+  .shareGrid,
+  .footerGroupSection,
+  .footer {
+    grid-template-columns: 1fr;
+  }
+
+  .duoTextRow {
+    grid-template-columns: 1fr;
+    padding: 14px 0 10px;
+  }
+
+  .spaceSection,
+  .collectionSection,
+  .shareSection {
+    padding: 56px 10px 40px;
+  }
+
+  .gridCard h4 {
+    font-size: 22px;
+    margin-top: 12px;
+  }
+
+  .bannerSection {
+    height: 70vw;
+    min-height: 380px;
+  }
+
+  .bannerCopy {
+    bottom: 24px;
+    left: 16px;
+  }
+
+  .bannerCopy h3 {
+    font-size: clamp(30px, 7vw, 36px);
+    line-height: 1.1;
+  }
+
+  .shareGrid {
+    grid-template-rows: none;
+  }
+
+  .shareMain,
+  .shareSmall {
+    aspect-ratio: 1 / 1;
+  }
+
+  .footerGroupSection a {
+    font-size: 24px;
+    height: 160px;
+    line-height: 1.2;
+  }
+
+  .footerGroupSection a + a {
+    border-left: 0;
+    border-top: 1px solid rgba(13, 14, 11, 0.5);
+  }
+
+  .footer {
+    padding: 24px 16px 30px;
+  }
+
+  .footerDivider {
+    margin-left: 0;
+    width: 100%;
+  }
+}

@@ -18,8 +18,8 @@ function userHeaders(anonKey, accessToken, json = false) {
 function buildTestUser() {
   const nonce = Date.now().toString(36);
   return {
-    email: `keppin-data-${nonce}@example.com`,
-    password: `Keppin!${nonce}`,
+    email: `keepin-data-${nonce}@example.com`,
+    password: `Keepin!${nonce}`,
     name: 'Data Flow Check',
   };
 }

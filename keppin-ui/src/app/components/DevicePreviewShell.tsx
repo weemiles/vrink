@@ -409,7 +409,7 @@ export function DevicePreviewShell() {
           >
             {iframeSrc ? (
               <iframe
-                title="Keppin Device Preview"
+                title="Keepin Device Preview"
                 src={iframeSrc}
                 width={viewport.width}
                 height={viewport.height}

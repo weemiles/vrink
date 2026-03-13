@@ -19,7 +19,8 @@ import { ProgressBar } from '../components/ProgressBar';
 import { useTheme } from '../components/useTheme';
 import { resetFeedSession } from '../components/useConsumerAppGuard';
 import { useLanguage } from '../components/useLanguage';
-import { signOut, useAuth } from '../data/authStore';
+import { signOut } from '../data/authStore';
+import { useAuth } from '../components/AuthContext';
 import { useProfile, refreshFromServer, clearProfile } from '../data/profileStore';
 import { resetNotificationState } from '../data/notificationStore';
 import { resetNotificationSettings } from '../data/notificationSettingsStore';
@@ -202,7 +203,7 @@ export function MyPage() {
       </div>
 
       <div className="px-6 pb-4">
-        <p className="text-toss-grey-400 text-center" style={{ fontSize: 11 }}>keppin v1.0.0</p>
+        <p className="text-toss-grey-400 text-center" style={{ fontSize: 11 }}>keepin v1.0.0</p>
       </div>
 
       {/* Logout Popup */}

@@ -10,8 +10,8 @@ function authHeaders(anonKey) {
 function buildTestUser() {
   const nonce = Date.now().toString(36);
   return {
-    email: `keppin-e2e-${nonce}@example.com`,
-    password: `Keppin!${nonce}`,
+    email: `keepin-e2e-${nonce}@example.com`,
+    password: `Keepin!${nonce}`,
     name: 'E2E Check',
   };
 }

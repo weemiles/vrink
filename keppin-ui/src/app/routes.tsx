@@ -43,6 +43,13 @@ export const router = createBrowserRouter([
         },
       },
       {
+        path: 'auth',
+        lazy: async () => {
+          const { LoginPage } = await import('./pages/LoginPage');
+          return { Component: LoginPage };
+        },
+      },
+      {
         path: 'signup',
         lazy: async () => {
           const { SignUpPage } = await import('./pages/SignUpPage');

@@ -1,10 +1,10 @@
 /**
  * useLanguage.tsx
  * ─────────────────────────────────────────
- * keppin i18n Context + Provider + Hook
+ * keepin i18n Context + Provider + Hook
  *
  * - 지원 언어: ko, en
- * - localStorage 영속화 (키: __keppin_lang)
+ * - localStorage 영속화 (키: __keepin_lang)
  * - t(key, params?) 함수로 번역 조회
  * - 플레이스홀더 보간: {key} → params.key
  */
@@ -21,7 +21,7 @@ import translations, { type Lang, LANG_LABELS } from '../data/translations';
 /* ═══════════════════════════════════════
    Constants
    ═══════════════════════════════════════ */
-const LS_LANG_KEY = '__keppin_lang';
+const LS_LANG_KEY = '__keepin_lang';
 const DEFAULT_LANG: Lang = 'ko';
 
 function loadLang(): Lang {

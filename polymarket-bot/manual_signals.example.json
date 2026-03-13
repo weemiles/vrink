@@ -1,0 +1,13 @@
+{
+  "markets": [
+    {
+      "slug": "example-market-slug",
+      "fair_yes_probability": 0.64,
+      "rationale": "My outside research suggests the YES side should be closer to 64%.",
+      "notes": [
+        "Use this file for markets you have personally researched.",
+        "The bot compares your fair value against live ask prices and only paper-trades when the edge is large enough."
+      ]
+    }
+  ]
+}

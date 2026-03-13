@@ -1,5 +1,4 @@
 import { Outlet } from 'react-router';
-import { useEffect } from 'react';
 import { DialogProvider } from '../components/useDialog';
 import { BottomSheetProvider } from '../components/useBottomSheet';
 import { ToastProvider } from '../components/useToast';
@@ -10,7 +9,7 @@ import { useFeatureFlag, type FlagDefinition } from '../components/useFeatureFla
 import { ThemeContext, useThemeProvider } from '../components/useTheme';
 import { LanguageProvider } from '../components/useLanguage';
 import { ReducedMotionContext, OfflineSyncContext } from '../components/useReducedMotionContext';
-import { initAuth } from '../data/authStore';
+import { AuthProvider } from '../components/AuthContext';
 import { ErrorBoundary } from '../components/ErrorBoundary';
 
 // Re-export hooks for backward compatibility (기존 import를 유지하는 소비자가 있을 수 있음)
@@ -59,11 +58,6 @@ export function RootLayout() {
   // 다크모드 테마 컨텍스트
   const themeCtx = useThemeProvider();
 
-  // 앱 시작 시 인증 세션 초기화 (useEffect 내에서 사이드 이펙트 실행)
-  useEffect(() => {
-    initAuth();
-  }, []);
-
   // §3 오프라인/네트워크 상태 머신
   const offlineSync = useOfflineSync({
     onStateChange: (state) => {
@@ -78,78 +72,80 @@ export function RootLayout() {
   const featureFlags = useFeatureFlag(DEFAULT_FLAGS);
 
   return (
-    <LanguageProvider>
-    <ThemeContext.Provider value={themeCtx}>
-    <ReducedMotionContext.Provider value={prefersReducedMotion}>
-      <featureFlags.Provider value={featureFlags.contextValue}>
-        <OfflineSyncContext.Provider value={offlineSync}>
-          <DialogProvider>
-            <BottomSheetProvider>
-              <ToastProvider>
-                <div id="app-shell">
-                  {/* A11y: Skip navigation — 키보드 사용자가 반복 내비게이션 건너뛰기 */}
-                  <a href="#main-content" className="skip-nav">
-                    본문으로 건너뛰기
-                  </a>
-                  {/* §3 오프라인 배너 — 전역 최상단 */}
-                  <OfflineBanner
-                    state={offlineSync.state}
-                    pendingCount={offlineSync.pendingCount}
-                    retryCount={offlineSync.retryCount}
-                    isRetryExhausted={offlineSync.isRetryExhausted}
-                    errorMessage={offlineSync.errorMessage}
-                    onManualRetry={offlineSync.manualRetry}
-                  />
-                  <ErrorBoundary>
-                    <main id="main-content">
-                      <Outlet />
-                    </main>
-                  </ErrorBoundary>
-                  {/* §1.4 스크린리더 라이브 영역 — 동적 콘텐츠 공지용 */}
-                  <div
-                    id="a11y-live-polite"
-                    role="status"
-                    aria-live="polite"
-                    aria-atomic="true"
-                    className="sr-only"
-                    style={{
-                      position: 'absolute',
-                      width: 1,
-                      height: 1,
-                      padding: 0,
-                      margin: -1,
-                      overflow: 'hidden',
-                      clip: 'rect(0, 0, 0, 0)',
-                      whiteSpace: 'nowrap',
-                      border: 0,
-                    }}
-                  />
-                  <div
-                    id="a11y-live-assertive"
-                    role="alert"
-                    aria-live="assertive"
-                    aria-atomic="true"
-                    className="sr-only"
-                    style={{
-                      position: 'absolute',
-                      width: 1,
-                      height: 1,
-                      padding: 0,
-                      margin: -1,
-                      overflow: 'hidden',
-                      clip: 'rect(0, 0, 0, 0)',
-                      whiteSpace: 'nowrap',
-                      border: 0,
-                    }}
-                  />
-                </div>
-              </ToastProvider>
-            </BottomSheetProvider>
-          </DialogProvider>
-        </OfflineSyncContext.Provider>
-      </featureFlags.Provider>
-    </ReducedMotionContext.Provider>
-    </ThemeContext.Provider>
-    </LanguageProvider>
+    <AuthProvider>
+      <LanguageProvider>
+        <ThemeContext.Provider value={themeCtx}>
+          <ReducedMotionContext.Provider value={prefersReducedMotion}>
+            <featureFlags.Provider value={featureFlags.contextValue}>
+              <OfflineSyncContext.Provider value={offlineSync}>
+                <DialogProvider>
+                  <BottomSheetProvider>
+                    <ToastProvider>
+                      <div id="app-shell">
+                        {/* A11y: Skip navigation — 키보드 사용자가 반복 내비게이션 건너뛰기 */}
+                        <a href="#main-content" className="skip-nav">
+                          본문으로 건너뛰기
+                        </a>
+                        {/* §3 오프라인 배너 — 전역 최상단 */}
+                        <OfflineBanner
+                          state={offlineSync.state}
+                          pendingCount={offlineSync.pendingCount}
+                          retryCount={offlineSync.retryCount}
+                          isRetryExhausted={offlineSync.isRetryExhausted}
+                          errorMessage={offlineSync.errorMessage}
+                          onManualRetry={offlineSync.manualRetry}
+                        />
+                        <ErrorBoundary>
+                          <main id="main-content">
+                            <Outlet />
+                          </main>
+                        </ErrorBoundary>
+                        {/* §1.4 스크린리더 라이브 영역 — 동적 콘텐츠 공지용 */}
+                        <div
+                          id="a11y-live-polite"
+                          role="status"
+                          aria-live="polite"
+                          aria-atomic="true"
+                          className="sr-only"
+                          style={{
+                            position: 'absolute',
+                            width: 1,
+                            height: 1,
+                            padding: 0,
+                            margin: -1,
+                            overflow: 'hidden',
+                            clip: 'rect(0, 0, 0, 0)',
+                            whiteSpace: 'nowrap',
+                            border: 0,
+                          }}
+                        />
+                        <div
+                          id="a11y-live-assertive"
+                          role="alert"
+                          aria-live="assertive"
+                          aria-atomic="true"
+                          className="sr-only"
+                          style={{
+                            position: 'absolute',
+                            width: 1,
+                            height: 1,
+                            padding: 0,
+                            margin: -1,
+                            overflow: 'hidden',
+                            clip: 'rect(0, 0, 0, 0)',
+                            whiteSpace: 'nowrap',
+                            border: 0,
+                          }}
+                        />
+                      </div>
+                    </ToastProvider>
+                  </BottomSheetProvider>
+                </DialogProvider>
+              </OfflineSyncContext.Provider>
+            </featureFlags.Provider>
+          </ReducedMotionContext.Provider>
+        </ThemeContext.Provider>
+      </LanguageProvider>
+    </AuthProvider>
   );
 }

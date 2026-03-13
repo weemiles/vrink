@@ -26,6 +26,7 @@ const CORS_ORIGIN_REGEX_RULES = CORS_ORIGIN_RULES
     .replace(/\\\*/g, ".*")}$`));
 const SIGNUP_RATE_LIMIT_WINDOW_MS = Number(Deno.env.get("SIGNUP_RATE_LIMIT_WINDOW_MS") ?? "600000");
 const SIGNUP_RATE_LIMIT_MAX = Number(Deno.env.get("SIGNUP_RATE_LIMIT_MAX") ?? "8");
+const SERVER_STARTED_AT = new Date();
 
 function isOriginAllowed(origin: string): boolean {
   if (CORS_ORIGIN_RULES.includes("*")) return true;
@@ -95,6 +96,79 @@ function sanitizeNumber(value: unknown, min: number, max: number, fallback = 0):
   const num = Number(value);
   if (!Number.isFinite(num)) return fallback;
   return Math.min(max, Math.max(min, num));
+}
+
+function hasEnvValue(name: string): boolean {
+  const value = Deno.env.get(name);
+  return typeof value === "string" && value.trim().length > 0;
+}
+
+function isPositiveInt(value: number): boolean {
+  return Number.isInteger(value) && value > 0;
+}
+
+function normalizeError(err: unknown): string {
+  if (err instanceof Error) return err.message;
+  if (typeof err === "string") return err;
+  return String(err);
+}
+
+async function buildHealthReport() {
+  const checks = {
+    env: {
+      supabaseUrl: hasEnvValue("SUPABASE_URL"),
+      serviceRoleKey: hasEnvValue("SUPABASE_SERVICE_ROLE_KEY"),
+      corsAllowedOrigins: CORS_ORIGIN_RULES.length > 0,
+    },
+    config: {
+      signupRateLimitMax: isPositiveInt(SIGNUP_RATE_LIMIT_MAX),
+      signupRateLimitWindowMs: isPositiveInt(SIGNUP_RATE_LIMIT_WINDOW_MS),
+      turnstileConfigured: hasEnvValue("TURNSTILE_SECRET_KEY"),
+    },
+    dependencies: {
+      kvStore: false,
+      storage: false,
+    },
+  };
+
+  const errors: Record<string, string> = {};
+
+  try {
+    await kv.get("__health_probe__");
+    checks.dependencies.kvStore = true;
+  } catch (err) {
+    errors.kvStore = normalizeError(err);
+  }
+
+  try {
+    const supabase = adminClient();
+    const { error } = await supabase.storage.listBuckets();
+    if (error) {
+      errors.storage = error.message;
+    } else {
+      checks.dependencies.storage = true;
+    }
+  } catch (err) {
+    errors.storage = normalizeError(err);
+  }
+
+  const criticalOk =
+    checks.env.supabaseUrl &&
+    checks.env.serviceRoleKey &&
+    checks.env.corsAllowedOrigins &&
+    checks.config.signupRateLimitMax &&
+    checks.config.signupRateLimitWindowMs &&
+    checks.dependencies.kvStore &&
+    checks.dependencies.storage;
+
+  return {
+    status: criticalOk ? "ok" : "degraded",
+    timestamp: new Date().toISOString(),
+    startedAt: SERVER_STARTED_AT.toISOString(),
+    uptimeSec: Math.floor((Date.now() - SERVER_STARTED_AT.getTime()) / 1000),
+    checks,
+    errors,
+  };
 }
 
 async function enforceIpRateLimit(req: any, routeKey: string, maxRequests: number, windowMs: number) {
@@ -533,9 +607,10 @@ function validateTags(input: unknown): { ok: true; tags: any[] } | { ok: false; 
   return { ok: true, tags };
 }
 
-// Health check endpoint
-app.get(`${APP_PREFIX}/health`, (c) => {
-  return c.json({ status: "ok" });
+// Health check endpoint (production readiness)
+app.get(`${APP_PREFIX}/health`, async (c) => {
+  const report = await buildHealthReport();
+  return c.json(report, report.status === "ok" ? 200 : 503);
 });
 
 // ─── Sign Up ───

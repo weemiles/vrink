@@ -29,7 +29,7 @@ export function PrivacyPage() {
     {
       icon: <Eye size={20} className="text-toss-blue" />,
       title: '접근 권한',
-      description: 'keppin은 연락처 접근 권한만 요청해요. 카메라, 위치 등 불필요한 권한은 요청하지 않아요.',
+      description: 'keepin은 연락처 접근 권한만 요청해요. 카메라, 위치 등 불필요한 권한은 요청하지 않아요.',
     },
     {
       icon: <Database size={20} className="text-toss-blue" />,
@@ -50,7 +50,7 @@ export function PrivacyPage() {
     {
       icon: <Eye size={20} className="text-toss-blue" />,
       title: 'Permissions',
-      description: 'keppin only requests contact access permission. No unnecessary permissions like camera or location are requested.',
+      description: 'keepin only requests contact access permission. No unnecessary permissions like camera or location are requested.',
     },
     {
       icon: <Database size={20} className="text-toss-blue" />,
@@ -85,8 +85,8 @@ export function PrivacyPage() {
         </h2>
         <p className="text-toss-grey-500" style={{ fontSize: 14, lineHeight: 1.6 }}>
           {isKo
-            ? 'keppin은 최소한의 정보만 수집하며,\n사용자의 데이터를 소중하게 다루고 있어요.'
-            : 'keppin collects minimal information\nand handles your data with care.'}
+            ? 'keepin은 최소한의 정보만 수집하며,\n사용자의 데이터를 소중하게 다루고 있어요.'
+            : 'keepin collects minimal information\nand handles your data with care.'}
         </p>
       </motion.div>
 
@@ -212,8 +212,8 @@ export function PrivacyPage() {
       <div style={{ padding: '24px' }}>
         <p className="text-toss-grey-400 text-center" style={{ fontSize: 11, lineHeight: 1.6 }}>
           {isKo
-            ? '개인정보 처리방침 최종 업데이트: 2026.02.18\nkeppin v1.0.0'
-            : 'Privacy Policy last updated: 2026.02.18\nkeppin v1.0.0'}
+            ? '개인정보 처리방침 최종 업데이트: 2026.02.18\nkeepin v1.0.0'
+            : 'Privacy Policy last updated: 2026.02.18\nkeepin v1.0.0'}
         </p>
       </div>
     </div>

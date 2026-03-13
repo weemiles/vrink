@@ -1,0 +1,124 @@
+.page {
+  margin: 0 auto;
+  max-width: var(--layout-max-width);
+  position: relative;
+}
+
+.logo {
+  height: 22px;
+  width: 16px;
+}
+
+.section-title {
+  font-size: var(--font-size-display);
+  letter-spacing: var(--tracking-display);
+  line-height: var(--line-height-display);
+  margin: 0;
+}
+
+.dot-link {
+  align-items: center;
+  display: inline-flex;
+  font-size: var(--font-size-body-sm);
+  font-weight: 700;
+  gap: var(--space-12);
+}
+
+.dot {
+  background: currentColor;
+  display: inline-block;
+  height: var(--space-10);
+  width: var(--space-10);
+}
+
+.intro-link {
+  margin-top: var(--space-18);
+}
+
+.card-title {
+  font-size: var(--font-size-title);
+  letter-spacing: var(--tracking-title);
+  line-height: var(--line-height-title);
+  margin: 0;
+}
+
+.body-copy {
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+}
+
+.badges {
+  display: flex;
+  gap: var(--space-4);
+  margin-top: var(--space-18);
+}
+
+.badge {
+  background: #000000;
+  color: var(--color-inverse);
+  font-size: var(--font-size-badge);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  padding: 6px var(--space-8);
+}
+
+.chat-bubble {
+  border-radius: var(--radius-pill);
+  bottom: var(--space-24);
+  box-shadow: var(--shadow-floating);
+  height: 64px;
+  position: fixed;
+  right: var(--space-24);
+  width: 64px;
+  z-index: 20;
+}
+
+.chat-bubble img {
+  border-radius: var(--radius-pill);
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.chat-preview {
+  background: var(--color-chat-bg);
+  border: 1px solid var(--color-chat-border);
+  box-shadow: var(--shadow-floating);
+  color: var(--color-inverse);
+  display: flex;
+  gap: var(--space-12);
+  height: 70px;
+  padding: var(--space-14) var(--space-12);
+  position: fixed;
+  right: var(--space-24);
+  bottom: 104px;
+  width: min(330px, calc(100vw - 48px));
+  z-index: 20;
+}
+
+.chat-preview .avatar {
+  border-radius: var(--radius-pill);
+  height: 36px;
+  width: 36px;
+}
+
+.chat-preview .title {
+  color: var(--color-chat-title);
+  font-size: var(--font-size-body-sm);
+  line-height: 1.4;
+  margin: 0 0 var(--space-4);
+}
+
+.chat-preview .meta {
+  color: var(--color-chat-meta);
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-body);
+  margin: 0;
+}
+
+.chat-preview .close {
+  height: 24px;
+  margin-left: auto;
+  width: 24px;
+}
