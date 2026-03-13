@@ -31,8 +31,8 @@ class ClobMarketDataClient:
 def _parse_book(raw: dict) -> OrderBookSummary:
     bids = raw.get("bids") or []
     asks = raw.get("asks") or []
-    best_bid = _first_price(bids)
-    best_ask = _first_price(asks)
+    best_bid = _best_bid(bids)
+    best_ask = _best_ask(asks)
     return OrderBookSummary(
         token_id=str(raw.get("asset_id") or raw.get("token_id") or ""),
         best_bid=best_bid,
@@ -43,11 +43,16 @@ def _parse_book(raw: dict) -> OrderBookSummary:
     )
 
 
-def _first_price(levels: List[dict]):
-    if not levels:
-        return None
-    level = levels[0]
-    return _safe_float(level.get("price"))
+def _best_bid(levels: List[dict]):
+    prices = [_safe_float(level.get("price")) for level in levels]
+    prices = [price for price in prices if price is not None]
+    return max(prices) if prices else None
+
+
+def _best_ask(levels: List[dict]):
+    prices = [_safe_float(level.get("price")) for level in levels]
+    prices = [price for price in prices if price is not None]
+    return min(prices) if prices else None
 
 
 def _safe_float(value):

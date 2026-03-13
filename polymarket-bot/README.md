@@ -128,6 +128,14 @@ Use the built-in workflow when you do not yet trust your fair value:
 The full playbook lives in [docs/RESEARCH_PLAYBOOK.md](./docs/RESEARCH_PLAYBOOK.md).
 Market-family specific fair-value guidance lives in [docs/FAIR_VALUE_GUIDE.md](./docs/FAIR_VALUE_GUIDE.md).
 
+Example short-universe scans:
+
+```bash
+python3 -m polymarket_bot scan --top 12 --focus world-politics --min-hours-to-close 12 --max-hours-to-close 720 --fetch-limit 400
+python3 -m polymarket_bot research --top 5 --focus world-politics --min-hours-to-close 12 --max-hours-to-close 720 --fetch-limit 400
+python3 -m polymarket_bot scan --top 12 --categories soccer,nba,wnba,nfl,mlb,nhl,tennis,golf,cricket,ufc,mma,boxing --min-hours-to-close 12 --max-hours-to-close 720 --fetch-limit 400
+```
+
 ## Funding and credentials
 
 Do **not** give your Polymarket login code, private key, API secret, or account access to anyone, including me.

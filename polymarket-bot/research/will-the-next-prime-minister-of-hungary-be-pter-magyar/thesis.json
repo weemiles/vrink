@@ -1,0 +1,50 @@
+{
+  "slug": "will-the-next-prime-minister-of-hungary-be-pter-magyar",
+  "question": "Will the next Prime Minister of Hungary be P\u00e9ter Magyar?",
+  "status": "researching",
+  "category": "World",
+  "yes_ask_snapshot": 0.62,
+  "no_ask_snapshot": 0.39,
+  "liquidity_snapshot": 156582.5276,
+  "volume_snapshot": 42241.433834,
+  "hours_to_close_snapshot": 715.9823720311111,
+  "fair_yes_probability": null,
+  "confidence": null,
+  "rationale": "Starter angle: market asks roughly 62% for Peter Magyar. The core question is whether his apparent polling edge is strong enough to justify a price above 62% after accounting for Fidesz incumbency, district mechanics, media environment, and possible late-cycle shocks.",
+  "sources": [
+    "https://apnews.com/article/1c71a8b1f94e5f706fcea92cfec5fbb7",
+    "https://www.theguardian.com/world/2026/mar/12/orban-ukraine-claims-hungary-election",
+    "https://www.ft.com/content/34df20f9-487b-4cb6-9dc9-d676d959d1ed",
+    "https://www.hungarianconservative.com/articles/current/election-date-hungary-april-12/"
+  ],
+  "starter_context": [
+    "As of March 13, 2026, Hungary's general election is set for April 12, 2026.",
+    "AP reported on March 13, 2026 that Orban was facing declining support ahead of the election while attacking Magyar with allegations involving Ukraine.",
+    "The Guardian reported on March 12, 2026 that Orban was trailing by as much as 20 points in some coverage, though poll quality and house effects still need checking.",
+    "The Financial Times reported on March 12, 2026 that Kremlin-linked actors were allegedly running a covert influence campaign favoring Orban over Magyar."
+  ],
+  "starter_questions": [
+    "After adjusting for pollster quality and electoral rules, is Magyar's true win probability above or below 62%?",
+    "How much should incumbency and institutional advantage reduce a headline polling lead?",
+    "Could late disinformation, national-security framing, or turnout asymmetry narrow the race enough to make 62% too high?"
+  ],
+  "scenario_tree": {
+    "yes_case_probability": null,
+    "neutral_case_probability": null,
+    "no_case_probability": null
+  },
+  "checklist": {
+    "resolution_rules_checked": false,
+    "primary_sources_checked": false,
+    "liquidity_checked": false,
+    "catalyst_timeline_checked": false,
+    "reason_for_mispricing_written": false
+  },
+  "entry_plan": {
+    "desired_yes_price_below": 0.58,
+    "desired_no_price_below": 0.44,
+    "max_position_pct_override": null
+  },
+  "created_at": "2026-03-13T04:01:03.474850+00:00",
+  "updated_at": "2026-03-13T04:33:00+00:00"
+}

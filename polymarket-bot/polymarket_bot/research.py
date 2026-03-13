@@ -29,7 +29,7 @@ def prepare_research_packets(
 
     queue.sort(
         key=lambda item: (
-            -item[1].quality_score,
+            -_research_priority(item[1]),
             -item[1].liquidity,
             -item[1].volume,
             item[1].hours_to_close if item[1].hours_to_close is not None else 10 ** 9,
@@ -221,3 +221,12 @@ def _fmt_hours(value):
 
 def _safe_slug(raw_slug: str) -> str:
     return raw_slug.replace("/", "-").replace("\\", "-").strip()
+
+
+def _research_priority(opportunity: Opportunity) -> float:
+    price = opportunity.yes_ask if opportunity.yes_ask is not None else opportunity.market_price
+    if price is None:
+        price_balance = 0.5
+    else:
+        price_balance = max(0.0, 1.0 - (abs(price - 0.5) / 0.5))
+    return (0.7 * opportunity.quality_score) + (0.3 * price_balance)

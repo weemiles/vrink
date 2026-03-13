@@ -1,0 +1,50 @@
+{
+  "slug": "russia-x-ukraine-ceasefire-by-march-31-2026",
+  "question": "Russia x Ukraine ceasefire by March 31, 2026?",
+  "status": "researching",
+  "category": "Geopolitics",
+  "yes_ask_snapshot": 0.019,
+  "no_ask_snapshot": 0.982,
+  "liquidity_snapshot": 299122.93022,
+  "volume_snapshot": 315872.53025799984,
+  "hours_to_close_snapshot": 427.9823720311111,
+  "fair_yes_probability": null,
+  "confidence": null,
+  "rationale": "Starter angle: market asks roughly 1.9% for a ceasefire by March 31, 2026. The key question is whether that price is still too high given repeated failed talks and unresolved territorial demands, or too low if US pressure creates a narrow path to a limited deal before month-end.",
+  "sources": [
+    "https://www.yahoo.com/news/articles/reuters-us-ukraine-discuss-possible-221700566.html",
+    "https://www.youtube.com/watch?v=_RGwPJm83S4",
+    "https://www.theguardian.com/world/2025/mar/13/russia-wary-of-proposed-ukraine-ceasefire-plan-as-us-talks-begin",
+    "https://www.aljazeera.com/news/2025/6/3/russia-ukraine-direct-talks-no-ceasefire-but-what-did-they-agree-to"
+  ],
+  "starter_context": [
+    "Reuters reported on February 6, 2026 that US and Ukrainian delegations had discussed March as an ambitious target for a peace agreement, but there was still no consensus on territorial questions.",
+    "Reuters reported on January 24, 2026 that US-brokered talks in Abu Dhabi ended without a deal after Russian attacks on Ukraine continued.",
+    "Earlier reporting in 2025 showed Russia attaching broad conditions to any ceasefire proposal and resisting an unconditional truce.",
+    "Direct talks in 2025 produced only limited humanitarian or tactical pause ideas rather than a broad ceasefire."
+  ],
+  "starter_questions": [
+    "Is there any credible path to a formal ceasefire agreement before March 31, 2026, not just another round of talks?",
+    "Would a narrow energy or corridor pause count for this market, or does the resolution require a broader ceasefire?",
+    "Has the market already compressed the chance of a last-minute US-brokered breakthrough too far?"
+  ],
+  "scenario_tree": {
+    "yes_case_probability": null,
+    "neutral_case_probability": null,
+    "no_case_probability": null
+  },
+  "checklist": {
+    "resolution_rules_checked": false,
+    "primary_sources_checked": false,
+    "liquidity_checked": false,
+    "catalyst_timeline_checked": false,
+    "reason_for_mispricing_written": false
+  },
+  "entry_plan": {
+    "desired_yes_price_below": 0.015,
+    "desired_no_price_below": 0.985,
+    "max_position_pct_override": null
+  },
+  "created_at": "2026-03-13T04:01:03.475235+00:00",
+  "updated_at": "2026-03-13T04:33:00+00:00"
+}

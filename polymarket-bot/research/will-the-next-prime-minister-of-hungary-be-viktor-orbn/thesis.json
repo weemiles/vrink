@@ -1,0 +1,50 @@
+{
+  "slug": "will-the-next-prime-minister-of-hungary-be-viktor-orbn",
+  "question": "Will the next Prime Minister of Hungary be Viktor Orb\u00e1n?",
+  "status": "researching",
+  "category": "World",
+  "yes_ask_snapshot": 0.37,
+  "no_ask_snapshot": 0.64,
+  "liquidity_snapshot": 73981.8848,
+  "volume_snapshot": 48647.821230999994,
+  "hours_to_close_snapshot": 715.9823720311111,
+  "fair_yes_probability": null,
+  "confidence": null,
+  "rationale": "Starter angle: market asks roughly 37% for Orban. The core question is whether incumbent machinery, late campaign attacks on Peter Magyar, and turnout effects are still underpriced, or whether the market is already too generous to Orban given reports that he has been trailing into the April 12, 2026 vote.",
+  "sources": [
+    "https://apnews.com/article/1c71a8b1f94e5f706fcea92cfec5fbb7",
+    "https://www.theguardian.com/world/2026/mar/12/orban-ukraine-claims-hungary-election",
+    "https://www.ft.com/content/34df20f9-487b-4cb6-9dc9-d676d959d1ed",
+    "https://www.hungarianconservative.com/articles/current/election-date-hungary-april-12/"
+  ],
+  "starter_context": [
+    "As of March 13, 2026, Hungary's general election is set for April 12, 2026.",
+    "AP reported on March 13, 2026 that Orban was facing declining support ahead of the election and escalating anti-Ukraine rhetoric aimed at Peter Magyar.",
+    "The Guardian reported on March 12, 2026 that observers expected continued confrontation and political maneuvering as Orban campaigned amid tensions with Ukraine.",
+    "The Financial Times reported on March 12, 2026 that a Kremlin-linked disinformation campaign was allegedly trying to help keep Orban in power."
+  ],
+  "starter_questions": [
+    "Do the latest credible polls put Orban materially above or below 37% implied win probability after adjusting for electoral system effects?",
+    "How much incumbency advantage should be added for Fidesz control of institutions and campaign machinery?",
+    "Is the late anti-Ukraine messaging a real vote mover or mostly noise already reflected in price?"
+  ],
+  "scenario_tree": {
+    "yes_case_probability": null,
+    "neutral_case_probability": null,
+    "no_case_probability": null
+  },
+  "checklist": {
+    "resolution_rules_checked": false,
+    "primary_sources_checked": false,
+    "liquidity_checked": false,
+    "catalyst_timeline_checked": false,
+    "reason_for_mispricing_written": false
+  },
+  "entry_plan": {
+    "desired_yes_price_below": 0.34,
+    "desired_no_price_below": 0.66,
+    "max_position_pct_override": null
+  },
+  "created_at": "2026-03-13T04:01:03.474358+00:00",
+  "updated_at": "2026-03-13T04:33:00+00:00"
+}

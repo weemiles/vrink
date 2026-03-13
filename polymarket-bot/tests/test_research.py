@@ -76,3 +76,82 @@ class ResearchWorkflowTests(unittest.TestCase):
             self.assertEqual(result["written"], ["example-market"])
             self.assertEqual(payload["markets"][0]["slug"], "example-market")
             self.assertEqual(payload["markets"][0]["fair_yes_probability"], 0.61)
+
+    def test_prepare_research_packets_prefers_non_longshot_review_market(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            research_dir = Path(tmpdir) / "research"
+            research_dir.mkdir()
+            markets = [
+                MarketSnapshot(
+                    question="Longshot candidate?",
+                    slug="longshot-market",
+                    yes_token_id="yes1",
+                    no_token_id="no1",
+                    yes_price=0.01,
+                    no_price=0.99,
+                    volume=90000.0,
+                    liquidity=70000.0,
+                    end_date=datetime.now(timezone.utc) + timedelta(days=20),
+                    description="",
+                    category="World Elections",
+                    active=True,
+                    closed=False,
+                    enable_order_book=True,
+                ),
+                MarketSnapshot(
+                    question="Front runner?",
+                    slug="balanced-market",
+                    yes_token_id="yes2",
+                    no_token_id="no2",
+                    yes_price=0.42,
+                    no_price=0.58,
+                    volume=80000.0,
+                    liquidity=65000.0,
+                    end_date=datetime.now(timezone.utc) + timedelta(days=20),
+                    description="",
+                    category="World Elections",
+                    active=True,
+                    closed=False,
+                    enable_order_book=True,
+                ),
+            ]
+            opportunities = [
+                Opportunity(
+                    question="Longshot candidate?",
+                    slug="longshot-market",
+                    action="REVIEW",
+                    market_price=0.01,
+                    fair_price=None,
+                    edge=0.0,
+                    size_usd=0.0,
+                    confidence=0.3,
+                    quality_score=0.95,
+                    liquidity=70000.0,
+                    volume=90000.0,
+                    hours_to_close=480.0,
+                    yes_ask=0.01,
+                    no_ask=0.99,
+                    notes=[],
+                ),
+                Opportunity(
+                    question="Front runner?",
+                    slug="balanced-market",
+                    action="REVIEW",
+                    market_price=0.42,
+                    fair_price=None,
+                    edge=0.0,
+                    size_usd=0.0,
+                    confidence=0.3,
+                    quality_score=0.9,
+                    liquidity=65000.0,
+                    volume=80000.0,
+                    hours_to_close=480.0,
+                    yes_ask=0.42,
+                    no_ask=0.58,
+                    notes=[],
+                ),
+            ]
+
+            created = prepare_research_packets(research_dir, markets, opportunities, limit=1)
+
+            self.assertEqual(created[0]["slug"], "balanced-market")
