@@ -10,6 +10,8 @@ class BotConfig:
     project_root: Path
     gamma_base_url: str
     clob_base_url: str
+    chain_id: int
+    signature_type: int
     market_limit: int
     market_order: str
     tag_id: Optional[int]
@@ -25,6 +27,11 @@ class BotConfig:
     reports_dir: Path
     research_dir: Path
     allow_live_trading: bool
+    private_key: Optional[str]
+    funder_address: Optional[str]
+    poly_api_key: Optional[str]
+    poly_passphrase: Optional[str]
+    poly_api_secret: Optional[str]
 
     @property
     def min_edge_probability(self) -> float:
@@ -47,6 +54,8 @@ def load_config(project_root: Path) -> BotConfig:
         project_root=project_root,
         gamma_base_url=env_str("GAMMA_BASE_URL", "https://gamma-api.polymarket.com") or "",
         clob_base_url=env_str("CLOB_BASE_URL", "https://clob.polymarket.com") or "",
+        chain_id=env_int("CHAIN_ID", 137),
+        signature_type=env_int("SIGNATURE_TYPE", 0),
         market_limit=env_int("MARKET_LIMIT", 75),
         market_order=env_str("MARKET_ORDER", "volume_24hr") or "volume_24hr",
         tag_id=tag_id,
@@ -62,6 +71,11 @@ def load_config(project_root: Path) -> BotConfig:
         reports_dir=reports_dir,
         research_dir=research_dir,
         allow_live_trading=env_bool("ALLOW_LIVE_TRADING", False),
+        private_key=env_str("PRIVATE_KEY"),
+        funder_address=env_str("FUNDER_ADDRESS"),
+        poly_api_key=env_str("POLY_API_KEY"),
+        poly_passphrase=env_str("POLY_PASSPHRASE"),
+        poly_api_secret=env_str("POLY_API_SECRET"),
     )
 
 

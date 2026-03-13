@@ -4,6 +4,7 @@ import sys
 from pathlib import Path
 
 from .app import ResearchBotApp
+from .execution import LiveExecutionError
 from .filters import build_scan_filters
 from .poll_model import run_poll_model
 
@@ -63,6 +64,23 @@ def main(argv=None) -> int:
     _add_filter_args(dry_run_parser)
 
     subparsers.add_parser(
+        "derive-api-creds",
+        help="Derive or create Polymarket API credentials locally using your private key",
+    )
+
+    execute_live_parser = subparsers.add_parser(
+        "execute-live",
+        help="Submit live orders for current BUY signals through py-clob-client",
+    )
+    execute_live_parser.add_argument("--top", type=int, default=1, help="Maximum number of live orders to submit")
+    execute_live_parser.add_argument(
+        "--confirm-live",
+        action="store_true",
+        help="Required safety flag before any live order can be sent",
+    )
+    _add_filter_args(execute_live_parser)
+
+    subparsers.add_parser(
         "reset-paper",
         help="Reset paper cash and clear paper order history",
     )
@@ -78,55 +96,74 @@ def main(argv=None) -> int:
     )
     fetch_limit = getattr(args, "fetch_limit", None)
 
-    if args.command == "scan":
-        opportunities, fills = app.scan_once(filters=filters, fetch_limit=fetch_limit)
-        _print_rows(opportunities, args.top)
-        _print_footer(fills)
-        return 0
-
-    if args.command == "paper":
-        if args.once:
-            opportunities, fills = app.paper_once(filters=filters, fetch_limit=fetch_limit)
+    try:
+        if args.command == "scan":
+            opportunities, fills = app.scan_once(filters=filters, fetch_limit=fetch_limit)
             _print_rows(opportunities, args.top)
             _print_footer(fills)
             return 0
-        app.loop_paper(filters=filters, fetch_limit=fetch_limit)
-        return 0
 
-    if args.command == "research":
-        packets = app.prepare_research(
-            limit=args.top,
-            overwrite=args.overwrite,
-            filters=filters,
-            fetch_limit=fetch_limit,
-        )
-        print(json.dumps({"research_packets": packets}, indent=2, ensure_ascii=True))
-        return 0
+        if args.command == "paper":
+            if args.once:
+                opportunities, fills = app.paper_once(filters=filters, fetch_limit=fetch_limit)
+                _print_rows(opportunities, args.top)
+                _print_footer(fills)
+                return 0
+            app.loop_paper(filters=filters, fetch_limit=fetch_limit)
+            return 0
 
-    if args.command == "compile-signals":
-        result = app.compile_research()
-        print(json.dumps(result, indent=2, ensure_ascii=True))
-        return 0
+        if args.command == "research":
+            packets = app.prepare_research(
+                limit=args.top,
+                overwrite=args.overwrite,
+                filters=filters,
+                fetch_limit=fetch_limit,
+            )
+            print(json.dumps({"research_packets": packets}, indent=2, ensure_ascii=True))
+            return 0
 
-    if args.command == "poll-model":
-        result = run_poll_model(Path(args.config), write_thesis=args.write_thesis)
-        print(json.dumps(result, indent=2, ensure_ascii=True))
-        return 0
+        if args.command == "compile-signals":
+            result = app.compile_research()
+            print(json.dumps(result, indent=2, ensure_ascii=True))
+            return 0
 
-    if args.command == "validate-live":
-        result = app.validate_live()
-        print(json.dumps(result, indent=2, ensure_ascii=True))
-        return 0
+        if args.command == "poll-model":
+            result = run_poll_model(Path(args.config), write_thesis=args.write_thesis)
+            print(json.dumps(result, indent=2, ensure_ascii=True))
+            return 0
 
-    if args.command == "dry-run-live":
-        result = app.dry_run_live(filters=filters, fetch_limit=fetch_limit, max_orders=args.top)
-        print(json.dumps(result, indent=2, ensure_ascii=True))
-        return 0
+        if args.command == "validate-live":
+            result = app.validate_live()
+            print(json.dumps(result, indent=2, ensure_ascii=True))
+            return 0
 
-    if args.command == "reset-paper":
-        result = app.reset_paper()
-        print(json.dumps(result, indent=2, ensure_ascii=True))
-        return 0
+        if args.command == "dry-run-live":
+            result = app.dry_run_live(filters=filters, fetch_limit=fetch_limit, max_orders=args.top)
+            print(json.dumps(result, indent=2, ensure_ascii=True))
+            return 0
+
+        if args.command == "derive-api-creds":
+            result = app.derive_live_creds()
+            print(json.dumps(result, indent=2, ensure_ascii=True))
+            return 0
+
+        if args.command == "execute-live":
+            result = app.execute_live(
+                filters=filters,
+                fetch_limit=fetch_limit,
+                max_orders=args.top,
+                confirm_live=args.confirm_live,
+            )
+            print(json.dumps(result, indent=2, ensure_ascii=True))
+            return 0
+
+        if args.command == "reset-paper":
+            result = app.reset_paper()
+            print(json.dumps(result, indent=2, ensure_ascii=True))
+            return 0
+    except LiveExecutionError as exc:
+        print(json.dumps({"error": str(exc)}, indent=2, ensure_ascii=True))
+        return 2
 
     parser.print_help()
     return 1

@@ -12,8 +12,12 @@ def validate_live_setup(project_root: Path, config: BotConfig) -> Dict[str, obje
     env_values = _read_dotenv(project_root / ".env")
     py_clob_client_installed = importlib.util.find_spec("py_clob_client") is not None
 
+    signature_type_requires_funder = config.signature_type in {1, 2}
+
     presence = {
         "ALLOW_LIVE_TRADING": config.allow_live_trading,
+        "CHAIN_ID": bool(config.chain_id),
+        "SIGNATURE_TYPE": True,
         "PRIVATE_KEY": bool(env_values.get("PRIVATE_KEY")),
         "FUNDER_ADDRESS": bool(env_values.get("FUNDER_ADDRESS")),
         "POLY_API_KEY": bool(env_values.get("POLY_API_KEY")),
@@ -23,18 +27,24 @@ def validate_live_setup(project_root: Path, config: BotConfig) -> Dict[str, obje
 
     missing_required = [
         key
-        for key in ["PRIVATE_KEY", "POLY_API_KEY", "POLY_PASSPHRASE", "POLY_API_SECRET"]
+        for key in ["PRIVATE_KEY"]
         if not presence[key]
     ]
+    if signature_type_requires_funder and not presence["FUNDER_ADDRESS"]:
+        missing_required.append("FUNDER_ADDRESS")
 
     warnings: List[str] = []
     if not config.allow_live_trading:
         warnings.append("ALLOW_LIVE_TRADING is false, so live orders are still disabled.")
     if not py_clob_client_installed:
         warnings.append("py-clob-client is not installed yet.")
-    if not presence["FUNDER_ADDRESS"]:
+    if signature_type_requires_funder and not presence["FUNDER_ADDRESS"]:
         warnings.append(
-            "FUNDER_ADDRESS is blank. This is commonly needed for custodial/email/social Polymarket wallets and may also be used in some signer setups."
+            "FUNDER_ADDRESS is blank. It is required for Magic/email or proxy-wallet signature types."
+        )
+    if not (presence["POLY_API_KEY"] and presence["POLY_PASSPHRASE"] and presence["POLY_API_SECRET"]):
+        warnings.append(
+            "L2 API credentials are missing. They can be derived from the private key once py-clob-client is installed."
         )
 
     ready_for_live_orders = (
@@ -141,7 +151,7 @@ def _next_steps(presence: Dict[str, bool], py_clob_client_installed: bool, allow
     if not presence["FUNDER_ADDRESS"]:
         steps.append("If your wallet is custodial or Magic/social based, add FUNDER_ADDRESS to .env.")
     if not (presence["POLY_API_KEY"] and presence["POLY_PASSPHRASE"] and presence["POLY_API_SECRET"]):
-        steps.append("Generate or copy your Polymarket L2 API credentials into .env.")
+        steps.append("Run derive-api-creds once py-clob-client is installed, or paste existing L2 API credentials into .env.")
     if not py_clob_client_installed:
         steps.append("Install py-clob-client locally before enabling live execution.")
     if not allow_live_trading:

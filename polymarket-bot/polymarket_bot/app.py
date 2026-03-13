@@ -5,6 +5,7 @@ from typing import List, Optional, Tuple
 
 from .clob import ClobMarketDataClient
 from .config import BotConfig, load_config
+from .execution import derive_api_creds, execute_live_orders
 from .filters import ScanFilters, apply_scan_filters
 from .gamma import GammaClient
 from .live import build_dry_run_orders, validate_live_setup
@@ -92,6 +93,26 @@ class ResearchBotApp:
 
     def reset_paper(self) -> dict:
         return self.paper.reset()
+
+    def derive_live_creds(self) -> dict:
+        return derive_api_creds(self.config, self.config.reports_dir)
+
+    def execute_live(
+        self,
+        filters: ScanFilters = ScanFilters(),
+        fetch_limit: Optional[int] = None,
+        max_orders: int = 1,
+        confirm_live: bool = False,
+    ) -> dict:
+        markets, opportunities = self._scan_objects(filters=filters, fetch_limit=fetch_limit)
+        return execute_live_orders(
+            config=self.config,
+            reports_dir=self.config.reports_dir,
+            markets=markets,
+            opportunities=opportunities,
+            max_orders=max_orders,
+            confirm_live=confirm_live,
+        )
 
     def loop_paper(
         self,

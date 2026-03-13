@@ -100,6 +100,20 @@ cd /Users/minwoo/Documents/New\ project/polymarket-bot
 python3 -m polymarket_bot dry-run-live --top 3 --focus world-politics --min-hours-to-close 12 --max-hours-to-close 720 --fetch-limit 400
 ```
 
+10. Once your private key is present locally and `py-clob-client` is installed, derive or create L2 API credentials:
+
+```bash
+cd /Users/minwoo/Documents/New\ project/polymarket-bot
+python3 -m polymarket_bot derive-api-creds
+```
+
+11. Only after you deliberately set `ALLOW_LIVE_TRADING=true`, submit a real order:
+
+```bash
+cd /Users/minwoo/Documents/New\ project/polymarket-bot
+python3 -m polymarket_bot execute-live --top 1 --confirm-live --focus world-politics --min-hours-to-close 12 --max-hours-to-close 720 --fetch-limit 400
+```
+
 Outputs are written into `reports/`:
 
 - `latest_report.md`
@@ -108,6 +122,8 @@ Outputs are written into `reports/`:
 - `paper_state.json`
 - `live_readiness.json`
 - `latest_dry_run_orders.json`
+- `derived_api_creds.masked.json`
+- `live_execution_results.json`
 
 Research packets are written into `research/<market-slug>/`:
 

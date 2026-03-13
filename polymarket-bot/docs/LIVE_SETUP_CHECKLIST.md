@@ -15,6 +15,7 @@ Use this checklist while you handle the account side and the bot stays on your m
 
 - `python3 -m polymarket_bot validate-live`
 - `python3 -m polymarket_bot dry-run-live --top 3 --focus world-politics --min-hours-to-close 12 --max-hours-to-close 720 --fetch-limit 400`
+- `python3 -m polymarket_bot derive-api-creds`
 - `python3 -m polymarket_bot paper --once --focus world-politics --min-hours-to-close 12 --max-hours-to-close 720 --fetch-limit 400`
 
 ## Meaning of the key `.env` fields
@@ -30,8 +31,9 @@ Use this checklist while you handle the account side and the bot stays on your m
 
 1. `validate-live`
 2. `dry-run-live`
-3. `paper --once`
-4. small-size live execution only after the above all look correct
+3. `derive-api-creds`
+4. `paper --once`
+5. `execute-live --confirm-live` with the smallest possible size only after the above all look correct
 
 ## Important rule
 
