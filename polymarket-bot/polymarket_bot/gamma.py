@@ -20,19 +20,47 @@ class GammaClient:
         params: Dict[str, Any] = {
             "active": "true",
             "closed": "false",
-            "limit": limit,
+            "limit": max(limit, 100),
             "offset": offset,
-            "order": order,
-            "ascending": "false",
         }
         if tag_id is not None:
             params["tag_id"] = tag_id
 
-        payload = get_json("{}/markets".format(self.base_url), params=params)
-        return [market for market in (self._parse_market(item) for item in payload) if market]
+        payload = get_json("{}/events".format(self.base_url), params=params)
+        markets: List[MarketSnapshot] = []
+        for event in payload:
+            markets.extend(self._parse_event(event))
 
-    def _parse_market(self, raw: Dict[str, Any]) -> Optional[MarketSnapshot]:
+        markets.sort(
+            key=lambda item: self._sort_value(item, order),
+            reverse=True,
+        )
+        return markets[:limit]
+
+    def _parse_event(self, raw: Dict[str, Any]) -> List[MarketSnapshot]:
+        category = _extract_category(raw)
+        description = (raw.get("description") or "").strip()
+        markets = raw.get("markets") or []
+        parsed: List[MarketSnapshot] = []
+        for item in markets:
+            market = self._parse_market(item, category=category, fallback_description=description)
+            if market is not None:
+                parsed.append(market)
+        return parsed
+
+    def _parse_market(
+        self,
+        raw: Dict[str, Any],
+        category: Optional[str] = None,
+        fallback_description: str = "",
+    ) -> Optional[MarketSnapshot]:
         if not raw.get("enableOrderBook", True):
+            return None
+        if raw.get("closed", False):
+            return None
+        if not raw.get("active", True):
+            return None
+        if raw.get("acceptingOrders") is False:
             return None
 
         token_ids = _ensure_list(raw.get("clobTokenIds"))
@@ -50,15 +78,30 @@ class GammaClient:
             no_token_id=str(token_ids[1]),
             yes_price=yes_price,
             no_price=no_price,
-            volume=_safe_float(raw.get("volume")) or _safe_float(raw.get("volumeNum")) or 0.0,
-            liquidity=_safe_float(raw.get("liquidity")) or 0.0,
+            volume=_safe_float(raw.get("volume24hr"))
+            or _safe_float(raw.get("volume24hrClob"))
+            or _safe_float(raw.get("volume"))
+            or _safe_float(raw.get("volumeNum"))
+            or 0.0,
+            liquidity=_safe_float(raw.get("liquidity"))
+            or _safe_float(raw.get("liquidityNum"))
+            or _safe_float(raw.get("liquidityClob"))
+            or 0.0,
             end_date=_parse_datetime(raw.get("endDate")),
-            description=(raw.get("description") or "").strip(),
-            category=_extract_category(raw),
+            description=(raw.get("description") or fallback_description).strip(),
+            category=category or _extract_category(raw),
             active=bool(raw.get("active", True)),
             closed=bool(raw.get("closed", False)),
             enable_order_book=bool(raw.get("enableOrderBook", True)),
         )
+
+    def _sort_value(self, market: MarketSnapshot, order: str) -> float:
+        normalized = order.strip().lower()
+        if normalized in {"liquidity", "liquidity_usd"}:
+            return market.liquidity
+        if normalized in {"end_date", "enddate"}:
+            return -(market.hours_to_close() or 10 ** 9)
+        return market.volume
 
 
 def _ensure_list(value: Any) -> List[Any]:

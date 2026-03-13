@@ -1,0 +1,7 @@
+.env
+__pycache__/
+reports/latest_opportunities.json
+reports/latest_report.md
+reports/paper_orders.jsonl
+reports/paper_state.json
+research/queue.json

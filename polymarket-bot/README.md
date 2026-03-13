@@ -126,6 +126,7 @@ Use the built-in workflow when you do not yet trust your fair value:
 7. Run `paper --once` to see whether the bot would actually take those trades.
 
 The full playbook lives in [docs/RESEARCH_PLAYBOOK.md](./docs/RESEARCH_PLAYBOOK.md).
+Market-family specific fair-value guidance lives in [docs/FAIR_VALUE_GUIDE.md](./docs/FAIR_VALUE_GUIDE.md).
 
 ## Funding and credentials
 
