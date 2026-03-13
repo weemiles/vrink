@@ -46,6 +46,8 @@ polymarket-bot/
     signals.py
     strategy.py
   reports/
+  research/
+  docs/
   tests/
   .env.example
   manual_signals.example.json
@@ -70,12 +72,31 @@ cd /Users/minwoo/Documents/New\ project/polymarket-bot
 python3 -m polymarket_bot paper --once --top 15
 ```
 
+6. Generate research packets for the highest-quality markets that still need your manual view:
+
+```bash
+cd /Users/minwoo/Documents/New\ project/polymarket-bot
+python3 -m polymarket_bot research --top 8
+```
+
+7. After filling in the generated `research/*/thesis.json` files and setting `status` to `ready`, compile them into `manual_signals.json`:
+
+```bash
+cd /Users/minwoo/Documents/New\ project/polymarket-bot
+python3 -m polymarket_bot compile-signals
+```
+
 Outputs are written into `reports/`:
 
 - `latest_report.md`
 - `latest_opportunities.json`
 - `paper_orders.jsonl`
 - `paper_state.json`
+
+Research packets are written into `research/<market-slug>/`:
+
+- `brief.md`
+- `thesis.json`
 
 ## How the strategy works
 
@@ -91,6 +112,20 @@ It evaluates both sides:
 
 - buy YES when `your_fair_yes - yes_ask` is large enough,
 - buy NO when `(1 - your_fair_yes) - no_ask` is large enough.
+
+## Research workflow
+
+Use the built-in workflow when you do not yet trust your fair value:
+
+1. Run `scan` to see the broad market list.
+2. Run `research` to create dossiers for the best review candidates.
+3. Open each `brief.md` and answer the checklist.
+4. Record your fair value, confidence, and sources inside `thesis.json`.
+5. Change `status` from `researching` to `ready`.
+6. Run `compile-signals` to push those finished dossiers into `manual_signals.json`.
+7. Run `paper --once` to see whether the bot would actually take those trades.
+
+The full playbook lives in [docs/RESEARCH_PLAYBOOK.md](./docs/RESEARCH_PLAYBOOK.md).
 
 ## Funding and credentials
 

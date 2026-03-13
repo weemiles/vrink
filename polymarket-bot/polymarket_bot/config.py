@@ -23,6 +23,7 @@ class BotConfig:
     scan_interval_seconds: int
     manual_signals_path: Path
     reports_dir: Path
+    research_dir: Path
     allow_live_trading: bool
 
     @property
@@ -39,6 +40,8 @@ def load_config(project_root: Path) -> BotConfig:
     manual_signals = _resolve_path(project_root, env_str("MANUAL_SIGNALS_PATH", "manual_signals.json"))
     reports_dir = _resolve_path(project_root, env_str("REPORTS_DIR", "reports"))
     reports_dir.mkdir(parents=True, exist_ok=True)
+    research_dir = _resolve_path(project_root, env_str("RESEARCH_DIR", "research"))
+    research_dir.mkdir(parents=True, exist_ok=True)
 
     return BotConfig(
         project_root=project_root,
@@ -57,6 +60,7 @@ def load_config(project_root: Path) -> BotConfig:
         scan_interval_seconds=env_int("SCAN_INTERVAL_SECONDS", 300),
         manual_signals_path=manual_signals,
         reports_dir=reports_dir,
+        research_dir=research_dir,
         allow_live_trading=env_bool("ALLOW_LIVE_TRADING", False),
     )
 

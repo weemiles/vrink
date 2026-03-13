@@ -8,6 +8,7 @@ from .config import BotConfig, load_config
 from .gamma import GammaClient
 from .paper import PaperTrader
 from .report import write_report
+from .research import compile_research_signals, prepare_research_packets
 from .signals import load_manual_signals
 from .strategy import ResearchStrategy
 
@@ -28,6 +29,24 @@ class ResearchBotApp:
         opportunities, fills = self._run_cycle(execute_paper=True)
         return [item.to_dict() for item in opportunities], fills
 
+    def prepare_research(self, limit: int, overwrite: bool = False) -> List[dict]:
+        markets, opportunities = self._scan_objects()
+        packets = prepare_research_packets(
+            research_dir=self.config.research_dir,
+            markets=markets,
+            opportunities=opportunities,
+            limit=limit,
+            overwrite=overwrite,
+        )
+        write_report(self.config.reports_dir, opportunities, fills=[])
+        return packets
+
+    def compile_research(self) -> dict:
+        return compile_research_signals(
+            research_dir=self.config.research_dir,
+            output_path=self.config.manual_signals_path,
+        )
+
     def loop_paper(self) -> None:
         while True:
             opportunities, fills = self._run_cycle(execute_paper=True)
@@ -44,6 +63,12 @@ class ResearchBotApp:
             time.sleep(self.config.scan_interval_seconds)
 
     def _run_cycle(self, execute_paper: bool):
+        markets, opportunities = self._scan_objects()
+        fills = self.paper.execute(opportunities) if execute_paper else []
+        write_report(self.config.reports_dir, opportunities, fills)
+        return opportunities, fills
+
+    def _scan_objects(self):
         markets = self.gamma.fetch_markets(
             limit=self.config.market_limit,
             order=self.config.market_order,
@@ -53,6 +78,4 @@ class ResearchBotApp:
         books = self.clob.fetch_books(token_ids)
         signals = load_manual_signals(self.config.manual_signals_path)
         opportunities = self.strategy.evaluate(markets, books, signals)
-        fills = self.paper.execute(opportunities) if execute_paper else []
-        write_report(self.config.reports_dir, opportunities, fills)
-        return opportunities, fills
+        return markets, opportunities

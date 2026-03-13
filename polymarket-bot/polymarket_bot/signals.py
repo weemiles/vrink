@@ -28,3 +28,18 @@ def load_manual_signals(path: Path) -> Dict[str, ManualSignal]:
             notes=[str(note) for note in notes],
         )
     return signals
+
+
+def write_manual_signals(path: Path, signals: Dict[str, ManualSignal]) -> None:
+    payload = {
+        "markets": [
+            {
+                "slug": signal.slug,
+                "fair_yes_probability": round(signal.fair_yes_probability, 4),
+                "rationale": signal.rationale,
+                "notes": signal.notes,
+            }
+            for signal in sorted(signals.values(), key=lambda item: item.slug)
+        ]
+    }
+    path.write_text(json.dumps(payload, indent=2, ensure_ascii=True) + "\n", encoding="utf-8")

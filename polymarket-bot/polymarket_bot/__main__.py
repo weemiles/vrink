@@ -17,6 +17,18 @@ def main(argv=None) -> int:
     paper_parser.add_argument("--top", type=int, default=10, help="Number of rows to print to stdout")
     paper_parser.add_argument("--once", action="store_true", help="Run a single cycle and exit")
 
+    research_parser = subparsers.add_parser(
+        "research",
+        help="Create structured research packets for top review candidates",
+    )
+    research_parser.add_argument("--top", type=int, default=8, help="Number of research packets to create")
+    research_parser.add_argument("--overwrite", action="store_true", help="Replace existing research files")
+
+    subparsers.add_parser(
+        "compile-signals",
+        help="Compile ready research dossiers into manual_signals.json",
+    )
+
     args = parser.parse_args(argv)
     project_root = Path(__file__).resolve().parent.parent
     app = ResearchBotApp(project_root)
@@ -34,6 +46,16 @@ def main(argv=None) -> int:
             _print_footer(fills)
             return 0
         app.loop_paper()
+        return 0
+
+    if args.command == "research":
+        packets = app.prepare_research(limit=args.top, overwrite=args.overwrite)
+        print(json.dumps({"research_packets": packets}, indent=2, ensure_ascii=True))
+        return 0
+
+    if args.command == "compile-signals":
+        result = app.compile_research()
+        print(json.dumps(result, indent=2, ensure_ascii=True))
         return 0
 
     parser.print_help()
