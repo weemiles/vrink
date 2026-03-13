@@ -6,6 +6,7 @@ from pathlib import Path
 from .app import ResearchBotApp
 from .execution import LiveExecutionError
 from .filters import build_scan_filters
+from .http import HttpError
 from .poll_model import run_poll_model
 
 
@@ -164,6 +165,9 @@ def main(argv=None) -> int:
     except LiveExecutionError as exc:
         print(json.dumps({"error": str(exc)}, indent=2, ensure_ascii=True))
         return 2
+    except HttpError as exc:
+        print(json.dumps({"error": str(exc)}, indent=2, ensure_ascii=True))
+        return 3
 
     parser.print_help()
     return 1

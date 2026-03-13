@@ -55,63 +55,73 @@ polymarket-bot/
 
 ## Quick start
 
-1. Copy `.env.example` to `.env`.
-2. Copy `manual_signals.example.json` to `manual_signals.json`.
-3. Edit `manual_signals.json` with markets you have personally researched.
-4. Run a market scan:
+Use `Python 3.11` if possible. For live-trading prep, `py-clob-client` requires `Python >= 3.9.10`.
+
+1. Create a local virtualenv:
 
 ```bash
 cd /Users/minwoo/Documents/New\ project/polymarket-bot
-python3 -m polymarket_bot scan --top 15
+/opt/homebrew/bin/python3.11 -m venv .venv
+.venv/bin/python -m pip install --upgrade pip
 ```
 
-5. Run one paper-trading cycle:
+2. Copy `.env.example` to `.env`.
+3. Copy `manual_signals.example.json` to `manual_signals.json`.
+4. Edit `manual_signals.json` with markets you have personally researched.
+5. Run a market scan:
 
 ```bash
 cd /Users/minwoo/Documents/New\ project/polymarket-bot
-python3 -m polymarket_bot paper --once --top 15
+.venv/bin/python -m polymarket_bot scan --top 15
 ```
 
-6. Generate research packets for the highest-quality markets that still need your manual view:
+6. Run one paper-trading cycle:
 
 ```bash
 cd /Users/minwoo/Documents/New\ project/polymarket-bot
-python3 -m polymarket_bot research --top 8
+.venv/bin/python -m polymarket_bot paper --once --top 15
 ```
 
-7. After filling in the generated `research/*/thesis.json` files and setting `status` to `ready`, compile them into `manual_signals.json`:
+7. Generate research packets for the highest-quality markets that still need your manual view:
 
 ```bash
 cd /Users/minwoo/Documents/New\ project/polymarket-bot
-python3 -m polymarket_bot compile-signals
+.venv/bin/python -m polymarket_bot research --top 8
 ```
 
-8. Check live-trading readiness without sending an order:
+8. After filling in the generated `research/*/thesis.json` files and setting `status` to `ready`, compile them into `manual_signals.json`:
 
 ```bash
 cd /Users/minwoo/Documents/New\ project/polymarket-bot
-python3 -m polymarket_bot validate-live
+.venv/bin/python -m polymarket_bot compile-signals
 ```
 
-9. Build dry-run live orders from current BUY signals:
+9. Check live-trading readiness without sending an order:
 
 ```bash
 cd /Users/minwoo/Documents/New\ project/polymarket-bot
-python3 -m polymarket_bot dry-run-live --top 3 --focus world-politics --min-hours-to-close 12 --max-hours-to-close 720 --fetch-limit 400
+.venv/bin/python -m polymarket_bot validate-live
 ```
 
-10. Once your private key is present locally and `py-clob-client` is installed, derive or create L2 API credentials:
+10. Build dry-run live orders from current BUY signals:
 
 ```bash
 cd /Users/minwoo/Documents/New\ project/polymarket-bot
-python3 -m polymarket_bot derive-api-creds
+.venv/bin/python -m polymarket_bot dry-run-live --top 3 --focus world-politics --min-hours-to-close 12 --max-hours-to-close 720 --fetch-limit 400
 ```
 
-11. Only after you deliberately set `ALLOW_LIVE_TRADING=true`, submit a real order:
+11. Once your private key is present locally and `py-clob-client` is installed, derive or create L2 API credentials:
 
 ```bash
 cd /Users/minwoo/Documents/New\ project/polymarket-bot
-python3 -m polymarket_bot execute-live --top 1 --confirm-live --focus world-politics --min-hours-to-close 12 --max-hours-to-close 720 --fetch-limit 400
+.venv/bin/python -m polymarket_bot derive-api-creds
+```
+
+12. Only after you deliberately set `ALLOW_LIVE_TRADING=true`, submit a real order:
+
+```bash
+cd /Users/minwoo/Documents/New\ project/polymarket-bot
+.venv/bin/python -m polymarket_bot execute-live --top 1 --confirm-live --focus world-politics --min-hours-to-close 12 --max-hours-to-close 720 --fetch-limit 400
 ```
 
 Outputs are written into `reports/`:
@@ -164,9 +174,9 @@ Live rollout guidance lives in [docs/LIVE_SETUP_CHECKLIST.md](./docs/LIVE_SETUP_
 Example short-universe scans:
 
 ```bash
-python3 -m polymarket_bot scan --top 12 --focus world-politics --min-hours-to-close 12 --max-hours-to-close 720 --fetch-limit 400
-python3 -m polymarket_bot research --top 5 --focus world-politics --min-hours-to-close 12 --max-hours-to-close 720 --fetch-limit 400
-python3 -m polymarket_bot scan --top 12 --categories soccer,nba,wnba,nfl,mlb,nhl,tennis,golf,cricket,ufc,mma,boxing --min-hours-to-close 12 --max-hours-to-close 720 --fetch-limit 400
+.venv/bin/python -m polymarket_bot scan --top 12 --focus world-politics --min-hours-to-close 12 --max-hours-to-close 720 --fetch-limit 400
+.venv/bin/python -m polymarket_bot research --top 5 --focus world-politics --min-hours-to-close 12 --max-hours-to-close 720 --fetch-limit 400
+.venv/bin/python -m polymarket_bot scan --top 12 --categories soccer,nba,wnba,nfl,mlb,nhl,tennis,golf,cricket,ufc,mma,boxing --min-hours-to-close 12 --max-hours-to-close 720 --fetch-limit 400
 ```
 
 ## Funding and credentials

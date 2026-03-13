@@ -19,6 +19,8 @@ class LiveWorkflowTests(unittest.TestCase):
 
             self.assertFalse(result["ready_for_live_orders"])
             self.assertIn("PRIVATE_KEY", result["missing_required"])
+            self.assertIn("python_version", result)
+            self.assertTrue(result["python_version_ok"])
             self.assertTrue((root / "reports" / "live_readiness.json").exists())
 
     def test_build_dry_run_orders_writes_actionable_order(self):

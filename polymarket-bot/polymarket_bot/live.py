@@ -1,5 +1,6 @@
 import importlib.util
 import json
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Dict, List, Optional, Sequence
@@ -7,10 +8,14 @@ from typing import Dict, List, Optional, Sequence
 from .config import BotConfig
 from .models import MarketSnapshot, Opportunity
 
+MIN_PY_CLOB_CLIENT_VERSION = (3, 9, 10)
+
 
 def validate_live_setup(project_root: Path, config: BotConfig) -> Dict[str, object]:
     env_values = _read_dotenv(project_root / ".env")
     py_clob_client_installed = importlib.util.find_spec("py_clob_client") is not None
+    python_version = _python_version_string(sys.version_info)
+    python_version_ok = tuple(sys.version_info[:3]) >= MIN_PY_CLOB_CLIENT_VERSION
 
     signature_type_requires_funder = config.signature_type in {1, 2}
 
@@ -38,6 +43,13 @@ def validate_live_setup(project_root: Path, config: BotConfig) -> Dict[str, obje
         warnings.append("ALLOW_LIVE_TRADING is false, so live orders are still disabled.")
     if not py_clob_client_installed:
         warnings.append("py-clob-client is not installed yet.")
+    if not python_version_ok:
+        warnings.append(
+            "Current Python runtime is {}. py-clob-client requires Python >= {}.".format(
+                python_version,
+                _python_version_string(MIN_PY_CLOB_CLIENT_VERSION),
+            )
+        )
     if signature_type_requires_funder and not presence["FUNDER_ADDRESS"]:
         warnings.append(
             "FUNDER_ADDRESS is blank. It is required for Magic/email or proxy-wallet signature types."
@@ -49,19 +61,27 @@ def validate_live_setup(project_root: Path, config: BotConfig) -> Dict[str, obje
 
     ready_for_live_orders = (
         config.allow_live_trading
+        and python_version_ok
         and py_clob_client_installed
         and not missing_required
     )
 
     result = {
         "checked_at": datetime.now(timezone.utc).isoformat(),
+        "python_version": python_version,
+        "python_version_ok": python_version_ok,
         "allow_live_trading": config.allow_live_trading,
         "py_clob_client_installed": py_clob_client_installed,
         "env_presence": presence,
         "missing_required": missing_required,
         "warnings": warnings,
         "ready_for_live_orders": ready_for_live_orders,
-        "next_steps": _next_steps(presence, py_clob_client_installed, config.allow_live_trading),
+        "next_steps": _next_steps(
+            presence,
+            py_clob_client_installed,
+            config.allow_live_trading,
+            python_version_ok,
+        ),
     }
 
     reports_path = config.reports_dir / "live_readiness.json"
@@ -144,8 +164,15 @@ def _risk_checks(config: BotConfig, opportunity: Opportunity) -> List[str]:
     return checks
 
 
-def _next_steps(presence: Dict[str, bool], py_clob_client_installed: bool, allow_live_trading: bool) -> List[str]:
+def _next_steps(
+    presence: Dict[str, bool],
+    py_clob_client_installed: bool,
+    allow_live_trading: bool,
+    python_version_ok: bool,
+) -> List[str]:
     steps: List[str] = []
+    if not python_version_ok:
+        steps.append("Use Python 3.11 or any Python >= 3.9.10, then recreate the local .venv.")
     if not presence["PRIVATE_KEY"]:
         steps.append("Export or create the private key you will use for signing.")
     if not presence["FUNDER_ADDRESS"]:
@@ -173,3 +200,8 @@ def _read_dotenv(path: Path) -> Dict[str, str]:
         key, value = line.split("=", 1)
         values[key.strip()] = value.strip().strip("'").strip('"')
     return values
+
+
+def _python_version_string(version_info) -> str:
+    major, minor, micro = version_info[:3]
+    return "{}.{}.{}".format(major, minor, micro)

@@ -1,9 +1,13 @@
 {
-  "checked_at": "2026-03-13T05:48:37.594243+00:00",
+  "checked_at": "2026-03-13T06:17:30.233891+00:00",
+  "python_version": "3.11.15",
+  "python_version_ok": true,
   "allow_live_trading": false,
-  "py_clob_client_installed": false,
+  "py_clob_client_installed": true,
   "env_presence": {
     "ALLOW_LIVE_TRADING": false,
+    "CHAIN_ID": true,
+    "SIGNATURE_TYPE": true,
     "PRIVATE_KEY": false,
     "FUNDER_ADDRESS": false,
     "POLY_API_KEY": false,
@@ -11,22 +15,17 @@
     "POLY_API_SECRET": false
   },
   "missing_required": [
-    "PRIVATE_KEY",
-    "POLY_API_KEY",
-    "POLY_PASSPHRASE",
-    "POLY_API_SECRET"
+    "PRIVATE_KEY"
   ],
   "warnings": [
     "ALLOW_LIVE_TRADING is false, so live orders are still disabled.",
-    "py-clob-client is not installed yet.",
-    "FUNDER_ADDRESS is blank. This is commonly needed for custodial/email/social Polymarket wallets and may also be used in some signer setups."
+    "L2 API credentials are missing. They can be derived from the private key once py-clob-client is installed."
   ],
   "ready_for_live_orders": false,
   "next_steps": [
     "Export or create the private key you will use for signing.",
     "If your wallet is custodial or Magic/social based, add FUNDER_ADDRESS to .env.",
-    "Generate or copy your Polymarket L2 API credentials into .env.",
-    "Install py-clob-client locally before enabling live execution.",
+    "Run derive-api-creds once py-clob-client is installed, or paste existing L2 API credentials into .env.",
     "Keep ALLOW_LIVE_TRADING=false until dry runs look correct, then flip it deliberately."
   ]
 }

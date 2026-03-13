@@ -1,7 +1,13 @@
 .env
+.venv/
+.venv-*/
 __pycache__/
 reports/latest_opportunities.json
 reports/latest_report.md
 reports/paper_orders.jsonl
 reports/paper_state.json
+reports/live_readiness.json
+reports/latest_dry_run_orders.json
+reports/derived_api_creds.masked.json
+reports/live_execution_results.json
 research/queue.json

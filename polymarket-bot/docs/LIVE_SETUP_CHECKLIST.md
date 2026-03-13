@@ -13,10 +13,12 @@ Use this checklist while you handle the account side and the bot stays on your m
 
 ## What the bot can do for you now
 
-- `python3 -m polymarket_bot validate-live`
-- `python3 -m polymarket_bot dry-run-live --top 3 --focus world-politics --min-hours-to-close 12 --max-hours-to-close 720 --fetch-limit 400`
-- `python3 -m polymarket_bot derive-api-creds`
-- `python3 -m polymarket_bot paper --once --focus world-politics --min-hours-to-close 12 --max-hours-to-close 720 --fetch-limit 400`
+- Use `Python 3.11` for the local `.venv` when possible.
+- `py-clob-client` requires `Python >= 3.9.10`.
+- `.venv/bin/python -m polymarket_bot validate-live`
+- `.venv/bin/python -m polymarket_bot dry-run-live --top 3 --focus world-politics --min-hours-to-close 12 --max-hours-to-close 720 --fetch-limit 400`
+- `.venv/bin/python -m polymarket_bot derive-api-creds`
+- `.venv/bin/python -m polymarket_bot paper --once --focus world-politics --min-hours-to-close 12 --max-hours-to-close 720 --fetch-limit 400`
 
 ## Meaning of the key `.env` fields
 
