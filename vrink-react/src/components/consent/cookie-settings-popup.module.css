@@ -1,0 +1,231 @@
+.overlay {
+  align-items: flex-end;
+  background: rgba(0, 0, 0, 0.28);
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  padding: 24px var(--layout-page-gutter);
+  position: fixed;
+  z-index: 130;
+}
+
+.dialog {
+  background: rgba(255, 255, 255, 0.98);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  box-shadow: 0 24px 80px rgba(15, 23, 42, 0.2);
+  color: #1d1d1f;
+  font-family: var(--font-pretendard);
+  max-width: 560px;
+  padding: 24px;
+  width: min(100%, 560px);
+}
+
+.dialog * {
+  letter-spacing: 0;
+}
+
+.header {
+  display: grid;
+  gap: 8px;
+}
+
+.header p {
+  color: #0066cc;
+  font-size: var(--type-caption);
+  font-weight: var(--weight-regular);
+  line-height: var(--line-caption);
+  margin: 0;
+}
+
+.header h2 {
+  color: #1d1d1f;
+  font-size: var(--type-card);
+  font-weight: var(--weight-semibold);
+  line-height: var(--line-card);
+  margin: 0;
+  word-break: keep-all;
+}
+
+.description {
+  color: rgba(0, 0, 0, 0.64);
+  font-size: var(--type-body);
+  font-weight: var(--weight-regular);
+  line-height: var(--line-body);
+  margin: 14px 0 0;
+  word-break: keep-all;
+}
+
+.description a {
+  color: #0066cc;
+  text-decoration: none;
+}
+
+.description a:hover {
+  text-decoration: underline;
+}
+
+.optionList {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  display: grid;
+  margin-top: 18px;
+  overflow: hidden;
+}
+
+.option {
+  align-items: center;
+  background: #ffffff;
+  cursor: pointer;
+  display: grid;
+  gap: 14px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  min-height: 72px;
+  padding: 14px 16px;
+  position: relative;
+}
+
+.option + .option {
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.option > span:first-child {
+  display: grid;
+  gap: 4px;
+}
+
+.option strong {
+  color: #1d1d1f;
+  font-size: var(--type-caption);
+  font-weight: var(--weight-medium);
+  line-height: var(--line-caption);
+}
+
+.option small {
+  color: rgba(0, 0, 0, 0.58);
+  font-size: var(--type-micro);
+  font-weight: var(--weight-regular);
+  line-height: 1.5;
+  word-break: keep-all;
+}
+
+.option input {
+  cursor: pointer;
+  height: 28px;
+  margin: 0;
+  opacity: 0;
+  position: absolute;
+  right: 16px;
+  width: 48px;
+  z-index: 2;
+}
+
+.option input:disabled {
+  cursor: default;
+}
+
+.switch {
+  background: rgba(0, 0, 0, 0.16);
+  border-radius: 999px;
+  display: block;
+  height: 28px;
+  position: relative;
+  transition: background 160ms ease;
+  width: 48px;
+}
+
+.switch::after {
+  background: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  content: "";
+  height: 22px;
+  left: 3px;
+  position: absolute;
+  top: 3px;
+  transition: transform 160ms ease;
+  width: 22px;
+}
+
+.option input:checked + .switch {
+  background: #0071e3;
+}
+
+.option input:checked + .switch::after {
+  transform: translateX(20px);
+}
+
+.actions {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-top: 18px;
+}
+
+.actions button {
+  align-items: center;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: inherit;
+  font-size: var(--type-caption);
+  font-weight: var(--weight-medium);
+  justify-content: center;
+  line-height: var(--line-caption);
+  min-height: 42px;
+  padding: 0 16px;
+  white-space: nowrap;
+}
+
+.secondaryButton {
+  background: #f5f5f7;
+  color: rgba(0, 0, 0, 0.76);
+}
+
+.secondaryButton:hover {
+  background: #eeeeef;
+}
+
+.outlineButton {
+  background: #ffffff;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.16);
+  color: #1d1d1f;
+}
+
+.outlineButton:hover {
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.32);
+}
+
+.primaryButton {
+  background: #0071e3;
+  color: #ffffff;
+}
+
+.primaryButton:hover {
+  background: #0066cc;
+}
+
+@media (max-width: 640px) {
+  .overlay {
+    align-items: flex-end;
+    padding: 18px;
+  }
+
+  .dialog {
+    padding: 20px;
+  }
+
+  .option {
+    min-height: 76px;
+    padding: 14px;
+  }
+
+  .actions {
+    grid-template-columns: 1fr;
+  }
+
+  .actions button {
+    min-height: 44px;
+  }
+}

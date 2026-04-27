@@ -1,149 +1,323 @@
-import { AccordionFeatureSection } from "@/components/blocks/accordion-feature-section";
-import { AnimatedHero } from "@/components/blocks/animated-hero";
-import { Contact2 } from "@/components/blocks/contact2";
-import { Footer7 } from "@/components/blocks/footer7";
-import { Gallery4, type Gallery4Item } from "@/components/blocks/gallery4";
+import Image from "next/image";
+
+import { CookieSettingsPopup } from "@/components/consent/cookie-settings-popup";
+import { LeadForm } from "@/components/forms/lead-form";
+import { VrinkFooter } from "@/components/layout/vrink-footer";
+import { VrinkHeader } from "@/components/layout/vrink-header";
+import { ShotNutritionSection } from "@/components/sections/shot-nutrition-section";
 
 import styles from "./page.module.css";
 
-type Plan = {
-  name: string;
-  price: string;
-  billing: string;
-  description: string;
-  features: string[];
-  highlighted?: boolean;
-};
-
-const galleryItems: Gallery4Item[] = [
+const productScenes = [
   {
-    id: "lobby-experience",
-    title: "로비 경험을 바꾸는 A.I 음료 스테이션",
-    description: "방문자 체류 시간을 늘리고, 공간 브랜딩 완성도를 높인 실제 도입 사례입니다.",
-    href: "#",
-    image: "/images/vrink/reference/331be0e5-51e1-43ad-8f72-0d43a9f945fc.png",
+    title: "선명한 제품 경험",
+    body: "기기와 태블릿을 하나의 작업면에 배치해 누구나 같은 흐름으로 음료를 선택하고 제조할 수 있습니다.",
+    image: "/images/vrink/apple/vrink-product-angle-a.png",
+    alt: "브링크 제로스테이션 상단과 태블릿 거치대",
   },
   {
-    id: "smart-office",
-    title: "오피스 복지 자동화와 운영 절감",
-    description: "직원 만족도와 운영 효율을 동시에 개선한 스마트 오피스 구축 프로젝트입니다.",
-    href: "#",
-    image: "/images/vrink/reference/6230920b-1874-4b17-aacf-aa0b098e9c0e.png",
+    title: "공간에 맞는 설치감",
+    body: "화이트와 메탈을 중심으로 정리된 외관은 오피스, 피트니스, 병원, 이벤트 공간에 자연스럽게 놓입니다.",
+    image: "/images/vrink/apple/vrink-product-front.png",
+    alt: "브링크 제로스테이션 정면",
   },
   {
-    id: "hospitality-scale",
-    title: "다중 지점 운영을 위한 통합 대시보드",
-    description: "여러 지점의 재고, 사용량, 유지보수를 한 화면에서 관리하는 확장형 운영 사례입니다.",
-    href: "#",
-    image: "/images/vrink/reference/fcef618e-5c24-41be-a59f-d61e33aaee5d.png",
-  },
-  {
-    id: "design-led-space",
-    title: "프리미엄 공간을 위한 미니멀 설치",
-    description: "인테리어 동선을 해치지 않으면서도 강한 브랜드 인상을 남긴 적용 사례입니다.",
-    href: "#",
-    image: "/images/vrink/reference/2fe2ef05-ab3a-4b12-b019-1e78f233dc0a.png",
-  },
-  {
-    id: "team-zone",
-    title: "팀 라운지 활성화를 위한 리프레시 포인트",
-    description: "업무 몰입과 짧은 회복 루틴을 연결하도록 설계한 팀 커뮤니케이션 허브 사례입니다.",
-    href: "#",
-    image: "/images/vrink/reference/427a2f83-496d-4630-a80f-53090dc5d288.jpg",
+    title: "운영을 고려한 구조",
+    body: "음료 제조부, 배수부, 태블릿 거치부가 한 화면처럼 정리되어 관리와 사용이 단순해집니다.",
+    image: "/images/vrink/apple/vrink-product-top.png",
+    alt: "브링크 제로스테이션 상단 구조",
   },
 ];
 
-const plans: Plan[] = [
+const systemItems = [
   {
-    name: "Starter",
-    price: "$0",
-    billing: "/month",
-    description: "개인 실험과 루틴 구축을 위한 시작 플랜",
-    features: ["개인 워크스페이스", "기본 자동화 5개", "주간 인사이트 리포트"],
+    label: "스마트 스테이션",
+    title: "11초 안에 완성되는 한 잔",
+    body: "350ml 기준 평균 11초 제조 흐름으로 장시간 운영 공간에서도 대기 부담을 줄입니다.",
   },
   {
-    name: "Pro",
-    price: "$24",
-    billing: "/month",
-    description: "전문가용 분석과 고급 자동화 플랜",
-    features: ["AI 우선순위 엔진", "무제한 자동화", "실험 로그 비교 분석", "우선 지원"],
-    highlighted: true,
+    label: "맞춤 조합",
+    title: "맛, 기능샷, 농도, 탄산 조합",
+    body: "공간과 사용자 목적에 맞춰 약 1,750가지 조합으로 개인 맞춤 음료 경험을 제공합니다.",
   },
   {
-    name: "Scale",
-    price: "$79",
-    billing: "/month",
-    description: "성장 팀을 위한 협업·보안 확장 플랜",
-    features: ["SSO / SCIM", "권한 정책 템플릿", "감사 로그", "전담 온보딩"],
+    label: "운영 관리",
+    title: "원액과 기기 관리를 함께",
+    body: "잔량 확인, 자동 발송, 정기 점검 흐름을 묶어 운영자가 신경 쓸 일을 줄입니다.",
+  },
+];
+
+const recipeSteps = [
+  {
+    title: "목적 선택",
+    body: "운동 전, 업무 중, 회복, 데일리 관리처럼 공간에서 자주 쓰는 순간을 먼저 고릅니다.",
+  },
+  {
+    title: "기능샷과 맛 조합",
+    body: "부스터샷, 비타민샷, 릴렉스샷, 커팅샷, 아미노 샷과 플레이버를 조합합니다.",
+  },
+  {
+    title: "농도와 탄산 조절",
+    body: "은은하게 또는 진하게, 부드럽게 또는 탄산감 있게 같은 음료도 다르게 완성합니다.",
+  },
+];
+
+const useCases = [
+  ["피트니스", "운동 전후 루틴과 센터 차별화에 맞는 기능성 음료 경험"],
+  ["오피스", "직원 복지와 라운지 사용성을 함께 높이는 상시 음료 스테이션"],
+  ["병원·웰니스", "대기와 회복 사이에 가볍게 선택할 수 있는 건강한 음료 옵션"],
+  ["이벤트·팝업", "방문자가 직접 고르고 경험하는 브랜드 접점"],
+];
+
+const lifestyleImages = [
+  {
+    src: "/images/vrink/lifestyle/vrink-lifestyle-1114.jpg",
+    alt: "브링크 음료 두 잔을 들고 있는 사용 장면",
+  },
+  {
+    src: "/images/vrink/lifestyle/vrink-lifestyle-1094.jpg",
+    alt: "브링크 음료를 마시는 사용 장면",
+  },
+  {
+    src: "/images/vrink/lifestyle/vrink-lifestyle-1085.jpg",
+    alt: "브링크 스테이션 앞에서 음료를 받는 장면",
+  },
+  {
+    src: "/images/vrink/lifestyle/vrink-lifestyle-1198.jpg",
+    alt: "브링크 스테이션 옆에서 음료를 마시는 장면",
+  },
+  {
+    src: "/images/vrink/lifestyle/vrink-lifestyle-1193.jpg",
+    alt: "태블릿 거치대와 함께 음료를 마시는 장면",
+  },
+  {
+    src: "/images/vrink/lifestyle/vrink-lifestyle-1089.jpg",
+    alt: "브링크 스테이션 앞에서 음료를 들고 미소 짓는 장면",
+  },
+  {
+    src: "/images/vrink/lifestyle/vrink-lifestyle-1138.jpg",
+    alt: "노란색과 초록색 음료를 비교하는 장면",
+  },
+  {
+    src: "/images/vrink/lifestyle/vrink-lifestyle-1124.jpg",
+    alt: "브링크 음료 두 잔을 들고 선택하는 장면",
+  },
+];
+
+const newsItems = [
+  {
+    title: "브링크, 기보벤처캠프 18기 선발…맞춤형 뉴트리션 기술력 인정",
+    category: "언론 보도",
+    source: "빌리어즈",
+    date: "2026.04",
+    body: "브링크의 개인 맞춤 뉴트리션 방향과 기술 창업 지원 프로그램 선발 소식을 소개한 기사입니다.",
+    image: "/images/vrink/news/vrink-news-consulting.jpg",
+    href: "https://www.thebilliards.kr/news/articleView.html?idxno=30505",
+  },
+  {
+    title: "브링크, 스포츠 액셀러레이팅 선정…웰니스 음료로 피트니스 시장 공략",
+    category: "언론 보도",
+    source: "FT스포츠",
+    date: "2026.04",
+    body: "스포츠 액셀러레이팅 선정과 피트니스 시장 확장 방향을 다룬 기사입니다.",
+    image: "/images/vrink/news/vrink-news-booth.jpg",
+    href: "https://www.ftimes.kr/news/articleView.html?idxno=36836",
   },
 ];
 
 export default function HomePage() {
   return (
     <main className={styles.page}>
-      <div className={styles.backgroundLayer} aria-hidden="true" />
-      <div className={styles.gridLayer} aria-hidden="true" />
-      <div className={styles.particleLayer} aria-hidden="true" />
-
-      <header className={styles.header}>
-        <a href="#" className={styles.logo}>
-          NEUTRIX
-        </a>
-        <nav className={styles.nav} aria-label="Primary">
-          <a href="#faq">FAQ</a>
-          <a href="#reviews">Reviews</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#contact">Contact</a>
-        </nav>
-        <a href="#pricing" className={styles.navCta}>
-          Start Free
-        </a>
-      </header>
+      <VrinkHeader variant="overlay" />
 
       <section className={styles.hero}>
-        <AnimatedHero />
+        <div className={styles.heroCopy}>
+          <p>브링크 제로스테이션</p>
+          <h1>공간마다 다르게 완성되는 한 잔.</h1>
+          <span>
+            맛, 기능샷, 농도, 탄산을 조합해 오피스, 피트니스, 병원, 이벤트 공간에 맞는 음료 경험을 제공합니다.
+          </span>
+          <div className={styles.heroActions}>
+            <a href="/product" className={styles.primaryButton}>더 알아보기</a>
+            <a href="#contact" className={styles.linkButton}>도입 문의</a>
+          </div>
+        </div>
+        <div className={styles.heroMedia} aria-hidden="true">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            poster="/images/vrink/apple/vrink-product-angle-a.png"
+          >
+            <source src="/images/vrink/apple/vrink-hero.mp4" type="video/mp4" />
+          </video>
+        </div>
       </section>
 
-      <Gallery4
-        id="reviews"
-        className={styles.section}
-        title="Gallery"
-        description="브링크가 실제 공간에서 어떻게 경험을 바꾸는지 대표 사례를 슬라이드로 확인해보세요."
-        items={galleryItems}
-      />
-
-      <section id="pricing" className={styles.section}>
-        <header className={styles.sectionHead}>
-          <p>Pricing Section</p>
-          <h2>Creative pricing cards for every growth stage</h2>
-        </header>
-        <div className={styles.pricingGrid}>
-          {plans.map((plan) => (
-            <article key={plan.name} className={`${styles.pricingCard} ${plan.highlighted ? styles.pricingCardHighlighted : ""}`}>
-              <h3>{plan.name}</h3>
-              <p className={styles.priceLine}>
-                <strong>{plan.price}</strong>
-                <span>{plan.billing}</span>
-              </p>
-              <p className={styles.planDescription}>{plan.description}</p>
-              <ul>
-                {plan.features.map((feature) => (
-                  <li key={feature}>{feature}</li>
-                ))}
-              </ul>
-              <a href="#" className={styles.planButton}>
-                {plan.highlighted ? "Get Pro" : "Choose Plan"}
-              </a>
+      <section id="product" className={styles.revealSection}>
+        <div className={styles.sectionIntro}>
+          <p>제품 경험</p>
+          <h2>음료 스테이션을 하나의 제품 경험으로.</h2>
+        </div>
+        <div className={styles.sceneGrid}>
+          {productScenes.map((scene) => (
+            <article className={styles.sceneCard} key={scene.title}>
+              <div className={styles.sceneImage}>
+                <Image src={scene.image} alt={scene.alt} fill sizes="(max-width: 900px) 100vw, 33vw" />
+              </div>
+              <h3>{scene.title}</h3>
+              <p>{scene.body}</p>
             </article>
           ))}
         </div>
       </section>
 
-      <AccordionFeatureSection id="faq" />
+      <section className={styles.darkSection}>
+        <div className={styles.sectionIntro}>
+          <p>운영 구조</p>
+          <h2>설치부터 관리까지 한 흐름으로 이어집니다.</h2>
+        </div>
+        <div className={styles.systemGrid}>
+          {systemItems.map((item) => (
+            <article className={styles.systemItem} key={item.title}>
+              <span>{item.label}</span>
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
 
-      <Contact2 id="contact" />
+      <section id="blend" className={styles.blendSection}>
+        <div className={styles.blendCopy}>
+          <p>맞춤 조합</p>
+          <h2>선택은 간단하게, 조합은 풍부하게.</h2>
+          <span>기능샷과 플레이버, 농도와 탄산을 더해 공간의 목적에 맞는 한 잔을 만듭니다.</span>
+        </div>
+        <div className={styles.blendSteps}>
+          {recipeSteps.map((step, index) => (
+            <article key={step.title}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <h3>{step.title}</h3>
+              <p>{step.body}</p>
+            </article>
+          ))}
+        </div>
+        <ShotNutritionSection />
+      </section>
 
-      <Footer7 />
+      <section id="experience" className={styles.lifestyleSection}>
+        <div className={styles.sectionIntro}>
+          <p>사용 장면</p>
+          <h2>선택한 음료가 일상으로 이어지는 순간.</h2>
+        </div>
+        <div className={styles.lifestyleGrid}>
+          {lifestyleImages.map((image, index) => (
+            <figure
+              className={`${styles.lifestyleTile} ${index === 0 ? styles.lifestyleTileLarge : ""}`}
+              key={image.src}
+            >
+              <Image
+                src={image.src}
+                alt={image.alt}
+                fill
+                sizes={index === 0 ? "(max-width: 980px) 100vw, 50vw" : "(max-width: 980px) 50vw, 25vw"}
+              />
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      <section id="space" className={styles.useCaseSection}>
+        <div className={styles.sectionIntro}>
+          <p>적용 공간</p>
+          <h2>하나의 기기, 여러 공간의 쓰임.</h2>
+        </div>
+        <div className={styles.useCaseGrid}>
+          {useCases.map(([title, body]) => (
+            <article key={title}>
+              <h3>{title}</h3>
+              <p>{body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="operation" className={styles.operationSection}>
+        <div className={styles.operationImage}>
+          <Image
+            src="/images/vrink/apple/vrink-product-back.png"
+            alt="브링크 제로스테이션 후면"
+            fill
+            sizes="(max-width: 900px) 100vw, 44vw"
+          />
+        </div>
+        <div className={styles.operationCopy}>
+          <p>운영 관리</p>
+          <h2>운영자가 오래 쓰기 편한 구조.</h2>
+          <span>
+            정기 점검, 원액 공급, 소모품 지원, 유지보수 상담까지 공간 운영에 필요한 흐름을 함께 설계합니다.
+          </span>
+          <ul>
+            <li>소진 시점 기준 원액 공급 상담</li>
+            <li>전문 설치와 정기 관리 지원</li>
+            <li>단기 행사와 장기 도입 모두 대응</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="news" className={styles.newsSection}>
+        <div className={styles.sectionIntro}>
+          <p>뉴스룸</p>
+          <h2>브링크가 전해진 소식.</h2>
+        </div>
+        <div className={styles.newsFeature}>
+          <div className={styles.newsFeatureImage}>
+            <Image
+              src={newsItems[0].image}
+              alt=""
+              fill
+              sizes="(max-width: 900px) 100vw, 50vw"
+            />
+          </div>
+          <article className={styles.newsFeatureCopy}>
+            <span>{`${newsItems[0].source} · ${newsItems[0].category} · ${newsItems[0].date}`}</span>
+            <h3>{newsItems[0].title}</h3>
+            <p>{newsItems[0].body}</p>
+            <a href={newsItems[0].href} rel="noreferrer" target="_blank">기사 보기 ›</a>
+          </article>
+        </div>
+        <div className={styles.newsGrid}>
+          {newsItems.slice(1).map((item) => (
+            <article key={item.title} className={styles.newsCard}>
+              <div className={styles.newsCardImage}>
+                <Image src={item.image} alt="" fill sizes="(max-width: 900px) 100vw, 33vw" />
+              </div>
+              <div>
+                <span>{`${item.source} · ${item.category} · ${item.date}`}</span>
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+                <a href={item.href} rel="noreferrer" target="_blank">기사 보기 ›</a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="contact" className={styles.contactSection}>
+        <div className={styles.contactCopy}>
+          <p>문의</p>
+          <h2>우리 공간에 맞는 브링크를 상담해보세요.</h2>
+          <span>
+            설치 환경, 예상 사용 인원, 운영 목적을 남겨주시면 브링크 팀이 확인 후 연락드립니다.
+          </span>
+        </div>
+        <LeadForm />
+      </section>
+
+      <VrinkFooter ctaHref="/#contact" />
+      <CookieSettingsPopup />
     </main>
   );
 }

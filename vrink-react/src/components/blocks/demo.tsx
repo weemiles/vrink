@@ -37,7 +37,7 @@ function Preview() {
                 </motion.p>
             </LayoutGroup>
             <p className="text-base sm:text-lg md:text-xl text-muted-foreground font-medium max-w-2xl text-center px-4 mt-6">
-                개인화된 커스터마이징 수분 섭취 솔루션. 고정된 레시피가 아닌, AI가 분석하고 반영하는 나만의 100% 무당(Sugar-Free) 스마트 드링크 시스템.
+                개인화된 커스터마이징 수분 섭취 솔루션. 고정된 레시피가 아닌, 취향과 데이터를 반영하는 나만의 100% 무당(Sugar-Free) 스마트 드링크 시스템.
             </p>
         </div>
     );

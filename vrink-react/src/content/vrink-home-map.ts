@@ -68,7 +68,7 @@ export const vrinkHomeContent = {
     cta: "도입 구성 보기",
     items: [
       {
-        title: vrinkCopy.feature.items[0]?.title ?? "AI 기반 추천",
+        title: vrinkCopy.feature.items[0]?.title ?? "데이터 기반 추천",
         badges: ["추천", "개인화"],
         body: vrinkCopy.feature.items[0]?.bullets[0] ?? "약 1,750가지 조합",
       },

@@ -18,10 +18,10 @@ export function HeroSection() {
                         <div className="relative z-10 mx-auto flex max-w-7xl flex-col px-6 lg:block lg:px-12">
                             <div className="mx-auto max-w-lg text-center lg:ml-0 lg:max-w-full lg:text-left">
                                 <h1 className="mt-8 max-w-2xl text-balance text-5xl md:text-6xl font-extrabold tracking-tight lg:mt-16 xl:text-7xl">
-                                    AI 스마트 드링크 시스템
+                                    스마트 드링크 시스템
                                 </h1>
                                 <p className="mt-8 max-w-2xl text-balance text-lg text-gray-500 font-medium leading-relaxed">
-                                    고정된 레시피가 아닌, AI가 분석하고 반영하는 개인화된 커스터마이징 수분 섭취 솔루션. 하루의 흐름과 컨디션에 맞춰 완벽한 한 잔을 경험하세요.
+                                    고정된 레시피가 아닌, 취향과 데이터를 반영하는 개인화된 커스터마이징 수분 섭취 솔루션. 하루의 흐름과 컨디션에 맞춰 완벽한 한 잔을 경험하세요.
                                 </p>
 
                                 <div className="mt-12 flex flex-col items-center justify-center gap-2 sm:flex-row lg:justify-start">

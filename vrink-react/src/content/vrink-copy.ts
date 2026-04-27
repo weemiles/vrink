@@ -102,9 +102,9 @@ export type VrinkCopy = {
 export const vrinkCopy: VrinkCopy = {
   hero: {
     eyebrow: "브링크 제로스테이션",
-    title: "대한민국 최초 A.I 스마트 디스펜서",
+    title: "대한민국 최초 스마트 드링크 시스템",
     subtitle: "건강을 운영하는 새로운 기준",
-    body: "브링크 A.I 스마트 디스펜서 – 제로스테이션은 단순히 음료를 제공하는 기기가 아닙니다. 공간의 경험, 복지, 수익 구조를 함께 설계하는 AI 기반 음료 운영 시스템입니다.",
+    body: "브링크 제로스테이션은 단순히 음료를 제공하는 기기가 아닙니다. 공간의 경험, 복지, 운영 흐름을 함께 설계하는 스마트 음료 운영 시스템입니다.",
     primaryCta: "도입 상담 신청",
     secondaryCta: "핵심 기능 보기",
   },
@@ -150,7 +150,7 @@ export const vrinkCopy: VrinkCopy = {
     intro:
       "복잡한 선택 과정을 줄이고, 일상 공간 안에서 자연스럽게 건강 루틴을 만드는 구조에 집중합니다.",
     pillars: [
-      "AI 기반 분석으로 개인에게 맞는 영양 제안",
+      "데이터 기반 분석으로 개인에게 맞는 영양 제안",
       "일상 공간에서 자연스럽게 음료로 섭취",
       "데이터 기반 피드백으로 건강 습관 형성 지원",
       "공간의 차별화와 경험 요소 제공",
@@ -162,7 +162,7 @@ export const vrinkCopy: VrinkCopy = {
       "기능 샷, 맛, 농도, 탄산을 조합해 개인 맞춤형 경험을 만들고 운영 효율까지 연결합니다.",
     items: [
       {
-        title: "AI 기반 맞춤 음료 추천",
+        title: "데이터 기반 맞춤 음료 추천",
         description:
           "약 1,750가지 조합을 사용자 취향·선택 데이터 기반으로 추천합니다.",
         bullets: [
@@ -196,7 +196,7 @@ export const vrinkCopy: VrinkCopy = {
         description:
           "재미 → 반복 → 습관화 흐름으로 일상에서 꾸준한 실천을 돕습니다.",
         bullets: [
-          "복잡한 과정 없이 AI가 기준과 선호 반영",
+          "복잡한 과정 없이 기준과 선호 반영",
           "매번 같은 방식이 아닌 개인 기준의 한 잔",
           "Zero 칼로리 / Zero 슈거 / Zero 부담",
         ],
@@ -310,7 +310,7 @@ export const vrinkCopy: VrinkCopy = {
   },
   footer: {
     summary:
-      "브링크는 한 잔의 음료를 넘어 공간의 경험, 복지, 운영 효율을 함께 설계하는 AI 기반 음료 운영 시스템입니다.",
+      "브링크는 한 잔의 음료를 넘어 공간의 경험, 복지, 운영 효율을 함께 설계하는 스마트 음료 운영 시스템입니다.",
     companyInfo: {
       companyName: "주식회사 브링크",
       registrationNumber: "162-81-03420",

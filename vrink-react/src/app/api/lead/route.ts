@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
+import { mkdir, appendFile } from "node:fs/promises";
+import path from "node:path";
 
 import { env } from "@/lib/env";
 import { createServiceSupabaseClient } from "@/lib/supabase-server";
-import { leadInquirySchema } from "@/lib/validation/lead";
+import { leadInquirySchema, type LeadInquiryInput } from "@/lib/validation/lead";
 
 const requestLog = new Map<string, number[]>();
 
@@ -31,6 +33,60 @@ function getRequesterIp(request: NextRequest): string {
   }
 
   return request.headers.get("x-real-ip") ?? "unknown";
+}
+
+async function saveLocalLeadInquiry(
+  payload: LeadInquiryInput,
+  request: NextRequest,
+  ip: string,
+) {
+  const directory = path.join(process.cwd(), ".local-data");
+  const file = path.join(directory, "lead-inquiries.jsonl");
+  const record = {
+    ...payload,
+    client_ip: ip,
+    user_agent: request.headers.get("user-agent") ?? "",
+    created_at: new Date().toISOString(),
+  };
+
+  await mkdir(directory, { recursive: true });
+  await appendFile(file, `${JSON.stringify(record)}\n`, "utf8");
+}
+
+async function saveGoogleSheetsLeadInquiry(
+  payload: LeadInquiryInput,
+  request: NextRequest,
+  ip: string,
+) {
+  if (!env.googleSheetsWebhookUrl || !env.googleSheetsWebhookSecret) {
+    return;
+  }
+
+  const response = await fetch(env.googleSheetsWebhookUrl, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      ...payload,
+      secret: env.googleSheetsWebhookSecret,
+      client_ip: ip,
+      user_agent: request.headers.get("user-agent") ?? "",
+      created_at: new Date().toISOString(),
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error("Google Sheets webhook request failed.");
+  }
+
+  const result = (await response.json().catch(() => null)) as
+    | { ok?: boolean; message?: string }
+    | null;
+
+  if (result?.ok === false) {
+    throw new Error(result.message ?? "Google Sheets webhook rejected the request.");
+  }
 }
 
 export const runtime = "nodejs";
@@ -79,6 +135,37 @@ export async function POST(request: NextRequest) {
   }
 
   try {
+    const hasSupabase = Boolean(env.supabaseUrl && env.supabaseServiceRoleKey);
+    const hasGoogleSheets = Boolean(
+      env.googleSheetsWebhookUrl && env.googleSheetsWebhookSecret,
+    );
+
+    if (!hasSupabase) {
+      if (process.env.NODE_ENV === "production" && !hasGoogleSheets) {
+        return NextResponse.json(
+          {
+            ok: false,
+            message: "서버 설정을 확인해주세요. 문의 저장 연결 정보가 필요합니다.",
+          },
+          { status: 500 },
+        );
+      }
+
+      if (process.env.NODE_ENV !== "production") {
+        await saveLocalLeadInquiry(payload, request, ip);
+      }
+
+      await saveGoogleSheetsLeadInquiry(payload, request, ip);
+
+      return NextResponse.json(
+        {
+          ok: true,
+          message: "문의가 접수되었습니다. 확인 후 연락드리겠습니다.",
+        },
+        { status: 201 },
+      );
+    }
+
     const supabase = createServiceSupabaseClient();
 
     const { error } = await supabase.from("lead_inquiries").insert({
@@ -87,7 +174,7 @@ export async function POST(request: NextRequest) {
       email: payload.email,
       phone: payload.phone,
       message: payload.message,
-      source: "website",
+      source: payload.source,
       client_ip: ip,
       user_agent: request.headers.get("user-agent") ?? "",
     });
@@ -102,6 +189,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    await saveGoogleSheetsLeadInquiry(payload, request, ip);
+
     return NextResponse.json(
       {
         ok: true,
@@ -113,7 +202,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         ok: false,
-        message: "서버 설정을 확인해주세요. Supabase 연결 정보가 필요합니다.",
+        message: "문의 저장에 실패했습니다. 서버 설정을 확인해주세요.",
       },
       { status: 500 },
     );

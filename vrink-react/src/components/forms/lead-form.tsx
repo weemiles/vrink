@@ -9,6 +9,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { vrinkCopy } from "@/content/vrink-copy";
 import { leadInquirySchema } from "@/lib/validation/lead";
 
+type LeadFormProps = {
+  locale?: "ko" | "en";
+};
+
 type FormFeedback = {
   type: "idle" | "success" | "error";
   message: string;
@@ -19,9 +23,35 @@ const initialFeedback: FormFeedback = {
   message: "",
 };
 
-export function LeadForm() {
+const englishLeadForm = {
+  title: "Request a consultation",
+  description: "Leave your space details and the VRINK team will get back to you.",
+  submitLabel: "Submit inquiry",
+  submittingLabel: "Submitting...",
+  privacyNotice: "Submitted information is used only for consultation and follow-up.",
+  validationError: "Please check the required fields.",
+  networkError: "A network error occurred. Please try again later.",
+  fallbackError: "The inquiry could not be submitted.",
+  fields: {
+    company: "Company or space",
+    name: "Name",
+    email: "Email",
+    phone: "Phone",
+    message: "Message",
+  },
+  placeholders: {
+    company: "VRINK Co.",
+    name: "Your name",
+    email: "hello@vrink.kr",
+    phone: "010-0000-0000",
+    message: "Tell us your space type, expected users, and installation timeline.",
+  },
+};
+
+export function LeadForm({ locale = "ko" }: LeadFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [feedback, setFeedback] = useState<FormFeedback>(initialFeedback);
+  const copy = locale === "en" ? englishLeadForm : vrinkCopy.leadForm;
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -41,7 +71,10 @@ export function LeadForm() {
 
     const parsed = leadInquirySchema.safeParse(payload);
     if (!parsed.success) {
-      const firstIssue = parsed.error.issues[0]?.message ?? "입력값을 확인해주세요.";
+      const firstIssue =
+        locale === "en"
+          ? englishLeadForm.validationError
+          : parsed.error.issues[0]?.message ?? "입력값을 확인해주세요.";
       setFeedback({ type: "error", message: firstIssue });
       setIsSubmitting(false);
       return;
@@ -63,20 +96,23 @@ export function LeadForm() {
       if (!response.ok || !result.ok) {
         setFeedback({
           type: "error",
-          message: result.message ?? "문의 접수에 실패했습니다.",
+          message:
+            locale === "en"
+              ? englishLeadForm.fallbackError
+              : result.message ?? "문의 접수에 실패했습니다.",
         });
         return;
       }
 
       setFeedback({
         type: "success",
-        message: result.message,
+        message: locale === "en" ? "Your inquiry has been submitted." : result.message,
       });
       form.reset();
     } catch {
       setFeedback({
         type: "error",
-        message: "네트워크 오류가 발생했습니다. 잠시 후 다시 시도해주세요.",
+        message: locale === "en" ? englishLeadForm.networkError : "네트워크 오류가 발생했습니다. 잠시 후 다시 시도해주세요.",
       });
     } finally {
       setIsSubmitting(false);
@@ -85,8 +121,8 @@ export function LeadForm() {
 
   return (
     <div id="lead-form" className="rounded-[var(--radius-lg)] border border-[var(--border-strong)] bg-white p-6 shadow-[var(--shadow-card)] md:p-8">
-      <h3 className="text-h5">{vrinkCopy.leadForm.title}</h3>
-      <p className="mt-2 text-body-2 text-[var(--text-muted)]">{vrinkCopy.leadForm.description}</p>
+      <h3 className="text-h5">{copy.title}</h3>
+      <p className="mt-2 text-body-2 text-[var(--text-muted)]">{copy.description}</p>
 
       <form className="mt-6 space-y-5" onSubmit={handleSubmit} noValidate>
         <div className="hidden" aria-hidden="true">
@@ -96,32 +132,32 @@ export function LeadForm() {
 
         <div className="grid gap-5 md:grid-cols-2">
           <div className="space-y-2">
-            <Label htmlFor="company">{vrinkCopy.leadForm.fields.company} *</Label>
-            <Input id="company" name="company" placeholder={vrinkCopy.leadForm.placeholders.company} required />
+            <Label htmlFor="company">{copy.fields.company} *</Label>
+            <Input id="company" name="company" placeholder={copy.placeholders.company} required />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="name">{vrinkCopy.leadForm.fields.name} *</Label>
-            <Input id="name" name="name" placeholder={vrinkCopy.leadForm.placeholders.name} required />
+            <Label htmlFor="name">{copy.fields.name} *</Label>
+            <Input id="name" name="name" placeholder={copy.placeholders.name} required />
           </div>
         </div>
 
         <div className="grid gap-5 md:grid-cols-2">
           <div className="space-y-2">
-            <Label htmlFor="email">{vrinkCopy.leadForm.fields.email} *</Label>
-            <Input id="email" name="email" type="email" placeholder={vrinkCopy.leadForm.placeholders.email} required />
+            <Label htmlFor="email">{copy.fields.email} *</Label>
+            <Input id="email" name="email" type="email" placeholder={copy.placeholders.email} required />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="phone">{vrinkCopy.leadForm.fields.phone} *</Label>
-            <Input id="phone" name="phone" type="tel" placeholder={vrinkCopy.leadForm.placeholders.phone} required />
+            <Label htmlFor="phone">{copy.fields.phone} *</Label>
+            <Input id="phone" name="phone" type="tel" placeholder={copy.placeholders.phone} required />
           </div>
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="message">{vrinkCopy.leadForm.fields.message} *</Label>
+          <Label htmlFor="message">{copy.fields.message} *</Label>
           <Textarea
             id="message"
             name="message"
-            placeholder={vrinkCopy.leadForm.placeholders.message}
+            placeholder={copy.placeholders.message}
             className="min-h-32"
             required
           />
@@ -129,9 +165,9 @@ export function LeadForm() {
 
         <div className="space-y-3">
           <Button type="submit" className="h-12 w-full text-base" disabled={isSubmitting}>
-            {isSubmitting ? "접수 중..." : vrinkCopy.leadForm.submitLabel}
+            {isSubmitting ? (locale === "en" ? englishLeadForm.submittingLabel : "접수 중...") : copy.submitLabel}
           </Button>
-          <p className="text-caption text-[var(--text-subtle)]">{vrinkCopy.leadForm.privacyNotice}</p>
+          <p className="text-caption text-[var(--text-subtle)]">{copy.privacyNotice}</p>
           {feedback.type !== "idle" && (
             <p
               className={

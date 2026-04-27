@@ -18,9 +18,9 @@ export const siteConfig: SiteConfig = {
   name: "VRINK",
   title: "브링크(VRINK) 공식 웹사이트",
   description:
-    "브링크 A.I 스마트 디스펜서 제로스테이션: 건강을 운영하는 새로운 기준.",
-  baseUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "https://vrink.kr",
-  contactEmail: "contact@vrink.kr",
+    "브링크 제로스테이션: 공간 맞춤 음료 경험을 만드는 스마트 드링크 시스템.",
+  baseUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.vrink.kr",
+  contactEmail: "vrink@contact.kr",
   contactPhone: "010-7362-6070",
   instagram: "@vrink_official",
   business: {
