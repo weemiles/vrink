@@ -9,7 +9,9 @@ import {
   Send,
   X,
 } from "lucide-react";
+import Link from "next/link";
 
+import { buildLeadMailtoHref, isStaticExport } from "@/lib/static-export";
 import styles from "./vrink-consultation-widget.module.css";
 
 type Feedback = {
@@ -50,6 +52,17 @@ export function VrinkConsultationWidget() {
       honeypot: String(formData.get("honeypot") ?? ""),
       source: "consultation_widget",
     };
+
+    if (isStaticExport) {
+      window.location.href = buildLeadMailtoHref(payload);
+      setFeedback({
+        type: "success",
+        message: "문의 메일 작성 화면을 열었습니다.",
+      });
+      form.reset();
+      setIsSubmitting(false);
+      return;
+    }
 
     try {
       const response = await fetch("/api/lead", {
@@ -135,10 +148,10 @@ export function VrinkConsultationWidget() {
                     <br />
                     브링크 팀이 확인 후 연락드립니다.
                   </p>
-                  <a className={styles.actionButton} href={contactHref}>
+                  <Link className={styles.actionButton} href={contactHref}>
                     문의 폼으로 이동
                     <ChevronRight aria-hidden="true" size={12} />
-                  </a>
+                  </Link>
                 </div>
               </section>
             </>

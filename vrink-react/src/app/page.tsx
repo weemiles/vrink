@@ -1,10 +1,12 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import { CookieSettingsPopup } from "@/components/consent/cookie-settings-popup";
 import { LeadForm } from "@/components/forms/lead-form";
 import { VrinkFooter } from "@/components/layout/vrink-footer";
 import { VrinkHeader } from "@/components/layout/vrink-header";
 import { ShotNutritionSection } from "@/components/sections/shot-nutrition-section";
+import { withBasePath } from "@/lib/static-export";
 
 import styles from "./page.module.css";
 
@@ -138,7 +140,7 @@ export default function HomePage() {
             맛, 기능샷, 농도, 탄산을 조합해 오피스, 피트니스, 병원, 이벤트 공간에 맞는 음료 경험을 제공합니다.
           </span>
           <div className={styles.heroActions}>
-            <a href="/product" className={styles.primaryButton}>더 알아보기</a>
+            <Link href="/product" className={styles.primaryButton}>더 알아보기</Link>
             <a href="#contact" className={styles.linkButton}>도입 문의</a>
           </div>
         </div>
@@ -148,9 +150,9 @@ export default function HomePage() {
             loop
             muted
             playsInline
-            poster="/images/vrink/apple/vrink-product-angle-a.png"
+            poster={withBasePath("/images/vrink/apple/vrink-product-angle-a.png")}
           >
-            <source src="/images/vrink/apple/vrink-hero.mp4" type="video/mp4" />
+            <source src={withBasePath("/images/vrink/apple/vrink-hero.mp4")} type="video/mp4" />
           </video>
         </div>
       </section>
@@ -164,7 +166,7 @@ export default function HomePage() {
           {productScenes.map((scene) => (
             <article className={styles.sceneCard} key={scene.title}>
               <div className={styles.sceneImage}>
-                <Image src={scene.image} alt={scene.alt} fill sizes="(max-width: 900px) 100vw, 33vw" />
+                <Image src={withBasePath(scene.image)} alt={scene.alt} fill sizes="(max-width: 900px) 100vw, 33vw" />
               </div>
               <h3>{scene.title}</h3>
               <p>{scene.body}</p>
@@ -219,7 +221,7 @@ export default function HomePage() {
               key={image.src}
             >
               <Image
-                src={image.src}
+                src={withBasePath(image.src)}
                 alt={image.alt}
                 fill
                 sizes={index === 0 ? "(max-width: 980px) 100vw, 50vw" : "(max-width: 980px) 50vw, 25vw"}
@@ -247,7 +249,7 @@ export default function HomePage() {
       <section id="operation" className={styles.operationSection}>
         <div className={styles.operationImage}>
           <Image
-            src="/images/vrink/apple/vrink-product-back.png"
+            src={withBasePath("/images/vrink/apple/vrink-product-back.png")}
             alt="브링크 제로스테이션 후면"
             fill
             sizes="(max-width: 900px) 100vw, 44vw"
@@ -275,7 +277,7 @@ export default function HomePage() {
         <div className={styles.newsFeature}>
           <div className={styles.newsFeatureImage}>
             <Image
-              src={newsItems[0].image}
+              src={withBasePath(newsItems[0].image)}
               alt=""
               fill
               sizes="(max-width: 900px) 100vw, 50vw"
@@ -292,7 +294,7 @@ export default function HomePage() {
           {newsItems.slice(1).map((item) => (
             <article key={item.title} className={styles.newsCard}>
               <div className={styles.newsCardImage}>
-                <Image src={item.image} alt="" fill sizes="(max-width: 900px) 100vw, 33vw" />
+                <Image src={withBasePath(item.image)} alt="" fill sizes="(max-width: 900px) 100vw, 33vw" />
               </div>
               <div>
                 <span>{`${item.source} · ${item.category} · ${item.date}`}</span>

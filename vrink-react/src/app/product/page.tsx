@@ -6,6 +6,7 @@ import { ArrowRight, Headphones, ShieldCheck, Wrench } from "lucide-react";
 import { VrinkFooter } from "@/components/layout/vrink-footer";
 import { VrinkHeader } from "@/components/layout/vrink-header";
 import { buildMetadata } from "@/lib/seo";
+import { withBasePath } from "@/lib/static-export";
 
 import styles from "./page.module.css";
 
@@ -235,17 +236,15 @@ export default function ProductPage() {
           <div className={styles.heroActions}>
             <Link href="/#contact" className={styles.primaryButton}>
               도입 문의
-              <ArrowRight aria-hidden="true" size={15} strokeWidth={1.8} />
             </Link>
             <Link href="#features" className={styles.linkButton}>
               특징 보기
-              <ArrowRight aria-hidden="true" size={15} strokeWidth={1.8} />
             </Link>
           </div>
         </div>
         <div className={styles.heroImage}>
           <Image
-            src="/images/vrink/apple/vrink-product-angle-b.png"
+            src={withBasePath("/images/vrink/apple/vrink-product-angle-b.png")}
             alt="브링크 제로스테이션 제품"
             fill
             priority
@@ -265,7 +264,7 @@ export default function ProductPage() {
           {productIntroTiles.map((tile, index) => (
             <article className={styles.productIntroTile} key={tile.title}>
               <Image
-                src={tile.image}
+                src={withBasePath(tile.image)}
                 alt={tile.alt}
                 fill
                 loading={index < 2 ? "eager" : "lazy"}
@@ -293,7 +292,7 @@ export default function ProductPage() {
         <div className={styles.galleryGrid}>
           {galleryMoments.map((moment) => (
             <figure className={styles.galleryItem} key={moment.image}>
-              <Image src={moment.image} alt={moment.alt} fill sizes="(max-width: 780px) 100vw, 33vw" />
+              <Image src={withBasePath(moment.image)} alt={moment.alt} fill sizes="(max-width: 780px) 100vw, 33vw" />
             </figure>
           ))}
         </div>
@@ -309,7 +308,7 @@ export default function ProductPage() {
           {proofStories.map((story) => (
             <article className={styles.proofCard} key={story.title}>
               <div className={styles.proofImage}>
-                <Image src={story.image} alt={story.alt} fill sizes="(max-width: 760px) 100vw, 38vw" />
+                <Image src={withBasePath(story.image)} alt={story.alt} fill sizes="(max-width: 760px) 100vw, 38vw" />
               </div>
               <div>
                 <h3>{story.title}</h3>
@@ -339,7 +338,7 @@ export default function ProductPage() {
           <div className={styles.technologyVisual}>
             {technologyVisualImages.map((image) => (
               <Image
-                src={image.src}
+                src={withBasePath(image.src)}
                 alt={image.alt}
                 className={image.className}
                 fill
@@ -359,7 +358,7 @@ export default function ProductPage() {
         <div className={styles.fieldGrid}>
           {fieldCards.map((field) => (
             <article className={styles.fieldCard} key={field.title}>
-              <Image src={field.image} alt={field.alt} fill sizes="(max-width: 760px) 100vw, 31vw" />
+              <Image src={withBasePath(field.image)} alt={field.alt} fill sizes="(max-width: 760px) 100vw, 31vw" />
               <div>
                 <h3>{field.title}</h3>
                 <p>{field.body}</p>
@@ -374,7 +373,7 @@ export default function ProductPage() {
           <article className={styles.featureRow} key={feature.title}>
             <div className={styles.featureImage}>
               <Image
-                src={feature.image}
+                src={withBasePath(feature.image)}
                 alt={feature.alt}
                 fill
                 sizes="(max-width: 980px) 100vw, 52vw"
@@ -433,7 +432,7 @@ export default function ProductPage() {
         </div>
         <div className={styles.finalProductImage}>
           <Image
-            src="/images/vrink/apple/vrink-product-angle-a.png"
+            src={withBasePath("/images/vrink/apple/vrink-product-angle-a.png")}
             alt="브링크 제로스테이션 제품 이미지"
             fill
             sizes="(max-width: 900px) 100vw, 860px"

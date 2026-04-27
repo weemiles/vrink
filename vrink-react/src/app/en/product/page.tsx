@@ -6,6 +6,7 @@ import { ArrowRight, Headphones, ShieldCheck, Wrench } from "lucide-react";
 import { VrinkFooter } from "@/components/layout/vrink-footer";
 import { VrinkHeader } from "@/components/layout/vrink-header";
 import { buildMetadata } from "@/lib/seo";
+import { withBasePath } from "@/lib/static-export";
 
 import styles from "../../product/page.module.css";
 
@@ -167,17 +168,15 @@ export default function EnglishProductPage() {
           <div className={styles.heroActions}>
             <Link href="/en#contact" className={styles.primaryButton}>
               Contact us
-              <ArrowRight aria-hidden="true" size={15} strokeWidth={1.8} />
             </Link>
             <Link href="#features" className={styles.linkButton}>
               View features
-              <ArrowRight aria-hidden="true" size={15} strokeWidth={1.8} />
             </Link>
           </div>
         </div>
         <div className={styles.heroImage}>
           <Image
-            src="/images/vrink/apple/vrink-product-angle-b.png"
+            src={withBasePath("/images/vrink/apple/vrink-product-angle-b.png")}
             alt="VRINK Zero Station product"
             fill
             priority
@@ -197,7 +196,7 @@ export default function EnglishProductPage() {
           {productIntroTiles.map((tile, index) => (
             <article className={styles.productIntroTile} key={tile.title}>
               <Image
-                src={tile.image}
+                src={withBasePath(tile.image)}
                 alt={tile.alt}
                 fill
                 loading={index < 2 ? "eager" : "lazy"}
@@ -225,7 +224,7 @@ export default function EnglishProductPage() {
         <div className={styles.galleryGrid}>
           {galleryMoments.map((moment) => (
             <figure className={styles.galleryItem} key={moment.image}>
-              <Image src={moment.image} alt={moment.alt} fill sizes="(max-width: 780px) 100vw, 33vw" />
+              <Image src={withBasePath(moment.image)} alt={moment.alt} fill sizes="(max-width: 780px) 100vw, 33vw" />
             </figure>
           ))}
         </div>
@@ -241,7 +240,7 @@ export default function EnglishProductPage() {
           {proofStories.map((story) => (
             <article className={styles.proofCard} key={story.title}>
               <div className={styles.proofImage}>
-                <Image src={story.image} alt={story.alt} fill sizes="(max-width: 760px) 100vw, 38vw" />
+                <Image src={withBasePath(story.image)} alt={story.alt} fill sizes="(max-width: 760px) 100vw, 38vw" />
               </div>
               <div>
                 <h3>{story.title}</h3>
@@ -260,7 +259,7 @@ export default function EnglishProductPage() {
         <div className={styles.fieldGrid}>
           {fieldCards.map((field) => (
             <article className={styles.fieldCard} key={field.title}>
-              <Image src={field.image} alt={field.alt} fill sizes="(max-width: 760px) 100vw, 31vw" />
+              <Image src={withBasePath(field.image)} alt={field.alt} fill sizes="(max-width: 760px) 100vw, 31vw" />
               <div>
                 <h3>{field.title}</h3>
                 <p>{field.body}</p>
@@ -274,7 +273,7 @@ export default function EnglishProductPage() {
         {features.map((feature, index) => (
           <article className={styles.featureRow} key={feature.title}>
             <div className={styles.featureImage}>
-              <Image src={feature.image} alt={feature.alt} fill sizes="(max-width: 980px) 100vw, 52vw" />
+              <Image src={withBasePath(feature.image)} alt={feature.alt} fill sizes="(max-width: 980px) 100vw, 52vw" />
             </div>
             <div className={styles.featureCopy}>
               <p>{String(index + 1).padStart(2, "0")}</p>
@@ -307,7 +306,7 @@ export default function EnglishProductPage() {
         </div>
         <div className={styles.finalProductImage}>
           <Image
-            src="/images/vrink/apple/vrink-product-angle-a.png"
+            src={withBasePath("/images/vrink/apple/vrink-product-angle-a.png")}
             alt="VRINK Zero Station product image"
             fill
             sizes="(max-width: 900px) 100vw, 860px"

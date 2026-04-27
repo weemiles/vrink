@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState, type CSSProperties } from "react";
 
+import { withBasePath } from "@/lib/static-export";
 import styles from "./shot-nutrition-section.module.css";
 
 type NutritionFact = {
@@ -136,7 +137,7 @@ export function ShotNutritionSection() {
               <em>영양성분 보기 ›</em>
             </span>
             <span className={styles.cardVisual}>
-              <Image src={shot.image} alt={`${shot.name} 캡슐 이미지`} width={130} height={150} />
+              <Image src={withBasePath(shot.image)} alt={`${shot.name} 캡슐 이미지`} width={130} height={150} />
             </span>
           </button>
         ))}
@@ -158,7 +159,7 @@ export function ShotNutritionSection() {
 
             <div className={styles.dialogHero}>
               <div className={styles.dialogImage}>
-                <Image src={activeShot.image} alt="" width={156} height={180} />
+                <Image src={withBasePath(activeShot.image)} alt="" width={156} height={180} />
               </div>
               <div>
                 <h3 id={`${activeShot.id}-nutrition-title`}>{activeShot.name}</h3>

@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { Globe2 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
+import { withBasePath } from "@/lib/static-export";
 import styles from "./vrink-header.module.css";
 
 const navItems = {
@@ -82,7 +83,7 @@ export function VrinkHeader({ locale = "ko", variant = "default" }: VrinkHeaderP
   return (
     <header className={headerClassName}>
       <Link href={logoHref} className={styles.logo} aria-label={logoLabel}>
-        <Image src="/images/vrink/apple/vrink-logo.svg" alt="" width={140} height={40} priority />
+        <Image src={withBasePath("/images/vrink/apple/vrink-logo.svg")} alt="" width={140} height={40} priority />
       </Link>
       <nav className={styles.nav} aria-label="브링크 주요 메뉴">
         {navItems[locale].map(([label, href]) => (

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { siteConfig } from "@/config/site";
+import { withBasePath } from "@/lib/static-export";
 
 import styles from "./vrink-footer.module.css";
 
@@ -190,7 +191,7 @@ export function VrinkFooter({ ctaHref = "/#contact", locale = "ko" }: VrinkFoote
 
       <div className={styles.footerBrandRow}>
         <Link href="/" className={styles.footerBrand} aria-label="브링크 홈">
-          <Image src="/images/vrink/apple/vrink-logo.svg" alt="" width={140} height={40} />
+          <Image src={withBasePath("/images/vrink/apple/vrink-logo.svg")} alt="" width={140} height={40} />
         </Link>
         <div className={styles.footerQuickLinks}>
           {content.quickLinks.map(([label, href]) => (

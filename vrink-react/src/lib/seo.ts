@@ -14,9 +14,11 @@ export function buildMetadata({
   path = "/",
 }: BuildMetadataInput): Metadata {
   const metadataBase = new URL(siteConfig.baseUrl);
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+  const canonicalPath = `${basePath}${path === "/" ? "/" : path}`;
   const fullTitle = title ? `${title} | ${siteConfig.name}` : siteConfig.title;
   const fullDescription = description ?? siteConfig.description;
-  const canonical = new URL(path, metadataBase).toString();
+  const canonical = new URL(canonicalPath, metadataBase.origin).toString();
 
   return {
     metadataBase,

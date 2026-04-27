@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { vrinkCopy } from "@/content/vrink-copy";
+import { buildLeadMailtoHref, isStaticExport } from "@/lib/static-export";
 import { leadInquirySchema } from "@/lib/validation/lead";
 
 type LeadFormProps = {
@@ -76,6 +77,20 @@ export function LeadForm({ locale = "ko" }: LeadFormProps) {
           ? englishLeadForm.validationError
           : parsed.error.issues[0]?.message ?? "입력값을 확인해주세요.";
       setFeedback({ type: "error", message: firstIssue });
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (isStaticExport) {
+      window.location.href = buildLeadMailtoHref(parsed.data, locale);
+      setFeedback({
+        type: "success",
+        message:
+          locale === "en"
+            ? "An email draft has been opened for your inquiry."
+            : "문의 메일 작성 화면을 열었습니다.",
+      });
+      form.reset();
       setIsSubmitting(false);
       return;
     }

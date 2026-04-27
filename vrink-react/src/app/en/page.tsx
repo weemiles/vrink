@@ -5,6 +5,7 @@ import Link from "next/link";
 import { LeadForm } from "@/components/forms/lead-form";
 import { VrinkFooter } from "@/components/layout/vrink-footer";
 import { VrinkHeader } from "@/components/layout/vrink-header";
+import { withBasePath } from "@/lib/static-export";
 import { buildMetadata } from "@/lib/seo";
 
 import styles from "../page.module.css";
@@ -86,9 +87,9 @@ export default function EnglishPage() {
             loop
             muted
             playsInline
-            poster="/images/vrink/apple/vrink-product-angle-a.png"
+            poster={withBasePath("/images/vrink/apple/vrink-product-angle-a.png")}
           >
-            <source src="/images/vrink/apple/vrink-hero.mp4" type="video/mp4" />
+            <source src={withBasePath("/images/vrink/apple/vrink-hero.mp4")} type="video/mp4" />
           </video>
         </div>
       </section>
@@ -102,7 +103,7 @@ export default function EnglishPage() {
           {productScenes.map((scene) => (
             <article className={styles.sceneCard} key={scene.title}>
               <div className={styles.sceneImage}>
-                <Image src={scene.image} alt={scene.alt} fill sizes="(max-width: 900px) 100vw, 33vw" />
+                <Image src={withBasePath(scene.image)} alt={scene.alt} fill sizes="(max-width: 900px) 100vw, 33vw" />
               </div>
               <h3>{scene.title}</h3>
               <p>{scene.body}</p>
@@ -133,7 +134,7 @@ export default function EnglishPage() {
         </div>
         <div className={styles.newsFeature}>
           <div className={styles.newsFeatureImage}>
-            <Image src={newsItems[0].image} alt="" fill sizes="(max-width: 900px) 100vw, 50vw" />
+            <Image src={withBasePath(newsItems[0].image)} alt="" fill sizes="(max-width: 900px) 100vw, 50vw" />
           </div>
           <article className={styles.newsFeatureCopy}>
             <span>{`${newsItems[0].source} · ${newsItems[0].date}`}</span>
@@ -146,7 +147,7 @@ export default function EnglishPage() {
           {newsItems.slice(1).map((item) => (
             <article key={item.title} className={styles.newsCard}>
               <div className={styles.newsCardImage}>
-                <Image src={item.image} alt="" fill sizes="(max-width: 900px) 100vw, 33vw" />
+                <Image src={withBasePath(item.image)} alt="" fill sizes="(max-width: 900px) 100vw, 33vw" />
               </div>
               <div>
                 <span>{`${item.source} · ${item.date}`}</span>
