@@ -49,18 +49,24 @@ const systemItems = [
   },
 ];
 
-const recipeSteps = [
+const usageSteps = [
   {
-    title: "목적 선택",
-    body: "운동 전, 업무 중, 회복, 데일리 관리처럼 공간에서 자주 쓰는 순간을 먼저 고릅니다.",
+    title: "기능 선택",
+    body: "부스터, 비타민, 릴렉스, 커팅, 아미노 중 필요한 기능을 먼저 고릅니다.",
+    image: "/images/vrink/apple/vrink-product-angle-a.png",
+    alt: "브링크 기능 선택 화면을 확인하는 장면",
   },
   {
-    title: "기능샷과 맛 조합",
-    body: "부스터샷, 비타민샷, 릴렉스샷, 커팅샷, 아미노 샷과 플레이버를 조합합니다.",
+    title: "맛과 농도, 탄산옵션 선택",
+    body: "원하는 맛과 농도를 정하고 탄산감을 더해 오늘의 한 잔을 맞춥니다.",
+    image: "/images/vrink/apple/vrink-product-top.png",
+    alt: "브링크 맛과 농도, 탄산옵션 선택 과정",
   },
   {
-    title: "농도와 탄산 조절",
-    body: "은은하게 또는 진하게, 부드럽게 또는 탄산감 있게 같은 음료도 다르게 완성합니다.",
+    title: "출수될 때까지 기다리기",
+    body: "선택이 끝나면 브링크가 자동으로 제조합니다. 완료될 때까지 잠시 기다리면 됩니다.",
+    image: "/images/vrink/apple/vrink-product-front.png",
+    alt: "브링크 음료 출수를 기다리는 장면",
   },
 ];
 
@@ -175,6 +181,40 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className={styles.usageSection} aria-labelledby="usage-title">
+        <div className={styles.usageIntro}>
+          <p>이용방법</p>
+          <h2 id="usage-title">브링크는 세 단계로 간단하게 시작합니다.</h2>
+          <span>기능을 고르고 맛과 옵션을 정하면 제로스테이션이 한 잔을 완성합니다.</span>
+        </div>
+        <div className={styles.usageLayout}>
+          <div className={styles.usageSteps}>
+            {usageSteps.map((step, index) => (
+              <article className={styles.usageStep} key={step.title}>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <h3>{`${index + 1}단계: ${step.title}`}</h3>
+                <p>{step.body}</p>
+              </article>
+            ))}
+          </div>
+          <div className={styles.usageMediaGrid}>
+            {usageSteps.map((step, index) => (
+              <figure
+                className={`${styles.usageMedia} ${index === 0 ? styles.usageMediaLarge : ""}`}
+                key={step.title}
+              >
+                <Image
+                  src={withBasePath(step.image)}
+                  alt={step.alt}
+                  fill
+                  sizes={index === 0 ? "(max-width: 980px) 100vw, 52vw" : "(max-width: 980px) 50vw, 26vw"}
+                />
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className={styles.darkSection}>
         <div className={styles.sectionIntro}>
           <p>운영 구조</p>
@@ -196,15 +236,6 @@ export default function HomePage() {
           <p>맞춤 조합</p>
           <h2>선택은 간단하게, 조합은 풍부하게.</h2>
           <span>기능샷과 플레이버, 농도와 탄산을 더해 공간의 목적에 맞는 한 잔을 만듭니다.</span>
-        </div>
-        <div className={styles.blendSteps}>
-          {recipeSteps.map((step, index) => (
-            <article key={step.title}>
-              <span>{String(index + 1).padStart(2, "0")}</span>
-              <h3>{step.title}</h3>
-              <p>{step.body}</p>
-            </article>
-          ))}
         </div>
         <ShotNutritionSection />
       </section>
