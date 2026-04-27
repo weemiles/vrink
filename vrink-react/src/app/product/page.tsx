@@ -43,6 +43,32 @@ const features = [
   },
 ];
 
+const mobileFeatureStats = [
+  {
+    value: "11초",
+    label: "평균 제조 시간",
+  },
+  {
+    value: "2,000ml",
+    label: "탄산수 토출 용량",
+  },
+  {
+    value: "24H",
+    label: "운영 가능",
+  },
+  {
+    value: "0.1초",
+    label: "커스텀 설정 단위",
+  },
+];
+
+const mobileFeatureNav = [
+  ["개요", "#features"],
+  ["사양", "#specifications"],
+  ["기술", "#technology"],
+  ["문의", "/#contact"],
+];
+
 const productIntroTiles = [
   {
     eyebrow: "Personal Recipe",
@@ -368,7 +394,28 @@ export default function ProductPage() {
         </div>
       </section>
 
-      <section className={styles.featureStack}>
+      <section className={styles.featureStack} aria-label="브링크 제품 특징">
+        <div className={styles.mobileFeatureHeader}>
+          <div className={styles.mobileFeatureTop}>
+            <h2>VRINK ZERO STATION</h2>
+            <Link href="/#contact">문의하기</Link>
+          </div>
+          <nav className={styles.mobileFeatureNav} aria-label="제품 상세 메뉴">
+            {mobileFeatureNav.map(([label, href], index) => (
+              <Link href={href} key={label} aria-current={index === 0 ? "page" : undefined}>
+                {label}
+              </Link>
+            ))}
+          </nav>
+        </div>
+        <div className={styles.mobileFeatureStats} aria-label="제품 핵심 수치">
+          {mobileFeatureStats.map((item) => (
+            <div className={styles.mobileFeatureStat} key={item.label}>
+              <strong>{item.value}</strong>
+              <span>{item.label}</span>
+            </div>
+          ))}
+        </div>
         {features.map((feature, index) => (
           <article className={styles.featureRow} key={feature.title}>
             <div className={styles.featureImage}>

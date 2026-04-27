@@ -38,6 +38,27 @@ const productScenes = [
   },
 ];
 
+const usageSteps = [
+  {
+    title: "Choose a function",
+    body: "Start with the functional shot that fits the moment, from booster and vitamin to relax, cutting, and amino.",
+    image: "/images/vrink/apple/vrink-product-angle-a.png",
+    alt: "VRINK function selection flow",
+  },
+  {
+    title: "Select flavor, strength, and sparkling option",
+    body: "Choose the flavor, concentration, and sparkling intensity to shape the drink for the person and space.",
+    image: "/images/vrink/apple/vrink-product-top.png",
+    alt: "VRINK flavor and option selection flow",
+  },
+  {
+    title: "Wait while the drink is dispensed",
+    body: "Once the selection is complete, VRINK prepares the drink automatically. Wait briefly until dispensing is finished.",
+    image: "/images/vrink/apple/vrink-product-front.png",
+    alt: "VRINK drink dispensing moment",
+  },
+];
+
 const useCases = [
   ["Office", "A self-serve drink station for employee wellness and lounge experiences."],
   ["Fitness", "Functional drinks for pre-workout, recovery, and daily conditioning routines."],
@@ -87,9 +108,10 @@ export default function EnglishPage() {
             loop
             muted
             playsInline
-            poster={withBasePath("/images/vrink/apple/vrink-product-angle-a.png")}
+            poster={withBasePath("/images/vrink/apple/vrink-hero-still.jpg")}
+            preload="auto"
           >
-            <source src={withBasePath("/images/vrink/apple/vrink-hero.mp4")} type="video/mp4" />
+            <source src={withBasePath("/images/vrink/apple/vrink-hero-h264.mp4")} type="video/mp4" />
           </video>
         </div>
       </section>
@@ -109,6 +131,40 @@ export default function EnglishPage() {
               <p>{scene.body}</p>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section id="usage" className={styles.usageSection} aria-labelledby="usage-title">
+        <div className={styles.usageIntro}>
+          <p>How it works</p>
+          <h2 id="usage-title">VRINK starts in three simple steps.</h2>
+          <span>Choose the function, set the taste and options, then let the Zero Station finish the drink.</span>
+        </div>
+        <div className={styles.usageLayout}>
+          <div className={styles.usageSteps}>
+            {usageSteps.map((step, index) => (
+              <article className={styles.usageStep} key={step.title}>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <h3>{`${index + 1}. ${step.title}`}</h3>
+                <p>{step.body}</p>
+              </article>
+            ))}
+          </div>
+          <div className={styles.usageMediaGrid}>
+            {usageSteps.map((step, index) => (
+              <figure
+                className={`${styles.usageMedia} ${index === 0 ? styles.usageMediaLarge : ""}`}
+                key={step.title}
+              >
+                <Image
+                  src={withBasePath(step.image)}
+                  alt={step.alt}
+                  fill
+                  sizes={index === 0 ? "(max-width: 980px) 100vw, 52vw" : "(max-width: 980px) 50vw, 26vw"}
+                />
+              </figure>
+            ))}
+          </div>
         </div>
       </section>
 

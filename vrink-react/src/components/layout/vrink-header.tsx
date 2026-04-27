@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Globe2 } from "lucide-react";
+import { Globe2, Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 import { withBasePath } from "@/lib/static-export";
@@ -34,6 +34,7 @@ type VrinkHeaderProps = {
 
 export function VrinkHeader({ locale = "ko", variant = "default" }: VrinkHeaderProps) {
   const [languageOpen, setLanguageOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const languageRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
   const headerClassName =
@@ -82,7 +83,17 @@ export function VrinkHeader({ locale = "ko", variant = "default" }: VrinkHeaderP
 
   return (
     <header className={headerClassName}>
-      <Link href={logoHref} className={styles.logo} aria-label={logoLabel}>
+      <button
+        type="button"
+        className={styles.menuButton}
+        aria-controls="vrink-mobile-menu"
+        aria-expanded={mobileMenuOpen}
+        aria-label={mobileMenuOpen ? "메뉴 닫기" : "메뉴 열기"}
+        onClick={() => setMobileMenuOpen((open) => !open)}
+      >
+        {mobileMenuOpen ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
+      </button>
+      <Link href={logoHref} className={styles.logo} aria-label={logoLabel} onClick={() => setMobileMenuOpen(false)}>
         <Image src={withBasePath("/images/vrink/apple/vrink-logo.svg")} alt="" width={140} height={40} priority />
       </Link>
       <nav className={styles.nav} aria-label="브링크 주요 메뉴">
@@ -125,6 +136,35 @@ export function VrinkHeader({ locale = "ko", variant = "default" }: VrinkHeaderP
         <Link href={ctaHref} className={styles.navCta}>
           {ctaLabel}
         </Link>
+      </div>
+      <div
+        className={`${styles.mobileMenu} ${mobileMenuOpen ? styles.mobileMenuOpen : ""}`}
+        id="vrink-mobile-menu"
+      >
+        <nav className={styles.mobileNav} aria-label="브링크 모바일 메뉴">
+          {navItems[locale].map(([label, href]) => (
+            <Link href={href} key={label} onClick={() => setMobileMenuOpen(false)}>
+              {label}
+            </Link>
+          ))}
+        </nav>
+        <div className={styles.mobileMenuMeta}>
+          <div className={styles.mobileLanguageLinks} aria-label="언어 선택">
+            {languages.map((language) => (
+              <Link
+                href={getLanguageHref(language.code as "EN" | "KO")}
+                key={language.code}
+                onClick={() => setMobileMenuOpen(false)}
+                aria-current={language.code === currentLanguage ? "page" : undefined}
+              >
+                {language.code}
+              </Link>
+            ))}
+          </div>
+          <Link href={ctaHref} className={styles.mobileCta} onClick={() => setMobileMenuOpen(false)}>
+            {ctaLabel}
+          </Link>
+        </div>
       </div>
     </header>
   );

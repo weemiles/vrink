@@ -6,6 +6,7 @@ import { LeadForm } from "@/components/forms/lead-form";
 import { VrinkFooter } from "@/components/layout/vrink-footer";
 import { VrinkHeader } from "@/components/layout/vrink-header";
 import { ShotNutritionSection } from "@/components/sections/shot-nutrition-section";
+import { UsageStepsViewer } from "@/components/sections/usage-steps-viewer";
 import { withBasePath } from "@/lib/static-export";
 
 import styles from "./page.module.css";
@@ -156,9 +157,10 @@ export default function HomePage() {
             loop
             muted
             playsInline
-            poster={withBasePath("/images/vrink/apple/vrink-product-angle-a.png")}
+            poster={withBasePath("/images/vrink/apple/vrink-hero-still.jpg")}
+            preload="auto"
           >
-            <source src={withBasePath("/images/vrink/apple/vrink-hero.mp4")} type="video/mp4" />
+            <source src={withBasePath("/images/vrink/apple/vrink-hero-h264.mp4")} type="video/mp4" />
           </video>
         </div>
       </section>
@@ -181,38 +183,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className={styles.usageSection} aria-labelledby="usage-title">
+      <section id="usage" className={styles.usageSection} aria-labelledby="usage-title">
         <div className={styles.usageIntro}>
           <p>이용방법</p>
           <h2 id="usage-title">브링크는 세 단계로 간단하게 시작합니다.</h2>
           <span>기능을 고르고 맛과 옵션을 정하면 제로스테이션이 한 잔을 완성합니다.</span>
         </div>
-        <div className={styles.usageLayout}>
-          <div className={styles.usageSteps}>
-            {usageSteps.map((step, index) => (
-              <article className={styles.usageStep} key={step.title}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <h3>{`${index + 1}단계: ${step.title}`}</h3>
-                <p>{step.body}</p>
-              </article>
-            ))}
-          </div>
-          <div className={styles.usageMediaGrid}>
-            {usageSteps.map((step, index) => (
-              <figure
-                className={`${styles.usageMedia} ${index === 0 ? styles.usageMediaLarge : ""}`}
-                key={step.title}
-              >
-                <Image
-                  src={withBasePath(step.image)}
-                  alt={step.alt}
-                  fill
-                  sizes={index === 0 ? "(max-width: 980px) 100vw, 52vw" : "(max-width: 980px) 50vw, 26vw"}
-                />
-              </figure>
-            ))}
-          </div>
-        </div>
+        <UsageStepsViewer steps={usageSteps} />
       </section>
 
       <section className={styles.darkSection}>
@@ -232,11 +209,6 @@ export default function HomePage() {
       </section>
 
       <section id="blend" className={styles.blendSection}>
-        <div className={styles.blendCopy}>
-          <p>맞춤 조합</p>
-          <h2>선택은 간단하게, 조합은 풍부하게.</h2>
-          <span>기능샷과 플레이버, 농도와 탄산을 더해 공간의 목적에 맞는 한 잔을 만듭니다.</span>
-        </div>
         <ShotNutritionSection />
       </section>
 
