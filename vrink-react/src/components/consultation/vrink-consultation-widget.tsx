@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import { FormEvent, useState } from "react";
 import {
+  ArrowLeft,
   ChevronRight,
   Headphones,
   HeartHandshake,
@@ -157,6 +158,15 @@ export function VrinkConsultationWidget() {
             </>
           ) : (
             <form className={styles.form} onSubmit={handleSubmit} noValidate>
+              <button
+                className={styles.backButton}
+                type="button"
+                onClick={() => setIsFormOpen(false)}
+              >
+                <ArrowLeft aria-hidden="true" size={13} strokeWidth={1.9} />
+                이전
+              </button>
+
               <div className={styles.formHeader}>
                 <Headphones aria-hidden="true" size={14} strokeWidth={1.8} />
                 <div>

@@ -81,7 +81,7 @@ export const vrinkHomeContent = {
       {
         title: vrinkCopy.feature.items[2]?.title ?? "빠른 완성",
         badges: [],
-        body: vrinkCopy.feature.items[2]?.bullets[0] ?? "1잔 평균 약 11초",
+        body: vrinkCopy.feature.items[2]?.bullets[0] ?? "1잔 평균 약 15초",
       },
       {
         title: vrinkCopy.feature.items[3]?.title ?? "건강 루틴",

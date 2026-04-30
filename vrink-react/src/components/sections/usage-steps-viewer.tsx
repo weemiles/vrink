@@ -2,16 +2,18 @@
 
 import { useRef, useState, type PointerEvent } from "react";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import styles from "@/app/page.module.css";
 import { withBasePath } from "@/lib/static-export";
 
-type UsageStep = {
+export type UsageStep = {
   title: string;
   body: string;
   image: string;
   alt: string;
+  mediaVariant?: "tablet";
+  adImage?: string;
+  adImageAlt?: string;
 };
 
 type UsageStepsViewerProps = {
@@ -22,6 +24,12 @@ export function UsageStepsViewer({ steps }: UsageStepsViewerProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const pointerStartX = useRef<number | null>(null);
   const activeStep = steps[activeIndex];
+  const mediaClassName = [
+    styles.usageMedia,
+    activeStep.mediaVariant === "tablet" ? styles.usageMediaScreen : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   const goToStep = (index: number) => {
     setActiveIndex((index + steps.length) % steps.length);
@@ -79,53 +87,50 @@ export function UsageStepsViewer({ steps }: UsageStepsViewerProps) {
       <div className={styles.usageMediaStage}>
         <figure
           aria-live="polite"
-          className={styles.usageMedia}
+          className={mediaClassName}
           onPointerCancel={handlePointerCancel}
           onPointerDown={handlePointerDown}
           onPointerUp={handlePointerUp}
         >
-          <Image
-            alt={activeStep.alt}
-            fill
-            key={activeStep.image}
-            sizes="(max-width: 980px) 100vw, 52vw"
-            src={withBasePath(activeStep.image)}
-          />
-
-          <div
-            aria-label="단계 이동"
-            className={styles.usageControls}
-            onPointerDown={(event) => event.stopPropagation()}
-            role="group"
-          >
-            <button
-              aria-label="이전 단계"
-              className={styles.usageControlButton}
-              onClick={() => goToStep(activeIndex - 1)}
-              type="button"
-            >
-              <ChevronLeft aria-hidden="true" size={20} strokeWidth={1.8} />
-            </button>
-            <div className={styles.usageDots}>
-              {steps.map((step, index) => (
-                <button
-                  aria-label={`${index + 1}단계로 이동`}
-                  className={`${styles.usageDot} ${activeIndex === index ? styles.usageDotActive : ""}`}
-                  key={step.title}
-                  onClick={() => goToStep(index)}
-                  type="button"
+          {activeStep.mediaVariant === "tablet" ? (
+            <div className={styles.usageTabletMockup} key={activeStep.image}>
+              <Image
+                alt=""
+                aria-hidden="true"
+                className={styles.usageTabletFrame}
+                fill
+                sizes="(max-width: 980px) 58vw, 28vw"
+                src={withBasePath("/images/vrink/usage/tablet-vertical.svg")}
+              />
+              <div className={styles.usageTabletScreen}>
+                <Image
+                  alt={activeStep.alt}
+                  className={styles.usageTabletScreenImage}
+                  fill
+                  sizes="(max-width: 980px) 58vw, 28vw"
+                  src={withBasePath(activeStep.image)}
                 />
-              ))}
+                {activeStep.adImage ? (
+                  <div className={styles.usageTabletAdSlot}>
+                    <Image
+                      alt={activeStep.adImageAlt ?? ""}
+                      fill
+                      sizes="(max-width: 980px) 46vw, 22vw"
+                      src={withBasePath(activeStep.adImage)}
+                    />
+                  </div>
+                ) : null}
+              </div>
             </div>
-            <button
-              aria-label="다음 단계"
-              className={styles.usageControlButton}
-              onClick={() => goToStep(activeIndex + 1)}
-              type="button"
-            >
-              <ChevronRight aria-hidden="true" size={20} strokeWidth={1.8} />
-            </button>
-          </div>
+          ) : (
+            <Image
+              alt={activeStep.alt}
+              fill
+              key={activeStep.image}
+              sizes="(max-width: 980px) 100vw, 52vw"
+              src={withBasePath(activeStep.image)}
+            />
+          )}
         </figure>
       </div>
     </div>

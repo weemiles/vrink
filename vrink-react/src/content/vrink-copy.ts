@@ -182,11 +182,11 @@ export const vrinkCopy: VrinkCopy = {
         ],
       },
       {
-        title: "약 11초 완성",
+        title: "약 15초 완성",
         description:
-          "선택한 영양 성분이 350ml 기준 약 11초 후 한 잔으로 완성됩니다.",
+          "선택한 영양 성분이 350ml 기준 약 15초 후 한 잔으로 완성됩니다.",
         bullets: [
-          "1잔 평균 약 11초 (350ml 기준)",
+          "1잔 평균 약 15초 (350ml 기준)",
           "즉시 섭취 가능한 운영 흐름",
           "24시간 운영 가능",
         ],
@@ -230,7 +230,7 @@ export const vrinkCopy: VrinkCopy = {
       },
       {
         label: "제조 속도",
-        value: "1잔 평균 11초 (350ml 기준)",
+        value: "1잔 평균 15초 (350ml 기준)",
       },
       {
         label: "냉각 온도",

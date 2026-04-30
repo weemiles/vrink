@@ -49,7 +49,7 @@ const demoData = {
     items: [
         {
             id: "item-1",
-            title: "부스터 샷 (Booster Shot)",
+            title: "부스터샷 (Booster Shot)",
             summary:
                 "[에너지/집중] 운동 전이나 활력이 급격히 떨어질 때 빠르게 컨디션을 끌어올려 줍니다. (핵심 성분: 카페인, 아르기닌, 타우린)",
             url: "https://www.vrink.kr",
@@ -57,7 +57,7 @@ const demoData = {
         },
         {
             id: "item-2",
-            title: "스트레스 샷 (Stress Shot)",
+            title: "릴렉스샷 (Relax Shot)",
             summary:
                 "[긴장 완화/균형] 과한 자극 없이 몸과 마음의 밸런스를 되찾고 싶을 때 추천합니다. (핵심 성분: L-테아닌, 타우린)",
             url: "https://www.vrink.kr",
@@ -65,7 +65,7 @@ const demoData = {
         },
         {
             id: "item-3",
-            title: "슬림 샷 (Slim Shot)",
+            title: "커팅샷 (Cutting Shot)",
             summary:
                 "[체중/관리] 일상 속 가벼운 관리를 원할 때 부담 없이 섭취할 수 있습니다. (핵심 성분: L-카르니틴, 녹차추출물)",
             url: "https://www.vrink.kr",
@@ -73,17 +73,17 @@ const demoData = {
         },
         {
             id: "item-4",
-            title: "컨디션 샷 (Condition Shot)",
+            title: "아미노샷 (Amino Shot)",
             summary:
-                "[기초 영양/회복] 컨디션이 저하된 날 기초 영양을 빠르게 보충하여 몸의 리듬을 회복합니다. (핵심 성분: 비타민 C, 비타민 B군 복합체)",
+                "[근육/밸런스] 운동 후 회복이나 지친 일상의 에너지 충전 시 최적의 영양을 공급합니다. (핵심 성분: 필수 아미노산 9종, 타우린)",
             url: "https://www.vrink.kr",
             image: "https://images.unsplash.com/photo-1550989460-0adf9ea622e2?q=80&w=2687&auto=format&fit=crop",
         },
         {
             id: "item-5",
-            title: "리커버리 샷 (Recovery Shot)",
+            title: "비타민샷 (Vitamin Shot)",
             summary:
-                "[근육/밸런스] 운동 후 회복이나 지친 일상의 에너지 충전 시 최적의 영양을 공급합니다. (핵심 성분: 필수 아미노산 9종, 타우린)",
+                "[기초 영양/회복] 컨디션이 저하된 날 기초 영양을 빠르게 보충하여 몸의 리듬을 회복합니다. (핵심 성분: 비타민 C, 비타민 B군 복합체)",
             url: "https://www.vrink.kr",
             image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=2940&auto=format&fit=crop",
         },

@@ -24,14 +24,14 @@ const features = [
     alt: "브링크 제로스테이션 상단과 태블릿 거치대",
   },
   {
-    title: "11초 안에 완성되는 제조 흐름",
-    body: "350ml 기준 평균 11초 제조 흐름으로 오피스, 피트니스, 행사 공간처럼 사용자가 많은 환경에서도 대기 부담을 줄입니다.",
+    title: "15초 안에 완성되는 제조 흐름",
+    body: "350ml 기준 평균 15초 제조 흐름으로 오피스, 피트니스, 행사 공간처럼 사용자가 많은 환경에서도 대기 부담을 줄입니다.",
     image: "/images/vrink/apple/vrink-product-top.png",
     alt: "브링크 제로스테이션 상단 구조",
   },
   {
     title: "기능샷과 맛을 조합하는 개인 맞춤 경험",
-    body: "부스터샷, 비타민샷, 릴렉스샷, 커팅샷, 아미노 샷과 플레이버, 농도, 탄산을 조합해 공간의 목적에 맞는 음료 경험을 제공합니다.",
+    body: "부스터샷, 비타민샷, 릴렉스샷, 커팅샷, 아미노샷과 플레이버, 농도, 탄산을 조합해 공간의 목적에 맞는 음료 경험을 제공합니다.",
     image: "/images/vrink/lifestyle/vrink-lifestyle-1114.jpg",
     alt: "브링크 음료 두 잔을 들고 있는 사용 장면",
   },
@@ -45,7 +45,7 @@ const features = [
 
 const mobileFeatureStats = [
   {
-    value: "11초",
+    value: "15초",
     label: "평균 제조 시간",
   },
   {
@@ -79,8 +79,8 @@ const productIntroTiles = [
   },
   {
     eyebrow: "Fast Serving",
-    title: "약 11초, 빠르게 완성되는 제조 흐름",
-    body: "350ml 기준 평균 약 11초 제조 흐름으로 많은 사용자가 오가는 공간에서도 부담을 줄입니다.",
+    title: "약 15초, 빠르게 완성되는 제조 흐름",
+    body: "350ml 기준 평균 약 15초 제조 흐름으로 많은 사용자가 오가는 공간에서도 부담을 줄입니다.",
     image: "/images/vrink/apple/vrink-product-top.png",
     alt: "브링크 제로스테이션 상단 제조 구조",
   },
@@ -210,7 +210,7 @@ const productSpecs = [
   },
   {
     label: "제조 시간",
-    values: ["1잔 평균 약 10초", "320ml 잔 기준"],
+    values: ["1잔 평균 약 15초", "350ml 잔 기준"],
   },
   {
     label: "정격 전압",
@@ -239,7 +239,7 @@ const productSpecs = [
 ];
 
 const finalHighlights = [
-  "11초 제조",
+  "15초 제조",
   "약 1,750가지 조합",
   "5종 기능샷",
   "맞춤 원액 구성",

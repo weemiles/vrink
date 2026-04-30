@@ -6,9 +6,11 @@ import { LeadForm } from "@/components/forms/lead-form";
 import { VrinkFooter } from "@/components/layout/vrink-footer";
 import { VrinkHeader } from "@/components/layout/vrink-header";
 import { ShotNutritionSection } from "@/components/sections/shot-nutrition-section";
-import { UsageStepsViewer } from "@/components/sections/usage-steps-viewer";
+import { UsageStepsViewer, type UsageStep } from "@/components/sections/usage-steps-viewer";
 import { withBasePath } from "@/lib/static-export";
 
+import { ExpertReviewBackgroundVideo } from "./detail/expert-review-background-video";
+import { ExpertReviewMoreModal } from "./detail/expert-review-more-modal";
 import styles from "./page.module.css";
 
 const productScenes = [
@@ -35,8 +37,8 @@ const productScenes = [
 const systemItems = [
   {
     label: "스마트 스테이션",
-    title: "11초 안에 완성되는 한 잔",
-    body: "350ml 기준 평균 11초 제조 흐름으로 장시간 운영 공간에서도 대기 부담을 줄입니다.",
+    title: "15초 안에 완성되는 한 잔",
+    body: "350ml 기준 평균 15초 제조 흐름으로 장시간 운영 공간에서도 대기 부담을 줄입니다.",
   },
   {
     label: "맞춤 조합",
@@ -50,24 +52,27 @@ const systemItems = [
   },
 ];
 
-const usageSteps = [
+const usageSteps: UsageStep[] = [
   {
     title: "기능 선택",
-    body: "부스터, 비타민, 릴렉스, 커팅, 아미노 중 필요한 기능을 먼저 고릅니다.",
-    image: "/images/vrink/apple/vrink-product-angle-a.png",
-    alt: "브링크 기능 선택 화면을 확인하는 장면",
+    body: "부스터샷, 릴렉스샷, 커팅샷, 아미노샷, 비타민샷 중 필요한 기능을 먼저 고릅니다.",
+    image: "/images/vrink/usage/function-selection-screen.jpg",
+    alt: "브링크 기능 선택 화면",
+    mediaVariant: "tablet",
   },
   {
     title: "맛과 농도, 탄산옵션 선택",
     body: "원하는 맛과 농도를 정하고 탄산감을 더해 오늘의 한 잔을 맞춥니다.",
-    image: "/images/vrink/apple/vrink-product-top.png",
-    alt: "브링크 맛과 농도, 탄산옵션 선택 과정",
+    image: "/images/vrink/usage/combination-screen.jpg",
+    alt: "브링크 맛과 농도, 탄산 조합 화면",
+    mediaVariant: "tablet",
   },
   {
     title: "출수될 때까지 기다리기",
     body: "선택이 끝나면 브링크가 자동으로 제조합니다. 완료될 때까지 잠시 기다리면 됩니다.",
-    image: "/images/vrink/apple/vrink-product-front.png",
-    alt: "브링크 음료 출수를 기다리는 장면",
+    image: "/images/vrink/usage/waiting-screen.jpg",
+    alt: "브링크 제조 대기 화면",
+    mediaVariant: "tablet",
   },
 ];
 
@@ -212,6 +217,29 @@ export default function HomePage() {
         <ShotNutritionSection />
       </section>
 
+      <section id="expert-review" className={styles.expertSection} aria-labelledby="expert-review-title">
+        <div className={styles.expertFrame}>
+          <div className={styles.expertVideo} aria-hidden="true">
+            <ExpertReviewBackgroundVideo
+              poster={withBasePath("/images/vrink/detail/expert-review-background-0428-poster.jpg")}
+              src={withBasePath("/videos/vrink/expert-review-background-0428.mp4")}
+            />
+          </div>
+          <div className={styles.expertCopy}>
+            <p>전문가 검수 기반 음료 구성</p>
+            <h2 id="expert-review-title">영양사의 영양 관점으로 기능샷 구성을 다듬었습니다.</h2>
+            <span>
+              기능샷별 성분 조합과 일상에서 선택하는 상황을 영양 관점으로 검토해, 공간에 맞는 음료
+              루틴을 더 신뢰감 있게 제안합니다.
+            </span>
+            <ExpertReviewMoreModal
+              poster={withBasePath("/images/vrink/detail/nutritionist-interview-poster.jpg")}
+              src={withBasePath("/videos/vrink/nutritionist-interview-1080p-h264.mp4")}
+            />
+          </div>
+        </div>
+      </section>
+
       <section id="experience" className={styles.lifestyleSection}>
         <div className={styles.sectionIntro}>
           <p>사용 장면</p>
@@ -267,7 +295,7 @@ export default function HomePage() {
           <ul>
             <li>소진 시점 기준 원액 공급 상담</li>
             <li>전문 설치와 정기 관리 지원</li>
-            <li>단기 행사와 장기 도입 모두 대응</li>
+            <li>행사 활용과 장기 도입 모두 상담</li>
           </ul>
         </div>
       </section>

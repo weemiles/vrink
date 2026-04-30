@@ -85,8 +85,8 @@ const shotItems: ShotItem[] = [
   },
   {
     id: "amino",
-    name: "아미노 샷",
-    purpose: "운동 전후 리커버리",
+    name: "아미노샷",
+    purpose: "운동 전후 회복 루틴",
     description: "필수아미노산 9종과 타우린을 담아 활동 후 루틴에 맞춥니다.",
     image: "/images/vrink/shots/amino-shot.png",
     accent: "#ed6c1b",
