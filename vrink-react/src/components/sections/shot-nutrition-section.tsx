@@ -165,7 +165,13 @@ export function ShotNutritionSection() {
                 <em>영양성분 보기 ›</em>
               </span>
               <span className={styles.cardVisual}>
-                <Image src={withBasePath(shot.image)} alt={`${shot.name} 캡슐 이미지`} width={130} height={150} />
+                <Image
+                  src={withBasePath(shot.image)}
+                  alt={`${shot.name} 캡슐 이미지`}
+                  width={130}
+                  height={150}
+                  loading="eager"
+                />
               </span>
             </button>
           ))}

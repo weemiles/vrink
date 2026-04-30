@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+import { withBasePath } from "@/lib/static-export";
+
 import styles from "./page.module.css";
 
 type SimpleCard = {
@@ -7,18 +9,20 @@ type SimpleCard = {
   image: string;
 };
 
+const figmaAsset = (fileName: string) => withBasePath(`/images/figma/15-182/${fileName}`);
+
 const shopBySpace: SimpleCard[] = [
-  { title: "Kitchen", image: "/images/figma/15-182/space-kitchen.jpg" },
-  { title: "Bathroom", image: "/images/figma/15-182/space-bathroom.jpg" },
-  { title: "Outdoor", image: "/images/figma/15-182/space-outdoor.jpg" },
-  { title: "Shower", image: "/images/figma/15-182/space-shower.jpg" },
+  { title: "Kitchen", image: figmaAsset("space-kitchen.jpg") },
+  { title: "Bathroom", image: figmaAsset("space-bathroom.jpg") },
+  { title: "Outdoor", image: figmaAsset("space-outdoor.jpg") },
+  { title: "Shower", image: figmaAsset("space-shower.jpg") },
 ];
 
 const collections: SimpleCard[] = [
-  { title: "Zellige", image: "/images/figma/15-182/collection-zellige.jpg" },
-  { title: "Cotto", image: "/images/figma/15-182/collection-cotto.jpg" },
-  { title: "Terrazzo", image: "/images/figma/15-182/collection-terrazzo.jpg" },
-  { title: "Marble", image: "/images/figma/15-182/collection-marble.jpg" },
+  { title: "Zellige", image: figmaAsset("collection-zellige.jpg") },
+  { title: "Cotto", image: figmaAsset("collection-cotto.jpg") },
+  { title: "Terrazzo", image: figmaAsset("collection-terrazzo.jpg") },
+  { title: "Marble", image: figmaAsset("collection-marble.jpg") },
 ];
 
 const footerLinks = [
@@ -37,7 +41,7 @@ export default function Figma15182Page() {
       <header className={styles.header}>
         <p className={styles.headerTagline}>A Modern Home for an Ancient Art</p>
         <Image
-          src="/images/figma/15-182/header-logo.svg"
+          src={figmaAsset("header-logo.svg")}
           alt="Zia Tile"
           width={118}
           height={22}
@@ -58,7 +62,7 @@ export default function Figma15182Page() {
 
       <section className={styles.heroSection}>
         <Image
-          src="/images/figma/15-182/hero-glass.jpg"
+          src={figmaAsset("hero-glass.jpg")}
           alt="Shattered pieces of transparent red glass scattered on a red tiled surface"
           fill
           sizes="100vw"
@@ -76,7 +80,7 @@ export default function Figma15182Page() {
         <article className={styles.duoCard}>
           <div className={styles.duoImageWrap}>
             <Image
-              src="/images/figma/15-182/duo-zellige.jpg"
+              src={figmaAsset("duo-zellige.jpg")}
               alt="A kitchen corner with dark brown glossy mosaic tiles"
               fill
               sizes="(max-width: 1100px) 100vw, 50vw"
@@ -99,7 +103,7 @@ export default function Figma15182Page() {
         <article className={styles.duoCard}>
           <div className={styles.duoImageWrap}>
             <Image
-              src="/images/figma/15-182/duo-cotto-allende.jpg"
+              src={figmaAsset("duo-cotto-allende.jpg")}
               alt="Four geometric tiles balancing against a warm brown background"
               fill
               sizes="(max-width: 1100px) 100vw, 50vw"
@@ -144,7 +148,7 @@ export default function Figma15182Page() {
 
       <section className={styles.bannerSection}>
         <Image
-          src="/images/figma/15-182/banner-antiquity.jpg"
+          src={figmaAsset("banner-antiquity.jpg")}
           alt="A brush uncovers a mosaic of small tiles in soil"
           fill
           sizes="100vw"
@@ -184,7 +188,7 @@ export default function Figma15182Page() {
         <div className={styles.shareGrid}>
           <article className={styles.shareMain}>
             <Image
-              src="/images/figma/15-182/share-main.jpg"
+              src={figmaAsset("share-main.jpg")}
               alt="Instagram tile main"
               fill
               sizes="(max-width: 1100px) 100vw, 50vw"
@@ -192,7 +196,7 @@ export default function Figma15182Page() {
               loading="eager"
             />
             <Image
-              src="/images/figma/15-182/share-product-icon.svg"
+              src={figmaAsset("share-product-icon.svg")}
               alt=""
               width={20}
               height={20}
@@ -201,7 +205,7 @@ export default function Figma15182Page() {
           </article>
           <article className={styles.shareSmall}>
             <Image
-              src="/images/figma/15-182/share-top-center.jpg"
+              src={figmaAsset("share-top-center.jpg")}
               alt="Instagram tile"
               fill
               sizes="(max-width: 1100px) 50vw, 25vw"
@@ -209,7 +213,7 @@ export default function Figma15182Page() {
               loading="eager"
             />
             <Image
-              src="/images/figma/15-182/share-product-icon.svg"
+              src={figmaAsset("share-product-icon.svg")}
               alt=""
               width={20}
               height={20}
@@ -218,7 +222,7 @@ export default function Figma15182Page() {
           </article>
           <article className={styles.shareSmall}>
             <Image
-              src="/images/figma/15-182/share-top-right.jpg"
+              src={figmaAsset("share-top-right.jpg")}
               alt="Instagram tile"
               fill
               sizes="(max-width: 1100px) 50vw, 25vw"
@@ -226,7 +230,7 @@ export default function Figma15182Page() {
               loading="eager"
             />
             <Image
-              src="/images/figma/15-182/share-product-icon.svg"
+              src={figmaAsset("share-product-icon.svg")}
               alt=""
               width={20}
               height={20}
@@ -235,7 +239,7 @@ export default function Figma15182Page() {
           </article>
           <article className={styles.shareSmall}>
             <Image
-              src="/images/figma/15-182/share-bottom-center.jpg"
+              src={figmaAsset("share-bottom-center.jpg")}
               alt="Instagram tile"
               fill
               sizes="(max-width: 1100px) 50vw, 25vw"
@@ -243,7 +247,7 @@ export default function Figma15182Page() {
               loading="eager"
             />
             <Image
-              src="/images/figma/15-182/share-product-icon.svg"
+              src={figmaAsset("share-product-icon.svg")}
               alt=""
               width={20}
               height={20}
@@ -252,7 +256,7 @@ export default function Figma15182Page() {
           </article>
           <article className={styles.shareSmall}>
             <Image
-              src="/images/figma/15-182/share-bottom-right.jpg"
+              src={figmaAsset("share-bottom-right.jpg")}
               alt="Instagram tile"
               fill
               sizes="(max-width: 1100px) 50vw, 25vw"
@@ -260,7 +264,7 @@ export default function Figma15182Page() {
               loading="eager"
             />
             <Image
-              src="/images/figma/15-182/share-product-icon.svg"
+              src={figmaAsset("share-product-icon.svg")}
               alt=""
               width={20}
               height={20}

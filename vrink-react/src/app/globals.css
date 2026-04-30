@@ -4,17 +4,9 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@font-face {
-  font-display: swap;
-  font-family: "Pretendard Variable";
-  font-style: normal;
-  font-weight: 45 920;
-  src: url("/fonts/PretendardVariable.woff2") format("woff2-variations");
-}
-
 :root {
-  --font-body: "Pretendard Variable", Pretendard, sans-serif;
-  --font-heading: "Pretendard Variable", Pretendard, sans-serif;
+  --font-body: var(--font-pretendard);
+  --font-heading: var(--font-pretendard);
   --font-pretendard: "Pretendard Variable", Pretendard, sans-serif;
 
   --layout-container-max: 1180px;

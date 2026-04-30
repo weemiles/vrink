@@ -39,6 +39,7 @@ function UsageStepMediaContent({ adSizes, imageSizes, step }: UsageStepMediaCont
           aria-hidden="true"
           className={styles.usageTabletFrame}
           fill
+          loading="eager"
           sizes={imageSizes}
           src={withBasePath("/images/vrink/usage/tablet-vertical.svg")}
         />
@@ -47,6 +48,7 @@ function UsageStepMediaContent({ adSizes, imageSizes, step }: UsageStepMediaCont
             alt={step.alt}
             className={styles.usageTabletScreenImage}
             fill
+            loading="eager"
             sizes={imageSizes}
             src={withBasePath(step.image)}
           />
@@ -55,6 +57,7 @@ function UsageStepMediaContent({ adSizes, imageSizes, step }: UsageStepMediaCont
               <Image
                 alt={step.adImageAlt ?? ""}
                 fill
+                loading="eager"
                 sizes={adSizes}
                 src={withBasePath(step.adImage)}
               />
@@ -70,6 +73,7 @@ function UsageStepMediaContent({ adSizes, imageSizes, step }: UsageStepMediaCont
       alt={step.alt}
       fill
       key={step.image}
+      loading="eager"
       sizes={imageSizes}
       src={withBasePath(step.image)}
     />
