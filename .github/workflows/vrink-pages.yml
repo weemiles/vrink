@@ -28,6 +28,7 @@ jobs:
     env:
       GITHUB_PAGES: "true"
       NEXT_PUBLIC_BASE_PATH: "/vrink"
+      NEXT_PUBLIC_NAVER_MAP_CLIENT_ID: "qlsbs916op"
       NEXT_PUBLIC_STATIC_EXPORT: "true"
       NEXT_PUBLIC_SITE_URL: "https://weemiles.github.io/vrink"
     steps:
