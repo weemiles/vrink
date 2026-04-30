@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, type PointerEvent } from "react";
+import { useRef, useState, type PointerEvent, type UIEvent } from "react";
 import Image from "next/image";
 
 import styles from "@/app/page.module.css";
@@ -20,19 +20,105 @@ type UsageStepsViewerProps = {
   steps: UsageStep[];
 };
 
+type UsageStepMediaContentProps = {
+  adSizes: string;
+  imageSizes: string;
+  step: UsageStep;
+};
+
+function getUsageMediaClassName(step: UsageStep, baseClassName: string) {
+  return [baseClassName, step.mediaVariant === "tablet" ? styles.usageMediaScreen : ""].filter(Boolean).join(" ");
+}
+
+function UsageStepMediaContent({ adSizes, imageSizes, step }: UsageStepMediaContentProps) {
+  if (step.mediaVariant === "tablet") {
+    return (
+      <div className={styles.usageTabletMockup} key={step.image}>
+        <Image
+          alt=""
+          aria-hidden="true"
+          className={styles.usageTabletFrame}
+          fill
+          sizes={imageSizes}
+          src={withBasePath("/images/vrink/usage/tablet-vertical.svg")}
+        />
+        <div className={styles.usageTabletScreen}>
+          <Image
+            alt={step.alt}
+            className={styles.usageTabletScreenImage}
+            fill
+            sizes={imageSizes}
+            src={withBasePath(step.image)}
+          />
+          {step.adImage ? (
+            <div className={styles.usageTabletAdSlot}>
+              <Image
+                alt={step.adImageAlt ?? ""}
+                fill
+                sizes={adSizes}
+                src={withBasePath(step.adImage)}
+              />
+            </div>
+          ) : null}
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <Image
+      alt={step.alt}
+      fill
+      key={step.image}
+      sizes={imageSizes}
+      src={withBasePath(step.image)}
+    />
+  );
+}
+
 export function UsageStepsViewer({ steps }: UsageStepsViewerProps) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const mobileCarouselRef = useRef<HTMLDivElement | null>(null);
+  const mobileSlideRefs = useRef<Array<HTMLElement | null>>([]);
   const pointerStartX = useRef<number | null>(null);
   const activeStep = steps[activeIndex];
-  const mediaClassName = [
-    styles.usageMedia,
-    activeStep.mediaVariant === "tablet" ? styles.usageMediaScreen : "",
-  ]
-    .filter(Boolean)
-    .join(" ");
+  const mediaClassName = getUsageMediaClassName(activeStep, styles.usageMedia);
 
   const goToStep = (index: number) => {
     setActiveIndex((index + steps.length) % steps.length);
+  };
+
+  const goToMobileStep = (index: number) => {
+    goToStep(index);
+    mobileSlideRefs.current[index]?.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center",
+    });
+  };
+
+  const handleMobileScroll = (event: UIEvent<HTMLDivElement>) => {
+    const container = event.currentTarget;
+    const containerCenter = container.scrollLeft + container.clientWidth / 2;
+    let nearestIndex = 0;
+    let nearestDistance = Number.POSITIVE_INFINITY;
+
+    mobileSlideRefs.current.forEach((slide, index) => {
+      if (!slide) {
+        return;
+      }
+
+      const slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
+      const distance = Math.abs(slideCenter - containerCenter);
+      if (distance < nearestDistance) {
+        nearestDistance = distance;
+        nearestIndex = index;
+      }
+    });
+
+    if (nearestIndex !== activeIndex) {
+      setActiveIndex(nearestIndex);
+    }
   };
 
   const handlePointerDown = (event: PointerEvent<HTMLElement>) => {
@@ -92,46 +178,57 @@ export function UsageStepsViewer({ steps }: UsageStepsViewerProps) {
           onPointerDown={handlePointerDown}
           onPointerUp={handlePointerUp}
         >
-          {activeStep.mediaVariant === "tablet" ? (
-            <div className={styles.usageTabletMockup} key={activeStep.image}>
-              <Image
-                alt=""
-                aria-hidden="true"
-                className={styles.usageTabletFrame}
-                fill
-                sizes="(max-width: 980px) 58vw, 28vw"
-                src={withBasePath("/images/vrink/usage/tablet-vertical.svg")}
-              />
-              <div className={styles.usageTabletScreen}>
-                <Image
-                  alt={activeStep.alt}
-                  className={styles.usageTabletScreenImage}
-                  fill
-                  sizes="(max-width: 980px) 58vw, 28vw"
-                  src={withBasePath(activeStep.image)}
-                />
-                {activeStep.adImage ? (
-                  <div className={styles.usageTabletAdSlot}>
-                    <Image
-                      alt={activeStep.adImageAlt ?? ""}
-                      fill
-                      sizes="(max-width: 980px) 46vw, 22vw"
-                      src={withBasePath(activeStep.adImage)}
-                    />
-                  </div>
-                ) : null}
-              </div>
-            </div>
-          ) : (
-            <Image
-              alt={activeStep.alt}
-              fill
-              key={activeStep.image}
-              sizes="(max-width: 980px) 100vw, 52vw"
-              src={withBasePath(activeStep.image)}
-            />
-          )}
+          <UsageStepMediaContent
+            adSizes="(max-width: 980px) 46vw, 22vw"
+            imageSizes="(max-width: 980px) 58vw, 28vw"
+            step={activeStep}
+          />
         </figure>
+      </div>
+
+      <div
+        className={styles.usageMobileCarousel}
+        aria-label="브링크 이용 단계"
+        onScroll={handleMobileScroll}
+        ref={mobileCarouselRef}
+      >
+        {steps.map((step, index) => (
+          <article
+            className={styles.usageMobileSlide}
+            key={step.title}
+            ref={(element) => {
+              mobileSlideRefs.current[index] = element;
+            }}
+          >
+            <figure className={getUsageMediaClassName(step, styles.usageMobileMedia)}>
+              <UsageStepMediaContent
+                adSizes="82vw"
+                imageSizes="82vw"
+                step={step}
+              />
+            </figure>
+            <div className={styles.usageMobileStepCopy}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <h3>{`${index + 1}단계: ${step.title}`}</h3>
+              <p>{step.body}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div className={styles.usageMobileDots} aria-label="이용 단계 이동">
+        {steps.map((step, index) => (
+          <button
+            aria-current={activeIndex === index ? "step" : undefined}
+            aria-label={`${index + 1}단계로 이동: ${step.title}`}
+            className={`${styles.usageMobileDot} ${
+              activeIndex === index ? styles.usageMobileDotActive : ""
+            }`}
+            key={step.title}
+            onClick={() => goToMobileStep(index)}
+            type="button"
+          />
+        ))}
       </div>
     </div>
   );
