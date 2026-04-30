@@ -292,6 +292,18 @@
     --h5-size: var(--type-card);
     --h6-size: var(--type-body);
   }
+
+  /* Mobile convention: section heading blocks stay centered across VRINK pages. */
+  body.vrink-design-system main section > :is(header, [class*="Intro"], [class*="intro"], [class*="Copy"], [class*="copy"]) {
+    justify-items: center !important;
+    text-align: center !important;
+  }
+
+  body.vrink-design-system main section > :is(header, [class*="Intro"], [class*="intro"], [class*="Copy"], [class*="copy"]) :is(h1, h2, h3, p, span) {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
+  }
 }
 
 body.vrink-design-system,

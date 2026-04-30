@@ -1079,6 +1079,14 @@
     line-height: var(--line-section);
   }
 
+  .sectionIntro,
+  .usageIntro,
+  .blendCopy,
+  .operationCopy,
+  .contactCopy {
+    text-align: center;
+  }
+
   .sceneGrid,
   .systemGrid,
   .usageLayout,
@@ -1227,13 +1235,13 @@
 
   .revealSection .sectionIntro {
     margin-bottom: 62px;
-    text-align: left;
+    text-align: center;
   }
 
   .revealSection .sectionIntro h2 {
     color: #f5f5f7;
-    margin-left: 0;
-    margin-right: 0;
+    margin-left: auto;
+    margin-right: auto;
     max-width: 9.5em;
   }
 
@@ -1258,17 +1266,20 @@
     color: #f5f5f7;
     font-size: var(--type-section);
     line-height: var(--line-section);
-    margin: 0;
+    margin: 0 auto;
     max-width: 10em;
     order: 1;
+    text-align: center;
   }
 
   .sceneCard p {
     color: rgba(255, 255, 255, 0.58);
     font-size: var(--type-description);
     line-height: var(--line-description);
+    margin-inline: auto;
     max-width: 31em;
     order: 2;
+    text-align: center;
   }
 
   .sceneImage {
@@ -1345,7 +1356,7 @@
   }
 
   .usageMobileSlide {
-    flex: 0 0 min(86vw, 360px);
+    flex: 0 0 min(76vw, 314px);
     scroll-snap-align: center;
   }
 
@@ -1364,13 +1375,14 @@
   }
 
   .usageMobileMedia .usageTabletMockup {
-    height: min(calc(100% - 24px), 102vw);
+    height: min(calc(100% - 36px), 86vw);
     top: 48%;
   }
 
   .usageMobileStepCopy {
     margin-top: 22px;
-    padding-right: 10px;
+    padding-inline: 4px;
+    text-align: center;
   }
 
   .usageMobileStepCopy span {
