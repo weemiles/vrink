@@ -1,0 +1,575 @@
+.page {
+  --page-ink: #1f2528;
+  --page-muted: #5f6b72;
+  --page-subtle: #879199;
+  --page-line: #e5eaed;
+  --page-soft: #f6f8f9;
+  --page-accent: #0071e3;
+  --page-accent-dark: #0066cc;
+
+  background: #ffffff;
+  color: var(--page-ink);
+  font-family: var(--font-pretendard);
+  overflow: clip;
+}
+
+.page * {
+  letter-spacing: 0;
+}
+
+.hero {
+  align-items: center;
+  background: #d8e1e3;
+  color: var(--page-ink);
+  display: grid;
+  min-height: 74svh;
+  overflow: hidden;
+  padding: 112px var(--layout-page-gutter) 92px;
+  position: relative;
+}
+
+.heroVideo {
+  filter: brightness(1.12) contrast(0.98) saturate(0.94);
+  height: 100%;
+  inset: 0;
+  object-fit: cover;
+  object-position: center;
+  position: absolute;
+  width: 100%;
+}
+
+.heroOverlay {
+  background:
+    linear-gradient(90deg, rgba(248, 251, 252, 0.8) 0%, rgba(248, 251, 252, 0.52) 42%, rgba(248, 251, 252, 0.04) 100%),
+    linear-gradient(180deg, rgba(248, 251, 252, 0.02) 0%, rgba(248, 251, 252, 0.16) 100%);
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+.heroInner {
+  animation: heroRise 680ms ease both;
+  max-width: 760px;
+  position: relative;
+  z-index: 1;
+}
+
+.heroInner h1 {
+  color: var(--page-ink);
+  font-size: var(--type-display);
+  font-weight: var(--weight-semibold);
+  line-height: var(--line-display);
+  margin: 0;
+  max-width: 720px;
+  text-shadow: 0 1px 18px rgba(255, 255, 255, 0.46);
+  word-break: keep-all;
+}
+
+.heroInner p {
+  color: var(--page-muted);
+  font-size: var(--type-lead);
+  font-weight: var(--weight-regular);
+  line-height: var(--line-lead);
+  margin: 20px 0 0;
+  max-width: 620px;
+  word-break: keep-all;
+}
+
+.heroActions {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.primaryButton,
+.secondaryButton {
+  align-items: center;
+  border-radius: 980px;
+  display: inline-flex;
+  gap: 7px;
+  font-size: var(--type-caption);
+  font-weight: var(--weight-regular);
+  justify-content: center;
+  line-height: var(--line-caption);
+  min-height: 42px;
+  padding: 0 20px;
+  text-decoration: none;
+  transition: background 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.primaryButton {
+  background: var(--page-accent);
+  color: #ffffff;
+}
+
+.primaryButton:hover {
+  background: var(--page-accent-dark);
+  transform: translateY(-1px);
+}
+
+.secondaryButton {
+  background: rgba(255, 255, 255, 0.42);
+  border: 1px solid rgba(0, 113, 227, 0.28);
+  color: var(--page-accent-dark);
+}
+
+.secondaryButton:hover {
+  background: rgba(255, 255, 255, 0.62);
+  border-color: rgba(0, 113, 227, 0.42);
+}
+
+.shotSection,
+.ingredientsSection,
+.referencesSection {
+  background: #ffffff;
+  padding: 104px var(--layout-page-gutter);
+}
+
+.shotSection,
+.referencesSection {
+  border-top: 1px solid var(--page-line);
+}
+
+.shotSection,
+.ingredientsSection {
+  scroll-margin-top: 86px;
+}
+
+.sectionHeader,
+.referencesHeader {
+  margin: 0 auto 44px;
+  max-width: 860px;
+  text-align: center;
+}
+
+.sectionHeader p,
+.referencesHeader p {
+  color: var(--page-accent-dark);
+  font-size: var(--type-caption);
+  font-weight: var(--weight-medium);
+  line-height: var(--line-caption);
+  margin: 0 0 12px;
+}
+
+.sectionHeader h2,
+.referencesHeader h2 {
+  color: var(--page-ink);
+  font-size: var(--type-section);
+  font-weight: var(--weight-semibold);
+  line-height: var(--line-section);
+  margin: 0 auto;
+  max-width: 760px;
+  word-break: keep-all;
+}
+
+.sectionHeader span,
+.referencesHeader span {
+  color: var(--page-muted);
+  display: block;
+  font-size: var(--type-description);
+  font-weight: var(--weight-regular);
+  line-height: var(--line-description);
+  margin: 16px auto 0;
+  max-width: 720px;
+  word-break: keep-all;
+}
+
+.shotGrid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin: 0 auto;
+  max-width: var(--layout-container-max);
+}
+
+.shotCard {
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid var(--page-line);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  min-height: 278px;
+  padding: 26px 20px 28px;
+  text-align: center;
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.shotCard:hover {
+  border-color: rgba(0, 113, 227, 0.28);
+  box-shadow: 0 18px 46px rgba(28, 39, 43, 0.08);
+  transform: translateY(-3px);
+}
+
+.shotImage {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  display: flex;
+  height: 124px;
+  justify-content: center;
+  width: 100%;
+}
+
+.shotImage img {
+  filter: drop-shadow(0 16px 22px rgba(31, 37, 40, 0.2));
+  height: 112px;
+  object-fit: contain;
+  transform: rotate(-6deg);
+  transition: transform 180ms ease;
+  width: auto;
+}
+
+.shotCard:hover .shotImage img {
+  transform: translateY(-5px) rotate(-2deg) scale(1.03);
+}
+
+.shotCard h3 {
+  color: var(--page-ink);
+  font-size: var(--type-card);
+  font-weight: var(--weight-semibold);
+  line-height: var(--line-card);
+  margin: 22px 0 0;
+}
+
+.shotCard p {
+  color: var(--page-muted);
+  font-size: var(--type-body);
+  font-weight: var(--weight-regular);
+  line-height: var(--line-body);
+  margin: 12px auto 0;
+  max-width: 220px;
+  word-break: keep-all;
+}
+
+.ingredientGrid {
+  display: grid;
+  gap: 28px 24px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0 auto;
+  max-width: var(--layout-container-max);
+}
+
+.ingredientCard {
+  background: #ffffff;
+  border: 1px solid var(--page-line);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: 32px 28px 34px;
+  scroll-margin-top: 104px;
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.ingredientCard:hover {
+  border-color: rgba(0, 113, 227, 0.28);
+  box-shadow: 0 18px 48px rgba(28, 39, 43, 0.08);
+  transform: translateY(-3px);
+}
+
+.ingredientMeta {
+  align-items: center;
+  color: var(--page-subtle);
+  display: flex;
+  flex-wrap: wrap;
+  font-size: var(--type-micro);
+  font-weight: var(--weight-medium);
+  gap: 8px;
+  justify-content: center;
+  line-height: var(--line-micro);
+  text-align: center;
+}
+
+.ingredientMeta span:first-child {
+  color: var(--page-accent-dark);
+}
+
+.ingredientMeta span + span::before {
+  color: #c5ccd0;
+  content: "/";
+  margin-right: 8px;
+}
+
+.ingredientCard h3 {
+  color: var(--page-ink);
+  font-size: var(--type-feature);
+  font-weight: var(--weight-semibold);
+  line-height: var(--line-feature);
+  margin: 16px 0 0;
+  text-align: center;
+  word-break: keep-all;
+}
+
+.ingredientCard strong {
+  color: var(--page-accent-dark);
+  display: block;
+  font-size: var(--type-caption);
+  font-weight: var(--weight-medium);
+  line-height: var(--line-caption);
+  margin-top: 7px;
+  text-align: center;
+}
+
+.ingredientHeadline {
+  color: var(--page-ink);
+  font-size: var(--type-body);
+  font-weight: var(--weight-medium);
+  line-height: var(--line-body);
+  margin: 22px 0 0;
+  word-break: keep-all;
+}
+
+.ingredientBody {
+  color: var(--page-muted);
+  font-size: var(--type-body);
+  font-weight: var(--weight-regular);
+  line-height: var(--line-body);
+  margin: 12px 0 0;
+  word-break: keep-all;
+}
+
+.noteList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  margin: 22px 0 0;
+  padding: 0;
+}
+
+.noteList li {
+  background: #e8f2ff;
+  border: 1px solid #cfe3ff;
+  border-radius: 980px;
+  color: var(--page-accent-dark);
+  font-size: var(--type-micro);
+  font-weight: var(--weight-medium);
+  line-height: var(--line-micro);
+  padding: 7px 10px;
+}
+
+.shotNote {
+  border-top: 1px solid var(--page-line);
+  margin-top: 24px;
+  padding-top: 20px;
+}
+
+.shotNote span {
+  color: var(--page-subtle);
+  display: block;
+  font-size: var(--type-micro);
+  font-weight: var(--weight-medium);
+  line-height: var(--line-micro);
+  margin-bottom: 8px;
+}
+
+.shotNote p {
+  color: var(--page-ink);
+  font-size: var(--type-body);
+  font-weight: var(--weight-regular);
+  line-height: var(--line-body);
+  margin: 0;
+  word-break: keep-all;
+}
+
+.sourceDetails {
+  border-top: 1px solid var(--page-line);
+  margin-top: 22px;
+  padding-top: 18px;
+}
+
+.sourceDetails summary {
+  color: var(--page-accent-dark);
+  cursor: pointer;
+  font-size: var(--type-micro);
+  font-weight: var(--weight-medium);
+  list-style: none;
+  line-height: var(--line-micro);
+}
+
+.sourceDetails summary::-webkit-details-marker {
+  display: none;
+}
+
+.sourceDetails summary::marker {
+  content: "";
+}
+
+.sourceList {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.sourceList a {
+  color: var(--page-ink);
+  display: block;
+  text-decoration: none;
+}
+
+.sourceList a:hover span {
+  color: var(--page-accent-dark);
+}
+
+.sourceList span {
+  font-size: var(--type-micro);
+  font-weight: var(--weight-medium);
+  line-height: var(--line-caption);
+  transition: color 160ms ease;
+}
+
+.sourceList small {
+  color: var(--page-subtle);
+  display: block;
+  font-size: var(--type-nano);
+  font-weight: var(--weight-regular);
+  margin-top: 4px;
+  line-height: var(--line-nano);
+}
+
+.referenceList {
+  counter-reset: reference;
+  display: grid;
+  gap: 0;
+  list-style: none;
+  margin: 0 auto;
+  max-width: 980px;
+  padding: 0;
+}
+
+.referenceList li {
+  border-top: 1px solid var(--page-line);
+  counter-increment: reference;
+  display: grid;
+  gap: 7px;
+  grid-template-columns: 116px 1fr;
+  padding: 18px 0;
+}
+
+.referenceList li:last-child {
+  border-bottom: 1px solid var(--page-line);
+}
+
+.referenceList span {
+  color: var(--page-subtle);
+  font-size: var(--type-micro);
+  font-weight: var(--weight-medium);
+  line-height: var(--line-micro);
+}
+
+.referenceList span::before {
+  content: counter(reference, decimal-leading-zero) ". ";
+}
+
+.referenceList a {
+  color: var(--page-ink);
+  display: inline;
+  font-size: var(--type-body);
+  font-weight: var(--weight-medium);
+  line-height: var(--line-body);
+  text-decoration: none;
+  word-break: keep-all;
+}
+
+.referenceList a:hover {
+  color: var(--page-accent-dark);
+}
+
+.referenceList small {
+  color: var(--page-subtle);
+  font-size: var(--type-micro);
+  font-weight: var(--weight-regular);
+  grid-column: 2 / 3;
+  line-height: var(--line-micro);
+}
+
+@keyframes heroRise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1120px) {
+  .shotGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .ingredientGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .hero {
+    min-height: 68svh;
+    padding-bottom: 78px;
+    padding-top: 108px;
+  }
+
+  .heroOverlay {
+    background:
+      linear-gradient(180deg, rgba(248, 251, 252, 0.7) 0%, rgba(248, 251, 252, 0.42) 42%, rgba(248, 251, 252, 0.58) 100%),
+      linear-gradient(90deg, rgba(248, 251, 252, 0.68), rgba(248, 251, 252, 0.14));
+  }
+
+  .shotSection,
+  .ingredientsSection,
+  .referencesSection {
+    padding-bottom: 78px;
+    padding-top: 78px;
+  }
+
+  .sectionHeader,
+  .referencesHeader {
+    margin-bottom: 34px;
+    text-align: left;
+  }
+
+  .shotGrid,
+  .ingredientGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .shotCard,
+  .ingredientCard {
+    min-height: 0;
+  }
+
+  .referenceList li {
+    grid-template-columns: 1fr;
+  }
+
+  .referenceList small {
+    grid-column: 1;
+  }
+}
+
+@media (max-width: 520px) {
+  .hero {
+    min-height: 640px;
+  }
+
+  .heroActions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    width: 100%;
+  }
+
+  .ingredientCard {
+    padding: 24px;
+  }
+}

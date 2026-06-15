@@ -7,6 +7,9 @@ const isGithubPages = process.env.GITHUB_PAGES === "true";
 const githubPagesBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 const nextConfig: NextConfig = {
+  images: {
+    qualities: [75, 94],
+  },
   turbopack: {
     root: configDirectory,
   },
@@ -15,6 +18,7 @@ const nextConfig: NextConfig = {
         assetPrefix: githubPagesBasePath ? `${githubPagesBasePath}/` : undefined,
         basePath: githubPagesBasePath || undefined,
         images: {
+          qualities: [75, 94],
           unoptimized: true,
         },
         output: "export" as const,

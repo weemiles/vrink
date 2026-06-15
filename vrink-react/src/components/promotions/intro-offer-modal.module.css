@@ -1,0 +1,275 @@
+.overlay {
+  align-items: center;
+  background: rgba(0, 0, 0, 0.48);
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  padding: 32px var(--layout-page-gutter);
+  position: fixed;
+  z-index: 150;
+}
+
+.dialog {
+  background: #ffffff;
+  border: 0;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 24px 80px rgba(15, 23, 42, 0.24);
+  color: var(--brand-ink);
+  font-family: var(--font-pretendard);
+  max-height: calc(100svh - 48px);
+  max-width: 520px;
+  overflow: hidden;
+  width: min(100%, 520px);
+}
+
+.dialog * {
+  letter-spacing: 0;
+}
+
+.dialog:focus {
+  outline: none;
+}
+
+.darkPanel {
+  background: var(--brand-ink);
+  color: #ffffff;
+  min-height: 216px;
+  padding: 44px 24px 34px;
+  position: relative;
+}
+
+.closeButton {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.12);
+  border: 0;
+  border-radius: 50%;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-flex;
+  height: 44px;
+  justify-content: center;
+  position: absolute;
+  right: 18px;
+  top: 18px;
+  transition:
+    background 160ms ease,
+    transform 160ms ease;
+  width: 44px;
+}
+
+.closeButton:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.closeButton:focus-visible,
+.primaryAction:focus-visible,
+.todayButton:focus-visible {
+  box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.28);
+  outline: none;
+}
+
+.closeButton:active {
+  transform: scale(0.96);
+}
+
+.eyebrow {
+  color: #2997ff;
+  font-size: var(--type-label);
+  font-weight: var(--weight-regular);
+  line-height: var(--line-label);
+  margin: 0 0 18px;
+  word-break: keep-all;
+}
+
+.darkPanel h2 {
+  color: #ffffff;
+  font-size: var(--type-display);
+  font-weight: var(--weight-semibold);
+  line-height: var(--line-display);
+  margin: 0;
+  max-width: 440px;
+  word-break: keep-all;
+}
+
+.darkPanel h2 span {
+  display: block;
+}
+
+.lightPanel {
+  display: grid;
+  gap: 16px;
+  padding: 28px 24px 26px;
+}
+
+.offerCopy {
+  display: grid;
+  gap: 10px;
+}
+
+.offerCopy h3 {
+  color: var(--brand-ink);
+  font-size: var(--type-card);
+  font-weight: var(--weight-semibold);
+  line-height: var(--line-card);
+  margin: 0;
+  word-break: keep-all;
+}
+
+.offerCopy p {
+  color: var(--text-muted);
+  font-size: var(--type-body);
+  font-weight: var(--weight-regular);
+  line-height: var(--line-body);
+  margin: 0;
+  max-width: 640px;
+  word-break: keep-all;
+}
+
+.offerCopy strong {
+  color: var(--brand-ink);
+  font-weight: var(--weight-semibold);
+}
+
+.primaryAction {
+  align-items: center;
+  background: var(--brand-primary);
+  border-radius: var(--radius-sm);
+  color: #ffffff;
+  display: inline-flex;
+  font-size: var(--type-caption);
+  font-weight: var(--weight-medium);
+  justify-content: center;
+  line-height: var(--line-caption);
+  min-height: 46px;
+  padding: 0 24px;
+  text-decoration: none;
+  transition:
+    background 160ms ease,
+    transform 160ms ease;
+  width: 100%;
+}
+
+.primaryAction:hover {
+  background: var(--brand-primary-strong);
+}
+
+.primaryAction:active {
+  transform: translateY(1px);
+}
+
+.todayButton {
+  background: transparent;
+  border: 0;
+  color: var(--text-subtle);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: var(--type-caption);
+  font-weight: var(--weight-regular);
+  line-height: var(--line-caption);
+  min-height: 28px;
+  padding: 0;
+}
+
+.todayButton:hover {
+  color: var(--text-muted);
+}
+
+@media (max-width: 720px) {
+  .overlay {
+    align-items: center;
+    padding: 20px;
+  }
+
+  .dialog {
+    border-radius: var(--radius-lg);
+    max-height: calc(100svh - 40px);
+    max-width: 328px;
+    overflow-y: auto;
+    width: min(calc(100vw - 48px), 328px);
+  }
+
+  .darkPanel {
+    min-height: 200px;
+    padding: 52px 18px 30px;
+  }
+
+  .closeButton {
+    height: 40px;
+    right: 16px;
+    top: 16px;
+    width: 40px;
+  }
+
+  .eyebrow {
+    font-size: var(--type-caption);
+    margin-bottom: 18px;
+  }
+
+  .darkPanel h2 {
+    font-size: var(--type-display);
+    line-height: var(--line-display);
+  }
+
+  .lightPanel {
+    gap: 16px;
+    padding: 26px 18px 24px;
+  }
+
+  .offerCopy {
+    gap: 12px;
+  }
+
+  .offerCopy h3 {
+    font-size: var(--type-card);
+    line-height: var(--line-card);
+  }
+
+  .offerCopy p {
+    font-size: var(--type-body);
+    line-height: var(--line-body);
+  }
+
+  .primaryAction {
+    font-size: var(--type-caption);
+    min-height: 46px;
+    padding: 0 20px;
+  }
+
+  .todayButton {
+    font-size: var(--type-caption);
+  }
+}
+
+@media (max-width: 380px) {
+  .dialog {
+    max-width: 312px;
+    width: min(calc(100vw - 44px), 312px);
+  }
+
+  .darkPanel {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .darkPanel h2 {
+    font-size: var(--type-section);
+    line-height: var(--line-section);
+  }
+
+  .lightPanel {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .offerCopy h3 {
+    font-size: var(--type-lead);
+    line-height: var(--line-lead);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .closeButton,
+  .primaryAction {
+    transition: none;
+  }
+}

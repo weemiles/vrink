@@ -86,6 +86,23 @@ const naverClientId =
   process.env.NEXT_PUBLIC_NAVER_MAP_NCP_KEY_ID ??
   "";
 const markerLogoPath = "/images/vrink/brand/vrink-circle-logo.png";
+type LocationExplorerProps = {
+  locale?: "ko" | "en";
+};
+
+const locationExplorerCopy = {
+  ko: {
+    listLabel: "브링크 설치 지점 목록",
+    listTitle: "설치 지점",
+    countSuffix: "곳",
+  },
+  en: {
+    listLabel: "VRINK installation locations",
+    listTitle: "Locations",
+    countSuffix: " sites",
+  },
+} as const;
+
 const initialMapCenter = vrinkLocations.reduce(
   (center, location) => ({
     lat: center.lat + location.lat / vrinkLocations.length,
@@ -93,6 +110,7 @@ const initialMapCenter = vrinkLocations.reduce(
   }),
   { lat: 0, lng: 0 },
 );
+const initialMapZoom = vrinkLocations.length > 6 ? 10 : vrinkLocations.length > 1 ? 12 : 16;
 
 function createMarkerContent(name: string, locationId: string, isSelected: boolean) {
   const markerLogoSrc = withBasePath(markerLogoPath);
@@ -181,7 +199,8 @@ function createHoverContent(name: string, address: string) {
   `;
 }
 
-export function LocationExplorer() {
+export function LocationExplorer({ locale = "ko" }: LocationExplorerProps) {
+  const copy = locationExplorerCopy[locale];
   const [selectedLocationId, setSelectedLocationId] = useState<string | null>(null);
   const [hoveredLocationId, setHoveredLocationId] = useState<string | null>(null);
   const [popupLocationId, setPopupLocationId] = useState<string | null>(null);
@@ -303,7 +322,7 @@ export function LocationExplorer() {
         maxZoom: 19,
         minZoom: 10,
         scrollWheel: false,
-        zoom: vrinkLocations.length > 1 ? 12 : 16,
+        zoom: initialMapZoom,
         zoomControl: false,
         zoomControlOptions: {
           position: maps.Position.TOP_RIGHT,
@@ -394,10 +413,13 @@ export function LocationExplorer() {
       ) : null}
 
       <div className={styles.mapWorkspace}>
-        <aside className={styles.locationListPanel} aria-label="브링크 설치 지점 목록">
+        <aside className={styles.locationListPanel} aria-label={copy.listLabel}>
           <div className={styles.locationListHeader}>
-            <span>설치 지점</span>
-            <strong>{vrinkLocations.length}곳</strong>
+            <span>{copy.listTitle}</span>
+            <strong>
+              {vrinkLocations.length}
+              {copy.countSuffix}
+            </strong>
           </div>
           <div className={styles.locationList}>
             {vrinkLocations.map((location) => (

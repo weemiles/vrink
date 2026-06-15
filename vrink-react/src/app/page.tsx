@@ -5,6 +5,8 @@ import { CookieSettingsPopup } from "@/components/consent/cookie-settings-popup"
 import { LeadForm } from "@/components/forms/lead-form";
 import { VrinkFooter } from "@/components/layout/vrink-footer";
 import { VrinkHeader } from "@/components/layout/vrink-header";
+import { IntroOfferModal } from "@/components/promotions/intro-offer-modal";
+import { LifestyleShowcase } from "@/components/sections/lifestyle-showcase";
 import { ShotNutritionSection } from "@/components/sections/shot-nutrition-section";
 import { UsageStepsViewer, type UsageStep } from "@/components/sections/usage-steps-viewer";
 import { withBasePath } from "@/lib/static-export";
@@ -52,6 +54,27 @@ const systemItems = [
   },
 ];
 
+const adminScreenshots = [
+  {
+    title: "실시간 운영 대시보드",
+    body: "회원, 주문, 매출, 이슈 현황을 한 화면에서 확인합니다.",
+    image: "/images/vrink/admin/dashboard-masked.png",
+    alt: "지점명이 가려진 브링크 관리자 대시보드 화면",
+  },
+  {
+    title: "자사몰 주문 관리",
+    body: "운영 소모품 주문과 배송 흐름을 관리자 화면에서 이어갑니다.",
+    image: "/images/vrink/admin/own-mall-masked.png",
+    alt: "지점명이 가려진 브링크 관리자 자사몰 화면",
+  },
+  {
+    title: "매출 분석",
+    body: "기간별 매출, 옵션 비중, 시간대별 주문 흐름을 비교합니다.",
+    image: "/images/vrink/admin/sales-masked.png",
+    alt: "지점명이 가려진 브링크 관리자 매출 분석 화면",
+  },
+];
+
 const usageSteps: UsageStep[] = [
   {
     title: "기능 선택",
@@ -87,38 +110,55 @@ const lifestyleImages = [
   {
     src: "/images/vrink/lifestyle/vrink-lifestyle-1114.jpg",
     alt: "브링크 음료 두 잔을 들고 있는 사용 장면",
+    position: "center 38%",
   },
   {
     src: "/images/vrink/lifestyle/vrink-lifestyle-1094.jpg",
     alt: "브링크 음료를 마시는 사용 장면",
+    position: "center 42%",
   },
   {
     src: "/images/vrink/lifestyle/vrink-lifestyle-1085.jpg",
     alt: "브링크 스테이션 앞에서 음료를 받는 장면",
+    position: "center 42%",
   },
   {
     src: "/images/vrink/lifestyle/vrink-lifestyle-1198.jpg",
     alt: "브링크 스테이션 옆에서 음료를 마시는 장면",
+    position: "center 42%",
   },
   {
     src: "/images/vrink/lifestyle/vrink-lifestyle-1193.jpg",
     alt: "태블릿 거치대와 함께 음료를 마시는 장면",
+    position: "center 42%",
   },
   {
     src: "/images/vrink/lifestyle/vrink-lifestyle-1089.jpg",
     alt: "브링크 스테이션 앞에서 음료를 들고 미소 짓는 장면",
+    position: "center 42%",
   },
   {
     src: "/images/vrink/lifestyle/vrink-lifestyle-1138.jpg",
     alt: "노란색과 초록색 음료를 비교하는 장면",
+    position: "center 40%",
   },
   {
     src: "/images/vrink/lifestyle/vrink-lifestyle-1124.jpg",
     alt: "브링크 음료 두 잔을 들고 선택하는 장면",
+    position: "center 40%",
   },
 ];
 
 const newsItems = [
+  {
+    title: "브링크, CNT스타디움 유망 스포츠 스타트업 최종 선정",
+    category: "언론 보도",
+    source: "전자신문",
+    date: "2026.04",
+    body: "브링크가 2026 스포츠 액셀러레이팅 프로그램 CNT스타디움 최종 선정기업으로 소개된 기사입니다.",
+    image: "/images/vrink/news/etnews-cnt-stadium-20260430.jpg",
+    href: "https://n.news.naver.com/article/030/0003423393?sid=101",
+  },
   {
     title: "브링크, 기보벤처캠프 18기 선발…맞춤형 뉴트리션 기술력 인정",
     category: "언론 보도",
@@ -213,6 +253,36 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className={styles.adminSection} aria-labelledby="admin-dashboard-title">
+        <div className={styles.adminCopy}>
+          <p>관리자 대시보드</p>
+          <h2 id="admin-dashboard-title">판매 이후의 운영까지 실제 화면으로 확인합니다.</h2>
+          <span>
+            브링크는 설치 이후에도 관리자 페이지를 통해 매장 상태, 자사몰 주문, 매출 흐름을 확인할 수 있게
+            지원합니다.
+          </span>
+        </div>
+
+        <div className={styles.adminShowcase} aria-label="브링크 관리자 화면 스크린샷">
+          {adminScreenshots.map((item, index) => (
+            <figure className={index === 0 ? styles.adminScreenshotPrimary : styles.adminScreenshot} key={item.title}>
+              <div className={styles.adminScreenshotImage}>
+                <Image src={withBasePath(item.image)} alt={item.alt} fill sizes="(max-width: 720px) 78vw, 31vw" />
+              </div>
+              <figcaption>
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+        <div className={styles.adminDots} aria-hidden="true">
+          {adminScreenshots.map((item, index) => (
+            <span className={index === 0 ? styles.adminDotActive : undefined} key={item.title} />
+          ))}
+        </div>
+      </section>
+
       <section id="blend" className={styles.blendSection}>
         <ShotNutritionSection />
       </section>
@@ -240,27 +310,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="experience" className={styles.lifestyleSection}>
-        <div className={styles.sectionIntro}>
-          <p>사용 장면</p>
-          <h2>선택한 음료가 일상으로 이어지는 순간.</h2>
-        </div>
-        <div className={styles.lifestyleGrid}>
-          {lifestyleImages.map((image, index) => (
-            <figure
-              className={`${styles.lifestyleTile} ${index === 0 ? styles.lifestyleTileLarge : ""}`}
-              key={image.src}
-            >
-              <Image
-                src={withBasePath(image.src)}
-                alt={image.alt}
-                fill
-                sizes={index === 0 ? "(max-width: 980px) 100vw, 50vw" : "(max-width: 980px) 50vw, 25vw"}
-              />
-            </figure>
-          ))}
-        </div>
-      </section>
+      <LifestyleShowcase images={lifestyleImages} />
 
       <section id="space" className={styles.useCaseSection}>
         <div className={styles.sectionIntro}>
@@ -350,6 +400,7 @@ export default function HomePage() {
       </section>
 
       <VrinkFooter ctaHref="/#contact" />
+      <IntroOfferModal />
       <CookieSettingsPopup />
     </main>
   );

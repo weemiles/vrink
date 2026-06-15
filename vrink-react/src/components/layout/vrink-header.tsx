@@ -12,10 +12,11 @@ import styles from "./vrink-header.module.css";
 const navItems = {
   ko: [
     ["제품", "/product"],
-    ["상세페이지", "/detail"],
+    ["원료소개", "/ingredients"],
     ["도입 지점", "/locations"],
     ["소식", "/#news"],
     ["고객지원", "/support"],
+    ["불편접수", "/inquiry"],
   ],
   en: [
     ["Product", "/en/product"],

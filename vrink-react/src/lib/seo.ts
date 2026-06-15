@@ -5,12 +5,14 @@ import { siteConfig } from "@/config/site";
 type BuildMetadataInput = {
   title?: string;
   description?: string;
+  locale?: "ko" | "en";
   path?: string;
 };
 
 export function buildMetadata({
   title,
   description,
+  locale = "ko",
   path = "/",
 }: BuildMetadataInput): Metadata {
   const metadataBase = new URL(siteConfig.baseUrl);
@@ -41,7 +43,7 @@ export function buildMetadata({
       siteName: siteConfig.name,
       title: fullTitle,
       description: fullDescription,
-      locale: "ko_KR",
+      locale: locale === "en" ? "en_US" : "ko_KR",
       images: [
         {
           url: heroImageUrl,

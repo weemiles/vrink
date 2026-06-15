@@ -110,9 +110,9 @@ export function ShotNutritionSection() {
           <Image
             src={withBasePath(activeShot.image)}
             alt={`${activeShot.name} 이미지`}
-            width={156}
-            height={180}
-            sizes="(max-width: 760px) 96px, 156px"
+            width={118}
+            height={136}
+            sizes="(max-width: 760px) 84px, 118px"
           />
           <div>
             <p>상세 성분</p>

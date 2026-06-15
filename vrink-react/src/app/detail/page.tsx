@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import {
   ArrowRight,
   Building2,
@@ -186,6 +187,8 @@ const faqItems = [
 ];
 
 export default function DetailPage() {
+  redirect("/");
+
   return (
     <main className={styles.page}>
       <VrinkHeader />

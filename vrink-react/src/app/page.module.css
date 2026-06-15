@@ -110,6 +110,7 @@
 .sectionIntro p,
 .usageIntro p,
 .blendCopy p,
+.adminCopy p,
 .operationCopy p,
 .contactCopy p {
   color: var(--page-blue-dark);
@@ -146,6 +147,7 @@
 
 .usageIntro span,
 .blendCopy span,
+.adminCopy span,
 .operationCopy span,
 .contactCopy span {
   color: var(--page-muted);
@@ -250,6 +252,7 @@
 .sectionIntro h2,
 .usageIntro h2,
 .blendCopy h2,
+.adminCopy h2,
 .operationCopy h2,
 .contactCopy h2 {
   color: var(--page-ink);
@@ -569,6 +572,93 @@
 
 .systemItem p {
   color: var(--page-muted-dark);
+}
+
+.adminSection {
+  background: #f5f5f7;
+  display: grid;
+  gap: 54px;
+  padding: 126px var(--layout-page-gutter);
+  text-align: center;
+}
+
+.adminCopy {
+  justify-self: center;
+  max-width: 740px;
+}
+
+.adminCopy h2,
+.adminCopy span {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.adminCopy h2 {
+  scroll-margin-top: 120px;
+}
+
+.adminShowcase {
+  align-items: stretch;
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  justify-self: center;
+  max-width: 1220px;
+  width: 100%;
+}
+
+.adminScreenshot,
+.adminScreenshotPrimary {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  box-shadow: 0 24px 70px rgba(16, 24, 40, 0.1);
+  display: grid;
+  margin: 0;
+  overflow: hidden;
+}
+
+.adminScreenshotImage {
+  aspect-ratio: 16 / 9;
+  background: #f5f5f7;
+  overflow: hidden;
+  position: relative;
+}
+
+.adminScreenshotImage img {
+  object-fit: cover;
+  object-position: top left;
+}
+
+.adminScreenshot figcaption,
+.adminScreenshotPrimary figcaption {
+  display: grid;
+  gap: 8px;
+  padding: 20px 22px 22px;
+  text-align: left;
+}
+
+.adminScreenshot h3,
+.adminScreenshotPrimary h3 {
+  color: var(--page-ink);
+  font-size: var(--type-label);
+  font-weight: var(--weight-semibold);
+  line-height: var(--line-label);
+  margin: 0;
+  word-break: keep-all;
+}
+
+.adminScreenshot p,
+.adminScreenshotPrimary p {
+  color: var(--page-muted);
+  font-size: var(--type-caption);
+  line-height: var(--line-caption);
+  margin: 0;
+  word-break: keep-all;
+}
+
+.adminDots {
+  display: none;
 }
 
 .blendSection {
@@ -1029,6 +1119,7 @@
 
   .usageIntro span,
   .blendCopy span,
+  .adminCopy span,
   .operationCopy span,
   .contactCopy span {
     font-size: var(--type-description);
@@ -1047,6 +1138,7 @@
   .useCaseSection,
   .faqSection,
   .contactSection,
+  .adminSection,
   .operationSection,
   .newsSection,
   .darkSection {
@@ -1073,6 +1165,7 @@
   .usageIntro h2,
   .expertCopy h2,
   .blendCopy h2,
+  .adminCopy h2,
   .operationCopy h2,
   .contactCopy h2 {
     font-size: var(--type-section);
@@ -1082,6 +1175,7 @@
   .sectionIntro,
   .usageIntro,
   .blendCopy,
+  .adminCopy,
   .operationCopy,
   .contactCopy {
     text-align: center;
@@ -1093,6 +1187,7 @@
   .lifestyleGrid,
   .useCaseGrid,
   .blendSection,
+  .adminSection,
   .operationSection,
   .contactSection,
   .newsFeature,
@@ -1101,12 +1196,28 @@
   }
 
   .blendCopy,
+  .adminCopy,
+  .adminShowcase,
   .operationImage,
   .operationCopy,
   .contactCopy {
     justify-self: center;
     max-width: 680px;
     width: 100%;
+  }
+
+  .adminCopy h2,
+  .adminCopy span {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .adminShowcase {
+    grid-template-columns: 1fr;
+  }
+
+  .adminScreenshotPrimary {
+    grid-row: auto;
   }
 
   .systemItem:first-child,
@@ -1211,10 +1322,58 @@
     width: 100%;
   }
 
+  .adminSection {
+    overflow: hidden;
+  }
+
+  .adminShowcase {
+    display: flex;
+    gap: 14px;
+    margin-inline: calc(var(--layout-page-gutter) * -1);
+    max-width: none;
+    overflow-x: auto;
+    padding: 0 var(--layout-page-gutter) 10px;
+    scroll-padding-inline: var(--layout-page-gutter);
+    scroll-snap-type: x mandatory;
+  }
+
+  .adminScreenshot,
+  .adminScreenshotPrimary {
+    flex: 0 0 min(78vw, 330px);
+    scroll-snap-align: center;
+  }
+
+  .adminScreenshot figcaption,
+  .adminScreenshotPrimary figcaption {
+    padding: 18px;
+  }
+
+  .adminDots {
+    align-items: center;
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 12px;
+  }
+
+  .adminDots span {
+    background: rgba(0, 0, 0, 0.16);
+    border-radius: 999px;
+    display: block;
+    height: 6px;
+    width: 6px;
+  }
+
+  .adminDots .adminDotActive {
+    background: var(--page-blue);
+    width: 18px;
+  }
+
   .sectionIntro h2,
   .usageIntro h2,
   .expertCopy h2,
   .blendCopy h2,
+  .adminCopy h2,
   .operationCopy h2,
   .contactCopy h2 {
     font-size: var(--type-section);
@@ -1230,70 +1389,65 @@
   }
 
   .revealSection {
-    background: #000000;
+    background: #ffffff;
   }
 
   .revealSection .sectionIntro {
-    margin-bottom: 62px;
+    margin-bottom: 48px;
     text-align: center;
   }
 
   .revealSection .sectionIntro h2 {
-    color: #f5f5f7;
+    color: var(--page-ink);
     margin-left: auto;
     margin-right: auto;
     max-width: 9.5em;
   }
 
   .revealSection .sectionIntro p {
-    color: #2997ff;
+    color: var(--page-blue-dark);
   }
 
   .sceneGrid {
-    gap: 76px;
+    gap: 16px;
   }
 
   .sceneCard {
-    background: transparent;
-    border-radius: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 22px;
-    padding: 0;
+    background: var(--page-gray);
+    border-radius: 8px;
+    display: block;
+    padding: 24px 24px 30px;
   }
 
   .sceneCard h3 {
-    color: #f5f5f7;
-    font-size: var(--type-section);
-    line-height: var(--line-section);
-    margin: 0 auto;
-    max-width: 10em;
-    order: 1;
-    text-align: center;
+    color: var(--page-ink);
+    font-size: var(--type-feature);
+    line-height: var(--line-feature);
+    margin: 0 0 10px;
+    max-width: none;
+    text-align: left;
   }
 
   .sceneCard p {
-    color: rgba(255, 255, 255, 0.58);
-    font-size: var(--type-description);
-    line-height: var(--line-description);
-    margin-inline: auto;
-    max-width: 31em;
-    order: 2;
-    text-align: center;
+    color: var(--page-muted);
+    font-size: var(--type-body);
+    line-height: var(--line-body);
+    margin: 0;
+    max-width: none;
+    text-align: left;
   }
 
   .sceneImage {
-    aspect-ratio: 1.34 / 1;
-    background: #111113;
+    aspect-ratio: 1 / 1;
+    background: transparent;
     border-radius: 8px;
-    margin: 12px 0 0;
-    order: 3;
+    margin: 0 0 24px;
     overflow: hidden;
   }
 
   .sceneImage img {
     box-sizing: border-box;
-    object-fit: cover;
+    object-fit: contain;
     padding: 0;
   }
 

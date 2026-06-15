@@ -19,9 +19,20 @@ export function requireEnv(name: string): string {
 
 export const env = {
   supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL ?? "",
+  supabaseAnonKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "",
   supabaseServiceRoleKey: process.env.SUPABASE_SERVICE_ROLE_KEY ?? "",
   googleSheetsWebhookUrl: process.env.GOOGLE_SHEETS_WEBHOOK_URL ?? "",
   googleSheetsWebhookSecret: process.env.GOOGLE_SHEETS_WEBHOOK_SECRET ?? "",
+  inquirySheetsWebhookUrl: process.env.INQUIRY_SHEETS_WEBHOOK_URL ?? "",
+  inquirySheetsWebhookSecret: process.env.INQUIRY_SHEETS_WEBHOOK_SECRET ?? "",
+  inquiryAttachmentBucket:
+    process.env.INQUIRY_ATTACHMENT_BUCKET ?? "inquiry-attachments",
+  hermesErpApiKey: process.env.HERMES_ERP_API_KEY ?? "",
+  erpAuthBypass: process.env.ERP_AUTH_BYPASS === "true",
+  slackSigningSecret: process.env.SLACK_SIGNING_SECRET ?? "",
+  slackBotToken: process.env.SLACK_BOT_TOKEN ?? "",
+  openaiApiKey: process.env.OPENAI_API_KEY ?? "",
+  openaiModel: process.env.OPENAI_MODEL ?? "gpt-4o-mini",
   leadRateLimitWindowMs: toPositiveNumber(
     process.env.LEAD_RATE_LIMIT_WINDOW_MS,
     DEFAULT_RATE_LIMIT_WINDOW_MS,
