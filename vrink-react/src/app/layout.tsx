@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 
+import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 import { VrinkConsultationWidget } from "@/components/consultation/vrink-consultation-widget";
 import { buildMetadata } from "@/lib/seo";
 
@@ -29,6 +30,7 @@ export default function RootLayout({
       <body className={`${pretendard.variable} vrink-design-system antialiased`}>
         {children}
         <VrinkConsultationWidget />
+        <GoogleAnalytics />
       </body>
     </html>
   );

@@ -3,15 +3,15 @@
 import Link from "next/link";
 import { useState, useSyncExternalStore } from "react";
 
+import {
+  CONSENT_STORAGE_KEY,
+  writeConsent,
+  type CookiePreferences,
+} from "@/lib/consent";
+
 import styles from "./cookie-settings-popup.module.css";
 
-const STORAGE_KEY = "vrink-cookie-consent-v1";
-
-type CookiePreferences = {
-  essential: boolean;
-  analytics: boolean;
-  marketing: boolean;
-};
+const INTRO_OFFER_EVENT = "vrink:intro-offer-visibility";
 
 const defaultPreferences: CookiePreferences = {
   essential: true,
@@ -29,7 +29,7 @@ const subscribeToConsentStore = (onStoreChange: () => void) => {
 
 const getConsentSnapshot = () => {
   try {
-    return window.localStorage.getItem(STORAGE_KEY) !== null;
+    return window.localStorage.getItem(CONSENT_STORAGE_KEY) !== null;
   } catch {
     return false;
   }
@@ -37,29 +37,37 @@ const getConsentSnapshot = () => {
 
 const getServerConsentSnapshot = () => true;
 
+const subscribeToIntroOfferStore = (onStoreChange: () => void) => {
+  window.addEventListener(INTRO_OFFER_EVENT, onStoreChange);
+
+  return () => {
+    window.removeEventListener(INTRO_OFFER_EVENT, onStoreChange);
+  };
+};
+
+const getIntroOfferSnapshot = () =>
+  document.body.dataset.vrinkIntroOffer === "visible" ||
+  document.body.dataset.vrinkIntroOfferSeen === "true";
+
+const getServerIntroOfferSnapshot = () => false;
+
 export function CookieSettingsPopup() {
   const hasStoredConsent = useSyncExternalStore(
     subscribeToConsentStore,
     getConsentSnapshot,
     getServerConsentSnapshot,
   );
+  const isIntroOfferVisible = useSyncExternalStore(
+    subscribeToIntroOfferStore,
+    getIntroOfferSnapshot,
+    getServerIntroOfferSnapshot,
+  );
   const [isDismissed, setIsDismissed] = useState(false);
   const [preferences, setPreferences] = useState<CookiePreferences>(defaultPreferences);
 
   const savePreferences = (nextPreferences: CookiePreferences) => {
-    try {
-      window.localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify({
-          ...nextPreferences,
-          essential: true,
-          savedAt: new Date().toISOString(),
-        }),
-      );
-    } catch {
-      // If storage is unavailable, close the popup for this page view.
-    }
-
+    // 동의값 저장 + 변경 이벤트 발행(같은 탭에서 GA가 즉시 반응하도록).
+    writeConsent(nextPreferences);
     setIsDismissed(true);
   };
 
@@ -70,7 +78,7 @@ export function CookieSettingsPopup() {
     }));
   };
 
-  if (hasStoredConsent || isDismissed) {
+  if (isIntroOfferVisible || hasStoredConsent || isDismissed) {
     return null;
   }
 
