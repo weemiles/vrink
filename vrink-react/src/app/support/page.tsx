@@ -1,28 +1,17 @@
 import type { Metadata } from "next";
 
-import { LeadForm } from "@/components/forms/lead-form";
 import { VrinkFooter } from "@/components/layout/vrink-footer";
 import { VrinkHeader } from "@/components/layout/vrink-header";
 import { buildMetadata } from "@/lib/seo";
 
 import styles from "./page.module.css";
+import { SupportContent } from "./support-content";
 
 export const metadata: Metadata = buildMetadata({
   title: "고객지원",
   description: "브링크 도입, 설치, 운영 관리, 기능샷과 음료 구성에 대한 자주 묻는 질문과 문의 안내입니다.",
   path: "/support",
 });
-
-const categories = [
-  ["자주 묻는 질문", "#faq"],
-  ["도입문의", "#intro"],
-  ["설치", "#install"],
-  ["운영관리", "#operation"],
-  ["기능샷·음료", "#blend"],
-  ["위생", "#clean"],
-  ["행사·팝업", "#event"],
-  ["문의하기", "#inquiry"],
-];
 
 const faqGroups = [
   {
@@ -76,12 +65,50 @@ const faqGroups = [
     title: "기능샷·음료",
     items: [
       [
+        "여러 기능샷을 함께 섭취해도 되나요?",
+        "기능샷은 목적에 따라 함께 조합해 섭취할 수 있습니다. 각 샷의 성분이 서로 다른 루틴을 보완하도록 구성되어 있어, 상황에 따라 활력, 리프레시, 데일리 컨디션 관리 측면에서 시너지를 기대할 수 있습니다. 다만 카페인에 민감하거나 수면 불편, 두근거림이 있는 경우에는 제품별 성분과 섭취량을 먼저 확인하시기 바랍니다.",
+      ],
+      [
+        "각 기능샷은 어떤 목적의 샷인가요?",
+        "부스터샷은 활력 루틴, 릴렉스샷은 리프레시 루틴, 비타민샷은 데일리 비타민 보충 루틴, 커팅샷은 가벼운 관리 루틴, 아미노샷은 운동 전후 컨디션 루틴에 맞춰 구성되어 있습니다.",
+      ],
+      [
         "기능샷과 맛 조합은 어떻게 정하나요?",
         "공간의 목적과 사용자의 선호를 기준으로 부스터샷, 비타민샷, 릴렉스샷, 커팅샷, 아미노샷과 플레이버 조합을 제안합니다.",
       ],
       [
         "영양성분은 어디에서 확인할 수 있나요?",
         "홈페이지의 기능샷 둘러보기에서 각 샷의 영양성분을 확인할 수 있고, 도입 상담 시 운영 공간에 맞는 안내 자료도 함께 제공합니다.",
+      ],
+      [
+        "가정에서 마실 수 있는 액상 제품도 있나요?",
+        "현재는 가정용 액상 제품을 별도로 판매하고 있지 않습니다. 브링크는 도입 공간에 설치되는 디스펜서와 기능샷 운영 경험을 중심으로 제공합니다.",
+      ],
+      [
+        "맛이 익숙하게 느껴질 수도 있나요?",
+        "익숙하게 느껴질 수 있습니다. 브링크는 누구나 편하게 마실 수 있는 맛을 바탕으로, 기능샷 선택과 맛, 탄산, 농도 조합을 더해 개인화된 음료 경험을 만드는 데 집중하고 있습니다.",
+      ],
+    ],
+  },
+  {
+    id: "intake",
+    title: "섭취 안내",
+    items: [
+      [
+        "당뇨가 있는 사람도 섭취할 수 있나요?",
+        "제로 당류 구성으로 일반 당 음료보다 부담을 낮춘 형태입니다. 다만 당뇨를 관리 중인 경우 제품별 영양성분과 전체 식단을 함께 확인해야 합니다. 개인 상태에 따라 담당 의료진과 상담하는 것이 가장 안전합니다.",
+      ],
+      [
+        "하루 권장 섭취량을 초과하지는 않나요?",
+        "1회 섭취 기준으로 주요 성분은 일반적인 하루 기준의 일부 수준으로 설계되어 있습니다. 여러 잔을 마시거나 커피, 에너지드링크처럼 카페인이 들어간 음료를 함께 섭취하는 경우 총 섭취량을 확인해야 합니다.",
+      ],
+      [
+        "임산부나 아이도 먹을 수 있나요?",
+        "임산부와 아이는 비타민샷 중심으로 안내하고 있습니다. 카페인이 포함된 샷은 권장하지 않으며, 임신 중이거나 어린이가 섭취하는 경우에는 보호자와 전문가가 성분표를 먼저 확인해야 합니다.",
+      ],
+      [
+        "특정 질환이 있는 고객에게도 판매 가능한가요?",
+        "질환의 종류와 복용 중인 약에 따라 확인해야 할 성분이 달라질 수 있습니다. 특정 질환이 있거나 치료 중인 고객은 제품별 영양성분을 확인하고, 필요하면 의료진 또는 약사와 상담한 뒤 섭취해야 합니다.",
       ],
     ],
   },
@@ -125,56 +152,14 @@ export default function SupportPage() {
           <p>고객지원</p>
           <h1>브링크 고객지원</h1>
           <span>
-            도입 전 확인할 질문부터 설치, 운영, 위생 관리까지 한곳에서 확인하세요.
+            도입 전 확인할 질문부터 설치, 운영, 위생 관리까지 한곳에서 확인할 수 있습니다.
           </span>
-          <nav className={styles.categoryNav} aria-label="고객지원 카테고리">
-            {categories.map(([label, href], index) => (
-              <a className={index === 0 ? styles.activeCategory : ""} href={href} key={label}>
-                {label}
-              </a>
-            ))}
-          </nav>
         </div>
       </section>
 
-      <section id="faq" className={styles.faqSection}>
-        <div className={styles.faqShell}>
-          {faqGroups.map((group) => (
-            <section className={styles.faqGroup} id={group.id} key={group.id}>
-              <div className={styles.groupHeader}>
-                <p>{group.title}</p>
-              </div>
-              <div className={styles.faqList}>
-                {group.items.map(([question, answer]) => (
-                  <details key={question}>
-                    <summary>
-                      <span>Q. {question}</span>
-                    </summary>
-                    <p>{answer}</p>
-                  </details>
-                ))}
-              </div>
-            </section>
-          ))}
-        </div>
-      </section>
+      <SupportContent faqGroups={faqGroups} />
 
-      <section id="inquiry" className={styles.inquirySection}>
-        <div className={styles.inquiryGrid}>
-          <div className={styles.inquiryCopy}>
-            <p>도입문의</p>
-            <h2>우리 공간에 맞는 구성을 상담해보세요.</h2>
-            <span>
-              설치 환경, 예상 사용 인원, 운영 목적을 남겨주시면 브링크 팀이 확인 후 연락드립니다.
-            </span>
-          </div>
-          <div className={styles.formPanel}>
-            <LeadForm />
-          </div>
-        </div>
-      </section>
-
-      <VrinkFooter ctaHref="/support#inquiry" />
+      <VrinkFooter ctaHref="/inquiry" />
     </main>
   );
 }

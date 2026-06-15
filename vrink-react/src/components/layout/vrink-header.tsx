@@ -16,7 +16,6 @@ const navItems = {
     ["도입 지점", "/locations"],
     ["소식", "/#news"],
     ["고객지원", "/support"],
-    ["불편접수", "/inquiry"],
   ],
   en: [
     ["Product", "/en/product"],
