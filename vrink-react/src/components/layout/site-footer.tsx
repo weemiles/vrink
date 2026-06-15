@@ -18,10 +18,11 @@ export function SiteFooter() {
           <section className="lg:col-span-4">
             <h3 className="text-lg font-semibold">회사 정보</h3>
             <ul className="mt-4 space-y-2 text-body-2 text-[var(--text-muted)]">
-              <li>사업자명: {vrinkCopy.footer.companyInfo.companyName}</li>
-              <li>사업자번호: {vrinkCopy.footer.companyInfo.registrationNumber}</li>
-              <li>대표자: {vrinkCopy.footer.companyInfo.owner}</li>
-              <li>주소: {vrinkCopy.footer.companyInfo.address}</li>
+              <li>상호명 : {vrinkCopy.footer.companyInfo.companyName}</li>
+              <li>대표자명 : {vrinkCopy.footer.companyInfo.owner}</li>
+              <li>사업자등록번호 : {vrinkCopy.footer.companyInfo.registrationNumber}</li>
+              <li>사업장 주소 : {vrinkCopy.footer.companyInfo.address}</li>
+              <li>유선번호 : {vrinkCopy.footer.companyInfo.phone}</li>
             </ul>
           </section>
 

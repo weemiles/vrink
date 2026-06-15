@@ -27,7 +27,6 @@ export const siteConfig: SiteConfig = {
     companyName: "주식회사 브링크",
     owner: "김민수",
     registrationNumber: "162-81-03420",
-    address:
-      "경기도 남양주시 별내 중앙로 30, 제 305-1821호(별내동, 별내로데오몰)",
+    address: "경기도 남양주시 별내중앙로 30, 305-1821",
   },
 };

@@ -84,7 +84,9 @@
 .footerSocial a,
 .footerLegal a,
 .footerLegal p,
-.footerLegal span {
+.footerLegal span,
+.footerBusinessInfo dt,
+.footerBusinessInfo dd {
   color: rgba(0, 0, 0, 0.62);
   font-size: var(--type-micro);
   font-weight: var(--weight-regular);
@@ -193,11 +195,27 @@
   max-width: 1180px;
 }
 
-.footerLegal div {
+.footerLegalLinks {
   align-items: center;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+}
+
+.footerBusinessInfo {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+}
+
+.footerBusinessInfo div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+}
+
+.footerBusinessInfo dd {
+  min-width: 0;
 }
 
 .footerLegal p:last-child {

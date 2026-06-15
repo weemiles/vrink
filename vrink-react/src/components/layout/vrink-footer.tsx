@@ -16,6 +16,26 @@ type VrinkFooterProps = {
   locale?: "ko" | "en";
 };
 
+const businessInfoLabels = {
+  ko: {
+    companyName: "상호명 :",
+    owner: "대표자명 :",
+    registrationNumber: "사업자등록번호 :",
+    address: "사업장 주소 :",
+    phone: "유선번호 :",
+  },
+  en: {
+    companyName: "Company :",
+    owner: "CEO :",
+    registrationNumber: "Business Registration No. :",
+    address: "Business Address :",
+    phone: "Phone :",
+  },
+} satisfies Record<
+  "ko" | "en",
+  Record<"companyName" | "owner" | "registrationNumber" | "address" | "phone", string>
+>;
+
 const footerContent = {
   ko: {
     ctaTitle: "브링크 도입 상담 전용",
@@ -34,7 +54,6 @@ const footerContent = {
       ["개인정보처리방침", "/privacy"],
       ["이용 약관", "/terms"],
     ],
-    companyLine: `${siteConfig.business.companyName} · 대표 ${siteConfig.business.owner} · 사업자번호 ${siteConfig.business.registrationNumber}`,
     copyright: "Copyright © 2025 VRINK. 모든 권리 보유.",
     columns: [
       {
@@ -88,7 +107,6 @@ const footerContent = {
       ["Privacy Policy", "/en/privacy"],
       ["Terms", "/en/terms"],
     ],
-    companyLine: `${siteConfig.business.companyName} · CEO ${siteConfig.business.owner} · Business No. ${siteConfig.business.registrationNumber}`,
     copyright: "Copyright © 2025 VRINK. All rights reserved.",
     columns: [
       {
@@ -136,7 +154,6 @@ const footerContent = {
     subscribePlaceholder: string;
     quickLinks: Array<[label: string, href: string]>;
     legalLinks: Array<[label: string, href: string]>;
-    companyLine: string;
     copyright: string;
     columns: FooterColumn[];
   }
@@ -152,6 +169,14 @@ function FooterLink({ href, children }: { href: string; children: string }) {
 
 export function VrinkFooter({ ctaHref = "/#contact", locale = "ko" }: VrinkFooterProps) {
   const content = footerContent[locale];
+  const labels = businessInfoLabels[locale];
+  const businessInfoRows = [
+    [labels.companyName, siteConfig.business.companyName],
+    [labels.owner, siteConfig.business.owner],
+    [labels.registrationNumber, siteConfig.business.registrationNumber],
+    [labels.address, siteConfig.business.address],
+    [labels.phone, siteConfig.contactPhone],
+  ];
 
   return (
     <footer className={styles.footer}>
@@ -208,13 +233,19 @@ export function VrinkFooter({ ctaHref = "/#contact", locale = "ko" }: VrinkFoote
       </div>
 
       <div className={styles.footerLegal}>
-        <div>
+        <div className={styles.footerLegalLinks}>
           <FooterLink href={content.legalLinks[0][1]}>{content.legalLinks[0][0]}</FooterLink>
           <span>·</span>
           <FooterLink href={content.legalLinks[1][1]}>{content.legalLinks[1][0]}</FooterLink>
         </div>
-        <p>{content.companyLine}</p>
-        <p>{siteConfig.business.address}</p>
+        <dl className={styles.footerBusinessInfo}>
+          {businessInfoRows.map(([label, value]) => (
+            <div key={label}>
+              <dt>{label}</dt>
+              <dd>{value}</dd>
+            </div>
+          ))}
+        </dl>
         <p>{content.copyright}</p>
       </div>
     </footer>

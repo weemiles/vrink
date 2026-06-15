@@ -107,8 +107,11 @@ const sections = [
     title: "12. 문의",
     body: [
       `서비스 이용 및 약관 관련 문의는 ${siteConfig.contactEmail} 또는 ${siteConfig.contactPhone}으로 연락해 주세요.`,
-      `${siteConfig.business.companyName} · 대표 ${siteConfig.business.owner} · 사업자번호 ${siteConfig.business.registrationNumber}`,
-      siteConfig.business.address,
+      `상호명 : ${siteConfig.business.companyName}`,
+      `대표자명 : ${siteConfig.business.owner}`,
+      `사업자등록번호 : ${siteConfig.business.registrationNumber}`,
+      `사업장 주소 : ${siteConfig.business.address}`,
+      `유선번호 : ${siteConfig.contactPhone}`,
     ],
   },
 ];

@@ -315,8 +315,7 @@ export const vrinkCopy: VrinkCopy = {
       companyName: "주식회사 브링크",
       registrationNumber: "162-81-03420",
       owner: "김민수",
-      address:
-        "경기도 남양주시 별내 중앙로 30, 제 305-1821호(별내동, 별내로데오몰)",
+      address: "경기도 남양주시 별내중앙로 30, 305-1821",
       email: "vrink@contact.kr",
       phone: "010-7362-6070",
     },
