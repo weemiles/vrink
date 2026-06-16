@@ -304,7 +304,7 @@
   function escalationScreen() {
     renderActions([
       { label: '해결됐어요', onClick: () => { addMessage('bot', '도움이 되어 다행입니다. 다른 문의가 있으면 선택해 주세요.'); home(); } },
-      { label: 'AI에게 물어보기', accent: true, onClick: () => { addMessage('bot', '네, 무엇이든 자유롭게 입력해 주세요. 사진도 첨부하실 수 있어요.'); input.focus(); } },
+      { label: 'AI에게 물어보기', accent: true, onClick: () => { addMessage('bot', '네, 무엇이든 자유롭게 입력해 주세요. 사진도 첨부하실 수 있어요.'); if (window.innerWidth > 480) input.focus(); } },
       { label: '상담사 연결', onClick: requestHandoff },
     ]);
   }
@@ -404,7 +404,7 @@
       addMessage('bot', MACROS.greeting);
       home();
     }
-    if (open) input.focus();
+    if (open && window.innerWidth > 480) input.focus(); // 모바일은 자동 포커스 안 함(키보드 튐 방지)
   }
   launcher.addEventListener('click', () => toggle(!opened));
 
