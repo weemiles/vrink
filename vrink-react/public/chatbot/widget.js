@@ -77,7 +77,12 @@
   .vk-typing span{width:6px;height:6px;border-radius:50%;background:#BDBDBD;animation:vk-blink 1.2s infinite}
   .vk-typing span:nth-child(2){animation-delay:.2s}.vk-typing span:nth-child(3){animation-delay:.4s}
   @keyframes vk-blink{0%,60%,100%{opacity:.3}30%{opacity:1}}
-  .vk-actions{display:flex;flex-wrap:wrap;gap:8px;padding:12px;border-top:1px solid #F2F2F2;background:#fff;align-items:center}
+  .vk-quickbar{display:none;padding:8px 12px 0;background:#fff;border-top:1px solid #F2F2F2}
+  .vk-quick-toggle{background:none;border:none;cursor:pointer;font-size:12px;color:#9AA0A6;display:flex;align-items:center;gap:4px;font-family:inherit;padding:3px 4px}
+  .vk-quick-toggle svg{width:14px;height:14px;transition:transform .15s}
+  .vk-panel.vk-collapsed .vk-quick-toggle svg{transform:rotate(180deg)}
+  .vk-panel.vk-collapsed .vk-actions{display:none}
+  .vk-actions{display:flex;flex-wrap:wrap;gap:8px;padding:8px 12px 12px;background:#fff;align-items:center}
   .vk-actions:empty{display:none}
   .vk-chip{background:#fff;border:1px solid #DDD;color:#1A1A1A;font-size:14px;font-weight:500;padding:8px 13px;border-radius:18px;
     cursor:pointer;font-family:inherit;transition:border-color .12s,background .12s}
@@ -181,6 +186,8 @@
   const menu = panel.querySelector('.vk-menu');
   const notice = panel.querySelector('.vk-notice');
   const body = panel.querySelector('.vk-body');
+  const quickbar = panel.querySelector('.vk-quickbar');
+  const quickToggle = panel.querySelector('.vk-quick-toggle');
   const actions = panel.querySelector('.vk-actions');
   const preview = panel.querySelector('.vk-preview');
   const attachBtn = panel.querySelector('.vk-attach');
@@ -230,6 +237,8 @@
     actions.innerHTML = '';
     buttons.forEach((b) => actions.appendChild(makeChip(b.label, b.onClick, b.accent ? 'vk-accent' : '')));
     backBtn.style.visibility = stack.length > 1 ? 'visible' : 'hidden';
+    quickbar.style.display = buttons.length ? 'flex' : 'none';
+    panel.classList.remove('vk-collapsed');
   }
 
   // ---- 첨부 미리보기 ----
@@ -358,6 +367,7 @@
   // ---- 헤더 동작 ----
   backBtn.addEventListener('click', back);
   minBtn.addEventListener('click', () => toggle(false));
+  quickToggle.addEventListener('click', () => panel.classList.toggle('vk-collapsed'));
   moreBtn.addEventListener('click', (e) => { e.stopPropagation(); menu.classList.toggle('vk-open'); });
   menu.addEventListener('click', (e) => {
     const act = e.target.closest('button')?.dataset.act;
