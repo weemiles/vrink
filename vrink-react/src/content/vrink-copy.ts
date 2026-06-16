@@ -243,7 +243,7 @@ export const vrinkCopy: VrinkCopy = {
       },
       {
         label: "원액 가격",
-        value: "5L 맛 원액 128,000원 / 기능 원액 198,000원",
+        value: "5L 맛 원액 128,000원 (약 250잔) / 기능 원액 198,000원 (약 1,000샷)",
       },
       {
         label: "기기 도입",
