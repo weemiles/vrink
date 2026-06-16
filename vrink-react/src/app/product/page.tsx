@@ -240,7 +240,7 @@ const productSpecs = [
 
 const finalHighlights = [
   "15초 제조",
-  "약 1,750가지 조합",
+  "약 1,792가지 조합",
   "5종 기능샷",
   "맞춤 원액 구성",
   "정기 점검 지원",

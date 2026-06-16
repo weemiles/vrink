@@ -146,7 +146,7 @@ const serviceItems = [
 
 const finalHighlights = [
   "About 11 seconds per drink",
-  "Approx. 1,750 combinations",
+  "Approx. 1,792 combinations",
   "5 functional shots",
   "Custom ingredient setup",
   "Regular check support",
