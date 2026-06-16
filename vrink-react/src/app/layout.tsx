@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 
 import { GoogleAnalytics } from "@/components/analytics/google-analytics";
-import { ChannelTalk } from "@/components/consultation/channel-talk";
+import { ChatbotWidget } from "@/components/consultation/chatbot-widget";
 import { buildMetadata } from "@/lib/seo";
 
 import "./globals.css";
@@ -29,7 +29,7 @@ export default function RootLayout({
     <html lang="ko">
       <body className={`${pretendard.variable} vrink-design-system antialiased`}>
         {children}
-        <ChannelTalk />
+        <ChatbotWidget />
         <GoogleAnalytics />
       </body>
     </html>

@@ -1,0 +1,378 @@
+(function () {
+  // 설정
+  const API_URL = window.VRINK_CHAT_API || '/api/chat';
+  const HANDOFF_URL = window.VRINK_HANDOFF_API || '/api/handoff';
+  const BRAND = '#56E893';
+  const BOT_NAME = '브링크';
+  const NOTICE =
+    '평일 10:00–18:00에 순차적으로 답변드려요.\n도입 문의, 이용 방법, 제휴 관련 무엇이든 편하게 남겨주세요.';
+  const MACROS = window.VRINK_MACROS || { greeting: '무엇을 도와드릴까요?', items: [] };
+
+  const history = [];        // AI 상담 대화 기록 (AI API 전달용)
+  let pendingImages = [];    // 전송 대기 중인 첨부 이미지(data URL)
+  const stack = [];          // 액션 화면 함수 스택
+
+  // 브랜드 로고 (Vector.svg 인라인)
+  function logo(size) {
+    return `<svg width="${size}" height="${size}" viewBox="0 0 278 278" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M138.654 0C62.0811 0 0 62.0811 0 138.654C0 215.227 62.0811 277.308 138.654 277.308C215.227 277.308 277.308 215.227 277.308 138.654C277.308 62.0811 215.227 0 138.654 0ZM138.654 242.244C81.4337 242.244 35.0458 195.856 35.0458 138.636C35.0458 81.4154 81.4337 35.0276 138.654 35.0276C195.874 35.0276 242.262 81.4154 242.262 138.636C242.262 195.856 195.874 242.244 138.654 242.244Z" fill="url(#vkgrad)"/><defs><linearGradient id="vkgrad" x1="18.55" y1="69.3" x2="258.7" y2="207.9" gradientUnits="userSpaceOnUse"><stop stop-color="#89F7FE"/><stop offset="1" stop-color="#66A6FF"/></linearGradient></defs></svg>`;
+  }
+
+  function nowTime() {
+    const d = new Date();
+    let h = d.getHours();
+    const m = String(d.getMinutes()).padStart(2, '0');
+    const ap = h < 12 ? '오전' : '오후';
+    h = h % 12;
+    if (h === 0) h = 12;
+    return `${ap} ${h}:${m}`;
+  }
+
+  // ---- 스타일 ----
+  const css = `
+  .vk-launcher{position:fixed;right:24px;bottom:24px;width:56px;height:56px;border:none;border-radius:50%;
+    background:${BRAND};cursor:pointer;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 4px 16px rgba(0,0,0,.16);z-index:2147483000;transition:transform .15s ease}
+  .vk-launcher:hover{transform:scale(1.05)}
+  .vk-launcher svg{width:26px;height:26px}
+  .vk-panel{position:fixed;right:24px;bottom:92px;width:380px;max-width:calc(100vw - 32px);height:600px;
+    max-height:calc(100vh - 120px);background:#fff;border:1px solid #ECECEC;border-radius:16px;
+    box-shadow:0 12px 40px rgba(0,0,0,.14);z-index:2147483000;display:none;flex-direction:column;overflow:hidden;
+    font-family:'Pretendard',system-ui,'Apple SD Gothic Neo',sans-serif}
+  .vk-panel.vk-open{display:flex}
+  .vk-header{position:relative;padding:14px 14px;border-bottom:1px solid #F2F2F2;display:flex;align-items:center;gap:8px}
+  .vk-back{background:none;border:none;cursor:pointer;color:${BRAND};font-size:24px;line-height:1;padding:2px 4px;flex-shrink:0}
+  .vk-back:disabled{color:#D8D8D8;cursor:default}
+  .vk-profile{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
+  .vk-avatar{width:34px;height:34px;border-radius:50%;background:#F4F8FF;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .vk-title{font-size:16px;font-weight:600;letter-spacing:-0.02em;color:#1A1A1A;line-height:1.2}
+  .vk-sub{font-size:12px;color:#8A8A8A;margin-top:1px}
+  .vk-more{background:none;border:none;cursor:pointer;padding:6px;flex-shrink:0;display:flex;align-items:center}
+  .vk-more svg{width:4px;height:18px}
+  .vk-menu{position:absolute;top:50px;right:12px;background:#fff;border:1px solid #ECECEC;border-radius:12px;
+    box-shadow:0 8px 24px rgba(0,0,0,.12);padding:6px;display:none;flex-direction:column;min-width:160px;z-index:5}
+  .vk-menu.vk-open{display:flex}
+  .vk-menu button{background:none;border:none;text-align:left;font-family:inherit;font-size:14px;color:#1A1A1A;
+    padding:10px 12px;border-radius:8px;cursor:pointer}
+  .vk-menu button:hover{background:#F5F5F5}
+  .vk-menu button.vk-exit{color:#E5484D}
+  .vk-notice{border-bottom:1px solid #F2F2F2;background:#FBFBFB;padding:12px 16px;display:flex;gap:10px;align-items:flex-start;cursor:pointer}
+  .vk-notice-ic{color:#9AA0A6;flex-shrink:0;margin-top:1px}
+  .vk-notice-ic svg{width:16px;height:16px;display:block}
+  .vk-notice-text{flex:1;font-size:13px;line-height:1.5;color:#5A5A5A;white-space:pre-wrap}
+  .vk-notice.vk-collapsed .vk-notice-text{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .vk-notice-arrow{color:#B0B0B0;flex-shrink:0;font-size:11px;margin-top:2px;transition:transform .15s}
+  .vk-notice.vk-collapsed .vk-notice-arrow{transform:rotate(180deg)}
+  .vk-body{flex:1;min-height:0;overflow-y:auto;padding:16px;background:#FAFAFA;display:flex;flex-direction:column;gap:8px}
+  .vk-msg{max-width:80%;padding:10px 13px;border-radius:14px;font-size:14px;line-height:1.5;white-space:pre-wrap;word-break:break-word}
+  .vk-bot{align-self:flex-start;background:#fff;border:1px solid #EDEDED;color:#1A1A1A;border-bottom-left-radius:4px}
+  .vk-user{align-self:flex-end;background:${BRAND};color:#0A2A1A;border-bottom-right-radius:4px}
+  .vk-msg img{max-width:100%;border-radius:8px;margin-top:6px;display:block}
+  .vk-meta{align-self:flex-start;display:flex;align-items:center;gap:5px;font-size:11px;color:#9AA0A6;margin:-2px 0 4px 2px}
+  .vk-meta-ic{width:14px;height:14px;border-radius:50%;background:#F4F8FF;display:flex;align-items:center;justify-content:center}
+  .vk-meta-ic svg{width:11px;height:11px}
+  .vk-typing{align-self:flex-start;display:flex;gap:4px;padding:12px 14px;background:#fff;border:1px solid #EDEDED;border-radius:14px}
+  .vk-typing span{width:6px;height:6px;border-radius:50%;background:#BDBDBD;animation:vk-blink 1.2s infinite}
+  .vk-typing span:nth-child(2){animation-delay:.2s}.vk-typing span:nth-child(3){animation-delay:.4s}
+  @keyframes vk-blink{0%,60%,100%{opacity:.3}30%{opacity:1}}
+  .vk-actions{display:flex;flex-wrap:wrap;gap:8px;padding:12px;border-top:1px solid #F2F2F2;background:#fff;align-items:center}
+  .vk-actions:empty{display:none}
+  .vk-chip{background:#fff;border:1px solid #DDD;color:#1A1A1A;font-size:14px;font-weight:500;padding:8px 13px;border-radius:18px;
+    cursor:pointer;font-family:inherit;transition:border-color .12s,background .12s}
+  .vk-chip:hover{border-color:${BRAND};background:#F4FCF7}
+  .vk-chip.vk-accent{border-color:${BRAND};font-weight:600}
+  .vk-foot{padding:12px;border-top:1px solid #F2F2F2;display:flex;flex-direction:column;gap:8px}
+  .vk-preview{display:flex;gap:8px;flex-wrap:wrap}
+  .vk-preview:empty{display:none}
+  .vk-thumb{position:relative;width:56px;height:56px;border-radius:8px;overflow:hidden;border:1px solid #E2E2E2}
+  .vk-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+  .vk-thumb button{position:absolute;top:2px;right:2px;width:16px;height:16px;border:none;border-radius:50%;
+    background:rgba(0,0,0,.55);color:#fff;font-size:11px;line-height:16px;text-align:center;cursor:pointer;padding:0}
+  .vk-foot-row{display:flex;gap:8px;align-items:flex-end}
+  .vk-attach{border:none;background:none;cursor:pointer;padding:8px 2px;color:#9AA0A6;flex-shrink:0;display:flex;align-items:center}
+  .vk-attach svg{width:20px;height:20px}
+  .vk-attach:hover{color:${BRAND}}
+  .vk-input{flex:1;resize:none;border:1px solid #E2E2E2;border-radius:10px;padding:10px 12px;font-size:14px;
+    font-family:inherit;max-height:96px;outline:none;line-height:1.4;background:#fff}
+  .vk-input:focus{border-color:${BRAND}}
+  .vk-send{border:none;background:${BRAND};color:#0A2A1A;font-weight:600;font-size:15px;border-radius:10px;
+    padding:10px 16px;cursor:pointer;flex-shrink:0}
+  .vk-send:disabled{opacity:.5;cursor:default}
+  `;
+  const pretendard = document.createElement('link');
+  pretendard.rel = 'stylesheet';
+  pretendard.href = 'https://cdn.jsdelivr.net/gh/orioncactus/pretendard@latest/dist/web/static/pretendard.min.css';
+  document.head.appendChild(pretendard);
+
+  const style = document.createElement('style');
+  style.textContent = css;
+  document.head.appendChild(style);
+
+  // 아이콘
+  const dotsIcon =
+    '<svg viewBox="0 0 4 18" fill="#9AA0A6"><circle cx="2" cy="2" r="2"/><circle cx="2" cy="9" r="2"/><circle cx="2" cy="16" r="2"/></svg>';
+  const noticeIcon =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>';
+  const clipIcon =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>';
+
+  // ---- DOM ----
+  const launcher = document.createElement('button');
+  launcher.className = 'vk-launcher';
+  launcher.setAttribute('aria-label', '상담 열기');
+  launcher.innerHTML =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14v-3a8 8 0 0 1 16 0v3"/><path d="M6 12a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h0a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1z"/><path d="M18 12a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h0a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1z"/><path d="M20 17v1a3 3 0 0 1-3 3h-3"/></svg>';
+
+  const panel = document.createElement('div');
+  panel.className = 'vk-panel';
+  panel.innerHTML = `
+    <div class="vk-header">
+      <button class="vk-back" aria-label="뒤로">‹</button>
+      <div class="vk-profile">
+        <span class="vk-avatar">${logo(22)}</span>
+        <div>
+          <div class="vk-title">${BOT_NAME}</div>
+          <div class="vk-sub">몇 분 내 답변 받으실 수 있어요</div>
+        </div>
+      </div>
+      <button class="vk-more" aria-label="메뉴">${dotsIcon}</button>
+      <div class="vk-menu">
+        <button data-act="home">처음으로 돌아가기</button>
+        <button data-act="exit" class="vk-exit">상담 나가기</button>
+      </div>
+    </div>
+    <div class="vk-notice">
+      <span class="vk-notice-ic">${noticeIcon}</span>
+      <div class="vk-notice-text">${NOTICE}</div>
+      <span class="vk-notice-arrow">⌃</span>
+    </div>
+    <div class="vk-body"></div>
+    <div class="vk-actions"></div>
+    <div class="vk-foot">
+      <div class="vk-preview"></div>
+      <div class="vk-foot-row">
+        <button class="vk-attach" aria-label="사진 첨부">${clipIcon}</button>
+        <textarea class="vk-input" rows="1" placeholder="메시지를 입력해주세요."></textarea>
+        <button class="vk-send">전송</button>
+      </div>
+    </div>
+    <input type="file" class="vk-file" accept="image/*" multiple style="display:none" />`;
+
+  document.body.appendChild(launcher);
+  document.body.appendChild(panel);
+
+  const backBtn = panel.querySelector('.vk-back');
+  const moreBtn = panel.querySelector('.vk-more');
+  const menu = panel.querySelector('.vk-menu');
+  const notice = panel.querySelector('.vk-notice');
+  const body = panel.querySelector('.vk-body');
+  const actions = panel.querySelector('.vk-actions');
+  const preview = panel.querySelector('.vk-preview');
+  const attachBtn = panel.querySelector('.vk-attach');
+  const fileInput = panel.querySelector('.vk-file');
+  const input = panel.querySelector('.vk-input');
+  const sendBtn = panel.querySelector('.vk-send');
+
+  // ---- 헬퍼 ----
+  function addMessage(role, text, images) {
+    const el = document.createElement('div');
+    el.className = 'vk-msg ' + (role === 'user' ? 'vk-user' : 'vk-bot');
+    if (text) el.textContent = text;
+    (images || []).forEach((url) => {
+      const img = document.createElement('img');
+      img.src = url;
+      el.appendChild(img);
+    });
+    body.appendChild(el);
+    if (role !== 'user') {
+      const meta = document.createElement('div');
+      meta.className = 'vk-meta';
+      meta.innerHTML = `<span class="vk-meta-ic">${logo(11)}</span><span>${BOT_NAME}, ${nowTime()}</span>`;
+      body.appendChild(meta);
+    }
+    body.scrollTop = body.scrollHeight;
+    return el;
+  }
+
+  function showTyping() {
+    const el = document.createElement('div');
+    el.className = 'vk-typing';
+    el.innerHTML = '<span></span><span></span><span></span>';
+    body.appendChild(el);
+    body.scrollTop = body.scrollHeight;
+    return el;
+  }
+
+  function makeChip(label, onClick, cls) {
+    const b = document.createElement('button');
+    b.className = 'vk-chip' + (cls ? ' ' + cls : '');
+    b.textContent = label;
+    b.addEventListener('click', onClick);
+    return b;
+  }
+
+  function renderActions(buttons) {
+    actions.innerHTML = '';
+    buttons.forEach((b) => actions.appendChild(makeChip(b.label, b.onClick, b.accent ? 'vk-accent' : '')));
+    backBtn.disabled = stack.length <= 1;
+  }
+
+  // ---- 첨부 미리보기 ----
+  function renderPreview() {
+    preview.innerHTML = '';
+    pendingImages.forEach((url, i) => {
+      const t = document.createElement('div');
+      t.className = 'vk-thumb';
+      t.innerHTML = `<img src="${url}" alt=""><button aria-label="삭제">×</button>`;
+      t.querySelector('button').addEventListener('click', () => {
+        pendingImages.splice(i, 1);
+        renderPreview();
+      });
+      preview.appendChild(t);
+    });
+  }
+
+  attachBtn.addEventListener('click', () => fileInput.click());
+  fileInput.addEventListener('change', () => {
+    const files = Array.from(fileInput.files || []);
+    files.forEach((file) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        pendingImages.push(reader.result);
+        renderPreview();
+      };
+      reader.readAsDataURL(file);
+    });
+    fileInput.value = '';
+  });
+
+  // ---- 화면 스택 ----
+  function pushScreen(fn) { stack.push(fn); fn(); }
+  function back() { if (stack.length > 1) { stack.pop(); stack[stack.length - 1](); } }
+  function home() { stack.length = 0; pushScreen(mainScreen); }
+
+  // ---- 1단계: 매크로 메뉴 ----
+  function mainScreen() {
+    renderActions(
+      MACROS.items.map((cat) => ({
+        label: cat.label,
+        onClick: () => { addMessage('user', cat.label); pushScreen(() => categoryScreen(cat)); },
+      }))
+    );
+  }
+
+  function categoryScreen(cat) {
+    renderActions(
+      (cat.children || []).map((node) => ({ label: node.label, onClick: () => onNode(node) }))
+    );
+  }
+
+  function onNode(node) {
+    addMessage('user', node.label);
+    if (node.handoff) { requestHandoff(); return; }
+    addMessage('bot', node.answer);
+    pushScreen(escalationScreen);
+  }
+
+  function escalationScreen() {
+    renderActions([
+      { label: '해결됐어요', onClick: () => { addMessage('bot', '도움이 되어 다행입니다. 다른 문의가 있으면 선택해 주세요.'); home(); } },
+      { label: 'AI에게 물어보기', accent: true, onClick: () => { addMessage('bot', '네, 무엇이든 자유롭게 입력해 주세요. 사진도 첨부하실 수 있어요.'); input.focus(); } },
+      { label: '상담사 연결', onClick: requestHandoff },
+    ]);
+  }
+
+  async function sendAI() {
+    const text = input.value.trim();
+    const images = pendingImages.slice();
+    if (!text && images.length === 0) return; // 어느 단계에서든 입력/첨부하면 AI가 응답
+
+    addMessage('user', text, images);
+    input.value = '';
+    input.style.height = 'auto';
+    pendingImages = [];
+    renderPreview();
+
+    // OpenAI 비전 형식: 텍스트만이면 string, 이미지 있으면 멀티파트
+    let content;
+    if (images.length > 0) {
+      content = [];
+      if (text) content.push({ type: 'text', text });
+      images.forEach((url) => content.push({ type: 'image_url', image_url: { url } }));
+    } else {
+      content = text;
+    }
+    history.push({ role: 'user', content });
+
+    input.disabled = true; sendBtn.disabled = true;
+    const typing = showTyping();
+    try {
+      const r = await fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: history }),
+      });
+      const data = await r.json();
+      typing.remove();
+      const reply = data.text || data.error || '응답을 받지 못했습니다.';
+      addMessage('bot', reply);
+      if (data.text) history.push({ role: 'assistant', content: data.text });
+    } catch (e) {
+      typing.remove();
+      addMessage('bot', '연결에 문제가 발생했습니다. 상담사 연결을 도와드릴까요?');
+    } finally {
+      input.disabled = false; sendBtn.disabled = false; input.focus();
+    }
+  }
+
+  async function requestHandoff() {
+    addMessage('bot', '상담사 연결을 요청하고 있습니다…');
+    try {
+      await fetch(HANDOFF_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ history, page: location.href }),
+      });
+    } catch (e) { /* 접수 실패해도 사용자에겐 안내만 */ }
+    addMessage('bot', '상담사 연결이 접수되었습니다. 영업시간 내 순차적으로 답변드리겠습니다. 급한 경우 본사 대표번호로 연락해 주세요.');
+    pushScreen(handoffScreen);
+  }
+
+  function handoffScreen() { renderActions([]); }
+
+  // ---- 헤더 동작 ----
+  backBtn.addEventListener('click', back);
+  moreBtn.addEventListener('click', (e) => { e.stopPropagation(); menu.classList.toggle('vk-open'); });
+  menu.addEventListener('click', (e) => {
+    const act = e.target.closest('button')?.dataset.act;
+    menu.classList.remove('vk-open');
+    if (act === 'home') home();
+    else if (act === 'exit') toggle(false);
+  });
+  notice.addEventListener('click', () => notice.classList.toggle('vk-collapsed'));
+  document.addEventListener('click', (e) => {
+    if (!menu.contains(e.target) && e.target !== moreBtn) menu.classList.remove('vk-open');
+  });
+
+  // ---- 열기/닫기 ----
+  let opened = false;
+  function toggle(open) {
+    opened = open;
+    panel.classList.toggle('vk-open', open);
+    if (open && body.childElementCount === 0) {
+      addMessage('bot', MACROS.greeting);
+      home();
+    }
+    if (open) input.focus();
+  }
+  launcher.addEventListener('click', () => toggle(!opened));
+
+  // ---- 입력 ----
+  input.addEventListener('input', () => {
+    input.style.height = 'auto';
+    input.style.height = Math.min(input.scrollHeight, 96) + 'px';
+  });
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendAI(); }
+  });
+  sendBtn.addEventListener('click', sendAI);
+})();
