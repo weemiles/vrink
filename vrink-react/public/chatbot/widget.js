@@ -35,6 +35,8 @@
     box-shadow:0 4px 16px rgba(0,0,0,.16);z-index:2147483002;transition:transform .15s ease}
   .vk-launcher:hover{transform:scale(1.05)}
   .vk-launcher svg{width:26px;height:26px}
+  .vk-launcher.vk-active{background:#fff;border:1px solid #E5E5E5}
+  .vk-launcher.vk-active svg{stroke:#56E893}
   .vk-panel{position:fixed;right:24px;bottom:92px;width:380px;max-width:calc(100vw - 32px);height:600px;
     max-height:calc(100vh - 120px);background:#fff;border:1px solid #ECECEC;border-radius:16px;
     box-shadow:0 12px 40px rgba(0,0,0,.14);z-index:2147483000;display:none;flex-direction:column;overflow:hidden;
@@ -106,7 +108,7 @@
     padding:10px 16px;cursor:pointer;flex-shrink:0}
   .vk-send:disabled{opacity:.5;cursor:default}
   @media (max-width:480px){
-    .vk-panel{right:12px;left:12px;bottom:12px;top:auto;width:auto;max-width:none;height:78dvh;max-height:calc(100dvh - 24px)}
+    .vk-panel{top:16px;bottom:88px;left:12px;right:12px;width:auto;max-width:none;height:auto;max-height:none;border-radius:16px}
     .vk-overlay.vk-open{display:block}
   }
   `;
@@ -395,6 +397,7 @@
     opened = open;
     panel.classList.toggle('vk-open', open);
     overlay.classList.toggle('vk-open', open);
+    launcher.classList.toggle('vk-active', open);
     if (open && body.childElementCount === 0) {
       addMessage('bot', MACROS.greeting);
       home();
