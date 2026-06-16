@@ -121,7 +121,7 @@ export function IntroOfferModal() {
           <div className={styles.offerCopy}>
             <h3>지금 도입하면 원액 10팩 무료</h3>
             <p>
-              지금 브링크를 도입하시면 <strong>150만 원 상당의 원액 10팩</strong>을 무료로 지원해 드려요.
+              지금 브링크를 도입하시면 <strong>원액 10팩</strong>을 무료로 지원해 드려요.
             </p>
           </div>
 

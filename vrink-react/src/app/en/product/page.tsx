@@ -319,8 +319,8 @@ export default function EnglishProductPage() {
         </ul>
         <div className={styles.finalProductPurchase}>
           <p>
-            <span>Starting price</span>
-            <strong>8,800,000 KRW</strong>
+            <span>Pricing</span>
+            <strong>On consultation</strong>
           </p>
           <Link href="/en#contact">Contact us</Link>
         </div>

@@ -61,7 +61,7 @@ const plans = [
   {
     title: "구매형",
     summary: "장기 운영 공간에 맞춘 소유형 도입",
-    price: "도입가 8,800,000원부터",
+    price: "구매 견적 상담",
     values: ["기기 구매", "공간별 초기 세팅", "원액 공급 상담", "정기 점검 안내"],
   },
   {
@@ -331,7 +331,7 @@ export default function DetailPage() {
           <span>초기 비용, 운영 기간, 예상 사용량에 따라 적합한 도입 방식을 함께 검토합니다.</span>
         </div>
         <div className={styles.offerLine}>
-          <p>도입 상담에서 설치 조건, 구매·렌탈 견적, 기능샷 구성을 한 번에 확인할 수 있습니다. 모든 도입에는 도입가와 별도로 설치비 440,000원이 발생합니다.</p>
+          <p>도입 상담에서 설치 조건, 구매·렌탈 견적, 기능샷 구성을 한 번에 확인할 수 있습니다. 도입가와 설치비 등 정확한 비용은 매장 상황에 맞춰 상담 시 안내해 드립니다.</p>
           <Link href="#consult">견적 문의하기</Link>
         </div>
         <div className={styles.planGrid}>
@@ -489,7 +489,7 @@ export default function DetailPage() {
       <div className={styles.purchaseBar} aria-label="브링크 도입 상담 바로가기">
         <div>
           <span>브링크 제로스테이션</span>
-          <strong>도입가 8,800,000원부터 · 구매/렌탈 상담 가능</strong>
+          <strong>구매·렌탈 도입 상담 가능</strong>
         </div>
         <Link href="#consult">견적 받기</Link>
       </div>

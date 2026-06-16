@@ -242,12 +242,12 @@ export const vrinkCopy: VrinkCopy = {
         value: "약 1,792가지",
       },
       {
-        label: "원액 가격",
-        value: "5L 맛 원액 66,000원 / 효능 원액 99,000원",
+        label: "원액 공급",
+        value: "필요 시 자사몰에서 주문·배송 (가격은 상담 안내)",
       },
       {
-        label: "기기 구입",
-        value: "판매금액 800만원 (VAT 별도)",
+        label: "기기 도입",
+        value: "구매 또는 렌탈 (비용은 상담 안내)",
       },
     ],
     market: [
@@ -274,7 +274,7 @@ export const vrinkCopy: VrinkCopy = {
       {
         title: "첫 도입 혜택",
         details: [
-          "지금 도입 시 원액 10팩(150만 원 상당) 무료 지원",
+          "지금 도입 시 원액 10팩 무료 지원",
         ],
       },
     ],

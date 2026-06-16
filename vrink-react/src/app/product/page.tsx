@@ -492,8 +492,8 @@ export default function ProductPage() {
         </ul>
         <div className={styles.finalProductPurchase}>
           <p>
-            <span>도입가</span>
-            <strong>8,800,000원</strong>
+            <span>도입 비용</span>
+            <strong>상담 후 안내</strong>
           </p>
           <Link href="/#contact">도입문의</Link>
         </div>
