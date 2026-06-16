@@ -178,6 +178,7 @@
 
   const overlay = document.createElement('div');
   overlay.className = 'vk-overlay';
+  overlay.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
   document.body.appendChild(overlay);
   document.body.appendChild(launcher);
   document.body.appendChild(panel);
@@ -398,6 +399,7 @@
     panel.classList.toggle('vk-open', open);
     overlay.classList.toggle('vk-open', open);
     launcher.classList.toggle('vk-active', open);
+    document.body.style.overflow = (open && window.innerWidth <= 480) ? 'hidden' : '';
     if (open && body.childElementCount === 0) {
       addMessage('bot', MACROS.greeting);
       home();
