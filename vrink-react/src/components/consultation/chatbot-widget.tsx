@@ -12,12 +12,13 @@ export function ChatbotWidget() {
   useEffect(() => {
     if (document.getElementById("vk-widget-script")) return;
 
+    const v = "20260616a"; // 캐시 무효화 버전 — 위젯 변경 시 갱신
     const macros = document.createElement("script");
-    macros.src = "/chatbot/macros.js";
+    macros.src = `/chatbot/macros.js?v=${v}`;
     macros.onload = () => {
       const widget = document.createElement("script");
       widget.id = "vk-widget-script";
-      widget.src = "/chatbot/widget.js";
+      widget.src = `/chatbot/widget.js?v=${v}`;
       document.body.appendChild(widget);
     };
     document.body.appendChild(macros);
