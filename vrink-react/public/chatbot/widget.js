@@ -29,6 +29,7 @@
 
   // ---- 스타일 ----
   const css = `
+  .vk-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:2147482999;display:none}
   .vk-launcher{position:fixed;right:24px;bottom:24px;width:56px;height:56px;border:none;border-radius:50%;
     background:${BRAND};cursor:pointer;display:flex;align-items:center;justify-content:center;
     box-shadow:0 4px 16px rgba(0,0,0,.16);z-index:2147483002;transition:transform .15s ease}
@@ -101,6 +102,7 @@
   .vk-send:disabled{opacity:.5;cursor:default}
   @media (max-width:480px){
     .vk-panel{right:12px;left:12px;bottom:12px;top:auto;width:auto;max-width:none;height:78dvh;max-height:calc(100dvh - 24px)}
+    .vk-overlay.vk-open{display:block}
   }
   `;
   const pretendard = document.createElement('link');
@@ -167,6 +169,9 @@
     </div>
     <input type="file" class="vk-file" accept="image/*" multiple style="display:none" />`;
 
+  const overlay = document.createElement('div');
+  overlay.className = 'vk-overlay';
+  document.body.appendChild(overlay);
   document.body.appendChild(launcher);
   document.body.appendChild(panel);
 
@@ -379,6 +384,7 @@
   function toggle(open) {
     opened = open;
     panel.classList.toggle('vk-open', open);
+    overlay.classList.toggle('vk-open', open);
     if (open && body.childElementCount === 0) {
       addMessage('bot', MACROS.greeting);
       home();
