@@ -31,7 +31,7 @@
   const css = `
   .vk-launcher{position:fixed;right:24px;bottom:24px;width:56px;height:56px;border:none;border-radius:50%;
     background:${BRAND};cursor:pointer;display:flex;align-items:center;justify-content:center;
-    box-shadow:0 4px 16px rgba(0,0,0,.16);z-index:2147483000;transition:transform .15s ease}
+    box-shadow:0 4px 16px rgba(0,0,0,.16);z-index:2147483002;transition:transform .15s ease}
   .vk-launcher:hover{transform:scale(1.05)}
   .vk-launcher svg{width:26px;height:26px}
   .vk-panel{position:fixed;right:24px;bottom:92px;width:380px;max-width:calc(100vw - 32px);height:600px;
@@ -155,6 +155,7 @@
       <span class="vk-notice-arrow">⌃</span>
     </div>
     <div class="vk-body"></div>
+    <div class="vk-quickbar"><button class="vk-quick-toggle">빠른 메뉴 ${chevronDown}</button></div>
     <div class="vk-actions"></div>
     <div class="vk-foot">
       <div class="vk-preview"></div>
@@ -361,7 +362,8 @@
   });
   notice.addEventListener('click', () => notice.classList.toggle('vk-collapsed'));
   document.addEventListener('click', (e) => {
-    if (!menu.contains(e.target) && e.target !== moreBtn) menu.classList.remove('vk-open');
+    if (!menu.contains(e.target) && !moreBtn.contains(e.target)) menu.classList.remove('vk-open');
+    if (opened && !panel.contains(e.target) && !launcher.contains(e.target)) toggle(false);
   });
 
   // ---- 열기/닫기 ----
@@ -377,7 +379,6 @@
   function toggle(open) {
     opened = open;
     panel.classList.toggle('vk-open', open);
-    launcher.style.display = open ? 'none' : 'flex'; // 열리면 런처 숨김(겹침 방지)
     if (open && body.childElementCount === 0) {
       addMessage('bot', MACROS.greeting);
       home();
