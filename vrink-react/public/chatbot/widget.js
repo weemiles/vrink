@@ -48,6 +48,8 @@
   .vk-sub{font-size:12px;color:#8A8A8A;margin-top:1px}
   .vk-more{background:none;border:none;cursor:pointer;padding:6px;flex-shrink:0;display:flex;align-items:center}
   .vk-more svg{width:4px;height:18px}
+  .vk-min{background:none;border:none;cursor:pointer;padding:6px;flex-shrink:0;display:flex;align-items:center}
+  .vk-min svg{width:20px;height:20px}
   .vk-menu{position:absolute;top:50px;right:12px;background:#fff;border:1px solid #ECECEC;border-radius:12px;
     box-shadow:0 8px 24px rgba(0,0,0,.12);padding:6px;display:none;flex-direction:column;min-width:160px;z-index:5}
   .vk-menu.vk-open{display:flex}
@@ -67,9 +69,9 @@
   .vk-bot{align-self:flex-start;background:#fff;border:1px solid #EDEDED;color:#1A1A1A;border-bottom-left-radius:4px}
   .vk-user{align-self:flex-end;background:${BRAND};color:#0A2A1A;border-bottom-right-radius:4px}
   .vk-msg img{max-width:100%;border-radius:8px;margin-top:6px;display:block}
-  .vk-meta{align-self:flex-start;display:flex;align-items:center;gap:5px;font-size:11px;color:#9AA0A6;margin:-2px 0 4px 2px}
-  .vk-meta-ic{width:14px;height:14px;border-radius:50%;background:#F4F8FF;display:flex;align-items:center;justify-content:center}
-  .vk-meta-ic svg{width:11px;height:11px}
+  .vk-meta{align-self:flex-start;display:flex;align-items:center;gap:5px;font-size:12px;color:#9AA0A6;margin:-2px 0 4px 2px}
+  .vk-meta-ic{width:15px;height:15px;border-radius:50%;background:#F4F8FF;display:flex;align-items:center;justify-content:center}
+  .vk-meta-ic svg{width:12px;height:12px}
   .vk-typing{align-self:flex-start;display:flex;gap:4px;padding:12px 14px;background:#fff;border:1px solid #EDEDED;border-radius:14px}
   .vk-typing span{width:6px;height:6px;border-radius:50%;background:#BDBDBD;animation:vk-blink 1.2s infinite}
   .vk-typing span:nth-child(2){animation-delay:.2s}.vk-typing span:nth-child(3){animation-delay:.4s}
@@ -91,12 +93,15 @@
   .vk-attach{border:none;background:none;cursor:pointer;padding:8px 2px;color:#9AA0A6;flex-shrink:0;display:flex;align-items:center}
   .vk-attach svg{width:20px;height:20px}
   .vk-attach:hover{color:${BRAND}}
-  .vk-input{flex:1;resize:none;border:1px solid #E2E2E2;border-radius:10px;padding:10px 12px;font-size:14px;
+  .vk-input{flex:1;resize:none;border:1px solid #E2E2E2;border-radius:10px;padding:10px 12px;font-size:16px;
     font-family:inherit;max-height:96px;outline:none;line-height:1.4;background:#fff}
   .vk-input:focus{border-color:${BRAND}}
   .vk-send{border:none;background:${BRAND};color:#0A2A1A;font-weight:600;font-size:15px;border-radius:10px;
     padding:10px 16px;cursor:pointer;flex-shrink:0}
   .vk-send:disabled{opacity:.5;cursor:default}
+  @media (max-width:480px){
+    .vk-panel{right:12px;left:12px;bottom:12px;top:auto;width:auto;max-width:none;height:78dvh;max-height:calc(100dvh - 24px)}
+  }
   `;
   const pretendard = document.createElement('link');
   pretendard.rel = 'stylesheet';
@@ -114,6 +119,9 @@
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>';
   const clipIcon =
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>';
+  // 접기(최소화) 아이콘
+  const chevronDown =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="#9AA0A6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>';
 
   // ---- DOM ----
   const launcher = document.createElement('button');
@@ -134,6 +142,7 @@
           <div class="vk-sub">몇 분 내 답변 받으실 수 있어요</div>
         </div>
       </div>
+      <button class="vk-min" aria-label="접기">${chevronDown}</button>
       <button class="vk-more" aria-label="메뉴">${dotsIcon}</button>
       <div class="vk-menu">
         <button data-act="home">처음으로 돌아가기</button>
@@ -161,6 +170,7 @@
   document.body.appendChild(panel);
 
   const backBtn = panel.querySelector('.vk-back');
+  const minBtn = panel.querySelector('.vk-min');
   const moreBtn = panel.querySelector('.vk-more');
   const menu = panel.querySelector('.vk-menu');
   const notice = panel.querySelector('.vk-notice');
@@ -186,7 +196,7 @@
     if (role !== 'user') {
       const meta = document.createElement('div');
       meta.className = 'vk-meta';
-      meta.innerHTML = `<span class="vk-meta-ic">${logo(11)}</span><span>${BOT_NAME}, ${nowTime()}</span>`;
+      meta.innerHTML = `<span class="vk-meta-ic">${logo(12)}</span><span>${BOT_NAME}, ${nowTime()}</span>`;
       body.appendChild(meta);
     }
     body.scrollTop = body.scrollHeight;
@@ -213,7 +223,7 @@
   function renderActions(buttons) {
     actions.innerHTML = '';
     buttons.forEach((b) => actions.appendChild(makeChip(b.label, b.onClick, b.accent ? 'vk-accent' : '')));
-    backBtn.disabled = stack.length <= 1;
+    backBtn.style.visibility = stack.length > 1 ? 'visible' : 'hidden';
   }
 
   // ---- 첨부 미리보기 ----
@@ -341,12 +351,13 @@
 
   // ---- 헤더 동작 ----
   backBtn.addEventListener('click', back);
+  minBtn.addEventListener('click', () => toggle(false));
   moreBtn.addEventListener('click', (e) => { e.stopPropagation(); menu.classList.toggle('vk-open'); });
   menu.addEventListener('click', (e) => {
     const act = e.target.closest('button')?.dataset.act;
     menu.classList.remove('vk-open');
     if (act === 'home') home();
-    else if (act === 'exit') toggle(false);
+    else if (act === 'exit') { resetConversation(); toggle(false); }
   });
   notice.addEventListener('click', () => notice.classList.toggle('vk-collapsed'));
   document.addEventListener('click', (e) => {
@@ -354,10 +365,19 @@
   });
 
   // ---- 열기/닫기 ----
+  // 상담 나가기: 대화 전체 초기화(다시 열면 처음부터). 접기(⌄)는 유지.
+  function resetConversation() {
+    body.innerHTML = '';
+    history.length = 0;
+    pendingImages = [];
+    renderPreview();
+    stack.length = 0;
+  }
   let opened = false;
   function toggle(open) {
     opened = open;
     panel.classList.toggle('vk-open', open);
+    launcher.style.display = open ? 'none' : 'flex'; // 열리면 런처 숨김(겹침 방지)
     if (open && body.childElementCount === 0) {
       addMessage('bot', MACROS.greeting);
       home();
