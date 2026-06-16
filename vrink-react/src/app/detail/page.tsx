@@ -331,7 +331,7 @@ export default function DetailPage() {
           <span>초기 비용, 운영 기간, 예상 사용량에 따라 적합한 도입 방식을 함께 검토합니다.</span>
         </div>
         <div className={styles.offerLine}>
-          <p>도입 상담에서 설치 조건, 구매·렌탈 견적, 기능샷 구성을 한 번에 확인할 수 있습니다.</p>
+          <p>도입 상담에서 설치 조건, 구매·렌탈 견적, 기능샷 구성을 한 번에 확인할 수 있습니다. 모든 도입에는 도입가와 별도로 설치비 440,000원이 발생합니다.</p>
           <Link href="#consult">견적 문의하기</Link>
         </div>
         <div className={styles.planGrid}>
