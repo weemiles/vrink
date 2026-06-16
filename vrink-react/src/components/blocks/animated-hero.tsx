@@ -71,7 +71,7 @@ export function AnimatedHero() {
               데모 요청 <PhoneCall className="h-4 w-4" />
             </Button>
             <Button size="lg" className="gap-3">
-              무료로 시작 <MoveRight className="h-4 w-4" />
+              도입 상담 <MoveRight className="h-4 w-4" />
             </Button>
           </div>
         </div>
