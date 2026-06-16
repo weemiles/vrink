@@ -219,7 +219,7 @@ export const vrinkCopy: VrinkCopy = {
     ],
     operations: [
       "24/7 Auto: 상시 모니터링 및 운영 지원 구조",
-      "System: 소진 시점 기준 구독 기반 자동 원액 공급",
+      "System: 소진 시점 기준 자사몰 주문형 원액 공급",
       "Control: 기기 상태와 유지보수를 중앙에서 통합 관리",
       "Data: 사용 데이터를 기반으로 운영 흐름 분석 및 최적화",
     ],

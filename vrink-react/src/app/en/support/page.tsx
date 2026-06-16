@@ -64,7 +64,7 @@ const faqGroups = [
     items: [
       [
         "How are ingredients managed?",
-        "We plan ingredient supply based on usage and remaining volume, and guide regular delivery and operation standards.",
+        "We plan ingredient supply based on usage and remaining volume, and guide on-demand ordering and operation standards.",
       ],
       [
         "How are regular checks handled?",
