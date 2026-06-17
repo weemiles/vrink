@@ -106,7 +106,7 @@
     padding:10px 16px;cursor:pointer;flex-shrink:0}
   .vk-send:disabled{opacity:.5;cursor:default}
   @media (max-width:480px){
-    .vk-panel{top:16px;bottom:88px;left:12px;right:12px;width:auto;max-width:none;height:auto;max-height:none;border-radius:16px}
+    .vk-panel{top:24vh;bottom:88px;left:12px;right:12px;width:auto;max-width:none;height:auto;max-height:none;border-radius:16px}
     .vk-overlay.vk-open{display:block}
   }
   `;
@@ -338,6 +338,14 @@
     ]);
   }
 
+  // AI 답변 뒤 빠른 연결 — 바로 상담사 연결 / 도입 문의로 이어준다
+  function aiEscalation() {
+    addActions([
+      { label: '상담사 연결', accent: true, onClick: requestHandoff },
+      { label: '도입 문의하기', onClick: () => { window.location.href = '/#contact'; } },
+    ]);
+  }
+
   async function sendAI() {
     const text = input.value.trim();
     const images = pendingImages.slice();
@@ -374,7 +382,10 @@
       typing.remove();
       const reply = data.text || data.error || '응답을 받지 못했습니다.';
       addMessage('bot', reply);
-      if (data.text) history.push({ role: 'assistant', content: data.text });
+      if (data.text) {
+        history.push({ role: 'assistant', content: data.text });
+        aiEscalation();
+      }
     } catch (e) {
       typing.remove();
       addMessage('bot', '지금 연결이 원활하지 않아요. 다시 시도해 주세요.');
