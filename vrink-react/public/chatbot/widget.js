@@ -174,6 +174,8 @@
   const overlay = document.createElement('div');
   overlay.className = 'vk-overlay';
   overlay.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
+  // 채팅창 밖(딤 영역) 탭하면 잠시 내려감(대화는 보존, 런처 누르면 다시 올라옴). 모바일에서 overlay가 보임.
+  overlay.addEventListener('click', () => toggle(false));
   // 모바일은 의도치 않은 닫힘을 막기 위해 딤 배경 탭으로 닫지 않음. 닫기는 ⌄(접기)·메뉴로만.
   document.body.appendChild(overlay);
   document.body.appendChild(launcher);
