@@ -380,7 +380,7 @@
         const data = await r.json();
         if (data && data.token) {
           live = { token: data.token, lastId: 0, timer: null, agentNotified: false };
-          addMessage('bot', '연결됐어요! 여기에 메시지를 남기시면 상담사가 확인하는 대로 바로 답변드릴게요. 평일 10:00–18:00에 가장 빠르게 도와드려요 😊');
+          live.waitingEl = showTyping(); // 상담사가 입장하기 전까지 '대기 중' 로딩(점 애니메이션) 표시
           startLivePolling();
           if (window.innerWidth > 480) input.focus();
           return;
@@ -431,7 +431,8 @@
       const d = await r.json();
       if (d.agentJoined && !live.agentNotified) {
         live.agentNotified = true;
-        addMessage('bot', '상담사가 연결됐어요 😊');
+        if (live.waitingEl) { live.waitingEl.remove(); live.waitingEl = null; } // 대기 로딩 제거
+        addMessage('bot', '상담사가 연결됐어요 😊 편하게 말씀해 주세요!');
       }
       (d.messages || []).forEach((m) => {
         live.lastId = m.id;
@@ -448,6 +449,7 @@
       if (d.status === 'closed') {
         stopLivePolling();
         if (live.typingEl) { live.typingEl.remove(); }
+        if (live.waitingEl) { live.waitingEl.remove(); }
         live = null;
         addMessage('bot', '상담이 종료됐어요. 다른 문의가 있으면 언제든 다시 찾아주세요 😊');
       }
