@@ -2,6 +2,9 @@
   // 설정
   const API_URL = window.VRINK_CHAT_API || '/api/chat';
   const HANDOFF_URL = window.VRINK_HANDOFF_API || '/api/handoff';
+  const LIVE_START_URL = window.VRINK_LIVE_START_API || '/api/chat-live/start';
+  const LIVE_SEND_URL = window.VRINK_LIVE_SEND_API || '/api/chat-live/send';
+  const LIVE_POLL_URL = window.VRINK_LIVE_POLL_API || '/api/chat-live/poll';
   const BRAND = '#56E893';
   const BOT_NAME = '브링크';
   const NOTICE =
@@ -10,6 +13,7 @@
 
   const history = [];        // AI 상담 대화 기록 (AI API 전달용)
   let pendingImages = [];    // 전송 대기 중인 첨부 이미지(data URL)
+  let live = null;           // 라이브 상담 상태 { token, lastId, timer, agentNotified }
 
   // 브랜드 로고 (Vector.svg 인라인)
   function logo(size) {
@@ -316,6 +320,8 @@
     const images = pendingImages.slice();
     if (!text && images.length === 0) return; // 어느 단계에서든 입력/첨부하면 AI가 응답
 
+    if (live) { sendLive(text); return; } // 라이브 상담 중에는 AI 대신 상담사에게 전달
+
     addMessage('user', text, images);
     input.value = '';
     input.style.height = 'auto';
@@ -355,14 +361,32 @@
   }
 
   async function requestHandoff() {
-    // 화면에 보이는 전체 대화를 슬랙으로 전달. (history엔 AI 직접입력만 담겨 빠른메뉴 칩 대화가 누락되므로
-    //  DOM의 말풍선을 직접 읽어 칩 흐름까지 모두 포함시킨다.)
+    // 그때까지의 전체 대화(빠른메뉴 칩 + AI 상담)를 함께 넘긴다.
     const transcript = [...body.querySelectorAll('.vk-msg')].map((el) => {
       let content = el.textContent.trim();
       if (el.querySelector('img')) content += ' [사진]';
       return { role: el.classList.contains('vk-user') ? 'user' : 'bot', content };
     });
-    addMessage('bot', '상담사 연결을 요청하고 있어요. 잠깐만 기다려 주세요…');
+    addMessage('bot', '상담사에게 연결하고 있어요. 잠깐만 기다려 주세요…');
+    // 1순위: 실시간 라이브 상담 세션 시작
+    try {
+      const r = await fetch(LIVE_START_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ transcript, page: location.href }),
+      });
+      if (r.ok) {
+        const data = await r.json();
+        if (data && data.token) {
+          live = { token: data.token, lastId: 0, timer: null, agentNotified: false };
+          addMessage('bot', '연결됐어요! 여기에 메시지를 남기시면 상담사가 확인하는 대로 바로 답변드릴게요. 평일 10:00–18:00에 가장 빠르게 도와드려요 😊');
+          startLivePolling();
+          if (window.innerWidth > 480) input.focus();
+          return;
+        }
+      }
+    } catch (e) { /* 라이브 실패 → 아래 접수 폴백 */ }
+    // 폴백: 라이브 연결 실패 시 기존 비동기 접수(슬랙 알림)
     try {
       await fetch(HANDOFF_URL, {
         method: 'POST',
@@ -371,6 +395,53 @@
       });
     } catch (e) { /* 접수 실패해도 사용자에겐 안내만 */ }
     addMessage('bot', '상담사 연결이 접수됐어요. 영업시간 내 순차적으로 답변드릴게요. 급하시면 본사 대표번호로 연락해 주세요 😊');
+  }
+
+  // ---- 라이브 상담 ----
+  async function sendLive(text) {
+    pendingImages = []; renderPreview(); // 라이브 상담은 텍스트만 지원
+    if (!text) return;
+    addMessage('user', text);
+    input.value = '';
+    input.style.height = 'auto';
+    try {
+      await fetch(LIVE_SEND_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token: live.token, content: text }),
+      });
+    } catch (e) {
+      addMessage('bot', '메시지 전송에 실패했어요. 잠시 후 다시 시도해 주세요.');
+    }
+  }
+
+  function startLivePolling() {
+    if (!live || live.timer) return;
+    live.timer = setInterval(pollLive, 2000);
+  }
+  function stopLivePolling() {
+    if (live && live.timer) { clearInterval(live.timer); live.timer = null; }
+  }
+  async function pollLive() {
+    if (!live) return;
+    try {
+      const r = await fetch(`${LIVE_POLL_URL}?token=${encodeURIComponent(live.token)}&after=${live.lastId}`);
+      if (!r.ok) return;
+      const d = await r.json();
+      if (d.agentJoined && !live.agentNotified) {
+        live.agentNotified = true;
+        addMessage('bot', '상담사가 연결됐어요 😊');
+      }
+      (d.messages || []).forEach((m) => {
+        live.lastId = m.id;
+        addMessage('bot', m.content); // 상담사/시스템 메시지를 브링크 명의로 표시
+      });
+      if (d.status === 'closed') {
+        stopLivePolling();
+        live = null;
+        addMessage('bot', '상담이 종료됐어요. 다른 문의가 있으면 언제든 다시 찾아주세요 😊');
+      }
+    } catch (e) { /* 네트워크 일시 오류는 다음 폴링에서 회복 */ }
   }
 
   // ---- 헤더 동작 ----
@@ -396,6 +467,8 @@
     history.length = 0;
     pendingImages = [];
     renderPreview();
+    stopLivePolling();
+    live = null;
   }
   let opened = false;
   function toggle(open) {
