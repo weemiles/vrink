@@ -17,7 +17,7 @@ export async function GET(req: NextRequest) {
   const supa = createServiceSupabaseClient();
   const { data: session } = await supa
     .from("chat_sessions")
-    .select("id, status, agent_joined")
+    .select("id, status, agent_joined, agent_typing_at")
     .eq("token", token)
     .single();
 
@@ -33,9 +33,15 @@ export async function GET(req: NextRequest) {
     .gt("id", after)
     .order("id", { ascending: true });
 
+  // 상담사가 최근 5초 내 타이핑했으면 "입력 중"으로 본다.
+  const agentTyping =
+    !!session.agent_typing_at &&
+    Date.now() - new Date(session.agent_typing_at).getTime() < 5000;
+
   return NextResponse.json({
     messages: msgs ?? [],
     status: session.status,
     agentJoined: session.agent_joined,
+    agentTyping,
   });
 }

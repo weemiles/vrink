@@ -59,7 +59,6 @@ export async function POST(req: NextRequest) {
     const text = [
       `*🔴 새 실시간 상담 요청* (${label})`,
       lastUser ? `최근 문의: ${lastUser.content.slice(0, 120)}` : null,
-      body.page ? `페이지: ${body.page}` : null,
       `상담 콘솔에서 응대해 주세요 👉 ${consoleUrl}`,
     ]
       .filter(Boolean)

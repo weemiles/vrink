@@ -5,6 +5,7 @@
   const LIVE_START_URL = window.VRINK_LIVE_START_API || '/api/chat-live/start';
   const LIVE_SEND_URL = window.VRINK_LIVE_SEND_API || '/api/chat-live/send';
   const LIVE_POLL_URL = window.VRINK_LIVE_POLL_API || '/api/chat-live/poll';
+  const LIVE_TYPING_URL = window.VRINK_LIVE_TYPING_API || '/api/chat-live/typing';
   const BRAND = '#56E893';
   const BOT_NAME = '브링크';
   const NOTICE =
@@ -436,12 +437,35 @@
         live.lastId = m.id;
         addMessage('bot', m.content); // 상담사/시스템 메시지를 브링크 명의로 표시
       });
+      // 상담사 '입력 중…' 표시 (기존 타이핑 점 애니메이션 재사용, 항상 맨 아래로)
+      if (d.agentTyping && d.status !== 'closed') {
+        if (!live.typingEl) live.typingEl = showTyping();
+        else { body.appendChild(live.typingEl); body.scrollTop = body.scrollHeight; }
+      } else if (live.typingEl) {
+        live.typingEl.remove();
+        live.typingEl = null;
+      }
       if (d.status === 'closed') {
         stopLivePolling();
+        if (live.typingEl) { live.typingEl.remove(); }
         live = null;
         addMessage('bot', '상담이 종료됐어요. 다른 문의가 있으면 언제든 다시 찾아주세요 😊');
       }
     } catch (e) { /* 네트워크 일시 오류는 다음 폴링에서 회복 */ }
+  }
+
+  // 고객이 입력 중일 때 상담사에게 알림(throttle ~1.5초)
+  let lastTypingPing = 0;
+  function pingTyping() {
+    if (!live) return;
+    const now = Date.now();
+    if (now - lastTypingPing < 1500) return;
+    lastTypingPing = now;
+    fetch(LIVE_TYPING_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token: live.token }),
+    }).catch(() => {});
   }
 
   // ---- 헤더 동작 ----
@@ -489,6 +513,7 @@
   input.addEventListener('input', () => {
     input.style.height = 'auto';
     input.style.height = Math.min(input.scrollHeight, 96) + 'px';
+    if (live) pingTyping(); // 라이브 상담 중 입력 시 상담사에게 '입력 중' 알림
   });
   input.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendAI(); }
