@@ -106,7 +106,7 @@
     padding:10px 16px;cursor:pointer;flex-shrink:0}
   .vk-send:disabled{opacity:.5;cursor:default}
   @media (max-width:480px){
-    .vk-panel{top:24vh;bottom:88px;left:12px;right:12px;width:auto;max-width:none;height:auto;max-height:none;border-radius:16px}
+    .vk-panel{top:16px;bottom:88px;left:12px;right:12px;width:auto;max-width:none;height:auto;max-height:none;border-radius:16px}
     .vk-overlay.vk-open{display:block}
   }
   `;
