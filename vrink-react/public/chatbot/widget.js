@@ -355,12 +355,19 @@
   }
 
   async function requestHandoff() {
+    // 화면에 보이는 전체 대화를 슬랙으로 전달. (history엔 AI 직접입력만 담겨 빠른메뉴 칩 대화가 누락되므로
+    //  DOM의 말풍선을 직접 읽어 칩 흐름까지 모두 포함시킨다.)
+    const transcript = [...body.querySelectorAll('.vk-msg')].map((el) => {
+      let content = el.textContent.trim();
+      if (el.querySelector('img')) content += ' [사진]';
+      return { role: el.classList.contains('vk-user') ? 'user' : 'bot', content };
+    });
     addMessage('bot', '상담사 연결을 요청하고 있어요. 잠깐만 기다려 주세요…');
     try {
       await fetch(HANDOFF_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ history, page: location.href }),
+        body: JSON.stringify({ history: transcript, page: location.href }),
       });
     } catch (e) { /* 접수 실패해도 사용자에겐 안내만 */ }
     addMessage('bot', '상담사 연결이 접수됐어요. 영업시간 내 순차적으로 답변드릴게요. 급하시면 본사 대표번호로 연락해 주세요 😊');

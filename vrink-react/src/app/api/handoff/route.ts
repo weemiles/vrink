@@ -39,10 +39,11 @@ export async function POST(req: NextRequest) {
       .join("\n");
     const text = [
       "*새 상담사 연결 요청*",
-      body.page ? `페이지: ${body.page}` : null,
       "",
       "*대화 내용*",
-      convo || "(AI 상담 없이 바로 연결 요청)",
+      convo || "(대화 내용 없음)",
+      "",
+      body.page ? `고객이 문의한 페이지: ${body.page}` : null,
     ]
       .filter(Boolean)
       .join("\n");
