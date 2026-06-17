@@ -16,6 +16,7 @@
   const history = [];        // AI 상담 대화 기록 (AI API 전달용)
   let pendingImages = [];    // 전송 대기 중인 첨부 이미지(data URL)
   let live = null;           // 라이브 상담 상태 { token, lastId, timer, agentNotified }
+  let leadCapture = false;   // 영업시간 외 연락처 접수 모드
 
   // 브랜드 로고 (Vector.svg 인라인)
   function logo(size) {
@@ -353,6 +354,7 @@
     const images = pendingImages.slice();
     if (!text && images.length === 0) return; // 어느 단계에서든 입력/첨부하면 AI가 응답
 
+    if (leadCapture && text) { submitLead(text); return; } // 영업시간 외 연락처 접수 중
     if (live) { sendLive(text); return; } // 라이브 상담 중에는 AI 대신 상담사에게 전달
 
     addMessage('user', text, images);
@@ -397,6 +399,7 @@
   }
 
   async function requestHandoff() {
+    if (!isBusinessHours()) { offlineHandoff(); return; } // 영업시간 외: 라이브 대신 연락처 접수
     // 그때까지의 전체 대화(빠른메뉴 칩 + AI 상담)를 함께 넘긴다.
     const transcript = [...body.querySelectorAll('.vk-msg')].map((el) => {
       let content = el.textContent.trim();
@@ -432,6 +435,51 @@
       });
     } catch (e) { /* 접수 실패해도 사용자에겐 안내만 */ }
     addMessage('bot', '상담사 연결이 접수됐어요. 영업시간 내 순차적으로 답변드릴게요. 급하시면 본사 대표번호로 연락해 주세요 😊');
+  }
+
+  // 영업시간(평일 오전 10시~오후 6시, KST) 여부
+  function isBusinessHours() {
+    const utc = Date.now() + new Date().getTimezoneOffset() * 60000;
+    const kst = new Date(utc + 9 * 3600000);
+    const day = kst.getDay(); // 0=일, 6=토
+    const hour = kst.getHours();
+    return day >= 1 && day <= 5 && hour >= 10 && hour < 18;
+  }
+
+  // 영업시간 외 '상담사 연결': AI로 답할 건 답하되, 연락처를 받아 영업시간에 회신
+  function offlineHandoff() {
+    addMessage('bot', '지금은 상담 가능 시간이 아니에요. (평일 오전 10시~오후 6시) 궁금하신 점은 제가 바로 도와드릴 수 있어요. 그리고 연락처를 남겨주시면 영업시간에 담당자가 직접 연락드릴까요?');
+    addActions([
+      { label: '연락처 남기기', accent: true, onClick: () => {
+        leadCapture = true;
+        addMessage('bot', '성함과 연락처(전화번호)를 남겨주시면 영업시간에 순서대로 연락드릴게요 😊');
+        if (window.innerWidth > 480) input.focus();
+      } },
+      { label: 'AI에게 물어보기', onClick: () => { addMessage('bot', '무엇이든 편하게 입력해 주세요!'); if (window.innerWidth > 480) input.focus(); } },
+    ]);
+  }
+
+  // 연락처 접수 → 슬랙으로 전송(영업시간 외 표시). 우리가 이 데이터를 보고 회신.
+  async function submitLead(text) {
+    addMessage('user', text);
+    input.value = '';
+    input.style.height = 'auto';
+    leadCapture = false;
+    const transcript = [...body.querySelectorAll('.vk-msg')].map((el) => {
+      let content = el.textContent.trim();
+      if (el.querySelector('img')) content += ' [사진]';
+      return { role: el.classList.contains('vk-user') ? 'user' : 'bot', content };
+    });
+    try {
+      await fetch(HANDOFF_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ history: transcript, page: location.href, offline: true }),
+      });
+      addMessage('bot', '연락처 잘 받았어요. 영업시간(평일 오전 10시~오후 6시)에 담당자가 연락드릴게요 😊');
+    } catch (e) {
+      addMessage('bot', '접수에 실패했어요. 잠시 후 다시 시도해 주세요.');
+    }
   }
 
   // ---- 라이브 상담 ----

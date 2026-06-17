@@ -23,7 +23,7 @@ function textOf(content: unknown): string {
 }
 
 export async function POST(req: NextRequest) {
-  let body: { history?: Msg[]; page?: string };
+  let body: { history?: Msg[]; page?: string; offline?: boolean };
   try {
     body = await req.json();
   } catch {
@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
       .map((m) => `${m.role === "user" ? "🙋 고객" : "🤖 봇"}: ${textOf(m.content)}`)
       .join("\n");
     const text = [
-      "*새 상담사 연결 요청*",
+      body.offline ? "*영업시간 외 연락 요청* — 영업시간에 회신 필요" : "*새 상담사 연결 요청*",
       "",
       "*대화 내용*",
       convo || "(대화 내용 없음)",
