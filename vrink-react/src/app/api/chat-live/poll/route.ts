@@ -35,7 +35,7 @@ export async function GET(req: NextRequest) {
 
   const { data: msgs } = await supa
     .from("chat_messages")
-    .select("id, sender, content, created_at")
+    .select("id, sender, content, created_at, image_url")
     .eq("session_id", session.id)
     .in("sender", ["agent", "system"])
     .gt("id", after)

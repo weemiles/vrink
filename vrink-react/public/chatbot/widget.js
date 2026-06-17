@@ -266,16 +266,37 @@
     });
   }
 
+  // 큰 사진은 업로드 안정성을 위해 최대 1280px·JPEG로 축소한 data URL로 변환
+  function readImage(file, cb) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const img = new Image();
+      img.onload = () => {
+        const max = 1280;
+        let w = img.width, h = img.height;
+        if (w > max || h > max) {
+          const r = Math.min(max / w, max / h);
+          w = Math.round(w * r); h = Math.round(h * r);
+        }
+        const canvas = document.createElement('canvas');
+        canvas.width = w; canvas.height = h;
+        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+        cb(canvas.toDataURL('image/jpeg', 0.82));
+      };
+      img.onerror = () => cb(reader.result);
+      img.src = reader.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
   attachBtn.addEventListener('click', () => fileInput.click());
   fileInput.addEventListener('change', () => {
     const files = Array.from(fileInput.files || []);
     files.forEach((file) => {
-      const reader = new FileReader();
-      reader.onload = () => {
-        pendingImages.push(reader.result);
+      readImage(file, (url) => {
+        pendingImages.push(url);
         renderPreview();
-      };
-      reader.readAsDataURL(file);
+      });
     });
     fileInput.value = '';
   });
@@ -402,17 +423,28 @@
 
   // ---- 라이브 상담 ----
   async function sendLive(text) {
-    pendingImages = []; renderPreview(); // 라이브 상담은 텍스트만 지원
-    if (!text) return;
-    addMessage('user', text);
+    const images = pendingImages.slice();
+    pendingImages = []; renderPreview();
+    if (!text && images.length === 0) return;
+    addMessage('user', text, images);
     input.value = '';
     input.style.height = 'auto';
     try {
-      await fetch(LIVE_SEND_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ token: live.token, content: text }),
-      });
+      // 텍스트와 이미지를 각각 한 메시지로 전송(이미지당 1건)
+      if (text) {
+        await fetch(LIVE_SEND_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ token: live.token, content: text }),
+        });
+      }
+      for (const url of images) {
+        await fetch(LIVE_SEND_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ token: live.token, image: url }),
+        });
+      }
     } catch (e) {
       addMessage('bot', '메시지 전송에 실패했어요. 잠시 후 다시 시도해 주세요.');
     }
@@ -447,7 +479,7 @@
       }
       (d.messages || []).forEach((m) => {
         live.lastId = m.id;
-        addMessage('bot', m.content); // 상담사/시스템 메시지를 브링크 명의로 표시
+        addMessage('bot', m.content, m.image_url ? [m.image_url] : []); // 상담사/시스템 메시지(이미지 포함)
       });
       // 상담사 '입력 중…' 표시 (기존 타이핑 점 애니메이션 재사용, 항상 맨 아래로)
       if (d.agentTyping && d.status !== 'closed') {
