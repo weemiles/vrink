@@ -189,6 +189,28 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // ERP 도입문의 영업 파이프라인에도 '신규문의' 리드로 자동 등록.
+    // (보조 저장이라 실패해도 사용자 응답은 막지 않고 로그만 남긴다)
+    try {
+      const channelMap: Record<string, string> = {
+        website: "홈페이지",
+        consultation_widget: "상담위젯",
+      };
+      const { error: leadError } = await supabase.from("erp_leads").insert({
+        company: payload.company,
+        name: payload.name,
+        email: payload.email,
+        phone: payload.phone,
+        source_channel: channelMap[payload.source] ?? payload.source ?? "홈페이지",
+        inquiry_message: payload.message,
+      });
+      if (leadError) {
+        console.error("[lead] erp_leads 자동 등록 실패:", leadError);
+      }
+    } catch (leadException) {
+      console.error("[lead] erp_leads 자동 등록 예외:", leadException);
+    }
+
     await saveGoogleSheetsLeadInquiry(payload, request, ip);
 
     return NextResponse.json(
