@@ -179,6 +179,7 @@
   const overlay = document.createElement('div');
   overlay.className = 'vk-overlay';
   overlay.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
+  overlay.addEventListener('click', () => toggle(false)); // 모바일: 딤 배경 탭 시 닫기
   document.body.appendChild(overlay);
   document.body.appendChild(launcher);
   document.body.appendChild(panel);
@@ -370,7 +371,7 @@
   // ---- 헤더 동작 ----
   backBtn.addEventListener('click', back);
   minBtn.addEventListener('click', () => toggle(false));
-  quickToggle.addEventListener('click', () => panel.classList.toggle('vk-collapsed'));
+  quickToggle.addEventListener('click', (e) => { e.stopPropagation(); panel.classList.toggle('vk-collapsed'); });
   moreBtn.addEventListener('click', (e) => { e.stopPropagation(); menu.classList.toggle('vk-open'); });
   menu.addEventListener('click', (e) => {
     const act = e.target.closest('button')?.dataset.act;
@@ -381,7 +382,8 @@
   notice.addEventListener('click', () => notice.classList.toggle('vk-collapsed'));
   document.addEventListener('click', (e) => {
     if (!menu.contains(e.target) && !moreBtn.contains(e.target)) menu.classList.remove('vk-open');
-    if (opened && !panel.contains(e.target) && !launcher.contains(e.target)) toggle(false);
+    // 데스크톱만 '패널 밖 클릭' 닫기. 모바일은 overlay(딤) 탭으로만 닫아 iOS 합성 click 오작동(빠른메뉴 탭 시 닫힘) 방지
+    if (opened && window.innerWidth > 480 && !panel.contains(e.target) && !launcher.contains(e.target)) toggle(false);
   });
 
   // ---- 열기/닫기 ----

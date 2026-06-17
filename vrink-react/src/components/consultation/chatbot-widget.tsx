@@ -12,7 +12,7 @@ export function ChatbotWidget() {
   useEffect(() => {
     if (document.getElementById("vk-widget-script")) return;
 
-    const v = "20260616g"; // 캐시 무효화 버전 — 위젯 변경 시 갱신
+    const v = "20260617a"; // 캐시 무효화 버전 — 위젯 변경 시 갱신
     const macros = document.createElement("script");
     macros.src = `/chatbot/macros.js?v=${v}`;
     macros.onload = () => {
