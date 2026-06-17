@@ -341,12 +341,19 @@
     ]);
   }
 
-  // AI 답변 뒤 빠른 연결 — 바로 상담사 연결 / 도입 문의로 이어준다
-  function aiEscalation() {
-    addActions([
-      { label: '상담사 연결', accent: true, onClick: requestHandoff },
-      { label: '도입 문의하기', onClick: () => { window.location.href = '/#contact'; } },
-    ]);
+  // AI 답변 뒤 후속 안내 — 매번 붙이지 않고, 답변 맥락에 맞을 때만 노출
+  function aiEscalation(reply) {
+    const t = reply || '';
+    const acts = [];
+    // 봇이 '상담사/담당자 연결'을 안내했을 때만 연결 버튼
+    if (/상담사|담당자에게 연결|연결해\s?드릴게요|연결해\s?드릴까요/.test(t)) {
+      acts.push({ label: '상담사 연결', accent: true, onClick: requestHandoff });
+    }
+    // 도입·설치·렌탈·가맹 안내일 때만 도입 문의 버튼
+    if (/도입|설치비|렌탈|가맹/.test(t)) {
+      acts.push({ label: '도입 문의하기', onClick: () => { window.location.href = '/#contact'; } });
+    }
+    if (acts.length) addActions(acts);
   }
 
   async function sendAI() {
@@ -388,7 +395,7 @@
       addMessage('bot', reply);
       if (data.text) {
         history.push({ role: 'assistant', content: data.text });
-        aiEscalation();
+        aiEscalation(data.text);
       }
     } catch (e) {
       typing.remove();
