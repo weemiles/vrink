@@ -5,7 +5,7 @@
   const BRAND = '#56E893';
   const BOT_NAME = '브링크';
   const NOTICE =
-    '평일 10:00–18:00에 순차적으로 답변드려요.\n도입 문의, 이용 방법, 제휴 등 무엇이든 편하게 남겨주세요.';
+    '평일 10:00–18:00에 순차적으로 답변드려요.\n도입 문의, 이용 방법, 제휴 등 무엇이든 편하게 남겨주세요!';
   const MACROS = window.VRINK_MACROS || { greeting: '무엇을 도와드릴까요?', items: [] };
 
   const history = [];        // AI 상담 대화 기록 (AI API 전달용)
@@ -138,7 +138,7 @@
         <span class="vk-avatar">${logo(22)}</span>
         <div>
           <div class="vk-title">${BOT_NAME}</div>
-          <div class="vk-sub">보통 몇 분 안에 답변드려요</div>
+          <div class="vk-sub">보통 몇 분 안에 답변드려요 😊</div>
         </div>
       </div>
       <button class="vk-min" aria-label="접기">${chevronDown}</button>
@@ -294,8 +294,8 @@
 
   function escalationScreen() {
     addActions([
-      { label: '해결됐어요', onClick: () => { addMessage('bot', '도움이 됐다니 다행이에요. 더 궁금한 게 있으면 아래에서 골라주세요.'); mainScreen(); } },
-      { label: 'AI에게 물어보기', accent: true, onClick: () => { addMessage('bot', '무엇이든 편하게 입력해 주세요. 사진도 첨부할 수 있어요.'); if (window.innerWidth > 480) input.focus(); } },
+      { label: '해결됐어요', onClick: () => { addMessage('bot', '도움이 됐다니 다행이에요 😊 더 궁금한 게 있으면 아래에서 골라주세요.'); mainScreen(); } },
+      { label: 'AI에게 물어보기', accent: true, onClick: () => { addMessage('bot', '무엇이든 편하게 입력해 주세요! 사진도 첨부할 수 있어요.'); if (window.innerWidth > 480) input.focus(); } },
       { label: '상담사 연결', onClick: requestHandoff },
     ]);
   }
@@ -337,14 +337,14 @@
       if (data.text) history.push({ role: 'assistant', content: data.text });
     } catch (e) {
       typing.remove();
-      addMessage('bot', '지금 연결이 원활하지 않아요. 잠시 후 다시 시도해 주세요.');
+      addMessage('bot', '지금 연결이 원활하지 않아요. 다시 시도해 주세요.');
     } finally {
       input.disabled = false; sendBtn.disabled = false; input.focus();
     }
   }
 
   async function requestHandoff() {
-    addMessage('bot', '상담사 연결을 요청하고 있어요…');
+    addMessage('bot', '상담사 연결을 요청하고 있어요. 잠깐만 기다려 주세요…');
     try {
       await fetch(HANDOFF_URL, {
         method: 'POST',
@@ -352,7 +352,7 @@
         body: JSON.stringify({ history, page: location.href }),
       });
     } catch (e) { /* 접수 실패해도 사용자에겐 안내만 */ }
-    addMessage('bot', '상담사 연결이 접수됐어요. 영업시간 내 순차적으로 답변드릴게요. 급하시면 본사 대표번호로 연락해 주세요.');
+    addMessage('bot', '상담사 연결이 접수됐어요. 영업시간 내 순차적으로 답변드릴게요. 급하시면 본사 대표번호로 연락해 주세요 😊');
   }
 
   // ---- 헤더 동작 ----
