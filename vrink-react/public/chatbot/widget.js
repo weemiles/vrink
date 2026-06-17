@@ -368,6 +368,7 @@
       if (el.querySelector('img')) content += ' [사진]';
       return { role: el.classList.contains('vk-user') ? 'user' : 'bot', content };
     });
+    addMessage('bot', '상담 품질 향상과 답변을 위해 대화 내용이 저장돼요. 자세한 내용은 개인정보 처리방침(vrink.kr/privacy)을 확인해 주세요.');
     addMessage('bot', '상담사에게 연결하고 있어요. 잠깐만 기다려 주세요…');
     // 1순위: 실시간 라이브 상담 세션 시작
     try {
