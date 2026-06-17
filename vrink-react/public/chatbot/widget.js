@@ -284,7 +284,11 @@
     renderActions(
       MACROS.items.map((cat) => ({
         label: cat.label,
-        onClick: () => { addMessage('user', cat.label); pushScreen(() => categoryScreen(cat)); },
+        onClick: () => {
+          addMessage('user', cat.label);
+          addMessage('bot', '네, 도와드릴게요. 아래에서 궁금하신 항목을 선택하시거나, 직접 입력해 물어보셔도 됩니다.');
+          pushScreen(() => categoryScreen(cat));
+        },
       }))
     );
   }
