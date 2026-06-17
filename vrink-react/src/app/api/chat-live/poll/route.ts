@@ -25,6 +25,14 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: "session_not_found" }, { status: 404 });
   }
 
+  // 하트비트: 위젯이 살아있는 동안 갱신. 끊기면 콘솔이 이탈로 판단해 자동 종료.
+  if (session.status === "active") {
+    await supa
+      .from("chat_sessions")
+      .update({ last_seen_at: new Date().toISOString() })
+      .eq("id", session.id);
+  }
+
   const { data: msgs } = await supa
     .from("chat_messages")
     .select("id, sender, content, created_at")

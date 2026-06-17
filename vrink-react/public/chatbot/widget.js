@@ -6,6 +6,7 @@
   const LIVE_SEND_URL = window.VRINK_LIVE_SEND_API || '/api/chat-live/send';
   const LIVE_POLL_URL = window.VRINK_LIVE_POLL_API || '/api/chat-live/poll';
   const LIVE_TYPING_URL = window.VRINK_LIVE_TYPING_API || '/api/chat-live/typing';
+  const LIVE_CLOSE_URL = window.VRINK_LIVE_CLOSE_API || '/api/chat-live/close';
   const BRAND = '#56E893';
   const BOT_NAME = '브링크';
   const NOTICE =
@@ -424,6 +425,15 @@
   function stopLivePolling() {
     if (live && live.timer) { clearInterval(live.timer); live.timer = null; }
   }
+  // 고객이 페이지를 떠나거나 상담을 나가면 세션 종료 통지(콘솔에서도 자동 종료됨)
+  function closeLive() {
+    if (live && live.token) {
+      try {
+        navigator.sendBeacon(LIVE_CLOSE_URL, new Blob([JSON.stringify({ token: live.token })], { type: 'application/json' }));
+      } catch (e) { /* 무시 */ }
+    }
+  }
+  window.addEventListener('pagehide', closeLive);
   async function pollLive() {
     if (!live) return;
     try {
@@ -490,6 +500,7 @@
   // ---- 열기/닫기 ----
   // 상담 나가기: 대화 전체 초기화(다시 열면 처음부터). 접기(⌄)는 유지.
   function resetConversation() {
+    closeLive(); // 라이브 상담 중 '나가기' 시 세션 종료 통지
     body.innerHTML = '';
     history.length = 0;
     pendingImages = [];
