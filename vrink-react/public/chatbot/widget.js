@@ -5,12 +5,11 @@
   const BRAND = '#56E893';
   const BOT_NAME = '브링크';
   const NOTICE =
-    '평일 10:00–18:00에 순차적으로 답변드려요.\n도입 문의, 이용 방법, 제휴 관련 무엇이든 편하게 남겨주세요.';
+    '평일 10:00–18:00에 순차적으로 답변드려요.\n도입 문의, 이용 방법, 제휴 등 무엇이든 편하게 남겨주세요.';
   const MACROS = window.VRINK_MACROS || { greeting: '무엇을 도와드릴까요?', items: [] };
 
   const history = [];        // AI 상담 대화 기록 (AI API 전달용)
   let pendingImages = [];    // 전송 대기 중인 첨부 이미지(data URL)
-  const stack = [];          // 액션 화면 함수 스택
 
   // 브랜드 로고 (Vector.svg 인라인)
   function logo(size) {
@@ -43,8 +42,6 @@
     font-family:'Pretendard',system-ui,'Apple SD Gothic Neo',sans-serif}
   .vk-panel.vk-open{display:flex}
   .vk-header{position:relative;padding:14px 14px;border-bottom:1px solid #F2F2F2;display:flex;align-items:center;gap:8px}
-  .vk-back{background:none;border:none;cursor:pointer;color:${BRAND};font-size:24px;line-height:1;padding:2px 4px;flex-shrink:0}
-  .vk-back:disabled{color:#D8D8D8;cursor:default}
   .vk-profile{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
   .vk-avatar{width:34px;height:34px;border-radius:50%;background:#F4F8FF;display:flex;align-items:center;justify-content:center;flex-shrink:0}
   .vk-title{font-size:16px;font-weight:600;letter-spacing:-0.02em;color:#1A1A1A;line-height:1.2}
@@ -79,13 +76,7 @@
   .vk-typing span{width:6px;height:6px;border-radius:50%;background:#BDBDBD;animation:vk-blink 1.2s infinite}
   .vk-typing span:nth-child(2){animation-delay:.2s}.vk-typing span:nth-child(3){animation-delay:.4s}
   @keyframes vk-blink{0%,60%,100%{opacity:.3}30%{opacity:1}}
-  .vk-quickbar{display:none;padding:8px 12px 0;background:#fff;border-top:1px solid #F2F2F2}
-  .vk-quick-toggle{background:none;border:none;cursor:pointer;font-size:12px;color:#9AA0A6;display:flex;align-items:center;gap:4px;font-family:inherit;padding:3px 4px}
-  .vk-quick-toggle svg{width:14px;height:14px;transition:transform .15s}
-  .vk-panel.vk-collapsed .vk-quick-toggle svg{transform:rotate(180deg)}
-  .vk-panel.vk-collapsed .vk-actions{display:none}
-  .vk-actions{display:flex;flex-wrap:wrap;gap:8px;padding:8px 12px 12px;background:#fff;align-items:center}
-  .vk-actions:empty{display:none}
+  .vk-inline-actions{display:flex;flex-wrap:wrap;gap:8px;align-self:flex-start;max-width:92%;margin-top:2px}
   .vk-chip{background:#fff;border:1px solid #DDD;color:#1A1A1A;font-size:14px;font-weight:500;padding:8px 13px;border-radius:18px;
     cursor:pointer;font-family:inherit;transition:border-color .12s,background .12s}
   .vk-chip:hover{border-color:${BRAND};background:#F4FCF7}
@@ -143,12 +134,11 @@
   panel.className = 'vk-panel';
   panel.innerHTML = `
     <div class="vk-header">
-      <button class="vk-back" aria-label="뒤로">‹</button>
       <div class="vk-profile">
         <span class="vk-avatar">${logo(22)}</span>
         <div>
           <div class="vk-title">${BOT_NAME}</div>
-          <div class="vk-sub">몇 분 내 답변 받으실 수 있어요</div>
+          <div class="vk-sub">보통 몇 분 안에 답변드려요</div>
         </div>
       </div>
       <button class="vk-min" aria-label="접기">${chevronDown}</button>
@@ -164,8 +154,6 @@
       <span class="vk-notice-arrow">⌃</span>
     </div>
     <div class="vk-body"></div>
-    <div class="vk-quickbar"><button class="vk-quick-toggle">빠른 메뉴 ${chevronDown}</button></div>
-    <div class="vk-actions"></div>
     <div class="vk-foot">
       <div class="vk-preview"></div>
       <div class="vk-foot-row">
@@ -179,20 +167,16 @@
   const overlay = document.createElement('div');
   overlay.className = 'vk-overlay';
   overlay.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
-  overlay.addEventListener('click', () => toggle(false)); // 모바일: 딤 배경 탭 시 닫기
+  // 모바일은 의도치 않은 닫힘을 막기 위해 딤 배경 탭으로 닫지 않음. 닫기는 ⌄(접기)·메뉴로만.
   document.body.appendChild(overlay);
   document.body.appendChild(launcher);
   document.body.appendChild(panel);
 
-  const backBtn = panel.querySelector('.vk-back');
   const minBtn = panel.querySelector('.vk-min');
   const moreBtn = panel.querySelector('.vk-more');
   const menu = panel.querySelector('.vk-menu');
   const notice = panel.querySelector('.vk-notice');
   const body = panel.querySelector('.vk-body');
-  const quickbar = panel.querySelector('.vk-quickbar');
-  const quickToggle = panel.querySelector('.vk-quick-toggle');
-  const actions = panel.querySelector('.vk-actions');
   const preview = panel.querySelector('.vk-preview');
   const attachBtn = panel.querySelector('.vk-attach');
   const fileInput = panel.querySelector('.vk-file');
@@ -237,12 +221,17 @@
     return b;
   }
 
-  function renderActions(buttons) {
-    actions.innerHTML = '';
-    buttons.forEach((b) => actions.appendChild(makeChip(b.label, b.onClick, b.accent ? 'vk-accent' : '')));
-    backBtn.style.visibility = stack.length > 1 ? 'visible' : 'hidden';
-    quickbar.style.display = buttons.length ? 'flex' : 'none';
-    panel.classList.remove('vk-collapsed');
+  // 선택지 칩을 봇 메시지처럼 대화 영역(body) 안에 인라인으로 추가.
+  // 칩을 누르면 그 그룹은 사라지고(선택 기록은 user 말풍선으로 남음) 다음 단계가 이어짐.
+  function addActions(buttons) {
+    const wrap = document.createElement('div');
+    wrap.className = 'vk-inline-actions';
+    buttons.forEach((b) => {
+      const chip = makeChip(b.label, () => { wrap.remove(); b.onClick(); }, b.accent ? 'vk-accent' : '');
+      wrap.appendChild(chip);
+    });
+    body.appendChild(wrap);
+    body.scrollTop = body.scrollHeight;
   }
 
   // ---- 첨부 미리보기 ----
@@ -274,42 +263,39 @@
     fileInput.value = '';
   });
 
-  // ---- 화면 스택 ----
-  function pushScreen(fn) { stack.push(fn); fn(); }
-  function back() { if (stack.length > 1) { stack.pop(); stack[stack.length - 1](); } }
-  function home() { stack.length = 0; pushScreen(mainScreen); }
+  // ---- 화면 흐름(인라인 누적) ----
+  // 처음으로: 카테고리 메뉴를 다시 띄움(대화 기록은 유지)
+  function home() { mainScreen(); }
 
-  // ---- 1단계: 매크로 메뉴 ----
+  // 1단계: 카테고리 메뉴
   function mainScreen() {
-    renderActions(
+    addActions(
       MACROS.items.map((cat) => ({
         label: cat.label,
-        onClick: () => {
-          addMessage('user', cat.label);
-          addMessage('bot', '네, 도와드릴게요. 아래에서 궁금하신 항목을 선택하시거나, 직접 입력해 물어보셔도 됩니다.');
-          pushScreen(() => categoryScreen(cat));
-        },
+        onClick: () => { addMessage('user', cat.label); categoryScreen(cat); },
       }))
     );
   }
 
+  // 2단계: 선택한 카테고리의 세부 질문(바로 표시)
   function categoryScreen(cat) {
-    renderActions(
-      (cat.children || []).map((node) => ({ label: node.label, onClick: () => onNode(node) }))
-    );
+    const nodes = (cat.children || []).map((node) => ({ label: node.label, onClick: () => onNode(node) }));
+    nodes.push({ label: '다른 메뉴 보기', onClick: () => { addMessage('user', '다른 메뉴 보기'); mainScreen(); } });
+    addActions(nodes);
   }
 
+  // 3단계: 답변 후 후속 선택지
   function onNode(node) {
     addMessage('user', node.label);
     if (node.handoff) { requestHandoff(); return; }
     addMessage('bot', node.answer);
-    pushScreen(escalationScreen);
+    escalationScreen();
   }
 
   function escalationScreen() {
-    renderActions([
-      { label: '해결됐어요', onClick: () => { addMessage('bot', '도움이 되어 다행입니다. 다른 문의가 있으면 선택해 주세요.'); home(); } },
-      { label: 'AI에게 물어보기', accent: true, onClick: () => { addMessage('bot', '네, 무엇이든 자유롭게 입력해 주세요. 사진도 첨부하실 수 있어요.'); if (window.innerWidth > 480) input.focus(); } },
+    addActions([
+      { label: '해결됐어요', onClick: () => { addMessage('bot', '도움이 됐다니 다행이에요. 더 궁금한 게 있으면 아래에서 골라주세요.'); mainScreen(); } },
+      { label: 'AI에게 물어보기', accent: true, onClick: () => { addMessage('bot', '무엇이든 편하게 입력해 주세요. 사진도 첨부할 수 있어요.'); if (window.innerWidth > 480) input.focus(); } },
       { label: '상담사 연결', onClick: requestHandoff },
     ]);
   }
@@ -351,14 +337,14 @@
       if (data.text) history.push({ role: 'assistant', content: data.text });
     } catch (e) {
       typing.remove();
-      addMessage('bot', '연결에 문제가 발생했습니다. 상담사 연결을 도와드릴까요?');
+      addMessage('bot', '지금 연결이 원활하지 않아요. 잠시 후 다시 시도해 주세요.');
     } finally {
       input.disabled = false; sendBtn.disabled = false; input.focus();
     }
   }
 
   async function requestHandoff() {
-    addMessage('bot', '상담사 연결을 요청하고 있습니다…');
+    addMessage('bot', '상담사 연결을 요청하고 있어요…');
     try {
       await fetch(HANDOFF_URL, {
         method: 'POST',
@@ -366,16 +352,11 @@
         body: JSON.stringify({ history, page: location.href }),
       });
     } catch (e) { /* 접수 실패해도 사용자에겐 안내만 */ }
-    addMessage('bot', '상담사 연결이 접수되었습니다. 영업시간 내 순차적으로 답변드리겠습니다. 급한 경우 본사 대표번호로 연락해 주세요.');
-    pushScreen(handoffScreen);
+    addMessage('bot', '상담사 연결이 접수됐어요. 영업시간 내 순차적으로 답변드릴게요. 급하시면 본사 대표번호로 연락해 주세요.');
   }
 
-  function handoffScreen() { renderActions([]); }
-
   // ---- 헤더 동작 ----
-  backBtn.addEventListener('click', back);
   minBtn.addEventListener('click', () => toggle(false));
-  quickToggle.addEventListener('click', (e) => { e.stopPropagation(); panel.classList.toggle('vk-collapsed'); });
   moreBtn.addEventListener('click', (e) => { e.stopPropagation(); menu.classList.toggle('vk-open'); });
   menu.addEventListener('click', (e) => {
     const act = e.target.closest('button')?.dataset.act;
@@ -397,7 +378,6 @@
     history.length = 0;
     pendingImages = [];
     renderPreview();
-    stack.length = 0;
   }
   let opened = false;
   function toggle(open) {
