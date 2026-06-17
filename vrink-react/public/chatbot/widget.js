@@ -76,7 +76,8 @@
   .vk-typing span{width:6px;height:6px;border-radius:50%;background:#BDBDBD;animation:vk-blink 1.2s infinite}
   .vk-typing span:nth-child(2){animation-delay:.2s}.vk-typing span:nth-child(3){animation-delay:.4s}
   @keyframes vk-blink{0%,60%,100%{opacity:.3}30%{opacity:1}}
-  .vk-inline-actions{display:flex;flex-wrap:wrap;gap:8px;align-self:flex-start;max-width:92%;margin-top:2px}
+  .vk-inline-actions{display:flex;flex-wrap:wrap;gap:8px;align-self:flex-start;max-width:92%;margin-top:2px;transition:opacity .3s ease}
+  .vk-inline-actions.vk-done{opacity:0}
   .vk-chip{background:#fff;border:1px solid #DDD;color:#1A1A1A;font-size:14px;font-weight:500;padding:8px 13px;border-radius:18px;
     cursor:pointer;font-family:inherit;transition:border-color .12s,background .12s}
   .vk-chip:hover{border-color:${BRAND};background:#F4FCF7}
@@ -222,12 +223,22 @@
   }
 
   // 선택지 칩을 봇 메시지처럼 대화 영역(body) 안에 인라인으로 추가.
-  // 칩을 누르면 그 그룹은 사라지고(선택 기록은 user 말풍선으로 남음) 다음 단계가 이어짐.
+  // 칩을 누르면 그 그룹은 '비활성화'(흐려지고 다시 못 누름)되고 다음 단계가 이어짐.
+  // ※ DOM에서 제거(remove)하지 않는 이유: iOS Safari에서 탭한 요소가 즉시 사라지면
+  //   합성 click이 빈 자리로 새어 패널이 닫히거나 화면 밖으로 밀리는 문제가 있음.
   function addActions(buttons) {
     const wrap = document.createElement('div');
     wrap.className = 'vk-inline-actions';
     buttons.forEach((b) => {
-      const chip = makeChip(b.label, () => { wrap.remove(); b.onClick(); }, b.accent ? 'vk-accent' : '');
+      const chip = makeChip(b.label, (e) => {
+        // stopPropagation: 칩 클릭이 document 전역 핸들러로 버블돼 '패널 밖 클릭'으로
+        // 오판(제거된 칩은 panel.contains=false)되어 닫히는 것을 막음 — 데스크톱 닫힘의 근본 원인.
+        if (e) { e.preventDefault(); e.stopPropagation(); }
+        if (wrap.classList.contains('vk-done')) return;
+        wrap.classList.add('vk-done');     // 흐림(opacity 0으로 페이드)
+        b.onClick();
+        setTimeout(() => wrap.remove(), 500); // 페이드 후 제거(클릭 이벤트가 끝난 뒤라 안전)
+      }, b.accent ? 'vk-accent' : '');
       wrap.appendChild(chip);
     });
     body.appendChild(wrap);
