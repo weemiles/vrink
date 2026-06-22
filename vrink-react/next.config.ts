@@ -13,6 +13,23 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: configDirectory,
   },
+  // 메인 도메인(vrink.kr/erp)으로 ERP에 접속하는 경우 ERP 도메인으로 안내.
+  // 정적 export(GitHub Pages) 빌드에서는 redirects를 지원하지 않으므로 빈 배열을 반환한다.
+  async redirects() {
+    if (isGithubPages) return [];
+    return [
+      {
+        source: "/erp",
+        destination: "https://erp.vrink.kr/erp/login",
+        permanent: true,
+      },
+      {
+        source: "/erp/:path*",
+        destination: "https://erp.vrink.kr/erp/login",
+        permanent: true,
+      },
+    ];
+  },
   ...(isGithubPages
     ? {
         assetPrefix: githubPagesBasePath ? `${githubPagesBasePath}/` : undefined,
