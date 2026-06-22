@@ -37,6 +37,11 @@ export function buildMetadata({
       index: true,
       follow: true,
     },
+    verification: {
+      other: {
+        "naver-site-verification": "080d2859d859a75fb78a7963c5acd9024e1be9a4",
+      },
+    },
     openGraph: {
       type: "website",
       url: canonical,
@@ -49,7 +54,7 @@ export function buildMetadata({
           url: heroImageUrl,
           width: 1280,
           height: 720,
-          alt: "브링크 제로스테이션 히어로 이미지",
+          alt: locale === "en" ? "VRINK Zero Station hero image" : "브링크 제로스테이션 히어로 이미지",
         },
       ],
     },
