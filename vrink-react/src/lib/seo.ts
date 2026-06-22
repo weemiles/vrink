@@ -38,6 +38,7 @@ export function buildMetadata({
       follow: true,
     },
     verification: {
+      google: "d-ltXkau_y7Wo-LDtgOIv0evIEcIGBv7RUNojYW6C3Y",
       other: {
         "naver-site-verification": "080d2859d859a75fb78a7963c5acd9024e1be9a4",
       },
