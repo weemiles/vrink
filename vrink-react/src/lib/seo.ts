@@ -2,6 +2,29 @@ import type { Metadata } from "next";
 
 import { siteConfig } from "@/config/site";
 
+export function organizationJsonLd() {
+  const base = siteConfig.baseUrl.replace(/\/$/, "");
+  const instagramHandle = siteConfig.instagram.replace(/^@/, "");
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: siteConfig.business.companyName,
+    alternateName: ["VRINK", "브링크"],
+    url: base,
+    logo: `${base}/images/vrink/brand/vrink-circle-logo.png`,
+    email: siteConfig.contactEmail,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "동남로406번길 46",
+      addressLocality: "하남시",
+      addressRegion: "경기도",
+      addressCountry: "KR",
+    },
+    sameAs: [`https://www.instagram.com/${instagramHandle}`],
+  };
+}
+
 type BuildMetadataInput = {
   title?: string;
   description?: string;

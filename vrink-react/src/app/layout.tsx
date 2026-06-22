@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import Script from "next/script";
 
 import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 import { ChatbotWidget } from "@/components/consultation/chatbot-widget";
-import { buildMetadata } from "@/lib/seo";
+import { buildMetadata, organizationJsonLd } from "@/lib/seo";
 
 import "./globals.css";
 
@@ -26,8 +27,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
+    <html lang="ko" suppressHydrationWarning>
       <body className={`${pretendard.variable} vrink-design-system antialiased`}>
+        <Script
+          id="vrink-document-language"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html:
+              "document.documentElement.lang=location.pathname.indexOf('/en')===0?'en':'ko';",
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationJsonLd()),
+          }}
+        />
         {children}
         <ChatbotWidget />
         <GoogleAnalytics />
