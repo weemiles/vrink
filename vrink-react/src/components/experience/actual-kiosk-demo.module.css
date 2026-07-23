@@ -822,24 +822,23 @@
 .functionSelected {
   align-items: center;
   background: #3cdb7f;
-  border-radius: 999px;
+  border-radius: 50%;
   color: #ffffff;
   display: flex;
-  font-size: 1.875cqw;
+  font-size: 2cqw;
   font-weight: 700;
   height: 3.75cqw;
   justify-content: center;
-  min-width: 3.75cqw;
-  padding: 0 1.25cqw;
   position: absolute;
   right: 0.875cqw;
   top: 0.875cqw;
+  width: 3.75cqw;
   z-index: 3;
 }
 
 .functionSelected img {
-  height: 3.25cqw;
-  width: 3.25cqw;
+  height: 100%;
+  width: 100%;
 }
 
 .functionCard.cardSelected {

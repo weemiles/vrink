@@ -22,10 +22,22 @@ type Flavor = {
   image: string;
 };
 
+type Ingredient = {
+  id: string;
+  label: Localized;
+  amount: number;
+  unit: "mg";
+  included?: {
+    label: Localized;
+    amount: number;
+    unit: "mg";
+  };
+};
+
 type FunctionShot = {
   id: string;
   label: Localized;
-  ingredients: Localized[];
+  ingredients: Ingredient[];
   image: string;
   phase: "pre" | "during" | "post";
 };
@@ -47,10 +59,29 @@ const functionShots: FunctionShot[] = [
     id: "booster",
     label: { ko: "부스터", en: "Booster" },
     ingredients: [
-      { ko: "카페인 55mg", en: "Caffeine 55mg" },
-      { ko: "아르기닌 500mg", en: "Arginine 500mg" },
-      { ko: "타우린 100mg", en: "Taurine 100mg" },
-      { ko: "비타민B 10mg", en: "Vitamin B 10mg" },
+      {
+        id: "guarana",
+        label: { ko: "과라나추출분말", en: "Guarana extract" },
+        amount: 250,
+        unit: "mg",
+        included: {
+          label: { ko: "카페인", en: "Caffeine" },
+          amount: 55,
+          unit: "mg",
+        },
+      },
+      {
+        id: "arginine",
+        label: { ko: "L-아르지닌", en: "L-arginine" },
+        amount: 500,
+        unit: "mg",
+      },
+      {
+        id: "taurine",
+        label: { ko: "타우린", en: "Taurine" },
+        amount: 100,
+        unit: "mg",
+      },
     ],
     image: `${figmaAssetRoot}/shot-booster.png`,
     phase: "pre",
@@ -59,9 +90,18 @@ const functionShots: FunctionShot[] = [
     id: "vitamin",
     label: { ko: "비타민", en: "Vitamin" },
     ingredients: [
-      { ko: "비타민C 500mg", en: "Vitamin C 500mg" },
-      { ko: "비타민B 10mg", en: "Vitamin B 10mg" },
-      { ko: "아연 15mg", en: "Zinc 15mg" },
+      {
+        id: "vitamin-b-complex",
+        label: { ko: "비타민B군믹스", en: "B-vitamin mix" },
+        amount: 150,
+        unit: "mg",
+      },
+      {
+        id: "vitamin-c",
+        label: { ko: "비타민C", en: "Vitamin C" },
+        amount: 300,
+        unit: "mg",
+      },
     ],
     image: `${figmaAssetRoot}/shot-vitamin.png`,
     phase: "pre",
@@ -70,9 +110,18 @@ const functionShots: FunctionShot[] = [
     id: "cutting",
     label: { ko: "다이어트", en: "Diet" },
     ingredients: [
-      { ko: "L-카르니틴 500mg", en: "L-Carnitine 500mg" },
-      { ko: "녹차추출물 300mg", en: "Green Tea Extract 300mg" },
-      { ko: "비타민B 10mg", en: "Vitamin B 10mg" },
+      {
+        id: "carnitine",
+        label: { ko: "L-카르니틴", en: "L-carnitine" },
+        amount: 500,
+        unit: "mg",
+      },
+      {
+        id: "green-tea-concentrate",
+        label: { ko: "녹차농축액", en: "Green tea concentrate" },
+        amount: 300,
+        unit: "mg",
+      },
     ],
     image: `${figmaAssetRoot}/shot-diet.png`,
     phase: "during",
@@ -81,9 +130,18 @@ const functionShots: FunctionShot[] = [
     id: "amino",
     label: { ko: "아미노", en: "Amino" },
     ingredients: [
-      { ko: "BCAA 300mg", en: "BCAA 300mg" },
-      { ko: "글루타민 500mg", en: "Glutamine 500mg" },
-      { ko: "타우린 1,000mg", en: "Taurine 1,000mg" },
+      {
+        id: "essential-amino-acids",
+        label: { ko: "필수아미노산 9종", en: "9 essential amino acids" },
+        amount: 200,
+        unit: "mg",
+      },
+      {
+        id: "taurine",
+        label: { ko: "타우린", en: "Taurine" },
+        amount: 100,
+        unit: "mg",
+      },
     ],
     image: `${figmaAssetRoot}/shot-amino.png`,
     phase: "post",
@@ -92,9 +150,18 @@ const functionShots: FunctionShot[] = [
     id: "relax",
     label: { ko: "릴렉스", en: "Relax" },
     ingredients: [
-      { ko: "락티톨 600mg", en: "Lactitol 600mg" },
-      { ko: "마그네슘 150mg", en: "Magnesium 150mg" },
-      { ko: "구연산 100mg", en: "Citric Acid 100mg" },
+      {
+        id: "theanine",
+        label: { ko: "L-테아닌", en: "L-theanine" },
+        amount: 100,
+        unit: "mg",
+      },
+      {
+        id: "taurine",
+        label: { ko: "타우린", en: "Taurine" },
+        amount: 100,
+        unit: "mg",
+      },
     ],
     image: `${figmaAssetRoot}/shot-relax.png`,
     phase: "post",
@@ -147,7 +214,6 @@ const copy = {
     },
     completionTitle: "음료가 완성되었어요",
     completionSubtitle: "맛있게 드세요!\n음료를 가져가 주세요.",
-    boosterBasis: "부스터 샷 기준",
     next: "다음 단계",
     selectedFlavor: "선택한 맛",
     defaultIngredients: "비타민 · 전해질",
@@ -232,7 +298,6 @@ const copy = {
     },
     completionTitle: "Your drink is ready",
     completionSubtitle: "Enjoy your drink!\nPlease take it with you.",
-    boosterBasis: "Based on Booster shot",
     next: "Next",
     selectedFlavor: "Selected flavor",
     defaultIngredients: "Vitamins & electrolytes",
@@ -320,10 +385,54 @@ export function ActualKioskDemo({ locale, variant = "full" }: { locale: Locale; 
   const blendSummary = useMemo(() => {
     const flavor = selectedFlavor?.label[locale] ?? (locale === "ko" ? "맛을 선택해주세요" : "Choose a flavor");
     const shots = selectedShots.length
-      ? selectedShots.map((shot) => `${shot.label[locale]}${(shotCounts[shot.id] ?? 0) > 1 ? ` ×${shotCounts[shot.id]}` : ""}`).join(" · ")
+      ? selectedShots.map((shot) => `${shot.label[locale]}${(shotCounts[shot.id] ?? 0) > 1 ? ` ${shotCounts[shot.id]}` : ""}`).join(" · ")
       : t.defaultIngredients;
     return `${flavor} · ${shots}`;
   }, [locale, selectedFlavor, selectedShots, shotCounts, t.defaultIngredients]);
+
+  const aggregatedIngredients = useMemo(() => {
+    const ingredients = new Map<string, Ingredient>();
+
+    selectedShots.forEach((shot) => {
+      const count = shotCounts[shot.id] ?? 0;
+      shot.ingredients.forEach((ingredient) => {
+        const current = ingredients.get(ingredient.id);
+        if (current) {
+          current.amount += ingredient.amount * count;
+          if (current.included && ingredient.included) {
+            current.included.amount += ingredient.included.amount * count;
+          }
+          return;
+        }
+
+        ingredients.set(ingredient.id, {
+          ...ingredient,
+          amount: ingredient.amount * count,
+          included: ingredient.included
+            ? { ...ingredient.included, amount: ingredient.included.amount * count }
+            : undefined,
+        });
+      });
+    });
+
+    return Array.from(ingredients.values());
+  }, [selectedShots, shotCounts]);
+
+  const selectedBasisLabel = selectedShots.length
+    ? selectedShots
+      .map((shot) => {
+        const count = shotCounts[shot.id] ?? 0;
+        return `${shot.label[locale]}${count > 1 ? ` ${count}` : ""}`;
+      })
+      .join(" · ")
+    : t.selectedBasis;
+
+  function formatIngredient(ingredient: Ingredient) {
+    const included = ingredient.included
+      ? `(${ingredient.included.label[locale]} ${ingredient.included.amount}${ingredient.included.unit})`
+      : "";
+    return `${ingredient.label[locale]} ${ingredient.amount}${ingredient.unit}${included}`;
+  }
 
   useEffect(() => {
     if (screen === "welcome") return;
@@ -446,8 +555,7 @@ export function ActualKioskDemo({ locale, variant = "full" }: { locale: Locale; 
     setShotCounts((current) => {
       const currentCount = current[id] ?? 0;
       const currentTotal = Object.values(current).reduce((sum, count) => sum + count, 0);
-      if (currentCount === 0 && currentTotal < 3) return { ...current, [id]: 1 };
-      if (currentCount === 1 && currentTotal < 3) return { ...current, [id]: 2 };
+      if (currentCount < 3 && currentTotal < 3) return { ...current, [id]: currentCount + 1 };
       const next = { ...current };
       delete next[id];
       return next;
@@ -609,11 +717,11 @@ export function ActualKioskDemo({ locale, variant = "full" }: { locale: Locale; 
                           key={shot.id}
                           type="button"
                           aria-pressed={count > 0}
-                          aria-label={`${shot.label[locale]} ${count ? `×${count}` : ""}`.trim()}
+                          aria-label={`${shot.label[locale]} ${count ? (locale === "ko" ? `수량 ${count}` : `quantity ${count}`) : ""}`.trim()}
                           className={`${styles.functionCard} ${count ? styles.cardSelected : ""}`}
                           onClick={() => cycleShot(shot.id)}
                         >
-                          {count > 0 && <span className={styles.functionSelected}>{count > 1 ? `×${count}` : <Image src={withBasePath(`${figmaAssetRoot}/icon-card-check-small.svg`)} alt="" width={26} height={26} />}</span>}
+                          {count > 0 && <span className={styles.functionSelected}>{count > 1 ? count : <Image src={withBasePath(`${figmaAssetRoot}/icon-card-check-small.svg`)} alt="" width={26} height={26} />}</span>}
                           <Image className={styles.functionIcon} src={withBasePath(shot.image)} alt="" width={92} height={92} />
                           <span className={`${styles.phaseTag} ${phaseClass}`}>{t[shot.phase]}</span>
                           <strong className={styles.functionName}>{shot.label[locale]}</strong>
@@ -633,10 +741,12 @@ export function ActualKioskDemo({ locale, variant = "full" }: { locale: Locale; 
                   <section className={styles.ingredientSummary} aria-labelledby="functional-summary-title">
                     <div className={styles.ingredientSummaryHead}>
                       <strong id="functional-summary-title">{t.functionalSummary}</strong>
-                      <span>{t.boosterBasis}</span>
+                      <span>{selectedBasisLabel}</span>
                     </div>
                     <div className={styles.summaryChips} aria-live="polite">
-                      {functionShots[0].ingredients.map((ingredient) => <span key={ingredient[locale]}>{ingredient[locale]}</span>)}
+                      {aggregatedIngredients.length
+                        ? aggregatedIngredients.map((ingredient) => <span key={ingredient.id}>{formatIngredient(ingredient)}</span>)
+                        : <span>{t.emptyIngredients}</span>}
                     </div>
                   </section>
                 </div>
