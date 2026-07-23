@@ -8,12 +8,10 @@ import { createPortal } from "react-dom";
 import styles from "./intro-offer-modal.module.css";
 
 const STORAGE_KEY = "vrink-intro-offer-hidden-until";
+const HIDE_DURATION_MS = 24 * 60 * 60 * 1000;
 
-function getTomorrowStartTimestamp() {
-  const tomorrow = new Date();
-  tomorrow.setDate(tomorrow.getDate() + 1);
-  tomorrow.setHours(0, 0, 0, 0);
-  return tomorrow.getTime();
+function getHiddenUntilTimestamp() {
+  return Date.now() + HIDE_DURATION_MS;
 }
 
 function shouldShowOffer() {
@@ -112,7 +110,7 @@ export function IntroOfferModal({ locale = "ko" }: { locale?: Locale } = {}) {
 
   const hideForToday = () => {
     try {
-      window.localStorage.setItem(STORAGE_KEY, String(getTomorrowStartTimestamp()));
+      window.localStorage.setItem(STORAGE_KEY, String(getHiddenUntilTimestamp()));
     } catch {
       // Storage may be blocked; closing for this page view is still better than interrupting the visit.
     }

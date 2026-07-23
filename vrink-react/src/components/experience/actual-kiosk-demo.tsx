@@ -154,7 +154,7 @@ const copy = {
     demoNotice: "웹 체험에서는 실제 주문이 접수되지 않습니다.",
     embeddedGuide: {
       welcome: {
-        title: "아이패드 화면을 눌러 직접 시작해보세요.",
+        title: "화면을 눌러 직접 시작해보세요.",
         body: "주문하기를 누르면 원하는 맛과 기능을 차례로 고를 수 있습니다.",
       },
       flavor: {
@@ -239,7 +239,7 @@ const copy = {
     demoNotice: "No order is placed during the web experience.",
     embeddedGuide: {
       welcome: {
-        title: "Start directly from the iPad screen.",
+        title: "Tap the screen to get started.",
         body: "Select Order now, then choose your flavor and functional blend step by step.",
       },
       flavor: {
