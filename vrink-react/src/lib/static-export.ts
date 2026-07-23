@@ -1,4 +1,5 @@
 import { siteConfig } from "@/config/site";
+import { getLeadSourceLabel } from "@/lib/lead-source";
 
 type LeadMailtoPayload = {
   company: string;
@@ -33,7 +34,7 @@ export function buildLeadMailtoHref(payload: LeadMailtoPayload, locale: "ko" | "
     `${locale === "en" ? "Name" : "담당자"}: ${payload.name}`,
     `${locale === "en" ? "Email" : "이메일"}: ${payload.email}`,
     `${locale === "en" ? "Phone" : "연락처"}: ${payload.phone}`,
-    payload.source ? `Source: ${payload.source}` : "",
+    `${locale === "en" ? "Source" : "유입경로"}: ${getLeadSourceLabel(payload.source, locale)}`,
     "",
     locale === "en" ? "Message" : "상담 내용",
     payload.message,

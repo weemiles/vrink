@@ -5,10 +5,20 @@ import { useCallback, useEffect, useRef } from "react";
 
 import styles from "./page.module.css";
 
+type Locale = "ko" | "en";
+
 type ExpertReviewBackgroundVideoProps = {
   poster: string;
   src: string;
+  locale?: Locale;
 };
+
+const copy = {
+  videoTitle: {
+    ko: "영양사의 관점으로 본 브링크 배경 영상",
+    en: "Background video of VRINK seen through a dietitian's eyes",
+  },
+} as const;
 
 const endBufferSeconds = 4;
 
@@ -20,7 +30,7 @@ function getRandomStart(duration: number) {
   return Math.random() * Math.max(duration - endBufferSeconds, 0);
 }
 
-export function ExpertReviewBackgroundVideo({ poster, src }: ExpertReviewBackgroundVideoProps) {
+export function ExpertReviewBackgroundVideo({ poster, src, locale = "ko" }: ExpertReviewBackgroundVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const playVideo = useCallback((video: HTMLVideoElement) => {
@@ -71,6 +81,7 @@ export function ExpertReviewBackgroundVideo({ poster, src }: ExpertReviewBackgro
       poster={poster}
       preload="auto"
       tabIndex={-1}
+      title={copy.videoTitle[locale]}
       onLoadedMetadata={handleLoadedMetadata}
     >
       <source src={src} type="video/mp4" />

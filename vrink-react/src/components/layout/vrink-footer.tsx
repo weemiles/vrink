@@ -14,6 +14,7 @@ type FooterColumn = {
 type VrinkFooterProps = {
   ctaHref?: string;
   locale?: "ko" | "en";
+  showCta?: boolean;
 };
 
 const businessInfoLabels = {
@@ -38,15 +39,15 @@ const businessInfoLabels = {
 
 const footerContent = {
   ko: {
-    ctaTitle: "브링크 도입 상담 전용",
-    ctaBody: "공간 조건과 운영 목적에 맞춰 제로스테이션 도입 구성을 상담해보세요.",
-    ctaLabel: "상담 신청",
+    ctaTitle: "공간 정보와 유입경로로 도입 구성을 받아보세요",
+    ctaBody: "공간 유형, 예상 이용자, 도입 시기와 알게 된 경로를 남기면 제로스테이션 구성을 안내합니다.",
+    ctaLabel: "구성 받아보기",
     subscribeTitle: "소식 구독",
-    subscribeBody: "브링크의 도입 사례와 제품 업데이트를 받아보세요.",
+    subscribeBody: "브링크 도입 사례와 제품 업데이트를 받아보세요.",
     subscribePlaceholder: "이메일 주소",
     quickLinks: [
       ["회사 소개", "/#product"],
-      ["문의하기", "/#contact"],
+      ["상담받기", "/#contact"],
       ["제휴 문의", "/support#inquiry"],
       ["고객지원", "/support"],
     ],
@@ -60,6 +61,7 @@ const footerContent = {
         title: "제품",
         links: [
           ["제로스테이션", "/product"],
+          ["브링크 라이트(예정)", "/business"],
           ["기능샷", "/#blend"],
           ["사용 장면", "/#experience"],
         ],
@@ -67,7 +69,7 @@ const footerContent = {
       {
         title: "도입 안내",
         links: [
-          ["도입 상담", "/#contact"],
+          ["상담받기", "/#contact"],
           ["설치 프로세스", "/support#install"],
           ["렌탈·구매 문의", "/support#inquiry"],
         ],
@@ -91,16 +93,17 @@ const footerContent = {
     ],
   },
   en: {
-    ctaTitle: "VRINK consultation",
-    ctaBody: "Tell us about your space, traffic, and operating goals. We will help shape the right Zero Station setup.",
-    ctaLabel: "Contact us",
+    ctaTitle: "Share setup details and source",
+    ctaBody: "Tell us your space type, expected users, timeline, and how you found VRINK. We will suggest the right Zero Station setup.",
+    ctaLabel: "Get setup",
     subscribeTitle: "Updates",
     subscribeBody: "Receive VRINK news, product updates, and installation stories.",
     subscribePlaceholder: "Email address",
     quickLinks: [
       ["About", "/en#product"],
-      ["Contact", "/en#contact"],
-      ["Partnership", "/en/support#inquiry"],
+      ["Get setup", "/en#contact"],
+      ["Issue report", "/en/inquiry"],
+      ["Partnership", "/en#contact"],
       ["Support", "/en/support"],
     ],
     legalLinks: [
@@ -113,6 +116,8 @@ const footerContent = {
         title: "Product",
         links: [
           ["Zero Station", "/en/product"],
+          ["VRINK Light (Coming Soon)", "/en/business"],
+          ["Ingredients", "/en/ingredients"],
           ["Functional shots", "/en#blend"],
           ["Use cases", "/en#space"],
         ],
@@ -120,9 +125,9 @@ const footerContent = {
       {
         title: "Getting Started",
         links: [
-          ["Consultation", "/en#contact"],
+          ["Get setup", "/en#contact"],
           ["Installation", "/en/support#install"],
-          ["Rental & purchase", "/en/support#inquiry"],
+          ["Rental & purchase", "/en#contact"],
         ],
       },
       {
@@ -137,7 +142,8 @@ const footerContent = {
         title: "Support",
         links: [
           ["Spaces", "/en#space"],
-          ["Request materials", "/en/support#inquiry"],
+          ["Issue report", "/en/inquiry"],
+          ["Request materials", "/en#contact"],
           ["Email", `mailto:${siteConfig.contactEmail}`],
         ],
       },
@@ -167,26 +173,39 @@ function FooterLink({ href, children }: { href: string; children: string }) {
   return <Link href={href}>{children}</Link>;
 }
 
-export function VrinkFooter({ ctaHref = "/#contact", locale = "ko" }: VrinkFooterProps) {
+export function VrinkFooter({ ctaHref = "/#contact", locale = "ko", showCta = true }: VrinkFooterProps) {
   const content = footerContent[locale];
   const labels = businessInfoLabels[locale];
+  const businessInfo =
+    locale === "en"
+      ? {
+          companyName: "VRINK Co., Ltd.",
+          owner: "Minsoo Kim",
+          registrationNumber: siteConfig.business.registrationNumber,
+          address: "46 Dongnam-ro 406beon-gil, Hanam-si, Gyeonggi-do, Korea",
+        }
+      : siteConfig.business;
   const businessInfoRows = [
-    [labels.companyName, siteConfig.business.companyName],
-    [labels.owner, siteConfig.business.owner],
-    [labels.registrationNumber, siteConfig.business.registrationNumber],
-    [labels.address, siteConfig.business.address],
+    [labels.companyName, businessInfo.companyName],
+    [labels.owner, businessInfo.owner],
+    [labels.registrationNumber, businessInfo.registrationNumber],
+    [labels.address, businessInfo.address],
     [labels.phone, siteConfig.contactPhone],
   ];
 
   return (
     <footer className={styles.footer}>
-      <div className={styles.footerCta}>
-        <h2>{content.ctaTitle}</h2>
-        <p>{content.ctaBody}</p>
-        <Link href={ctaHref}>{content.ctaLabel}</Link>
-      </div>
+      {showCta && (
+        <>
+          <div className={styles.footerCta}>
+            <h2>{content.ctaTitle}</h2>
+            <p>{content.ctaBody}</p>
+            <Link href={ctaHref}>{content.ctaLabel}</Link>
+          </div>
 
-      <div className={styles.footerDivider} />
+          <div className={styles.footerDivider} />
+        </>
+      )}
 
       <div className={styles.footerGrid}>
         {content.columns.map((column) => (
@@ -209,13 +228,17 @@ export function VrinkFooter({ ctaHref = "/#contact", locale = "ko" }: VrinkFoote
               placeholder={content.subscribePlaceholder}
               aria-label={content.subscribePlaceholder}
             />
-            <button type="button" aria-label="구독 신청">→</button>
+            <button type="button" aria-label={locale === "en" ? "Subscribe" : "구독 신청"}>→</button>
           </form>
         </div>
       </div>
 
       <div className={styles.footerBrandRow}>
-        <Link href="/" className={styles.footerBrand} aria-label="브링크 홈">
+        <Link
+          href={locale === "en" ? "/en" : "/"}
+          className={styles.footerBrand}
+          aria-label={locale === "en" ? "VRINK English home" : "브링크 홈"}
+        >
           <Image src={withBasePath("/images/vrink/apple/vrink-logo.svg")} alt="" width={140} height={40} />
         </Link>
         <div className={styles.footerQuickLinks}>
@@ -225,7 +248,7 @@ export function VrinkFooter({ ctaHref = "/#contact", locale = "ko" }: VrinkFoote
             </FooterLink>
           ))}
         </div>
-        <div className={styles.footerSocial} aria-label="브링크 채널">
+        <div className={styles.footerSocial} aria-label={locale === "en" ? "VRINK channels" : "브링크 채널"}>
           <a href={siteConfig.baseUrl}>Web</a>
           <a href={`mailto:${siteConfig.contactEmail}`}>Mail</a>
           <a href={`tel:${siteConfig.contactPhone}`}>Tel</a>

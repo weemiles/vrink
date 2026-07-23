@@ -112,6 +112,7 @@
 .blendCopy p,
 .adminCopy p,
 .operationCopy p,
+.welfareIntro p,
 .contactCopy p {
   color: var(--page-blue-dark);
   font-size: var(--type-label);
@@ -149,6 +150,7 @@
 .blendCopy span,
 .adminCopy span,
 .operationCopy span,
+.welfareIntro span,
 .contactCopy span {
   color: var(--page-muted);
   display: block;
@@ -236,6 +238,7 @@
 .blendSection,
 .lifestyleSection,
 .useCaseSection,
+.welfareSection,
 .newsSection,
 .faqSection,
 .contactSection {
@@ -254,6 +257,7 @@
 .blendCopy h2,
 .adminCopy h2,
 .operationCopy h2,
+.welfareIntro h2,
 .contactCopy h2 {
   color: var(--page-ink);
   font-size: var(--type-section);
@@ -315,12 +319,30 @@
 
 .usageSection {
   background: #ffffff;
+  overflow: hidden;
+  padding: 132px var(--layout-page-gutter) 148px;
 }
 
 .usageIntro {
-  margin: 0 auto 58px;
-  max-width: 860px;
+  margin: 0 auto 72px;
+  max-width: 780px;
   text-align: center;
+}
+
+.usageIntro p {
+  color: rgba(0, 0, 0, 0.56);
+}
+
+.usageIntro h2 {
+  max-width: 760px;
+  text-wrap: balance;
+  word-break: keep-all;
+}
+
+.usageIntro span {
+  max-width: 620px;
+  text-wrap: pretty;
+  word-break: keep-all;
 }
 
 .usageLayout {
@@ -878,6 +900,147 @@
   line-height: var(--line-card);
 }
 
+.welfareSection {
+  display: grid;
+  gap: 50px;
+}
+
+.welfareIntro {
+  margin: 0 auto;
+  max-width: 900px;
+  text-align: center;
+}
+
+.welfareIntro h2,
+.welfareIntro span {
+  word-break: keep-all;
+}
+
+.welfareIntro span {
+  max-width: 760px;
+}
+
+.welfareIntroNote {
+  color: rgba(0, 0, 0, 0.5);
+  display: block;
+  font-size: var(--type-micro);
+  font-weight: var(--weight-regular);
+  line-height: var(--line-micro);
+  margin: 14px auto 0;
+  max-width: 720px;
+  word-break: keep-all;
+}
+
+.welfareCompare {
+  display: grid;
+  gap: 16px;
+  margin: 0 auto;
+  max-width: 1120px;
+  width: 100%;
+}
+
+.welfareCompareTop,
+.welfareSpecRow {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.welfareCompareProduct,
+.welfareSpecCell {
+  min-width: 0;
+}
+
+.welfareCompareProduct {
+  align-content: center;
+  display: grid;
+  justify-items: center;
+  min-height: 0;
+  padding: 0 30px 8px;
+  text-align: center;
+}
+
+.welfareCompareProduct h3 {
+  align-items: center;
+  color: var(--page-ink);
+  display: inline-flex;
+  font-size: var(--type-feature);
+  font-weight: var(--weight-semibold);
+  line-height: var(--line-feature);
+  margin: 0;
+  word-break: keep-all;
+}
+
+.welfareSpecCell strong::before {
+  align-items: center;
+  border-radius: 999px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  font-weight: var(--weight-semibold);
+  justify-content: center;
+}
+
+.welfareSpecRows {
+  display: grid;
+  gap: 12px;
+}
+
+.welfareSpecCell {
+  align-content: start;
+  background: var(--page-gray);
+  border-radius: 8px;
+  display: grid;
+  justify-items: start;
+  min-height: 136px;
+  padding: 28px 30px;
+  text-align: left;
+}
+
+.welfareSpecCellAfter {
+  background: #f4f8ff;
+}
+
+.welfareSpecCell span {
+  color: rgba(0, 0, 0, 0.42);
+  font-size: var(--type-caption);
+  font-weight: var(--weight-semibold);
+  line-height: var(--line-caption);
+  margin-bottom: 22px;
+}
+
+.welfareSpecCell strong {
+  align-items: flex-start;
+  color: var(--page-ink);
+  display: inline-flex;
+  font-size: var(--type-card);
+  gap: 12px;
+  font-weight: var(--weight-semibold);
+  line-height: var(--line-card);
+  max-width: 390px;
+  word-break: keep-all;
+}
+
+.welfareSpecCell strong::before {
+  background: rgba(0, 0, 0, 0.08);
+  color: rgba(0, 0, 0, 0.54);
+  content: "x";
+  font-size: 14px;
+  height: 22px;
+  line-height: 1;
+  margin-top: 2px;
+  width: 22px;
+}
+
+.welfareSpecCellAfter strong::before {
+  background: rgba(0, 113, 227, 0.12);
+  color: var(--page-blue-dark);
+  content: "✓";
+}
+
+.welfareSpecCell:not(.welfareSpecCellAfter) strong {
+  color: rgba(0, 0, 0, 0.62);
+}
+
 .operationSection {
   align-items: center;
   background: #ffffff;
@@ -1121,6 +1284,7 @@
   .blendCopy span,
   .adminCopy span,
   .operationCopy span,
+  .welfareIntro span,
   .contactCopy span {
     font-size: var(--type-description);
   }
@@ -1136,6 +1300,7 @@
   .expertSection,
   .lifestyleSection,
   .useCaseSection,
+  .welfareSection,
   .faqSection,
   .contactSection,
   .adminSection,
@@ -1167,6 +1332,7 @@
   .blendCopy h2,
   .adminCopy h2,
   .operationCopy h2,
+  .welfareIntro h2,
   .contactCopy h2 {
     font-size: var(--type-section);
     line-height: var(--line-section);
@@ -1177,6 +1343,7 @@
   .blendCopy,
   .adminCopy,
   .operationCopy,
+  .welfareIntro,
   .contactCopy {
     text-align: center;
   }
@@ -1230,7 +1397,12 @@
   }
 
   .usageIntro {
-    margin-bottom: 42px;
+    margin-bottom: 56px;
+  }
+
+  .usageSection {
+    padding-bottom: 112px;
+    padding-top: 96px;
   }
 
   .usageLayout {
@@ -1375,6 +1547,7 @@
   .blendCopy h2,
   .adminCopy h2,
   .operationCopy h2,
+  .welfareIntro h2,
   .contactCopy h2 {
     font-size: var(--type-section);
     line-height: var(--line-section);
@@ -1386,6 +1559,63 @@
   .useCaseGrid article,
   .systemItem {
     padding: 24px;
+  }
+
+  .welfareSection {
+    gap: 34px;
+  }
+
+  .welfareCompare {
+    gap: 12px;
+  }
+
+  .welfareCompareTop,
+  .welfareSpecRow {
+    gap: 8px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .welfareCompareProduct {
+    min-height: 0;
+    padding: 0 6px;
+  }
+
+  .welfareCompareProduct h3 {
+    font-size: var(--type-card);
+    line-height: var(--line-card);
+  }
+
+  .welfareSpecRows {
+    gap: 10px;
+  }
+
+  .welfareSpecCell {
+    justify-items: start;
+    min-height: 0;
+    padding: 18px 12px;
+    text-align: left;
+  }
+
+  .welfareSpecCell span {
+    font-size: 12px;
+    line-height: 1.35;
+    margin-bottom: 10px;
+  }
+
+  .welfareSpecCell strong {
+    display: grid;
+    font-size: 15px;
+    gap: 9px;
+    line-height: 1.45;
+    max-width: none;
+    width: 100%;
+  }
+
+  .welfareSpecCell strong::before {
+    font-size: 12px;
+    height: 20px;
+    margin-top: 0;
+    width: 20px;
   }
 
   .revealSection {
@@ -1454,6 +1684,15 @@
   .usageStep {
     padding-left: 0;
     padding-right: 0;
+  }
+
+  .usageSection {
+    padding-bottom: 84px;
+    padding-top: 76px;
+  }
+
+  .usageIntro {
+    margin-bottom: 44px;
   }
 
   .blendSection {

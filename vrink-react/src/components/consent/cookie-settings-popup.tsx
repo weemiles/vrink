@@ -49,7 +49,53 @@ const getIntroOfferSnapshot = () => document.body.dataset.vrinkIntroOffer === "v
 
 const getServerIntroOfferSnapshot = () => false;
 
-export function CookieSettingsPopup() {
+type Locale = "ko" | "en";
+
+const COPY = {
+  ko: {
+    ariaLabel: "쿠키 설정",
+    eyebrow: "쿠키 설정",
+    heading: "브링크 경험을 더 편하게 만들기 위해 쿠키를 사용합니다.",
+    descriptionCompact:
+      "필수 쿠키는 항상 사용되며, 분석 및 마케팅 쿠키는 선택 동의 후에만 사용됩니다.",
+    descriptionFullPrefix:
+      "필수 쿠키는 서비스 제공을 위해 항상 사용되며, 분석 및 마케팅 쿠키는 선택 동의 후에만 사용됩니다. 자세한 내용은 ",
+    privacyLinkLabel: "개인정보처리방침",
+    descriptionFullSuffix: "에서 확인할 수 있습니다.",
+    essentialTitle: "필수 쿠키",
+    essentialDesc: "보안, 페이지 이동, 기본 기능 제공에 필요합니다.",
+    analyticsTitle: "분석 쿠키",
+    analyticsDesc: "방문 흐름과 사용성을 이해해 서비스를 개선합니다.",
+    marketingTitle: "마케팅 쿠키",
+    marketingDesc: "브링크 소식과 맞춤형 안내를 제공하는 데 활용합니다.",
+    essentialOnly: "필수만 허용",
+    saveSelection: "선택 저장",
+    allowAll: "모두 허용",
+  },
+  en: {
+    ariaLabel: "Cookie settings",
+    eyebrow: "Cookie settings",
+    heading: "We use cookies to make VRINK work better for you.",
+    descriptionCompact:
+      "Essential cookies are always on. Analytics and marketing cookies only run if you say yes.",
+    descriptionFullPrefix:
+      "Essential cookies are always on so the service works. Analytics and marketing cookies only run if you say yes. Want the details? Check our ",
+    privacyLinkLabel: "Privacy Policy",
+    descriptionFullSuffix: ".",
+    essentialTitle: "Essential cookies",
+    essentialDesc: "Needed for security, navigation, and core features.",
+    analyticsTitle: "Analytics cookies",
+    analyticsDesc: "Help us see how you use VRINK so we can make it better.",
+    marketingTitle: "Marketing cookies",
+    marketingDesc: "Used to share VRINK news and tips made for you.",
+    essentialOnly: "Essential only",
+    saveSelection: "Save choices",
+    allowAll: "Allow all",
+  },
+} as const;
+
+export function CookieSettingsPopup({ locale = "ko" }: { locale?: Locale } = {}) {
+  const t = COPY[locale];
   const hasStoredConsent = useSyncExternalStore(
     subscribeToConsentStore,
     getConsentSnapshot,
@@ -90,23 +136,21 @@ export function CookieSettingsPopup() {
         className={styles.dialog}
         role="dialog"
         aria-modal={!isCompactWithIntroOffer}
-        aria-label="쿠키 설정"
+        aria-label={t.ariaLabel}
       >
         <div className={styles.header}>
-          <p>쿠키 설정</p>
-          <h2>브링크 경험을 더 편하게 만들기 위해 쿠키를 사용합니다.</h2>
+          <p>{t.eyebrow}</p>
+          <h2>{t.heading}</h2>
         </div>
 
         <p className={styles.description}>
           {isCompactWithIntroOffer ? (
-            <>
-              필수 쿠키는 항상 사용되며, 분석 및 마케팅 쿠키는 선택 동의 후에만 사용됩니다.
-            </>
+            <>{t.descriptionCompact}</>
           ) : (
             <>
-              필수 쿠키는 서비스 제공을 위해 항상 사용되며, 분석 및 마케팅 쿠키는 선택 동의 후에만
-              사용됩니다. 자세한 내용은 <Link href="/privacy">개인정보처리방침</Link>
-              에서 확인할 수 있습니다.
+              {t.descriptionFullPrefix}
+              <Link href={locale === "en" ? "/en/privacy" : "/privacy"}>{t.privacyLinkLabel}</Link>
+              {t.descriptionFullSuffix}
             </>
           )}
         </p>
@@ -115,8 +159,8 @@ export function CookieSettingsPopup() {
           <div className={styles.optionList}>
             <label className={styles.option}>
               <span>
-                <strong>필수 쿠키</strong>
-                <small>보안, 페이지 이동, 기본 기능 제공에 필요합니다.</small>
+                <strong>{t.essentialTitle}</strong>
+                <small>{t.essentialDesc}</small>
               </span>
               <input checked disabled type="checkbox" />
               <span className={styles.switch} aria-hidden="true" />
@@ -124,8 +168,8 @@ export function CookieSettingsPopup() {
 
             <label className={styles.option}>
               <span>
-                <strong>분석 쿠키</strong>
-                <small>방문 흐름과 사용성을 이해해 서비스를 개선합니다.</small>
+                <strong>{t.analyticsTitle}</strong>
+                <small>{t.analyticsDesc}</small>
               </span>
               <input
                 checked={preferences.analytics}
@@ -137,8 +181,8 @@ export function CookieSettingsPopup() {
 
             <label className={styles.option}>
               <span>
-                <strong>마케팅 쿠키</strong>
-                <small>브링크 소식과 맞춤형 안내를 제공하는 데 활용합니다.</small>
+                <strong>{t.marketingTitle}</strong>
+                <small>{t.marketingDesc}</small>
               </span>
               <input
                 checked={preferences.marketing}
@@ -156,7 +200,7 @@ export function CookieSettingsPopup() {
             type="button"
             onClick={() => savePreferences(defaultPreferences)}
           >
-            필수만 허용
+            {t.essentialOnly}
           </button>
           {!isCompactWithIntroOffer ? (
             <button
@@ -164,7 +208,7 @@ export function CookieSettingsPopup() {
               type="button"
               onClick={() => savePreferences(preferences)}
             >
-              선택 저장
+              {t.saveSelection}
             </button>
           ) : null}
           <button
@@ -178,7 +222,7 @@ export function CookieSettingsPopup() {
               })
             }
           >
-            모두 허용
+            {t.allowAll}
           </button>
         </div>
       </section>

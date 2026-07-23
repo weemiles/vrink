@@ -18,7 +18,7 @@ export const siteConfig: SiteConfig = {
   name: "VRINK",
   title: "브링크(VRINK) 공식 웹사이트",
   description:
-    "브링크 제로스테이션: 공간 맞춤 음료 경험을 만드는 스마트 드링크 시스템.",
+    "브링크 제로스테이션: 15초 만에 기능샷과 맛을 고르는 공간 맞춤 음료 스테이션.",
   baseUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.vrink.kr",
   contactEmail: "vrink@contact.kr",
   contactPhone: "010-7362-6070",
@@ -27,6 +27,6 @@ export const siteConfig: SiteConfig = {
     companyName: "주식회사 브링크",
     owner: "김민수",
     registrationNumber: "162-81-03420",
-    address: "경기도 남양주시 별내중앙로 30, 305-1821",
+    address: "하남시 동남로406번길 46",
   },
 };

@@ -1,12 +1,14 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { ChevronDown } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { vrinkCopy } from "@/content/vrink-copy";
+import { leadSourceOptions } from "@/lib/lead-source";
 import { buildLeadMailtoHref, isStaticExport } from "@/lib/static-export";
 import { leadInquirySchema } from "@/lib/validation/lead";
 
@@ -25,9 +27,9 @@ const initialFeedback: FormFeedback = {
 };
 
 const englishLeadForm = {
-  title: "Request a consultation",
-  description: "Leave your space details and the VRINK team will get back to you.",
-  submitLabel: "Submit inquiry",
+  title: "Share setup details and source",
+  description: "Space type, expected users, timeline, and how you found VRINK are enough to start.",
+  submitLabel: "Get a setup plan",
   submittingLabel: "Submitting...",
   privacyNotice: "Submitted information is used only for consultation and follow-up.",
   validationError: "Please check the required fields.",
@@ -38,6 +40,7 @@ const englishLeadForm = {
     name: "Name",
     email: "Email",
     phone: "Phone",
+    source: "How did you hear about us?",
     message: "Message",
   },
   placeholders: {
@@ -45,7 +48,8 @@ const englishLeadForm = {
     name: "Your name",
     email: "hello@vrink.kr",
     phone: "010-0000-0000",
-    message: "Tell us your space type, expected users, and installation timeline.",
+    source: "Select a source",
+    message: "Space type, expected users, timeline",
   },
 };
 
@@ -66,6 +70,7 @@ export function LeadForm({ locale = "ko" }: LeadFormProps) {
       name: String(formData.get("name") ?? ""),
       email: String(formData.get("email") ?? ""),
       phone: String(formData.get("phone") ?? ""),
+      source: String(formData.get("source") ?? ""),
       message: String(formData.get("message") ?? ""),
       honeypot: String(formData.get("honeypot") ?? ""),
     };
@@ -121,7 +126,7 @@ export function LeadForm({ locale = "ko" }: LeadFormProps) {
 
       setFeedback({
         type: "success",
-        message: locale === "en" ? "Your inquiry has been submitted." : result.message,
+        message: locale === "en" ? "Your setup request has been submitted." : result.message,
       });
       form.reset();
     } catch {
@@ -164,6 +169,33 @@ export function LeadForm({ locale = "ko" }: LeadFormProps) {
           <div className="space-y-2">
             <Label htmlFor="phone">{copy.fields.phone} *</Label>
             <Input id="phone" name="phone" type="tel" placeholder={copy.placeholders.phone} required />
+          </div>
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="source">{copy.fields.source} *</Label>
+          <div className="relative">
+            <select
+              id="source"
+              name="source"
+              required
+              defaultValue=""
+              className="border-input h-9 w-full appearance-none rounded-md border bg-transparent py-1 pl-3 pr-11 text-base shadow-xs outline-none transition-[color,box-shadow] focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+            >
+              <option value="" disabled>
+                {copy.placeholders.source}
+              </option>
+              {leadSourceOptions.map((option) => (
+                <option key={option.id} value={option.id}>
+                  {option.labels[locale]}
+                </option>
+              ))}
+            </select>
+            <ChevronDown
+              aria-hidden="true"
+              className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--brand-ink)]"
+              strokeWidth={1.8}
+            />
           </div>
         </div>
 

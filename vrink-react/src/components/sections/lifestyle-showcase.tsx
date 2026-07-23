@@ -13,14 +13,31 @@ type LifestyleImage = {
   position?: string;
 };
 
+type Locale = "ko" | "en";
+
 type LifestyleShowcaseProps = {
   images: LifestyleImage[];
+  locale?: Locale;
+};
+
+const copyByLocale: Record<Locale, { eyebrow: string; title: string; description: string }> = {
+  ko: {
+    eyebrow: "사용 장면",
+    title: "운동 전후, 업무 사이에 바로 고르는 한 잔.",
+    description: "브링크가 놓인 공간에서 사용자가 직접 고르고 마시는 장면을 담았습니다.",
+  },
+  en: {
+    eyebrow: "In the moment",
+    title: "A cup people choose before workouts or between meetings.",
+    description: "See how people choose and enjoy VRINK in the spaces where it is installed.",
+  },
 };
 
 const slideIntervalMs = 6500;
 
-export function LifestyleShowcase({ images }: LifestyleShowcaseProps) {
+export function LifestyleShowcase({ images, locale = "ko" }: LifestyleShowcaseProps) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const copy = copyByLocale[locale];
 
   useEffect(() => {
     if (images.length <= 1) {
@@ -62,9 +79,9 @@ export function LifestyleShowcase({ images }: LifestyleShowcaseProps) {
         })}
 
         <div className={styles.copy}>
-          <p>사용 장면</p>
-          <h2 id="lifestyle-title">선택한 음료가 일상으로 이어지는 순간.</h2>
-          <span>운동 전후, 업무 사이, 웰니스 공간 안에서 브링크가 자연스럽게 놓이는 장면을 담았습니다.</span>
+          <p>{copy.eyebrow}</p>
+          <h2 id="lifestyle-title">{copy.title}</h2>
+          <span>{copy.description}</span>
         </div>
       </div>
     </section>

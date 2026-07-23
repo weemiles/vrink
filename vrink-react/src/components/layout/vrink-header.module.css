@@ -57,12 +57,18 @@
 }
 
 .nav a,
+.navDisabled,
 .navCta {
   color: rgba(0, 0, 0, 0.68);
   font-size: var(--type-nav);
   font-weight: var(--weight-regular);
   line-height: var(--line-nav);
   text-decoration: none;
+}
+
+.navDisabled {
+  color: rgba(0, 0, 0, 0.32);
+  cursor: default;
 }
 
 .nav a:hover,
@@ -292,14 +298,21 @@
     gap: 2px;
   }
 
-  .mobileNav a {
+  .mobileNav a,
+  .mobileNavDisabled {
     border-radius: 8px;
     color: rgba(0, 0, 0, 0.82);
+    display: block;
     font-size: var(--type-lead);
     font-weight: var(--weight-medium);
     line-height: var(--line-lead);
     padding: 13px 4px;
     text-decoration: none;
+  }
+
+  .mobileNavDisabled {
+    color: rgba(0, 0, 0, 0.32);
+    cursor: default;
   }
 
   .mobileNav a:hover,

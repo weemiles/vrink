@@ -11,7 +11,7 @@ export const leadInquirySchema = z.object({
     .max(30)
     .regex(/^[0-9+\-\s()]+$/, "연락처 형식이 올바르지 않습니다."),
   message: z.string().trim().min(2, "문의 내용을 2자 이상 입력해주세요.").max(2000),
-  source: z.string().trim().max(80).optional().default("website"),
+  source: z.string().trim().min(1, "유입경로를 선택해주세요.").max(80).default("website"),
   honeypot: z.string().optional().default(""),
 });
 

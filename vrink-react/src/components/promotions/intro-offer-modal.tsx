@@ -35,7 +35,41 @@ const subscribeToOfferStore = (onStoreChange: () => void) => {
 
 const getServerOfferSnapshot = () => false;
 
-export function IntroOfferModal() {
+type Locale = "ko" | "en";
+
+const copy = {
+  ko: {
+    closeLabel: "프로모션 닫기",
+    eyebrow: "첫 도입 혜택",
+    headlineLine1: "원액 10팩",
+    headlineLine2: "무료 지원",
+    offerTitle: "첫 도입 시 원액 10팩 무료",
+    offerBody: {
+      before: "브링크 첫 도입 고객에게 ",
+      highlight: "150만 원 상당의 원액 10팩",
+      after: "을 무료로 지원합니다.",
+    },
+    primaryAction: "혜택 상담받기",
+    todayButton: "오늘 하루 그만 보기",
+  },
+  en: {
+    closeLabel: "Close promotion",
+    eyebrow: "First-time offer",
+    headlineLine1: "10 free",
+    headlineLine2: "syrup packs",
+    offerTitle: "First setup includes 10 syrup packs",
+    offerBody: {
+      before: "First-time VRINK setups include ",
+      highlight: "10 syrup packs worth 1.5M KRW",
+      after: " at no cost.",
+    },
+    primaryAction: "Get offer details",
+    todayButton: "Hide for today",
+  },
+} satisfies Record<Locale, unknown>;
+
+export function IntroOfferModal({ locale = "ko" }: { locale?: Locale } = {}) {
+  const t = copy[locale];
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const dialogRef = useRef<HTMLElement>(null);
   const canShowOffer = useSyncExternalStore(
@@ -102,7 +136,7 @@ export function IntroOfferModal() {
       >
         <div className={styles.darkPanel}>
           <button
-            aria-label="프로모션 닫기"
+            aria-label={t.closeLabel}
             className={styles.closeButton}
             onClick={() => setIsDismissed(true)}
             ref={closeButtonRef}
@@ -110,27 +144,33 @@ export function IntroOfferModal() {
           >
             <X aria-hidden="true" size={22} strokeWidth={2.4} />
           </button>
-          <p className={styles.eyebrow}>첫 도입 혜택</p>
+          <p className={styles.eyebrow}>{t.eyebrow}</p>
           <h2 id="intro-offer-title">
-            <span>원액 10팩</span>
-            <span>무료 지원</span>
+            <span>{t.headlineLine1}</span>
+            <span>{t.headlineLine2}</span>
           </h2>
         </div>
 
         <div className={styles.lightPanel}>
           <div className={styles.offerCopy}>
-            <h3>지금 도입하면 원액 10팩 무료</h3>
+            <h3>{t.offerTitle}</h3>
             <p>
-              지금 브링크를 도입하시면 <strong>150만 원 상당의 원액 10팩</strong>을 무료로 지원해 드려요.
+              {t.offerBody.before}
+              <strong>{t.offerBody.highlight}</strong>
+              {t.offerBody.after}
             </p>
           </div>
 
-          <Link className={styles.primaryAction} href="/#contact" onClick={() => setIsDismissed(true)}>
-            자세히 알아보기
+          <Link
+            className={styles.primaryAction}
+            href={locale === "en" ? "/en#contact" : "/#contact"}
+            onClick={() => setIsDismissed(true)}
+          >
+            {t.primaryAction}
           </Link>
 
           <button className={styles.todayButton} onClick={hideForToday} type="button">
-            오늘 하루 그만 보기
+            {t.todayButton}
           </button>
         </div>
       </section>

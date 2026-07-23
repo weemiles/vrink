@@ -3,6 +3,7 @@ import { mkdir, appendFile } from "node:fs/promises";
 import path from "node:path";
 
 import { env } from "@/lib/env";
+import { getLeadSourceLabel } from "@/lib/lead-source";
 import { createServiceSupabaseClient } from "@/lib/supabase-server";
 import { leadInquirySchema, type LeadInquiryInput } from "@/lib/validation/lead";
 
@@ -44,6 +45,7 @@ async function saveLocalLeadInquiry(
   const file = path.join(directory, "lead-inquiries.jsonl");
   const record = {
     ...payload,
+    source_label: getLeadSourceLabel(payload.source),
     client_ip: ip,
     user_agent: request.headers.get("user-agent") ?? "",
     created_at: new Date().toISOString(),
@@ -69,6 +71,7 @@ async function saveGoogleSheetsLeadInquiry(
     },
     body: JSON.stringify({
       ...payload,
+      source_label: getLeadSourceLabel(payload.source),
       secret: env.googleSheetsWebhookSecret,
       client_ip: ip,
       user_agent: request.headers.get("user-agent") ?? "",
@@ -192,16 +195,12 @@ export async function POST(request: NextRequest) {
     // ERP 도입문의 영업 파이프라인에도 '신규문의' 리드로 자동 등록.
     // (보조 저장이라 실패해도 사용자 응답은 막지 않고 로그만 남긴다)
     try {
-      const channelMap: Record<string, string> = {
-        website: "홈페이지",
-        consultation_widget: "상담위젯",
-      };
       const { error: leadError } = await supabase.from("erp_leads").insert({
         company: payload.company,
         name: payload.name,
         email: payload.email,
         phone: payload.phone,
-        source_channel: channelMap[payload.source] ?? payload.source ?? "홈페이지",
+        source_channel: getLeadSourceLabel(payload.source),
         inquiry_message: payload.message,
       });
       if (leadError) {

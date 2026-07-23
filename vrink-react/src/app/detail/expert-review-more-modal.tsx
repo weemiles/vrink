@@ -5,12 +5,26 @@ import { createPortal } from "react-dom";
 
 import styles from "./page.module.css";
 
+type Locale = "ko" | "en";
+
 type ExpertReviewMoreModalProps = {
   poster: string;
   src: string;
+  locale?: Locale;
 };
 
-export function ExpertReviewMoreModal({ poster, src }: ExpertReviewMoreModalProps) {
+const copy = {
+  dialogLabel: {
+    ko: "영양사의 관점으로 본 브링크",
+    en: "VRINK, seen through a dietitian's eyes",
+  },
+  moreButton: {
+    ko: "영상 보기",
+    en: "Watch video",
+  },
+} as const;
+
+export function ExpertReviewMoreModal({ poster, src, locale = "ko" }: ExpertReviewMoreModalProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
@@ -37,7 +51,7 @@ export function ExpertReviewMoreModal({ poster, src }: ExpertReviewMoreModalProp
   const modal = isOpen ? (
     <div className={styles.expertVideoModalBackdrop} onClick={() => setIsOpen(false)} role="presentation">
       <section
-        aria-label="영양사의 관점으로 본 브링크"
+        aria-label={copy.dialogLabel[locale]}
         aria-modal="true"
         className={styles.expertVideoModal}
         onClick={(event) => event.stopPropagation()}
@@ -55,12 +69,12 @@ export function ExpertReviewMoreModal({ poster, src }: ExpertReviewMoreModalProp
   return (
     <>
       <button
-        aria-label="더 알아보기"
+        aria-label={copy.moreButton[locale]}
         className={styles.expertReviewMoreButton}
         onClick={() => setIsOpen(true)}
         type="button"
       >
-        더 알아보기
+        {copy.moreButton[locale]}
       </button>
       {modal && typeof document !== "undefined" ? createPortal(modal, document.body) : null}
     </>

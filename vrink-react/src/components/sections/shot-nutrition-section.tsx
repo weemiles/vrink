@@ -7,71 +7,120 @@ import { createPortal } from "react-dom";
 import { withBasePath } from "@/lib/static-export";
 import styles from "./shot-nutrition-section.module.css";
 
+type Locale = "ko" | "en";
+
+type LocalizedText = Record<Locale, string>;
+
 type ShotItem = {
   id: string;
-  name: string;
-  purpose: string;
-  description: string;
+  name: LocalizedText;
+  purpose: LocalizedText;
+  description: LocalizedText;
   image: string;
   accent: string;
-  ingredients: string[];
+  ingredients: LocalizedText[];
 };
 
-const shotFacts = [
-  { term: "기준 용량", value: "350ml 1잔" },
-  { term: "당류", value: "0g" },
-  { term: "열량", value: "100g당 0kcal" },
+const sectionCopy = {
+  title: { ko: "5종 기능샷 고르기", en: "Choose from 5 functional shots" },
+  subtitle: {
+    ko: "목적을 고르고, 필요한 성분은 카드에서 바로 확인하세요.",
+    en: "Pick a purpose, then tap a card to see what's inside.",
+  },
+  cardCta: { ko: "성분 보기 ›", en: "See details ›" },
+  modalLabel: { ko: "상세 성분", en: "What's inside" },
+} satisfies Record<string, LocalizedText>;
+
+const shotFacts: { term: LocalizedText; value: LocalizedText }[] = [
+  { term: { ko: "기준 용량", en: "Serving" }, value: { ko: "350ml 1잔", en: "One 350ml cup" } },
+  { term: { ko: "당류", en: "Sugar" }, value: { ko: "0g", en: "0g" } },
+  { term: { ko: "열량", en: "Calories" }, value: { ko: "100g당 0kcal", en: "0kcal per 100g" } },
 ];
 
 const shotItems: ShotItem[] = [
   {
     id: "booster",
-    name: "부스터샷",
-    purpose: "집중과 활력이 필요한 순간",
-    description: "과라나추출분말과 아르지닌을 더해 업무와 운동 전 루틴에 맞춘 기능샷입니다.",
+    name: { ko: "부스터샷", en: "Booster Shot" },
+    purpose: { ko: "업무 전, 운동 전 활력 루틴", en: "For work and pre-workout routines" },
+    description: {
+      ko: "카페인 55mg이 포함된 과라나추출분말과 L-아르지닌을 더한 기능샷입니다.",
+      en: "A functional shot with guarana extract containing 55mg caffeine and L-arginine.",
+    },
     image: "/images/vrink/shots/booster-shot.png",
     accent: "#b80f28",
-    ingredients: ["과라나추출분말 250mg(카페인 55mg)", "L-아르지닌 500mg", "타우린 100mg"],
+    ingredients: [
+      { ko: "과라나추출분말 250mg(카페인 55mg)", en: "Guarana extract 250mg (55mg caffeine)" },
+      { ko: "L-아르지닌 500mg", en: "L-arginine 500mg" },
+      { ko: "타우린 100mg", en: "Taurine 100mg" },
+    ],
   },
   {
     id: "vitamin",
-    name: "비타민샷",
-    purpose: "기초 영양과 컨디션 관리",
-    description: "비타민B군믹스와 비타민C를 더해 데일리 컨디션 관리에 맞춘 기능샷입니다.",
+    name: { ko: "비타민샷", en: "Vitamin Shot" },
+    purpose: { ko: "매일 고르기 쉬운 기초 루틴", en: "An easy everyday base routine" },
+    description: {
+      ko: "비타민B군믹스와 비타민C를 더해 데일리 루틴에 맞춘 기능샷입니다.",
+      en: "B-vitamin mix and vitamin C for a simple daily routine.",
+    },
     image: "/images/vrink/shots/vitamin-shot.png",
     accent: "#e2bd00",
-    ingredients: ["비타민B군믹스 150mg", "비타민C 300mg"],
+    ingredients: [
+      { ko: "비타민B군믹스 150mg", en: "B-vitamin mix 150mg" },
+      { ko: "비타민C 300mg", en: "Vitamin C 300mg" },
+    ],
   },
   {
     id: "relax",
-    name: "릴렉스샷",
-    purpose: "차분한 균형이 필요한 시간",
-    description: "L-테아닌과 타우린을 조합해 리프레시가 필요한 오후에 어울리는 기능샷입니다.",
+    name: { ko: "릴렉스샷", en: "Relax Shot" },
+    purpose: { ko: "오후에 고르는 리프레시 루틴", en: "An afternoon refresh routine" },
+    description: {
+      ko: "L-테아닌과 타우린을 조합해 리프레시가 필요한 시간에 맞춘 기능샷입니다.",
+      en: "L-theanine and taurine for the moments when you want a refresh.",
+    },
     image: "/images/vrink/shots/relax-shot.png",
     accent: "#009f7d",
-    ingredients: ["L-테아닌 100mg", "타우린 100mg"],
+    ingredients: [
+      { ko: "L-테아닌 100mg", en: "L-theanine 100mg" },
+      { ko: "타우린 100mg", en: "Taurine 100mg" },
+    ],
   },
   {
     id: "cutting",
-    name: "커팅샷",
-    purpose: "일상 속 가벼운 관리 루틴",
-    description: "L-카르니틴과 녹차농축액으로 산뜻한 밸런스 관리를 돕는 기능샷입니다.",
+    name: { ko: "커팅샷", en: "Cutting Shot" },
+    purpose: { ko: "운동과 함께하는 가벼운 루틴", en: "A light routine with exercise" },
+    description: {
+      ko: "L-카르니틴과 녹차농축액으로 운동 전후에 고르기 쉬운 기능샷입니다.",
+      en: "L-carnitine and green tea concentrate for an easy before-or-after workout choice.",
+    },
     image: "/images/vrink/shots/cutting-shot.png",
     accent: "#008ed6",
-    ingredients: ["L-카르니틴 500mg", "녹차농축액 300mg"],
+    ingredients: [
+      { ko: "L-카르니틴 500mg", en: "L-carnitine 500mg" },
+      { ko: "녹차농축액 300mg", en: "Green tea concentrate 300mg" },
+    ],
   },
   {
     id: "amino",
-    name: "아미노샷",
-    purpose: "운동 전후 회복 루틴",
-    description: "필수아미노산 9종과 타우린을 담아 활동 후 루틴에 맞춥니다.",
+    name: { ko: "아미노샷", en: "Amino Shot" },
+    purpose: { ko: "운동 전후 아미노 루틴", en: "Amino routine before or after workouts" },
+    description: {
+      ko: "필수아미노산 9종과 타우린을 담아 운동 전후 루틴에 맞춥니다.",
+      en: "9 essential amino acids plus taurine for a workout routine.",
+    },
     image: "/images/vrink/shots/amino-shot.png",
     accent: "#ed6c1b",
-    ingredients: ["필수아미노산 9종 200mg", "타우린 100mg"],
+    ingredients: [
+      { ko: "필수아미노산 9종 200mg", en: "9 essential amino acids 200mg" },
+      { ko: "타우린 100mg", en: "Taurine 100mg" },
+    ],
   },
 ];
 
-export function ShotNutritionSection() {
+type ShotNutritionSectionProps = {
+  locale?: Locale;
+};
+
+export function ShotNutritionSection({ locale = "ko" }: ShotNutritionSectionProps) {
   const [activeShot, setActiveShot] = useState<ShotItem | null>(null);
 
   useEffect(() => {
@@ -100,7 +149,7 @@ export function ShotNutritionSection() {
         style={{ "--shot-accent": activeShot.accent } as CSSProperties}
       >
         <button
-          aria-label="상세 성분 닫기"
+          aria-label={locale === "en" ? "Close ingredient details" : "상세 성분 닫기"}
           className={styles.modalClose}
           onClick={() => setActiveShot(null)}
           type="button"
@@ -109,31 +158,35 @@ export function ShotNutritionSection() {
         <div className={styles.modalHero}>
           <Image
             src={withBasePath(activeShot.image)}
-            alt={`${activeShot.name} 이미지`}
+            alt={
+              locale === "en"
+                ? `${activeShot.name.en} image`
+                : `${activeShot.name.ko} 이미지`
+            }
             width={118}
             height={136}
             sizes="(max-width: 760px) 84px, 118px"
           />
           <div>
-            <p>상세 성분</p>
-            <h3 id={`${activeShot.id}-shot-modal-title`}>{activeShot.name}</h3>
-            <span>{activeShot.purpose}</span>
+            <p>{sectionCopy.modalLabel[locale]}</p>
+            <h3 id={`${activeShot.id}-shot-modal-title`}>{activeShot.name[locale]}</h3>
+            <span>{activeShot.purpose[locale]}</span>
           </div>
         </div>
 
-        <p className={styles.modalDescription}>{activeShot.description}</p>
+        <p className={styles.modalDescription}>{activeShot.description[locale]}</p>
 
         <ul className={styles.modalIngredients}>
           {activeShot.ingredients.map((ingredient) => (
-            <li key={ingredient}>{ingredient}</li>
+            <li key={ingredient.ko}>{ingredient[locale]}</li>
           ))}
         </ul>
 
         <dl className={styles.modalFacts}>
           {shotFacts.map((fact) => (
-            <div key={fact.term}>
-              <dt>{fact.term}</dt>
-              <dd>{fact.value}</dd>
+            <div key={fact.term.ko}>
+              <dt>{fact.term[locale]}</dt>
+              <dd>{fact.value[locale]}</dd>
             </div>
           ))}
         </dl>
@@ -145,14 +198,18 @@ export function ShotNutritionSection() {
     <>
       <section className={styles.section} aria-labelledby="shot-nutrition-title">
         <div className={styles.intro}>
-          <h2 id="shot-nutrition-title">기능샷 둘러보기</h2>
-          <p>샷별 특징을 고르고, 필요한 영양성분은 눌러서 확인합니다.</p>
+          <h2 id="shot-nutrition-title">{sectionCopy.title[locale]}</h2>
+          <p>{sectionCopy.subtitle[locale]}</p>
         </div>
 
         <div className={styles.grid}>
           {shotItems.map((shot) => (
             <button
-              aria-label={`${shot.name} 상세 성분 보기`}
+              aria-label={
+                locale === "en"
+                  ? `See ${shot.name.en} ingredients`
+                  : `${shot.name.ko} 상세 성분 보기`
+              }
               className={styles.card}
               key={shot.id}
               onClick={() => setActiveShot(shot)}
@@ -160,14 +217,18 @@ export function ShotNutritionSection() {
               type="button"
             >
               <span className={styles.cardCopy}>
-                <strong>{shot.name}</strong>
-                <small>{shot.purpose}</small>
-                <em>영양성분 보기 ›</em>
+                <strong>{shot.name[locale]}</strong>
+                <small>{shot.purpose[locale]}</small>
+                <em>{sectionCopy.cardCta[locale]}</em>
               </span>
               <span className={styles.cardVisual}>
                 <Image
                   src={withBasePath(shot.image)}
-                  alt={`${shot.name} 캡슐 이미지`}
+                  alt={
+                    locale === "en"
+                      ? `${shot.name.en} capsule image`
+                      : `${shot.name.ko} 캡슐 이미지`
+                  }
                   width={130}
                   height={150}
                   loading="eager"

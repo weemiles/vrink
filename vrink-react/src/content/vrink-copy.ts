@@ -69,6 +69,7 @@ export type VrinkCopy = {
       name: string;
       email: string;
       phone: string;
+      source: string;
       message: string;
     };
     placeholders: {
@@ -76,6 +77,7 @@ export type VrinkCopy = {
       name: string;
       email: string;
       phone: string;
+      source: string;
       message: string;
     };
   };
@@ -102,11 +104,11 @@ export type VrinkCopy = {
 export const vrinkCopy: VrinkCopy = {
   hero: {
     eyebrow: "브링크 제로스테이션",
-    title: "대한민국 최초 스마트 드링크 시스템",
-    subtitle: "건강을 운영하는 새로운 기준",
-    body: "브링크 제로스테이션은 단순히 음료를 제공하는 기기가 아닙니다. 공간의 경험, 복지, 운영 흐름을 함께 설계하는 스마트 음료 운영 시스템입니다.",
-    primaryCta: "도입 상담 신청",
-    secondaryCta: "핵심 기능 보기",
+    title: "15초 만에 고르는 우리 공간의 한 잔",
+    subtitle: "5종 기능샷과 약 1,792가지 조합",
+    body: "브링크 제로스테이션은 기능샷, 맛, 농도, 탄산을 고르고 평균 15초 안에 받을 수 있는 공간 맞춤 음료 스테이션입니다.",
+    primaryCta: "구성 받아보기",
+    secondaryCta: "제품 보기",
   },
   problem: {
     title: "지금의 공간 운영에서 반복되는 고민",
@@ -157,48 +159,48 @@ export const vrinkCopy: VrinkCopy = {
     ],
   },
   feature: {
-    title: "제로스테이션이 답이 되는 이유",
+    title: "제로스테이션을 고르는 이유",
     intro:
-      "기능 샷, 맛, 농도, 탄산을 조합해 개인 맞춤형 경험을 만들고 운영 효율까지 연결합니다.",
+      "기능샷, 맛, 농도, 탄산을 조합해 개인 선택과 운영 관리를 한 흐름으로 연결합니다.",
     items: [
       {
-        title: "데이터 기반 맞춤 음료 추천",
+        title: "약 1,792가지 음료 조합",
         description:
-          "약 1,792가지 조합을 사용자 취향·선택 데이터 기반으로 추천합니다.",
+          "5종 기능샷과 맛, 농도, 탄산 옵션을 조합해 공간에 맞는 선택지를 만듭니다.",
         bullets: [
           "약 1,792가지 조합",
-          "사용자 취향·선택 데이터 기반 추천",
-          "개인화된 음료를 직관적인 경험으로 제공",
+          "5종 기능샷과 맛 조합",
+          "사용자가 직접 고르는 음료 경험",
         ],
       },
       {
-        title: "직접 만드는 음료 경험",
+        title: "직접 고르는 음료 경험",
         description:
           "기능 샷 + 맛 + 농도 선택으로 상황과 목적에 맞는 한 잔을 설계합니다.",
         bullets: [
           "기능 샷 + 맛 + 농도 선택",
-          "모바일로 언제 어디서든 제조 가능",
+          "태블릿에서 바로 선택",
           "사용자 컨디션·생활 패턴·목표 반영",
         ],
       },
       {
-        title: "약 15초 완성",
+        title: "평균 15초 완성",
         description:
-          "선택한 영양 성분이 350ml 기준 약 15초 후 한 잔으로 완성됩니다.",
+          "선택한 기능샷과 맛이 350ml 기준 약 15초 후 한 잔으로 완성됩니다.",
         bullets: [
           "1잔 평균 약 15초 (350ml 기준)",
-          "즉시 섭취 가능한 운영 흐름",
+          "짧은 대기 흐름",
           "24시간 운영 가능",
         ],
       },
       {
-        title: "지속 가능한 건강 루틴",
+        title: "매일 고르기 쉬운 루틴",
         description:
-          "재미 → 반복 → 습관화 흐름으로 일상에서 꾸준한 실천을 돕습니다.",
+          "복잡한 설명보다 사용자가 직접 고르고 마시는 반복 경험에 집중합니다.",
         bullets: [
           "복잡한 과정 없이 기준과 선호 반영",
           "매번 같은 방식이 아닌 개인 기준의 한 잔",
-          "Zero 칼로리 / Zero 슈거 / Zero 부담",
+          "Zero 칼로리 / Zero 슈거",
         ],
       },
     ],
@@ -262,8 +264,8 @@ export const vrinkCopy: VrinkCopy = {
     ],
   },
   cta: {
-    title: "도입 상담을 시작해보세요",
-    body: "오피스, 피트니스, 병원·웰니스, 이벤트·팝업 등 장시간 운영 환경에 맞춰 상담을 진행합니다.",
+    title: "공간 정보와 유입경로로 도입 구성을 받아보세요",
+    body: "공간 유형, 예상 이용자, 도입 시기, 알게 된 경로를 남겨주시면 브링크 팀이 확인 후 연락드립니다.",
     promotions: [
       {
         title: "회원가입 혜택",
@@ -279,38 +281,40 @@ export const vrinkCopy: VrinkCopy = {
       },
     ],
     contactNotice:
-      "문의 접수 후 영업일 기준 순차적으로 연락드립니다. 운영/설치 조건은 계약 기준에 따릅니다.",
+      "문의 접수 후 순차적으로 연락드립니다. 운영/설치 조건은 계약 기준에 따릅니다.",
   },
   leadForm: {
-    title: "도입 상담 신청",
+    title: "공간 정보와 유입경로를 남겨주세요",
     description:
-      "설치 공간과 운영 목적을 남겨주시면 브링크 전담팀이 확인 후 연락드립니다.",
-    submitLabel: "문의 접수하기",
-    privacyNotice: "개인정보 수집 및 이용 동의 후 문의를 접수해주세요.",
+      "공간 유형, 예상 이용자, 도입 시기와 알게 된 경로를 남기면 상담을 시작할 수 있습니다.",
+    submitLabel: "구성 받아보기",
+    privacyNotice: "남겨주신 정보는 상담과 안내에만 사용합니다.",
     fields: {
       company: "기업/단체명",
       name: "담당자 성함",
       email: "이메일",
       phone: "연락처",
-      message: "도입 문의 상세",
+      source: "유입경로",
+      message: "도입 구성 메모",
     },
     placeholders: {
       company: "예: 주식회사 브링크",
       name: "예: 홍길동",
       email: "example@company.com",
       phone: "010-0000-0000",
+      source: "유입경로 선택",
       message:
-        "설치 공간(오피스/피트니스/병원/팝업)과 예상 사용 인원을 적어주세요.",
+        "공간 유형, 예상 이용자, 도입 시기를 적어주세요.",
     },
   },
   footer: {
     summary:
-      "브링크는 한 잔의 음료를 넘어 공간의 경험, 복지, 운영 효율을 함께 설계하는 스마트 음료 운영 시스템입니다.",
+      "브링크는 15초 음료 경험과 원액·점검 관리를 함께 설계하는 공간 맞춤 음료 스테이션입니다.",
     companyInfo: {
       companyName: "주식회사 브링크",
       registrationNumber: "162-81-03420",
       owner: "김민수",
-      address: "경기도 남양주시 별내중앙로 30, 305-1821",
+      address: "하남시 동남로406번길 46",
       email: "vrink@contact.kr",
       phone: "010-7362-6070",
     },
