@@ -63,7 +63,7 @@
 }
 
 .embeddedProgress li.progressStepComplete::after {
-  background: #35d67b;
+  background: var(--brand-primary);
 }
 
 .embeddedProgress span {
@@ -77,13 +77,13 @@
 }
 
 .embeddedProgress .progressStepComplete span {
-  border-color: #35d67b;
-  color: #20a75b;
+  border-color: var(--brand-primary);
+  color: var(--brand-primary-strong);
 }
 
 .embeddedProgress .progressStepActive span {
-  background: #35d67b;
-  border-color: #35d67b;
+  background: var(--brand-primary);
+  border-color: var(--brand-primary);
   color: #ffffff;
 }
 
