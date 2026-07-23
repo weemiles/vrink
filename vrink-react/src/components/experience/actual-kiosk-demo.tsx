@@ -296,8 +296,8 @@ export function ActualKioskDemo({ locale, variant = "full" }: { locale: Locale; 
   const [screen, setScreen] = useState<Screen>("welcome");
   const [flavorId, setFlavorId] = useState<string | null>(null);
   const [shotCounts, setShotCounts] = useState<Record<string, number>>({});
-  const [concentrationIndex, setConcentrationIndex] = useState(1);
-  const [carbonationIndex, setCarbonationIndex] = useState(0);
+  const [concentrationIndex, setConcentrationIndex] = useState<number | null>(null);
+  const [carbonationIndex, setCarbonationIndex] = useState<number | null>(null);
   const [internalScrollEnabled, setInternalScrollEnabled] = useState(false);
   const [dispensingProgress, setDispensingProgress] = useState(0);
 
@@ -396,6 +396,19 @@ export function ActualKioskDemo({ locale, variant = "full" }: { locale: Locale; 
 
   function changeScreen(next: Screen) {
     setInternalScrollEnabled(false);
+    if (next === "welcome") {
+      setFlavorId(null);
+      setShotCounts({});
+      setConcentrationIndex(null);
+      setCarbonationIndex(null);
+      setDispensingProgress(0);
+    } else if (next === "flavor") {
+      setFlavorId(null);
+    } else if (next === "options") {
+      setShotCounts({});
+      setConcentrationIndex(null);
+      setCarbonationIndex(null);
+    }
     setScreen(next);
   }
 
@@ -413,14 +426,10 @@ export function ActualKioskDemo({ locale, variant = "full" }: { locale: Locale; 
   }
 
   function startOrderFlow() {
-    setFlavorId("apple");
     changeScreen("flavor");
   }
 
   function goToOptions() {
-    setShotCounts({ booster: 2, cutting: 1 });
-    setConcentrationIndex(1);
-    setCarbonationIndex(0);
     changeScreen("options");
   }
 
@@ -430,11 +439,6 @@ export function ActualKioskDemo({ locale, variant = "full" }: { locale: Locale; 
   }
 
   function resetDemo() {
-    setFlavorId(null);
-    setShotCounts({});
-    setConcentrationIndex(1);
-    setCarbonationIndex(0);
-    setDispensingProgress(0);
     changeScreen("welcome");
   }
 
