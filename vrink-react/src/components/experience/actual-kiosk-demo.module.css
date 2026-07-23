@@ -922,8 +922,8 @@
   background: #f8fafb;
   border: 0.125cqw solid #e5e8eb;
   border-radius: 2.5cqw;
-  margin: 2.5cqw 5.5cqw 0;
-  padding: 2.5cqw 3.25cqw;
+  margin: 1.25cqw 5.5cqw 0;
+  padding: 1.5cqw 3.25cqw;
 }
 
 .ingredientSummaryHead {
@@ -950,8 +950,9 @@
 
 .summaryChips {
   display: flex;
-  gap: 1.25cqw;
-  margin-top: 2cqw;
+  flex-wrap: wrap;
+  gap: 0.75cqw 0.625cqw;
+  margin-top: 1.25cqw;
 }
 
 .summaryChips span {
@@ -962,7 +963,7 @@
   font-size: 2.25cqw;
   font-weight: 500;
   line-height: 3.125cqw;
-  padding: 1.125cqw 1.875cqw;
+  padding: 0.875cqw;
   white-space: nowrap;
 }
 
