@@ -605,21 +605,6 @@
   white-space: nowrap;
 }
 
-.recommendedTag {
-  background: #3cdb7f;
-  border-radius: 0.875cqw;
-  color: #111827;
-  font-size: 1.75cqw;
-  font-weight: 600;
-  left: 50%;
-  line-height: 3.5cqw;
-  padding: 0 1.25cqw;
-  position: absolute;
-  top: 0;
-  transform: translate(-50%, -50%);
-  white-space: nowrap;
-}
-
 .cardSelected {
   background: #f3fff8;
   border-color: #3cdb7f;

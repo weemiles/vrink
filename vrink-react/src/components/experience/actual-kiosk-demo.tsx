@@ -173,7 +173,6 @@ const copy = {
     landingTitle: "기분 좋은 내 몸의 영양 관리\n브링크로 시작하세요",
     landingSubtitle: "회원가입 후에 이용하시면\n최대 50% 할인된 금액으로 만나보실 수 있어요",
     startOrder: "주문하기",
-    recommended: "추천",
     flavorTitle: "어떤 맛으로\n마실까요?",
     flavorSubtitle: "원하는 맛을 먼저 선택해주세요.",
     optionsTitle: "운동 목적을\n선택해주세요",
@@ -257,7 +256,6 @@ const copy = {
     landingTitle: "Feel-good nutrition for your body\nStart with VRINK",
     landingSubtitle: "Sign up to enjoy\ndiscounts of up to 50%",
     startOrder: "Order now",
-    recommended: "Recommended",
     flavorTitle: "Which flavor\nwould you like?",
     flavorSubtitle: "Choose your flavor first.",
     optionsTitle: "Choose your\nworkout goal",
@@ -669,7 +667,6 @@ export function ActualKioskDemo({ locale, variant = "full" }: { locale: Locale; 
                       const selected = flavor.id === flavorId;
                       return (
                         <button key={flavor.id} type="button" role="radio" aria-checked={selected} className={`${styles.flavorCard} ${selected ? styles.cardSelected : ""}`} onClick={() => setFlavorId(flavor.id)}>
-                          {flavor.id === "apple" && <span className={styles.recommendedTag}>{t.recommended}</span>}
                           <Image src={withBasePath(flavor.image)} alt="" width={117} height={117} />
                           <strong>{flavor.label[locale]}</strong>
                           {selected && <Image className={styles.selectedCheck} src={withBasePath(`${figmaAssetRoot}/icon-check.svg`)} alt="" width={30} height={30} />}
