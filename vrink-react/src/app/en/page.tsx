@@ -7,6 +7,7 @@ import { ActualKioskDemo } from "@/components/experience/actual-kiosk-demo";
 import { LeadForm } from "@/components/forms/lead-form";
 import { VrinkFooter } from "@/components/layout/vrink-footer";
 import { VrinkHeader } from "@/components/layout/vrink-header";
+import { ScrollReveal } from "@/components/motion/scroll-reveal";
 import { IntroOfferModal } from "@/components/promotions/intro-offer-modal";
 import { LifestyleShowcase } from "@/components/sections/lifestyle-showcase";
 import { PartnerLogoMarquee } from "@/components/sections/partner-logo-marquee";
@@ -232,11 +233,11 @@ export default function EnglishPage() {
       </section>
 
       <section id="product" className={styles.revealSection}>
-        <div className={styles.sectionIntro}>
+        <ScrollReveal className={styles.sectionIntro}>
           <p>Product</p>
           <h2>Choose and pour on one clear work surface.</h2>
-        </div>
-        <div className={styles.sceneGrid}>
+        </ScrollReveal>
+        <ScrollReveal className={styles.sceneGrid} stagger>
           {productScenes.map((scene) => (
             <article className={styles.sceneCard} key={scene.title}>
               <div className={styles.sceneImage}>
@@ -246,7 +247,7 @@ export default function EnglishPage() {
               <p>{scene.body}</p>
             </article>
           ))}
-        </div>
+        </ScrollReveal>
       </section>
 
       <PartnerLogoMarquee locale="en" />
@@ -256,11 +257,11 @@ export default function EnglishPage() {
       </section>
 
       <section className={styles.darkSection}>
-        <div className={styles.sectionIntro}>
+        <ScrollReveal className={styles.sectionIntro}>
           <p>Operations</p>
           <h2>Installation and ingredient care run in one flow.</h2>
-        </div>
-        <div className={styles.systemGrid}>
+        </ScrollReveal>
+        <ScrollReveal className={styles.systemGrid} stagger>
           {systemItems.map((item) => (
             <article className={styles.systemItem} key={item.title}>
               <span>{item.label}</span>
@@ -268,19 +269,19 @@ export default function EnglishPage() {
               <p>{item.body}</p>
             </article>
           ))}
-        </div>
+        </ScrollReveal>
       </section>
 
       <section className={styles.adminSection} aria-labelledby="admin-dashboard-title">
-        <div className={styles.adminCopy}>
+        <ScrollReveal className={styles.adminCopy}>
           <p>Admin dashboard</p>
           <h2 id="admin-dashboard-title">See status, orders, and sales on one screen.</h2>
           <span>
             After installation, the admin page lets you check site status, store orders, and sales flow in one place.
           </span>
-        </div>
+        </ScrollReveal>
 
-        <div className={styles.adminShowcase} aria-label="VRINK admin screenshots">
+        <ScrollReveal className={styles.adminShowcase} aria-label="VRINK admin screenshots" stagger>
           {adminScreenshots.map((item, index) => (
             <figure className={index === 0 ? styles.adminScreenshotPrimary : styles.adminScreenshot} key={item.title}>
               <div className={styles.adminScreenshotImage}>
@@ -292,7 +293,7 @@ export default function EnglishPage() {
               </figcaption>
             </figure>
           ))}
-        </div>
+        </ScrollReveal>
         <div className={styles.adminDots} aria-hidden="true">
           {adminScreenshots.map((item, index) => (
             <span className={index === 0 ? styles.adminDotActive : undefined} key={item.title} />
@@ -331,22 +332,22 @@ export default function EnglishPage() {
       <LifestyleShowcase images={lifestyleImages} locale="en" />
 
       <section id="space" className={styles.useCaseSection}>
-        <div className={styles.sectionIntro}>
+        <ScrollReveal className={styles.sectionIntro}>
           <p>Spaces</p>
           <h2>Each space gets a clear use case.</h2>
-        </div>
-        <div className={styles.useCaseGrid}>
+        </ScrollReveal>
+        <ScrollReveal className={styles.useCaseGrid} stagger>
           {useCases.map(([title, body]) => (
             <article key={title}>
               <h3>{title}</h3>
               <p>{body}</p>
             </article>
           ))}
-        </div>
+        </ScrollReveal>
       </section>
 
       <section id="welfare" className={styles.welfareSection} aria-labelledby="welfare-title">
-        <div className={styles.welfareIntro}>
+        <ScrollReveal className={styles.welfareIntro}>
           <p>Workplace drink benefits</p>
           <h2 id="welfare-title">Give employees drinks without stacking them in storage.</h2>
           <span>
@@ -355,9 +356,9 @@ export default function EnglishPage() {
           <small className={styles.welfareIntroNote}>
             *Cost savings can vary by current drink purchasing method, usage volume, and installation environment.
           </small>
-        </div>
+        </ScrollReveal>
 
-        <div className={styles.welfareCompare} aria-label="Comparison between stocked drink benefits and VRINK">
+        <ScrollReveal className={styles.welfareCompare} aria-label="Comparison between stocked drink benefits and VRINK">
           <div className={styles.welfareCompareTop}>
             <article className={styles.welfareCompareProduct}>
               <h3>Current setup</h3>
@@ -381,20 +382,20 @@ export default function EnglishPage() {
               </div>
             ))}
           </div>
-        </div>
+        </ScrollReveal>
 
       </section>
 
       <section id="operation" className={styles.operationSection}>
-        <div className={styles.operationImage}>
+        <ScrollReveal className={styles.operationImage}>
           <Image
             src={withBasePath("/images/vrink/apple/vrink-product-back.png")}
             alt="Back view of VRINK Zero Station"
             fill
             sizes="(max-width: 900px) 100vw, 44vw"
           />
-        </div>
-        <div className={styles.operationCopy}>
+        </ScrollReveal>
+        <ScrollReveal className={styles.operationCopy}>
           <p>Operations</p>
           <h2>Manage ingredients and checks when they are needed.</h2>
           <span>
@@ -405,15 +406,15 @@ export default function EnglishPage() {
             <li>Professional install and routine maintenance support</li>
             <li>Setup guidance for events and long-term rollouts</li>
           </ul>
-        </div>
+        </ScrollReveal>
       </section>
 
       <section id="news" className={styles.newsSection}>
-        <div className={styles.sectionIntro}>
+        <ScrollReveal className={styles.sectionIntro}>
           <p>Newsroom</p>
           <h2>See the latest VRINK news at a glance.</h2>
-        </div>
-        <div className={styles.newsFeature}>
+        </ScrollReveal>
+        <ScrollReveal className={styles.newsFeature}>
           <div className={styles.newsFeatureImage}>
             <Image src={withBasePath(newsItems[0].image)} alt="" fill sizes="(max-width: 900px) 100vw, 50vw" />
           </div>
@@ -423,8 +424,8 @@ export default function EnglishPage() {
             <p>{newsItems[0].body}</p>
             <a href={newsItems[0].href} rel="noreferrer" target="_blank">Read article ›</a>
           </article>
-        </div>
-        <div className={styles.newsGrid}>
+        </ScrollReveal>
+        <ScrollReveal className={styles.newsGrid} stagger>
           {newsItems.slice(1).map((item) => (
             <article key={item.title} className={styles.newsCard}>
               <div className={styles.newsCardImage}>
@@ -438,17 +439,17 @@ export default function EnglishPage() {
               </div>
             </article>
           ))}
-        </div>
+        </ScrollReveal>
       </section>
 
       <section id="contact" className={styles.contactSection}>
-        <div className={styles.contactCopy}>
+        <ScrollReveal className={styles.contactCopy}>
           <p>Contact</p>
           <h2>Share setup details and source.</h2>
           <span>
             Tell us your space type, expected users, timeline, and how you found VRINK. Our team will review and follow up.
           </span>
-        </div>
+        </ScrollReveal>
         <LeadForm locale="en" />
       </section>
 

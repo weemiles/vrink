@@ -1,0 +1,79 @@
+.reveal {
+  --reveal-distance: 18px;
+  --reveal-duration: 520ms;
+  --reveal-ease: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.reveal:not([data-reveal-stagger="true"]) {
+  transition:
+    opacity var(--reveal-duration) var(--reveal-ease),
+    transform var(--reveal-duration) var(--reveal-ease);
+}
+
+.reveal[data-reveal-state="pending"]:not([data-reveal-stagger="true"]) {
+  opacity: 0;
+  transform: translate3d(0, var(--reveal-distance), 0);
+}
+
+.reveal[data-reveal-state="visible"]:not([data-reveal-stagger="true"]) {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.reveal[data-reveal-stagger="true"] > * {
+  transition:
+    opacity var(--reveal-duration) var(--reveal-ease),
+    transform var(--reveal-duration) var(--reveal-ease);
+}
+
+.reveal[data-reveal-stagger="true"][data-reveal-state="pending"] > * {
+  opacity: 0;
+  transform: translate3d(0, var(--reveal-distance), 0);
+}
+
+.reveal[data-reveal-stagger="true"][data-reveal-state="visible"] > * {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.reveal[data-reveal-stagger="true"] > :nth-child(2) {
+  transition-delay: 55ms;
+}
+
+.reveal[data-reveal-stagger="true"] > :nth-child(3) {
+  transition-delay: 110ms;
+}
+
+.reveal[data-reveal-stagger="true"] > :nth-child(4) {
+  transition-delay: 165ms;
+}
+
+.reveal[data-reveal-stagger="true"] > :nth-child(n + 5) {
+  transition-delay: 220ms;
+}
+
+@media (max-width: 640px) {
+  .reveal {
+    --reveal-distance: 12px;
+    --reveal-duration: 460ms;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal[data-reveal-stagger="true"] > * {
+    transition:
+      opacity 180ms var(--reveal-ease);
+  }
+
+  .reveal[data-reveal-state="pending"],
+  .reveal[data-reveal-state="visible"],
+  .reveal[data-reveal-stagger="true"][data-reveal-state="pending"] > *,
+  .reveal[data-reveal-stagger="true"][data-reveal-state="visible"] > * {
+    transform: none;
+  }
+
+  .reveal[data-reveal-stagger="true"] > * {
+    transition-delay: 0ms;
+  }
+}

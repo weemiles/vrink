@@ -6,6 +6,7 @@ import { ActualKioskDemo } from "@/components/experience/actual-kiosk-demo";
 import { LeadForm } from "@/components/forms/lead-form";
 import { VrinkFooter } from "@/components/layout/vrink-footer";
 import { VrinkHeader } from "@/components/layout/vrink-header";
+import { ScrollReveal } from "@/components/motion/scroll-reveal";
 import { IntroOfferModal } from "@/components/promotions/intro-offer-modal";
 import { LifestyleShowcase } from "@/components/sections/lifestyle-showcase";
 import { PartnerLogoMarquee } from "@/components/sections/partner-logo-marquee";
@@ -221,11 +222,11 @@ export default function HomePage() {
       </section>
 
       <section id="product" className={styles.revealSection}>
-        <div className={styles.sectionIntro}>
+        <ScrollReveal className={styles.sectionIntro}>
           <p>제품 경험</p>
           <h2>고르고 받는 흐름을 한 작업면에 담았습니다.</h2>
-        </div>
-        <div className={styles.sceneGrid}>
+        </ScrollReveal>
+        <ScrollReveal className={styles.sceneGrid} stagger>
           {productScenes.map((scene) => (
             <article className={styles.sceneCard} key={scene.title}>
               <div className={styles.sceneImage}>
@@ -235,7 +236,7 @@ export default function HomePage() {
               <p>{scene.body}</p>
             </article>
           ))}
-        </div>
+        </ScrollReveal>
       </section>
 
       <PartnerLogoMarquee />
@@ -245,11 +246,11 @@ export default function HomePage() {
       </section>
 
       <section className={styles.darkSection}>
-        <div className={styles.sectionIntro}>
+        <ScrollReveal className={styles.sectionIntro}>
           <p>운영 구조</p>
           <h2>설치와 원액 관리까지 한 흐름으로 이어집니다.</h2>
-        </div>
-        <div className={styles.systemGrid}>
+        </ScrollReveal>
+        <ScrollReveal className={styles.systemGrid} stagger>
           {systemItems.map((item) => (
             <article className={styles.systemItem} key={item.title}>
               <span>{item.label}</span>
@@ -257,19 +258,19 @@ export default function HomePage() {
               <p>{item.body}</p>
             </article>
           ))}
-        </div>
+        </ScrollReveal>
       </section>
 
       <section className={styles.adminSection} aria-labelledby="admin-dashboard-title">
-        <div className={styles.adminCopy}>
+        <ScrollReveal className={styles.adminCopy}>
           <p>관리자 대시보드</p>
           <h2 id="admin-dashboard-title">매장 상태, 주문, 매출을 한 화면에서 봅니다.</h2>
           <span>
             설치 이후에도 관리자 페이지에서 지점 상태와 자사몰 주문, 매출 흐름을 확인할 수 있습니다.
           </span>
-        </div>
+        </ScrollReveal>
 
-        <div className={styles.adminShowcase} aria-label="브링크 관리자 화면 스크린샷">
+        <ScrollReveal className={styles.adminShowcase} aria-label="브링크 관리자 화면 스크린샷" stagger>
           {adminScreenshots.map((item, index) => (
             <figure className={index === 0 ? styles.adminScreenshotPrimary : styles.adminScreenshot} key={item.title}>
               <div className={styles.adminScreenshotImage}>
@@ -281,7 +282,7 @@ export default function HomePage() {
               </figcaption>
             </figure>
           ))}
-        </div>
+        </ScrollReveal>
         <div className={styles.adminDots} aria-hidden="true">
           {adminScreenshots.map((item, index) => (
             <span className={index === 0 ? styles.adminDotActive : undefined} key={item.title} />
@@ -318,22 +319,22 @@ export default function HomePage() {
       <LifestyleShowcase images={lifestyleImages} />
 
       <section id="space" className={styles.useCaseSection}>
-        <div className={styles.sectionIntro}>
+        <ScrollReveal className={styles.sectionIntro}>
           <p>적용 공간</p>
           <h2>공간별 쓰임을 분명하게 나눴습니다.</h2>
-        </div>
-        <div className={styles.useCaseGrid}>
+        </ScrollReveal>
+        <ScrollReveal className={styles.useCaseGrid} stagger>
           {useCases.map(([title, body]) => (
             <article key={title}>
               <h3>{title}</h3>
               <p>{body}</p>
             </article>
           ))}
-        </div>
+        </ScrollReveal>
       </section>
 
       <section id="welfare" className={styles.welfareSection} aria-labelledby="welfare-title">
-        <div className={styles.welfareIntro}>
+        <ScrollReveal className={styles.welfareIntro}>
           <p>기업 음료 복지</p>
           <h2 id="welfare-title">직원 음료 복지, 쌓아두지 않고 바로 만들어주세요.</h2>
           <span>
@@ -342,9 +343,9 @@ export default function HomePage() {
           <small className={styles.welfareIntroNote}>
             *비용 절감 효과는 기존 음료 구매 방식, 이용량, 설치 환경에 따라 달라질 수 있습니다.
           </small>
-        </div>
+        </ScrollReveal>
 
-        <div className={styles.welfareCompare} aria-label="기존 음료 복지와 브링크 도입 후 비교">
+        <ScrollReveal className={styles.welfareCompare} aria-label="기존 음료 복지와 브링크 도입 후 비교">
           <div className={styles.welfareCompareTop}>
             <article className={styles.welfareCompareProduct}>
               <h3>기존 방식</h3>
@@ -368,20 +369,20 @@ export default function HomePage() {
               </div>
             ))}
           </div>
-        </div>
+        </ScrollReveal>
 
       </section>
 
       <section id="operation" className={styles.operationSection}>
-        <div className={styles.operationImage}>
+        <ScrollReveal className={styles.operationImage}>
           <Image
             src={withBasePath("/images/vrink/apple/vrink-product-back.png")}
             alt="브링크 제로스테이션 후면"
             fill
             sizes="(max-width: 900px) 100vw, 44vw"
           />
-        </div>
-        <div className={styles.operationCopy}>
+        </ScrollReveal>
+        <ScrollReveal className={styles.operationCopy}>
           <p>운영 관리</p>
           <h2>원액과 점검, 필요한 때 바로 관리합니다.</h2>
           <span>
@@ -392,15 +393,15 @@ export default function HomePage() {
             <li>전문 설치와 정기 관리 지원</li>
             <li>행사 활용과 장기 도입 구성 안내</li>
           </ul>
-        </div>
+        </ScrollReveal>
       </section>
 
       <section id="news" className={styles.newsSection}>
-        <div className={styles.sectionIntro}>
+        <ScrollReveal className={styles.sectionIntro}>
           <p>뉴스룸</p>
           <h2>브링크 소식을 한눈에 확인하세요.</h2>
-        </div>
-        <div className={styles.newsFeature}>
+        </ScrollReveal>
+        <ScrollReveal className={styles.newsFeature}>
           <div className={styles.newsFeatureImage}>
             <Image
               src={withBasePath(newsItems[0].image)}
@@ -415,8 +416,8 @@ export default function HomePage() {
             <p>{newsItems[0].body}</p>
             <a href={newsItems[0].href} rel="noreferrer" target="_blank">기사 보기 ›</a>
           </article>
-        </div>
-        <div className={styles.newsGrid}>
+        </ScrollReveal>
+        <ScrollReveal className={styles.newsGrid} stagger>
           {newsItems.slice(1).map((item) => (
             <article key={item.title} className={styles.newsCard}>
               <div className={styles.newsCardImage}>
@@ -430,17 +431,17 @@ export default function HomePage() {
               </div>
             </article>
           ))}
-        </div>
+        </ScrollReveal>
       </section>
 
       <section id="contact" className={styles.contactSection}>
-        <div className={styles.contactCopy}>
+        <ScrollReveal className={styles.contactCopy}>
           <p>문의</p>
           <h2>공간 정보와 유입경로로 구성을 받아보세요.</h2>
           <span>
             공간 유형, 예상 이용자, 도입 시기, 알게 된 경로를 남겨주시면 브링크 팀이 확인 후 연락드립니다.
           </span>
-        </div>
+        </ScrollReveal>
         <LeadForm />
       </section>
 
