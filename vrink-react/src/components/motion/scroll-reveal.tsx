@@ -45,8 +45,8 @@ export function ScrollReveal({ children, className, stagger = false, ...props }:
         observer.disconnect();
       },
       {
-        rootMargin: "0px 0px -8% 0px",
-        threshold: 0.12,
+        rootMargin: "0px 0px -14% 0px",
+        threshold: 0.16,
       },
     );
 
