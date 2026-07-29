@@ -11,7 +11,7 @@ import styles from "./page.module.css";
 export const metadata: Metadata = buildMetadata({
   title: "원료소개",
   description:
-    "브링크 기능샷과 원료 라인업에 활용되는 비타민, 아미노산, 카페인, 녹차추출물 등 주요 성분의 역할과 연구 근거를 소개합니다.",
+    "브링크 5종 기능샷과 9가지 주요 원료의 역할, 성분 맥락, 대표 연구 자료를 쉽게 확인하세요.",
   path: "/ingredients",
 });
 
@@ -62,27 +62,27 @@ const ingredients: Ingredient[] = [
     ],
   },
   {
-    id: "vitamin-d",
+    id: "vitamin-b",
     number: "02",
-    name: "비타민D",
-    englishName: "Vitamin D",
-    category: "지용성 비타민",
-    accent: "#f59f00",
-    headline: "칼슘과 인 대사, 근골격 건강을 중심으로 연구되는 지용성 비타민입니다.",
+    name: "비타민B",
+    englishName: "Vitamin B",
+    category: "수용성 비타민",
+    accent: "#0071e3",
+    headline: "에너지 대사와 신경 기능을 돕는 효소 반응에 관여하는 수용성 비타민군입니다.",
     body:
-      "비타민D는 햇빛 노출, 식사, 보충 섭취에 따라 혈중 상태가 달라지는 영양소입니다. 특히 실내 생활이 많은 사용자에게는 혈중 25(OH)D 상태 확인과 함께 관리하는 접근이 권장됩니다.",
-    notes: ["지용성 비타민", "근골격 건강", "실내 생활 루틴"],
-    shot: "기초 영양 라인의 설명에서 비타민C와 함께 묶어 이해하기 좋습니다.",
+      "비타민B군은 B1, B2, B3, B5, B6, B7, 엽산(B9), B12처럼 여러 영양소를 함께 부르는 이름입니다. 탄수화물, 지방, 단백질을 에너지로 전환하는 대사 과정과 신경계 기능, 세포 유지에 관여해 데일리 컨디션 루틴에서 기본 영양소로 다룹니다.",
+    notes: ["수용성 비타민", "에너지 대사", "데일리 컨디션 루틴"],
+    shot: "비타민샷에서 비타민C와 함께 기본 컨디션 루틴을 구성하는 영양소로 이해하기 좋습니다.",
     sources: [
       {
-        title: "Vitamin D: Musculoskeletal health",
-        journal: "Reviews in Endocrine and Metabolic Disorders, 2017",
-        href: "https://pubmed.ncbi.nlm.nih.gov/28032296/",
+        title: "B Vitamins and the Brain: Mechanisms, Dose and Efficacy--A Review",
+        journal: "Nutrients, 2016",
+        href: "https://pubmed.ncbi.nlm.nih.gov/26828517/",
       },
       {
-        title: "Effect of vitamin D supplementation on muscle strength: a systematic review and meta-analysis",
-        journal: "Osteoporosis International, 2011",
-        href: "https://pubmed.ncbi.nlm.nih.gov/20924748/",
+        title: "Vitamins and Minerals for Energy, Fatigue and Cognition: A Narrative Review",
+        journal: "Nutrients, 2020",
+        href: "https://pubmed.ncbi.nlm.nih.gov/31963141/",
       },
     ],
   },
@@ -261,31 +261,31 @@ const ingredients: Ingredient[] = [
 const shotPairings = [
   {
     name: "부스터샷",
-    body: "카페인, L-아르기닌, 타우린을 중심으로 업무와 운동 전 활력 루틴을 제안합니다.",
+    body: "카페인 55mg, L-아르기닌, 타우린으로 업무 전과 운동 전 루틴에 맞춥니다.",
     image: "/images/vrink/shots/booster-shot.png",
     accent: "#b80f28",
   },
   {
     name: "릴렉스샷",
-    body: "L-테아닌과 타우린을 중심으로 차분한 리프레시 경험을 만듭니다.",
+    body: "L-테아닌과 타우린으로 오후에 고르기 쉬운 리프레시 루틴을 만듭니다.",
     image: "/images/vrink/shots/relax-shot.png",
     accent: "#009f7d",
   },
   {
     name: "커팅샷",
-    body: "녹차추출물과 L-카르니틴을 산뜻한 밸런스 루틴으로 연결합니다.",
+    body: "녹차추출물과 L-카르니틴을 운동과 함께하는 가벼운 관리 루틴으로 연결합니다.",
     image: "/images/vrink/shots/cutting-shot.png",
     accent: "#008ed6",
   },
   {
     name: "아미노샷",
-    body: "필수아미노산 9종과 타우린으로 운동 전후 루틴을 이해하기 쉽게 제안합니다.",
+    body: "필수아미노산 9종과 타우린으로 운동 전후에 고르기 쉽게 구성했습니다.",
     image: "/images/vrink/shots/amino-shot.png",
     accent: "#ed6c1b",
   },
   {
     name: "비타민샷",
-    body: "비타민C와 비타민D처럼 데일리 컨디션 관리에 익숙한 영양소를 소개합니다.",
+    body: "비타민C와 비타민B처럼 매일 익숙한 영양소로 기초 루틴을 만듭니다.",
     image: "/images/vrink/shots/vitamin-shot.png",
     accent: "#e2bd00",
   },
@@ -305,20 +305,20 @@ export default function IngredientsPage() {
 
       <section className={styles.hero}>
         <video className={styles.heroVideo} autoPlay muted loop playsInline preload="metadata" aria-hidden="true">
-          <source src={withBasePath("/videos/vrink/ingredients-hero.mp4")} type="video/mp4" />
+          <source src={withBasePath("/videos/vrink/expert-review-background-0428.mp4")} type="video/mp4" />
         </video>
         <div className={styles.heroOverlay} aria-hidden="true" />
         <div className={styles.heroInner}>
-          <h1>기능샷을 이루는 원료를 한눈에 이해할 수 있도록 정리했습니다.</h1>
+          <h1>5종 기능샷의 주요 원료를 한눈에 보세요.</h1>
           <p>
-            먼저 샷의 목적을 보고, 그 다음 각 원료의 역할과 연구 맥락을 확인할 수 있게 구성했습니다.
+            먼저 샷의 목적을 보고, 그다음 9가지 원료의 역할과 대표 연구 자료를 확인할 수 있습니다.
           </p>
           <div className={styles.heroActions}>
             <a href="#shot-pairing" className={styles.primaryButton}>
-              기능샷 구성 보기
+              5종 샷 보기
             </a>
             <a href="#ingredient-list" className={styles.secondaryButton}>
-              원료 목록 보기
+              9가지 원료 보기
             </a>
           </div>
         </div>
@@ -327,8 +327,8 @@ export default function IngredientsPage() {
       <section id="shot-pairing" className={styles.shotSection} aria-labelledby="shot-title">
         <div className={styles.sectionHeader}>
           <p>기능샷 구성</p>
-          <h2 id="shot-title">원료보다 먼저, 어떤 샷인지 보이게 정리했습니다.</h2>
-          <span>사용자가 고르는 상황에 맞춰 원료군을 묶어 보여주는 방식입니다.</span>
+          <h2 id="shot-title">먼저 5종 기능샷을 고르기 쉽게 정리했습니다.</h2>
+          <span>사용자가 고르는 상황에 맞춰 원료군을 묶어 보여줍니다.</span>
         </div>
 
         <div className={styles.shotGrid}>
@@ -347,8 +347,8 @@ export default function IngredientsPage() {
       <section id="ingredient-list" className={styles.ingredientsSection} aria-labelledby="ingredients-title">
         <div className={styles.sectionHeader}>
           <p>원료 라인업</p>
-          <h2 id="ingredients-title">브링크 원료 라인업</h2>
-          <span>실제 제품별 배합과 함량은 표시사항 및 도입 안내 자료 기준으로 확인할 수 있습니다.</span>
+          <h2 id="ingredients-title">9가지 주요 원료를 쉽게 확인하세요.</h2>
+          <span>제품별 배합과 함량은 표시사항 및 도입 안내 자료 기준으로 확인할 수 있습니다.</span>
         </div>
 
         <div className={styles.ingredientGrid}>
@@ -396,7 +396,7 @@ export default function IngredientsPage() {
 
       <section className={styles.referencesSection} aria-labelledby="references-title">
         <div className={styles.referencesHeader}>
-          <p>References</p>
+          <p>참고 자료</p>
           <h2 id="references-title">페이지 작성에 참고한 주요 논문</h2>
           <span>
             논문 링크는 원료의 일반적 연구 맥락을 안내하기 위한 자료이며, 제품의 질병 예방 또는 치료 효과를

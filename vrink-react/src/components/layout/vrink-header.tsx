@@ -88,6 +88,10 @@ export function VrinkHeader({ locale = "ko", variant = "default" }: VrinkHeaderP
   }
 
   useEffect(() => {
+    document.documentElement.lang = locale;
+  }, [locale]);
+
+  useEffect(() => {
     function handlePointerDown(event: MouseEvent) {
       if (!languageRef.current?.contains(event.target as Node)) {
         setLanguageOpen(false);

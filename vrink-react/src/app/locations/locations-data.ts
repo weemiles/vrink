@@ -171,11 +171,24 @@ export const vrinkLocations: VrinkLocation[] = [
   },
   {
     id: "ss-fitness-gwanggyo",
-    name: "더블에스휘트니스 광교",
+    name: "더블에스휘트니스 광교점",
     city: "수원",
-    district: "광교",
+    district: "광교점",
     address: "경기 수원시 영통구 광교호수공원로 277 B2층",
-    images: blankLocationImages("더블에스휘트니스 광교"),
+    images: [
+      {
+        src: "/images/vrink/locations/double-s-fitness-gwanggyo.jpg",
+        alt: "더블에스휘트니스 광교점에 설치된 브링크 제로스테이션 전경",
+      },
+      {
+        src: "/images/vrink/locations/double-s-fitness-gwanggyo-front.jpg",
+        alt: "더블에스휘트니스 광교점 브링크 설치 공간 정면 이미지",
+      },
+      {
+        src: "/images/vrink/locations/double-s-fitness-gwanggyo-side.jpg",
+        alt: "더블에스휘트니스 광교점 브링크 설치 공간 측면 이미지",
+      },
+    ],
     lat: 37.28115,
     lng: 127.05913,
     mapPosition: { x: 38.0, y: 97.0 },

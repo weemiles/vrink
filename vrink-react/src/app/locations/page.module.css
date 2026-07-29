@@ -137,13 +137,14 @@
 }
 
 .mapSection {
-  padding: 92px var(--layout-page-gutter) 104px;
+  background: var(--locations-gray);
+  padding: 116px var(--layout-page-gutter) 112px;
 }
 
 .sectionHeader {
-  margin: 0 auto 42px;
-  max-width: 680px;
-  text-align: center;
+  margin: 0 auto 48px;
+  max-width: var(--layout-container-max);
+  text-align: left;
 }
 
 .sectionHeader h2,
@@ -158,7 +159,8 @@
   display: block;
   font-size: var(--type-body);
   line-height: var(--line-body);
-  margin-top: 14px;
+  margin-top: 16px;
+  max-width: 640px;
   word-break: keep-all;
 }
 
@@ -182,8 +184,8 @@
 .mapWorkspace {
   align-items: start;
   display: grid;
-  gap: 14px;
-  grid-template-columns: minmax(230px, 280px) minmax(0, 1fr);
+  gap: 20px;
+  grid-template-columns: minmax(260px, 320px) minmax(0, 1fr);
   min-width: 0;
 }
 
@@ -196,16 +198,21 @@
 }
 
 .filterTabs button {
-  background: #ffffff;
-  border: 1px solid var(--locations-line);
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid transparent;
   border-radius: 980px;
   color: var(--locations-muted);
   cursor: pointer;
   font-family: var(--font-pretendard);
   font-size: var(--type-caption);
   line-height: var(--line-caption);
-  min-height: 34px;
-  padding: 0 14px;
+  min-height: 40px;
+  padding: 0 16px;
+  transition:
+    background-color 180ms cubic-bezier(0.23, 1, 0.32, 1),
+    border-color 180ms cubic-bezier(0.23, 1, 0.32, 1),
+    color 180ms cubic-bezier(0.23, 1, 0.32, 1),
+    transform 140ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .filterTabs button:hover,
@@ -217,7 +224,7 @@
 
 .mapPanel {
   background: #ffffff;
-  border: 1px solid var(--locations-line);
+  border: 0;
   border-radius: 12px;
   min-height: 590px;
   overflow: hidden;
@@ -477,18 +484,18 @@
 }
 
 .locationSidebar {
-  background: #ffffff;
-  border: 1px solid var(--locations-line);
+  background: transparent;
+  border: 0;
   display: flex;
   flex-direction: column;
   gap: 12px;
   min-width: 0;
-  padding: 12px;
+  padding: 0;
 }
 
 .selectedLocation {
-  background: var(--locations-soft);
-  border: 1px solid var(--locations-line);
+  background: #ffffff;
+  border: 0;
   padding: 24px;
 }
 
@@ -587,18 +594,20 @@
 
 .locationList button {
   background: #ffffff;
-  border: 1px solid var(--locations-line);
+  border: 1px solid transparent;
   cursor: pointer;
   font-family: var(--font-pretendard);
   padding: 15px;
   text-align: left;
-  transition: background 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+  transition:
+    background-color 180ms cubic-bezier(0.23, 1, 0.32, 1),
+    border-color 180ms cubic-bezier(0.23, 1, 0.32, 1),
+    transform 140ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .locationList button:hover,
 .locationList button[aria-current="true"] {
   border-color: rgba(0, 113, 227, 0.34);
-  box-shadow: inset 0 0 0 1px rgba(0, 113, 227, 0.24);
 }
 
 .locationList button[aria-current="true"] {
@@ -778,13 +787,16 @@
   cursor: pointer;
   height: 6px;
   padding: 0;
-  transition: background 160ms ease, width 160ms ease;
+  transform-origin: center;
+  transition:
+    background-color 160ms ease,
+    transform 160ms cubic-bezier(0.23, 1, 0.32, 1);
   width: 6px;
 }
 
 .carouselDots button[aria-pressed="true"] {
   background: #ffffff;
-  width: 22px;
+  transform: scaleX(3.67);
 }
 
 .locationPopupCopy dl {
@@ -925,7 +937,7 @@
   }
 
   .mapSection {
-    padding: 70px 16px 76px;
+    padding: 76px 16px 80px;
   }
 
   .explorer {
@@ -1013,4 +1025,63 @@
     padding: 64px 20px;
   }
 
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .filterTabs button:hover,
+  .locationPreviewButton:hover {
+    background: var(--locations-ink);
+    border-color: var(--locations-ink);
+    color: #ffffff;
+  }
+
+  .locationList button:hover {
+    border-color: rgba(0, 113, 227, 0.34);
+  }
+}
+
+.filterTabs button:active,
+.locationPreviewButton:active,
+.locationList button:active,
+.mapZoomControls button:active,
+.locationPopupClose:active,
+.carouselControls button:active,
+.carouselDots button:active {
+  transform: scale(0.97);
+}
+
+.filterTabs button:focus-visible,
+.locationPreviewButton:focus-visible,
+.locationList button:focus-visible,
+.mapZoomControls button:focus-visible,
+.mapMarker:focus-visible,
+.locationPopupClose:focus-visible,
+.carouselControls button:focus-visible,
+.carouselDots button:focus-visible {
+  outline: 2px solid var(--locations-blue);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .locationPopupBackdrop,
+  .locationPopup {
+    animation: none;
+  }
+
+  .filterTabs button,
+  .locationList button,
+  .mapMarker,
+  .carouselDots button {
+    transition-duration: 1ms;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .mapLegend,
+  .mapLoading,
+  .locationPopupClose,
+  .carouselControls button {
+    background: #ffffff;
+    backdrop-filter: none;
+  }
 }

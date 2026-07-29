@@ -718,7 +718,7 @@ export function ActualKioskDemo({ locale, variant = "full" }: { locale: Locale; 
                           className={`${styles.functionCard} ${count ? styles.cardSelected : ""}`}
                           onClick={() => cycleShot(shot.id)}
                         >
-                          {count > 0 && <span className={styles.functionSelected}>{count > 1 ? count : <Image src={withBasePath(`${figmaAssetRoot}/icon-card-check-small.svg`)} alt="" width={26} height={26} />}</span>}
+                          {count > 0 && <span key={count} className={styles.functionSelected}>{count > 1 ? count : <Image src={withBasePath(`${figmaAssetRoot}/icon-card-check-small.svg`)} alt="" width={26} height={26} />}</span>}
                           <Image className={styles.functionIcon} src={withBasePath(shot.image)} alt="" width={92} height={92} />
                           <span className={`${styles.phaseTag} ${phaseClass}`}>{t[shot.phase]}</span>
                           <strong className={styles.functionName}>{shot.label[locale]}</strong>

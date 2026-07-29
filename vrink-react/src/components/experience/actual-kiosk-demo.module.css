@@ -1,4 +1,9 @@
 .experienceStage {
+  --motion-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --motion-press: 100ms;
+  --motion-state: 180ms;
+  --motion-screen: 220ms;
+  --motion-success: 400ms;
   align-items: start;
   display: grid;
   gap: clamp(32px, 5vw, 72px);
@@ -59,6 +64,7 @@
   display: block;
   height: 1px;
   margin: 0 10px;
+  transition: background-color var(--motion-state) var(--motion-ease-out);
   width: 34px;
 }
 
@@ -73,6 +79,11 @@
   display: flex;
   height: 40px;
   justify-content: center;
+  transition:
+    background-color var(--motion-state) var(--motion-ease-out),
+    border-color var(--motion-state) var(--motion-ease-out),
+    color var(--motion-state) var(--motion-ease-out),
+    transform var(--motion-state) var(--motion-ease-out);
   width: 40px;
 }
 
@@ -85,6 +96,7 @@
   background: var(--brand-primary);
   border-color: var(--brand-primary);
   color: #ffffff;
+  transform: scale(1.02);
 }
 
 .embeddedFootnote {
@@ -103,7 +115,7 @@
 }
 
 .embeddedNarrativeCopy {
-  animation: narrativeEnter 220ms cubic-bezier(0.23, 1, 0.32, 1);
+  animation: narrativeEnter var(--motion-screen) var(--motion-ease-out);
 }
 
 .embeddedNarrative h2 {
@@ -315,7 +327,7 @@
 }
 
 .kioskScreen {
-  animation: screenEnter 220ms cubic-bezier(0.23, 1, 0.32, 1);
+  animation: screenEnter var(--motion-screen) var(--motion-ease-out);
   background: #ffffff;
   display: flex;
   flex-direction: column;
@@ -354,7 +366,7 @@
   font: inherit;
   justify-content: center;
   padding: 0;
-  transition: transform 140ms cubic-bezier(0.23, 1, 0.32, 1);
+  transition: transform 160ms var(--motion-ease-out);
 }
 
 .kioskHeader button img {
@@ -436,7 +448,7 @@
   height: 9cqw;
   justify-content: center;
   line-height: 3.75cqw;
-  transition: background-color 160ms ease, transform 140ms cubic-bezier(0.23, 1, 0.32, 1);
+  transition: background-color 160ms var(--motion-ease-out), transform 160ms var(--motion-ease-out);
   width: 100%;
 }
 
@@ -588,7 +600,7 @@
   justify-content: center;
   padding: 2.25cqw;
   position: relative;
-  transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease, transform 140ms cubic-bezier(0.23, 1, 0.32, 1);
+  transition: background-color 180ms var(--motion-ease-out), border-color 180ms var(--motion-ease-out), box-shadow 180ms var(--motion-ease-out), transform 160ms var(--motion-ease-out);
 }
 
 .flavorCard img {
@@ -612,6 +624,7 @@
 }
 
 .selectedCheck {
+  animation: selectionConfirm var(--motion-state) var(--motion-ease-out);
   height: 3.75cqw !important;
   position: absolute;
   right: 2.5cqw;
@@ -727,11 +740,13 @@
   border-radius: 999px;
   display: block;
   height: 2.125cqw;
+  transition: background-color var(--motion-state) var(--motion-ease-out), transform var(--motion-state) var(--motion-ease-out);
   width: 4cqw;
 }
 
 .pillCounter .pillFilled {
   background: #3cdb7f;
+  transform: scale(1.02);
 }
 
 .functionGrid {
@@ -756,7 +771,7 @@
   justify-content: center;
   padding: 0;
   position: relative;
-  transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease, transform 140ms cubic-bezier(0.23, 1, 0.32, 1);
+  transition: background-color 160ms var(--motion-ease-out), border-color 160ms var(--motion-ease-out), box-shadow 160ms var(--motion-ease-out), transform 160ms var(--motion-ease-out);
   width: 16.25cqw;
 }
 
@@ -806,6 +821,7 @@
 
 .functionSelected {
   align-items: center;
+  animation: selectionConfirm var(--motion-state) var(--motion-ease-out);
   background: #3cdb7f;
   border-radius: 50%;
   color: #ffffff;
@@ -888,7 +904,7 @@
   gap: 1cqw;
   height: 9cqw;
   justify-content: center;
-  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease, transform 140ms cubic-bezier(0.23, 1, 0.32, 1);
+  transition: background-color 160ms var(--motion-ease-out), border-color 160ms var(--motion-ease-out), color 160ms var(--motion-ease-out), transform 160ms var(--motion-ease-out);
 }
 
 .optionGroup .optionSelected {
@@ -899,6 +915,7 @@
 }
 
 .optionGroup button img {
+  animation: selectionConfirm var(--motion-state) var(--motion-ease-out);
   height: 3.25cqw;
   width: 3.25cqw;
 }
@@ -1011,7 +1028,7 @@
 }
 
 .dispensingMarkActive::after {
-  animation: dispensingMarkPulse 800ms cubic-bezier(0.23, 1, 0.32, 1) infinite;
+  animation: dispensingMarkPulse 900ms linear 3;
   border: 0.25cqw solid #3cdb7f;
   border-radius: 50%;
   content: "";
@@ -1027,7 +1044,7 @@
 }
 
 .dispensingCopyInner {
-  animation: dispensingTextEnter 200ms cubic-bezier(0.23, 1, 0.32, 1);
+  animation: dispensingTextEnter 200ms var(--motion-ease-out);
 }
 
 .dispensingCopy h3 {
@@ -1064,7 +1081,7 @@
   border-top-color: #3cdb7f;
   border-radius: 50%;
   height: 3.75cqw;
-  animation: dispensingSpinnerRotate 720ms linear infinite;
+  animation: dispensingSpinnerRotate 900ms linear infinite;
   width: 3.75cqw;
 }
 
@@ -1112,6 +1129,7 @@
 
 .completionCheck {
   align-items: center;
+  animation: completionConfirm var(--motion-success) var(--motion-ease-out);
   background: #3cdb7f;
   border-radius: 50%;
   display: flex;
@@ -1121,6 +1139,7 @@
 }
 
 .completionCheck img {
+  animation: completionIconEnter var(--motion-state) 80ms var(--motion-ease-out) both;
   height: 10.5cqw;
   width: 10.5cqw;
 }
@@ -1151,14 +1170,47 @@
   font-weight: 600;
 }
 
+@keyframes selectionConfirm {
+  from {
+    opacity: 0;
+    transform: translateY(4px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes completionConfirm {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes completionIconEnter {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @keyframes dispensingMarkPulse {
   0% {
     opacity: 0.45;
-    transform: scale(0.65);
+    transform: scale(0.98);
   }
   100% {
     opacity: 0;
-    transform: scale(1.35);
+    transform: scale(1.02);
   }
 }
 
@@ -1221,7 +1273,8 @@
 .kioskHeader button:active,
 .resetButton:active,
 .completionHeader button:active {
-  transform: scale(0.97);
+  transform: scale(0.98);
+  transition-duration: var(--motion-press);
 }
 
 @media (max-width: 900px) {
@@ -1364,13 +1417,41 @@
 @media (prefers-reduced-motion: reduce) {
   .embeddedNarrativeCopy,
   .kioskScreen,
+  .selectedCheck,
+  .functionSelected,
+  .optionGroup button img,
+  .completionCheck,
+  .completionCheck img,
   .dispensingCopyInner,
   .dispensingMarkActive::after,
   .dispensingPercent > span {
     animation: none;
   }
 
+  .embeddedProgress li:not(:last-child)::after,
+  .embeddedProgress span,
+  .pillCounter i,
+  .primaryButton,
+  .flavorCard,
+  .functionCard,
+  .optionGroup button,
+  .kioskHeader button,
+  .resetButton,
+  .completionHeader button,
+  .inquiryLink svg,
   .dispensingMarkBar span {
     transition: none;
+  }
+
+  .embeddedProgress .progressStepActive span,
+  .primaryButton:active:not(:disabled),
+  .flavorCard:active,
+  .functionCard:active,
+  .optionGroup button:active,
+  .kioskHeader button:active,
+  .resetButton:active,
+  .completionHeader button:active,
+  .inquiryLink:hover svg {
+    transform: none;
   }
 }

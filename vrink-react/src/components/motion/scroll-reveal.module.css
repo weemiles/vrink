@@ -1,8 +1,8 @@
 .reveal {
-  --reveal-distance: 30px;
-  --reveal-duration: 760ms;
-  --reveal-opacity-duration: 620ms;
-  --reveal-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --reveal-distance: 18px;
+  --reveal-duration: 560ms;
+  --reveal-opacity-duration: 440ms;
+  --reveal-ease: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .reveal:not([data-reveal-stagger="true"]) {
@@ -38,42 +38,42 @@
 }
 
 .reveal[data-reveal-stagger="true"] > :nth-child(2) {
-  transition-delay: 80ms;
+  transition-delay: 60ms;
 }
 
 .reveal[data-reveal-stagger="true"] > :nth-child(3) {
-  transition-delay: 160ms;
+  transition-delay: 120ms;
 }
 
 .reveal[data-reveal-stagger="true"] > :nth-child(4) {
-  transition-delay: 240ms;
+  transition-delay: 180ms;
 }
 
 .reveal[data-reveal-stagger="true"] > :nth-child(n + 5) {
-  transition-delay: 320ms;
+  transition-delay: 240ms;
 }
 
 @media (max-width: 640px) {
   .reveal {
-    --reveal-distance: 22px;
-    --reveal-duration: 680ms;
-    --reveal-opacity-duration: 560ms;
+    --reveal-distance: 14px;
+    --reveal-duration: 480ms;
+    --reveal-opacity-duration: 380ms;
   }
 
   .reveal[data-reveal-stagger="true"] > :nth-child(2) {
-    transition-delay: 65ms;
+    transition-delay: 50ms;
   }
 
   .reveal[data-reveal-stagger="true"] > :nth-child(3) {
-    transition-delay: 130ms;
+    transition-delay: 100ms;
   }
 
   .reveal[data-reveal-stagger="true"] > :nth-child(4) {
-    transition-delay: 195ms;
+    transition-delay: 150ms;
   }
 
   .reveal[data-reveal-stagger="true"] > :nth-child(n + 5) {
-    transition-delay: 260ms;
+    transition-delay: 200ms;
   }
 }
 

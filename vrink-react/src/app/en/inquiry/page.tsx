@@ -6,19 +6,21 @@ import { VrinkHeader } from "@/components/layout/vrink-header";
 import { buildMetadata } from "@/lib/seo";
 import { withBasePath } from "@/lib/static-export";
 
-import { InquiryForm } from "./inquiry-form";
-import styles from "./page.module.css";
+import { InquiryForm } from "../../inquiry/inquiry-form";
+import styles from "../../inquiry/page.module.css";
 
 export const metadata: Metadata = buildMetadata({
-  title: "불편접수",
-  description: "브링크 이용 중 불편했던 내용을 센터명, 연락처, 상황 중심으로 남겨주세요.",
-  path: "/inquiry",
+  title: "Report an Issue",
+  description:
+    "Report a VRINK issue with your location, contact details, and situation so our team can follow up.",
+  locale: "en",
+  path: "/en/inquiry",
 });
 
-export default function InquiryPage() {
+export default function EnglishInquiryPage() {
   return (
     <main className={styles.page}>
-      <VrinkHeader />
+      <VrinkHeader locale="en" />
 
       <section className={styles.hero}>
         <div className={styles.heroInner}>
@@ -31,21 +33,21 @@ export default function InquiryPage() {
             priority
             unoptimized
           />
-          <p>불편접수</p>
-          <h1>3분 안에 불편 내용을 남겨주세요.</h1>
+          <p>Issue report</p>
+          <h1>Report an issue in about 3 minutes.</h1>
           <span>
-            센터명, 연락처, 상황을 남기면 담당자가 확인 후 순서대로 안내드립니다.
+            Leave the location, contact details, and situation. Our team will review it in order.
           </span>
         </div>
       </section>
 
       <section className={styles.formSection}>
         <div className={styles.formShell}>
-          <InquiryForm />
+          <InquiryForm locale="en" />
         </div>
       </section>
 
-      <VrinkFooter ctaHref="/support#inquiry" />
+      <VrinkFooter ctaHref="/en/inquiry" locale="en" />
     </main>
   );
 }

@@ -5,6 +5,7 @@ import { siteConfig } from "@/config/site";
 const routes = [
   "/",
   "/product",
+  "/experience",
   "/detail",
   "/ingredients",
   "/locations",
@@ -14,6 +15,7 @@ const routes = [
   "/privacy",
   "/en",
   "/en/product",
+  "/en/experience",
   "/en/ingredients",
   "/en/locations",
   "/en/support",

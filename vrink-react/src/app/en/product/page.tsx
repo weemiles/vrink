@@ -13,36 +13,63 @@ import styles from "../../product/page.module.css";
 export const metadata: Metadata = buildMetadata({
   title: "Product",
   description:
-    "Explore VRINK Zero Station, a personalized drink system that combines selection, serving, and operation care.",
+    "Explore VRINK Zero Station's 15-second serving flow, 5 functional shots, and operation care structure.",
+  locale: "en",
   path: "/en/product",
 });
+
+const mobileFeatureStats = [
+  {
+    value: "15 sec",
+    label: "Avg make time",
+  },
+  {
+    value: "2,000ml",
+    label: "Sparkling output",
+  },
+  {
+    value: "24H",
+    label: "Always on",
+  },
+  {
+    value: "0.1s",
+    label: "Custom step",
+  },
+];
+
+const mobileFeatureNav = [
+  ["Overview", "#features"],
+  ["Specs", "#specifications"],
+  ["Technology", "#technology"],
+  ["Contact", "/en#contact"],
+];
 
 const productIntroTiles = [
   {
     eyebrow: "Personal Recipe",
-    title: "A drink matched to taste and condition",
-    body: "Functional shots, flavors, concentration, and sparkling intensity come together in one personalized recipe.",
+    title: "A cup built from 5 functional shots",
+    body: "Functional shots, flavor, strength, and sparkling options come together in one easy choice.",
     image: "/images/vrink/lifestyle/vrink-lifestyle-1198.jpg",
     alt: "A user drinking a VRINK beverage beside the station",
   },
   {
     eyebrow: "Fast Serving",
-    title: "A serving flow completed in about 11 seconds",
-    body: "Based on a 350ml drink, the station helps reduce waiting time in offices, fitness centers, and busy events.",
+    title: "About 15 seconds for a 350ml cup",
+    body: "The station is designed to keep drinks moving in offices, fitness centers, and busy events.",
     image: "/images/vrink/apple/vrink-product-top.png",
     alt: "Top view of the VRINK Zero Station dispensing area",
   },
   {
     eyebrow: "Station Design",
-    title: "Selection and serving on one surface",
-    body: "The tablet interface and dispenser are arranged together, making the flow intuitive for first-time users.",
+    title: "Choose and pour on one surface",
+    body: "The tablet interface and dispenser sit together, so first-time users can follow the flow right away.",
     image: "/images/vrink/apple/vrink-product-angle-a.png",
     alt: "VRINK Zero Station work surface and tablet stand",
   },
   {
     eyebrow: "Operation Care",
-    title: "Operation built around refills, hygiene, and checks",
-    body: "VRINK helps plan ingredient supply, consumables, hygiene checks, and ongoing maintenance after installation.",
+    title: "Ingredients, hygiene, and checks together",
+    body: "VRINK helps define ingredient supply, consumables, hygiene checks, and ongoing care after installation.",
     image: "/images/vrink/apple/vrink-product-back.png",
     alt: "Rear view of VRINK Zero Station",
   },
@@ -65,35 +92,61 @@ const galleryMoments = [
 
 const proofStories = [
   {
-    title: "A smart drink system for space operation",
-    body: "VRINK connects beverage service with welfare, brand experience, and operation management.",
+    title: "A drink station shaped around space operation",
+    body: "VRINK connects drink service, visitor experience, and operation management in one flow.",
     image: "/images/vrink/news/vrink-news-consulting.jpg",
     alt: "VRINK consultation scene",
   },
   {
-    title: "A station people can experience on site",
-    body: "At exhibitions, pop-ups, and company spaces, visitors can choose, make, and taste their own drink.",
+    title: "A station people can try on site",
+    body: "At exhibitions, pop-ups, and company spaces, visitors can choose and taste their own drink.",
     image: "/images/vrink/news/vrink-news-booth.jpg",
     alt: "VRINK booth scene",
+  },
+];
+
+const technologyItems = [
+  {
+    number: "01",
+    title: "Sunflower Valve",
+    body: "VRINK's core valve gathers multiple ingredient lines into one make point, so functional shots and flavors pour out reliably.",
+  },
+  {
+    number: "02",
+    title: "IV-style syrup replacement",
+    body: "Operators swap ingredients fast and cleanly by hanging and connecting the ingredient pack, just like an IV bag.",
+  },
+];
+
+const technologyVisualImages = [
+  {
+    src: "/images/vrink/technology/sunflower-valve.png",
+    alt: "Sunflower Valve structure image",
+    className: `${styles.technologyImage} ${styles.technologyImagePrimary}`,
+  },
+  {
+    src: "/images/vrink/technology/iv-replacement.png",
+    alt: "IV-style syrup replacement image",
+    className: `${styles.technologyImage} ${styles.technologyImageSecondary}`,
   },
 ];
 
 const fieldCards = [
   {
     title: "Office",
-    body: "Always-on drinks for employee wellness and visitor hospitality.",
+    body: "An always-on drink station for teams and visitors.",
     image: "/images/vrink/lifestyle/vrink-office.jpg",
     alt: "VRINK drink scene for office spaces",
   },
   {
     title: "Fitness",
-    body: "Functional shots and hydration routines before and after workouts.",
+    body: "Functional shot and hydration routines before and after workouts.",
     image: "/images/vrink/lifestyle/vrink-fitness.png",
     alt: "Users drinking VRINK beverages in a fitness space",
   },
   {
     title: "Events",
-    body: "A customized serving experience that increases brand participation.",
+    body: "A hands-on drink moment visitors choose themselves.",
     image: "/images/vrink/news/ftimes-36836.jpg",
     alt: "VRINK event image",
   },
@@ -101,26 +154,26 @@ const fieldCards = [
 
 const features = [
   {
-    title: "Choice that starts and ends on one station",
-    body: "Users choose a purpose and flavor on the tablet, then receive the drink right next to it through a clear serving flow.",
+    title: "Choose on the tablet, pour right beside it",
+    body: "Pick a purpose and flavor on the tablet, then receive the drink right next to it. First-time users follow the same easy flow.",
     image: "/images/vrink/apple/vrink-product-angle-a.png",
     alt: "VRINK Zero Station top and tablet stand",
   },
   {
-    title: "A fast flow for high-traffic spaces",
-    body: "The station is designed for repeated use in offices, fitness centers, hospitals, events, and shared environments.",
+    title: "A 350ml cup in about 15 seconds",
+    body: "An average 15-second make flow, based on 350ml, helps reduce waits in offices, fitness centers, and events.",
     image: "/images/vrink/apple/vrink-product-top.png",
     alt: "VRINK Zero Station top structure",
   },
   {
-    title: "Personalized drinks with functional shots",
-    body: "Booster, Vitamin, Relax, Cutting, and Amino shots can be combined with flavor, concentration, and sparkling options.",
+    title: "5 functional shots plus flavor",
+    body: "Combine Booster, Vitamin, Relax, Cutting, and Amino shots with flavor, strength, and sparkling to fit your space.",
     image: "/images/vrink/lifestyle/vrink-lifestyle-1114.jpg",
     alt: "User holding two VRINK drinks",
   },
   {
-    title: "A structure designed for operators",
-    body: "Ingredient supply, consumables, regular checks, and hygiene routines are considered as part of the installation plan.",
+    title: "Ingredient supply and checks together",
+    body: "We plan ingredient supply, consumables, regular checks, and hygiene together so operation stays stable after install.",
     image: "/images/vrink/apple/vrink-product-back.png",
     alt: "Rear view of VRINK Zero Station",
   },
@@ -129,13 +182,13 @@ const features = [
 const serviceItems = [
   {
     icon: Headphones,
-    title: "Consultation",
-    body: "We recommend a setup based on space goals and expected usage.",
+    title: "Setup planning",
+    body: "We suggest a setup based on space goals and expected usage.",
   },
   {
     icon: Wrench,
     title: "Operation support",
-    body: "Ingredient supply and consumable management are planned together.",
+    body: "Ingredient supply and consumable management are defined together.",
   },
   {
     icon: ShieldCheck,
@@ -144,13 +197,56 @@ const serviceItems = [
   },
 ];
 
+const productSpecs = [
+  {
+    label: "What's included",
+    values: ["Functional drink machine unit", "Lower cabinet for syrup and gas tanks"],
+  },
+  {
+    label: "Operating hours",
+    values: ["Runs 24 hours a day"],
+  },
+  {
+    label: "Number of menus",
+    values: ["Register and make dozens of menus"],
+  },
+  {
+    label: "Make time",
+    values: ["About 15 seconds per drink on average", "Based on a 350ml cup"],
+  },
+  {
+    label: "Rated voltage",
+    values: ["Sparkling water machine: AC220V / 60Hz / 0.7A", "Functional drink dispenser: DC24V / 5A"],
+  },
+  {
+    label: "Output volume",
+    values: ["About 2,000ml of sparkling water per pour", "Varies with water pressure"],
+  },
+  {
+    label: "Cleaning",
+    values: ["Semi-automatic cleaning"],
+  },
+  {
+    label: "Menu customization",
+    values: ["Adjustable syrup / base output", "Adjustable sparkling level", "0.1-second steps"],
+  },
+  {
+    label: "Cooling temperature",
+    values: ["2°C to 6°C"],
+  },
+  {
+    label: "Country of origin",
+    values: ["Republic of Korea"],
+  },
+];
+
 const finalHighlights = [
-  "About 11 seconds per drink",
+  "15-second make time",
   "Approx. 1,792 combinations",
   "5 functional shots",
   "Custom ingredient setup",
   "Regular check support",
-  "Office, fitness, and event use",
+  "Office, fitness, and event setup",
 ];
 
 export default function EnglishProductPage() {
@@ -161,16 +257,16 @@ export default function EnglishProductPage() {
       <section className={styles.hero}>
         <div className={styles.heroCopy}>
           <p>VRINK Zero Station</p>
-          <h1>A smart drink system shaped around your space</h1>
+          <h1>A 15-second smart drink station</h1>
           <span>
-            VRINK connects selection, serving, and operation care into one drink experience for offices, fitness centers, events, and wellness spaces.
+            Combine 5 functional shots with flavor, strength, and sparkling options, then manage ingredients in one flow.
           </span>
           <div className={styles.heroActions}>
             <Link href="/en#contact" className={styles.primaryButton}>
-              Contact us
+              Get a setup plan
             </Link>
             <Link href="#features" className={styles.linkButton}>
-              View features
+              View setup
             </Link>
           </div>
         </div>
@@ -188,8 +284,8 @@ export default function EnglishProductPage() {
       <section id="features" className={styles.productIntroSection} aria-labelledby="product-intro-title">
         <div className={styles.productIntroCopy}>
           <h2 id="product-intro-title">
-            VRINK Zero Station brings selection, serving, and operation into a single product experience.
-            Functional shots, flavors, concentration, and sparkling options create different drinks for different spaces.
+            VRINK Zero Station brings selection, serving, and operation into one drink station.
+            5 functional shots, flavor, strength, and sparkling options create the cup each space needs.
           </h2>
         </div>
         <div className={styles.productIntroGrid}>
@@ -207,7 +303,7 @@ export default function EnglishProductPage() {
                 <h3>{tile.title}</h3>
                 <span>{tile.body}</span>
                 <Link href="/en#contact">
-                  Contact
+                  Get setup
                   <ArrowRight aria-hidden="true" size={15} strokeWidth={1.8} />
                 </Link>
               </div>
@@ -219,7 +315,7 @@ export default function EnglishProductPage() {
       <section className={styles.gallerySection} aria-labelledby="gallery-title">
         <div className={styles.galleryCopy}>
           <p>Scene</p>
-          <h2 id="gallery-title">When VRINK enters a space, drinks become an experience people return to.</h2>
+          <h2 id="gallery-title">When VRINK enters a space, people get a drink moment to choose.</h2>
         </div>
         <div className={styles.galleryGrid}>
           {galleryMoments.map((moment) => (
@@ -233,8 +329,8 @@ export default function EnglishProductPage() {
       <section className={styles.proofSection} aria-labelledby="proof-title">
         <div className={styles.sectionHeading}>
           <p>Innovation</p>
-          <h2 id="proof-title">A new drink experience for the front line of space operation.</h2>
-          <span>From exhibitions to real usage, VRINK is designed to make personalized drinks easy to experience.</span>
+          <h2 id="proof-title">A drink experience designed around space operation.</h2>
+          <span>From exhibitions to real usage, VRINK makes personalized drinks easy to try.</span>
         </div>
         <div className={styles.proofGrid}>
           {proofStories.map((story) => (
@@ -251,10 +347,41 @@ export default function EnglishProductPage() {
         </div>
       </section>
 
+      <section id="technology" className={styles.technologySection} aria-labelledby="technology-title">
+        <div className={styles.technologyHeader}>
+          <p>Technology</p>
+          <h2 id="technology-title">A structure that simplifies pouring and refills.</h2>
+          <span>Core technology designed for reliable dispensing and easier operation.</span>
+        </div>
+        <div className={styles.technologyShowcase}>
+          <div className={styles.technologyList}>
+            {technologyItems.map((item) => (
+              <article className={styles.technologyItem} key={item.title}>
+                <p>{item.number}</p>
+                <h3>{item.title}</h3>
+                <span>{item.body}</span>
+              </article>
+            ))}
+          </div>
+          <div className={styles.technologyVisual}>
+            {technologyVisualImages.map((image) => (
+              <Image
+                src={withBasePath(image.src)}
+                alt={image.alt}
+                className={image.className}
+                fill
+                key={image.src}
+                sizes="(max-width: 980px) 100vw, 58vw"
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className={styles.fieldSection} aria-labelledby="field-title">
         <div className={styles.sectionHeading}>
           <p>Fields</p>
-          <h2 id="field-title">Configured around the purpose of each space.</h2>
+          <h2 id="field-title">Configured around one clear use case for each space.</h2>
         </div>
         <div className={styles.fieldGrid}>
           {fieldCards.map((field) => (
@@ -269,7 +396,28 @@ export default function EnglishProductPage() {
         </div>
       </section>
 
-      <section className={styles.featureStack}>
+      <section className={styles.featureStack} aria-label="VRINK product features">
+        <div className={styles.mobileFeatureHeader}>
+          <div className={styles.mobileFeatureTop}>
+            <h2>VRINK ZERO STATION</h2>
+            <Link href="/en#contact">Get setup</Link>
+          </div>
+          <nav className={styles.mobileFeatureNav} aria-label="Product detail menu">
+            {mobileFeatureNav.map(([label, href], index) => (
+              <Link href={href} key={label} aria-current={index === 0 ? "page" : undefined}>
+                {label}
+              </Link>
+            ))}
+          </nav>
+        </div>
+        <div className={styles.mobileFeatureStats} aria-label="Product key stats">
+          {mobileFeatureStats.map((item) => (
+            <div className={styles.mobileFeatureStat} key={item.label}>
+              <strong>{item.value}</strong>
+              <span>{item.label}</span>
+            </div>
+          ))}
+        </div>
         {features.map((feature, index) => (
           <article className={styles.featureRow} key={feature.title}>
             <div className={styles.featureImage}>
@@ -282,6 +430,28 @@ export default function EnglishProductPage() {
             </div>
           </article>
         ))}
+      </section>
+
+      <section id="specifications" className={styles.specSection} aria-labelledby="spec-title">
+        <div className={styles.specInner}>
+          <h2 id="spec-title">See product specs at a glance</h2>
+          <div className={styles.specHeader}>
+            <p>Product specs</p>
+          </div>
+          <div className={styles.specGrid}>
+            {productSpecs.map((item) => (
+              <article className={styles.specItem} key={item.label}>
+                <h3>{item.label}</h3>
+                <div>
+                  {item.values.map((value) => (
+                    <p key={value}>{value}</p>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+          <p className={styles.specNote}>Specs and configuration may be adjusted based on the installation environment and operating conditions.</p>
+        </div>
       </section>
 
       <section className={styles.serviceStrip} aria-label="VRINK installation support">
@@ -322,7 +492,7 @@ export default function EnglishProductPage() {
             <span>Pricing</span>
             <strong>On consultation</strong>
           </p>
-          <Link href="/en#contact">Contact us</Link>
+          <Link href="/en#contact">Get setup</Link>
         </div>
       </section>
 

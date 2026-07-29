@@ -12,32 +12,32 @@ import styles from "./page.module.css";
 
 export const metadata: Metadata = buildMetadata({
   title: "제품 소개",
-  description: "브링크 제로스테이션의 제품 구조, 맞춤 조합, 운영 관리 흐름을 소개합니다.",
+  description: "브링크 제로스테이션의 15초 제조 흐름, 5종 기능샷, 운영 관리 구조를 확인하세요.",
   path: "/product",
 });
 
 const features = [
   {
-    title: "하나의 작업면에서 끝나는 선택",
-    body: "태블릿에서 목적과 맛을 고르고, 바로 옆 스테이션에서 한 잔이 완성됩니다. 처음 사용하는 사람도 같은 흐름으로 자연스럽게 이용할 수 있습니다.",
+    title: "태블릿에서 고르고 바로 받기",
+    body: "태블릿에서 목적과 맛을 고르고, 바로 옆 스테이션에서 한 잔을 받습니다. 처음 쓰는 사람도 같은 순서로 이용합니다.",
     image: "/images/vrink/apple/vrink-product-angle-a.png",
     alt: "브링크 제로스테이션 상단과 태블릿 거치대",
   },
   {
-    title: "15초 안에 완성되는 제조 흐름",
-    body: "350ml 기준 평균 15초 제조 흐름으로 오피스, 피트니스, 행사 공간처럼 사용자가 많은 환경에서도 대기 부담을 줄입니다.",
+    title: "350ml 한 잔, 평균 15초",
+    body: "350ml 기준 평균 15초 제조 흐름으로 오피스, 피트니스, 행사장처럼 사용자가 많은 환경에서도 기다림을 줄입니다.",
     image: "/images/vrink/apple/vrink-product-top.png",
     alt: "브링크 제로스테이션 상단 구조",
   },
   {
-    title: "기능샷과 맛을 조합하는 개인 맞춤 경험",
-    body: "부스터샷, 비타민샷, 릴렉스샷, 커팅샷, 아미노샷과 플레이버, 농도, 탄산을 조합해 공간의 목적에 맞는 음료 경험을 제공합니다.",
+    title: "5종 기능샷과 맛 조합",
+    body: "부스터, 비타민, 릴렉스, 커팅, 아미노샷에 맛, 농도, 탄산을 더해 공간의 목적에 맞는 음료를 만듭니다.",
     image: "/images/vrink/lifestyle/vrink-lifestyle-1114.jpg",
     alt: "브링크 음료 두 잔을 들고 있는 사용 장면",
   },
   {
-    title: "운영자를 위한 관리 구조",
-    body: "원액 공급, 소모품, 정기 점검, 위생 관리 흐름을 함께 설계해 도입 이후에도 안정적으로 운영할 수 있도록 돕습니다.",
+    title: "원액과 점검까지 함께 관리",
+    body: "원액 공급, 소모품, 정기 점검, 위생 관리 흐름을 함께 정해 도입 이후에도 안정적으로 운영하도록 돕습니다.",
     image: "/images/vrink/apple/vrink-product-back.png",
     alt: "브링크 제로스테이션 후면",
   },
@@ -71,30 +71,30 @@ const mobileFeatureNav = [
 
 const productIntroTiles = [
   {
-    eyebrow: "Personal Recipe",
-    title: "취향과 컨디션에 맞춘 한 잔",
-    body: "기능샷, 플레이버, 농도, 탄산을 조합해 사용자의 목적에 맞는 음료 경험을 만듭니다.",
+    eyebrow: "맞춤 조합",
+    title: "5종 기능샷으로 고르는 한 잔",
+    body: "기능샷, 맛, 농도, 탄산을 조합해 사용자의 목적에 맞는 음료를 만듭니다.",
     image: "/images/vrink/lifestyle/vrink-lifestyle-1198.jpg",
     alt: "브링크 제로스테이션에서 음료를 마시는 사용자",
   },
   {
-    eyebrow: "Fast Serving",
-    title: "약 15초, 빠르게 완성되는 제조 흐름",
-    body: "350ml 기준 평균 약 15초 제조 흐름으로 많은 사용자가 오가는 공간에서도 부담을 줄입니다.",
+    eyebrow: "빠른 제조",
+    title: "350ml 기준 평균 15초",
+    body: "많은 사용자가 오가는 공간에서도 한 잔을 빠르게 받을 수 있게 설계했습니다.",
     image: "/images/vrink/apple/vrink-product-top.png",
     alt: "브링크 제로스테이션 상단 제조 구조",
   },
   {
-    eyebrow: "Station Design",
-    title: "하나의 작업면에서 이어지는 선택과 제조",
-    body: "태블릿 선택 화면과 제조부가 한 작업면에 놓여 처음 쓰는 사람도 직관적으로 사용할 수 있습니다.",
+    eyebrow: "스테이션 구조",
+    title: "한 작업면에서 고르고 받기",
+    body: "태블릿 선택 화면과 제조부가 함께 놓여 처음 쓰는 사람도 바로 따라갈 수 있습니다.",
     image: "/images/vrink/apple/vrink-product-angle-a.png",
     alt: "브링크 제로스테이션 작업면과 태블릿",
   },
   {
-    eyebrow: "Operation Care",
-    title: "원액과 위생, 정기 점검까지 설계된 운영 구조",
-    body: "도입 이후의 원액 공급, 소모품 관리, 위생 점검 흐름까지 함께 설계합니다.",
+    eyebrow: "운영 관리",
+    title: "원액, 위생, 점검까지 한 번에",
+    body: "도입 이후의 원액 공급, 소모품 관리, 위생 점검 순서까지 함께 정합니다.",
     image: "/images/vrink/apple/vrink-product-back.png",
     alt: "브링크 제로스테이션 후면",
   },
@@ -117,14 +117,14 @@ const galleryMoments = [
 
 const proofStories = [
   {
-    title: "공간 운영을 위한 스마트 음료 시스템",
-    body: "브링크는 음료 제공을 넘어 복지, 체험, 운영 관리까지 연결하는 공간 맞춤 솔루션을 제안합니다.",
+    title: "공간 운영에 맞춘 음료 스테이션",
+    body: "브링크는 음료 제공, 방문 경험, 운영 관리를 한 흐름으로 묶어 제안합니다.",
     image: "/images/vrink/news/vrink-news-consulting.jpg",
     alt: "브링크 상담 및 운영 소개 장면",
   },
   {
-    title: "현장에서 바로 경험하는 제로스테이션",
-    body: "전시와 팝업, 기업 공간에서 사용자가 직접 조합하고 마시는 경험을 만들 수 있습니다.",
+    title: "현장에서 직접 고르는 경험",
+    body: "전시, 팝업, 기업 공간에서 방문자가 직접 조합하고 마시는 흐름을 만들 수 있습니다.",
     image: "/images/vrink/news/vrink-news-booth.jpg",
     alt: "브링크 전시 부스 현장",
   },
@@ -159,19 +159,19 @@ const technologyVisualImages = [
 const fieldCards = [
   {
     title: "오피스",
-    body: "직원 복지와 방문객 응대를 위한 상시 음료 경험",
+    body: "직원과 방문객이 함께 쓰는 상시 음료 스테이션",
     image: "/images/vrink/lifestyle/vrink-office.jpg",
     alt: "오피스에 어울리는 브링크 음료 장면",
   },
   {
     title: "피트니스",
-    body: "운동 전후 목적에 맞춘 기능샷과 수분 보충 루틴",
+    body: "운동 전후에 바로 고르는 기능샷과 수분 루틴",
     image: "/images/vrink/lifestyle/vrink-fitness.png",
     alt: "피트니스 공간에서 브링크 음료를 마시는 사용자",
   },
   {
     title: "이벤트",
-    body: "브랜드 체험과 현장 참여를 높이는 맞춤 제조 경험",
+    body: "방문자가 직접 고르고 마시는 현장 체험",
     image: "/images/vrink/news/ftimes-36836.jpg",
     alt: "브링크 이벤트 소개 이미지",
   },
@@ -180,18 +180,18 @@ const fieldCards = [
 const serviceItems = [
   {
     icon: Headphones,
-    title: "도입 상담",
-    body: "공간 목적과 예상 이용량에 맞춰 설치 구성을 제안합니다.",
+    title: "구성 상담",
+    body: "공간 목적과 예상 이용량에 맞춰 설치 구성을 안내합니다.",
   },
   {
     icon: Wrench,
     title: "운영 지원",
-    body: "원액 공급과 소모품 관리 흐름을 함께 설계합니다.",
+    body: "원액 공급과 소모품 관리 순서를 함께 정합니다.",
   },
   {
     icon: ShieldCheck,
     title: "정기 점검",
-    body: "위생과 기기 상태를 안정적으로 관리할 수 있도록 돕습니다.",
+    body: "위생과 기기 상태를 꾸준히 확인할 수 있도록 돕습니다.",
   },
 ];
 
@@ -244,7 +244,7 @@ const finalHighlights = [
   "5종 기능샷",
   "맞춤 원액 구성",
   "정기 점검 지원",
-  "오피스·피트니스·행사 도입",
+  "오피스·피트니스·행사 구성",
 ];
 
 export default function ProductPage() {
@@ -255,16 +255,16 @@ export default function ProductPage() {
       <section className={styles.hero}>
         <div className={styles.heroCopy}>
           <p>브링크 제로스테이션</p>
-          <h1>공간에 맞춰 완성되는 스마트 드링크 시스템</h1>
+          <h1>15초 만에 고르는 스마트 음료 스테이션</h1>
           <span>
-            선택, 제조, 관리 흐름을 하나로 묶어 오피스와 피트니스, 이벤트 공간에 맞는 음료 경험을 만듭니다.
+            5종 기능샷과 맛, 농도, 탄산을 조합하고 원액 관리까지 함께 이어갑니다.
           </span>
           <div className={styles.heroActions}>
             <Link href="/#contact" className={styles.primaryButton}>
-              도입 문의
+              상담 받아보기
             </Link>
             <Link href="#features" className={styles.linkButton}>
-              특징 보기
+              구성 보기
             </Link>
           </div>
         </div>
@@ -282,8 +282,8 @@ export default function ProductPage() {
       <section id="features" className={styles.productIntroSection} aria-labelledby="product-intro-title">
         <div className={styles.productIntroCopy}>
           <h2 id="product-intro-title">
-            브링크 제로스테이션은 선택, 제조, 관리가 한 화면에서 이어지는 스마트 드링크 시스템입니다.
-            기능샷과 맛, 농도, 탄산을 조합해 공간마다 다른 음료 경험을 안정적으로 제공합니다.
+            브링크 제로스테이션은 선택, 제조, 관리가 한 화면에서 이어지는 음료 스테이션입니다.
+            5종 기능샷과 맛, 농도, 탄산을 조합해 공간마다 필요한 한 잔을 제공합니다.
           </h2>
         </div>
         <div className={styles.productIntroGrid}>
@@ -301,7 +301,7 @@ export default function ProductPage() {
                 <h3>{tile.title}</h3>
                 <span>{tile.body}</span>
                 <Link href="/#contact">
-                  상담하기
+                  구성 받아보기
                   <ArrowRight aria-hidden="true" size={15} strokeWidth={1.8} />
                 </Link>
               </div>
@@ -312,8 +312,8 @@ export default function ProductPage() {
 
       <section className={styles.gallerySection} aria-labelledby="gallery-title">
         <div className={styles.galleryCopy}>
-          <p>Scene</p>
-          <h2 id="gallery-title">브링크가 놓이는 순간, 공간은 더 자주 머무는 경험이 됩니다.</h2>
+          <p>사용 장면</p>
+          <h2 id="gallery-title">브링크가 놓이면 음료를 고르는 순간이 생깁니다.</h2>
         </div>
         <div className={styles.galleryGrid}>
           {galleryMoments.map((moment) => (
@@ -326,9 +326,9 @@ export default function ProductPage() {
 
       <section className={styles.proofSection} aria-labelledby="proof-title">
         <div className={styles.sectionHeading}>
-          <p>Innovation</p>
-          <h2 id="proof-title">공간 운영의 앞단에서, 새로운 음료 경험을 설계합니다.</h2>
-          <span>전시, 상담, 실제 사용 장면까지 이어지는 브링크의 운영 방식을 소개합니다.</span>
+          <p>운영 사례</p>
+          <h2 id="proof-title">공간 운영에 맞는 음료 경험을 설계합니다.</h2>
+          <span>전시, 상담, 실제 사용 장면까지 이어지는 브링크의 운영 흐름입니다.</span>
         </div>
         <div className={styles.proofGrid}>
           {proofStories.map((story) => (
@@ -347,9 +347,9 @@ export default function ProductPage() {
 
       <section id="technology" className={styles.technologySection} aria-labelledby="technology-title">
         <div className={styles.technologyHeader}>
-          <p>Technology</p>
-          <h2 id="technology-title">브링크가 가진 기술력을 구조로 보여줍니다.</h2>
-          <span>제조 안정성과 운영 편의성을 높이기 위해 설계한 핵심 기술입니다.</span>
+          <p>기술 구조</p>
+          <h2 id="technology-title">제조와 원액 교체를 쉽게 만드는 구조입니다.</h2>
+          <span>안정적인 토출과 쉬운 관리를 위해 설계한 핵심 기술입니다.</span>
         </div>
         <div className={styles.technologyShowcase}>
           <div className={styles.technologyList}>
@@ -378,8 +378,8 @@ export default function ProductPage() {
 
       <section className={styles.fieldSection} aria-labelledby="field-title">
         <div className={styles.sectionHeading}>
-          <p>Fields</p>
-          <h2 id="field-title">공간마다 다른 목적에 맞춰 구성합니다.</h2>
+          <p>적용 공간</p>
+          <h2 id="field-title">공간 목적에 맞춰 한 가지 쓰임을 분명하게 구성합니다.</h2>
         </div>
         <div className={styles.fieldGrid}>
           {fieldCards.map((field) => (
@@ -398,7 +398,7 @@ export default function ProductPage() {
         <div className={styles.mobileFeatureHeader}>
           <div className={styles.mobileFeatureTop}>
             <h2>VRINK ZERO STATION</h2>
-            <Link href="/#contact">문의하기</Link>
+            <Link href="/#contact">상담받기</Link>
           </div>
           <nav className={styles.mobileFeatureNav} aria-label="제품 상세 메뉴">
             {mobileFeatureNav.map(([label, href], index) => (
@@ -437,7 +437,7 @@ export default function ProductPage() {
 
       <section id="specifications" className={styles.specSection} aria-labelledby="spec-title">
         <div className={styles.specInner}>
-          <h2 id="spec-title">제품 사양을 한눈에 확인해보세요</h2>
+          <h2 id="spec-title">제품 사양을 한눈에 확인하세요</h2>
           <div className={styles.specHeader}>
             <p>제품 사양</p>
           </div>
@@ -495,7 +495,7 @@ export default function ProductPage() {
             <span>도입 비용</span>
             <strong>상담 후 안내</strong>
           </p>
-          <Link href="/#contact">도입문의</Link>
+          <Link href="/#contact">상담받기</Link>
         </div>
       </section>
 

@@ -10,8 +10,16 @@ import styles from "../../legal.module.css";
 export const metadata: Metadata = buildMetadata({
   title: "Terms of Use",
   description: "Terms for using the VRINK website, consultation, product information, and support services.",
+  locale: "en",
   path: "/en/terms",
 });
+
+const englishBusinessInfo = {
+  companyName: "VRINK Co., Ltd.",
+  owner: "Minsoo Kim",
+  registrationNumber: siteConfig.business.registrationNumber,
+  address: "46 Dongnam-ro 406beon-gil, Hanam-si, Gyeonggi-do, Korea",
+};
 
 const sections = [
   {
@@ -67,34 +75,51 @@ const sections = [
     ],
   },
   {
-    id: "ip",
-    title: "7. Intellectual Property",
+    id: "company",
+    title: "7. Company Obligations",
     body: [
-      "All trademarks, logos, product images, text, graphics, videos, UI, and other content on the website belong to VRINK or their respective rights holders. Unauthorized reproduction, modification, distribution, sale, or derivative use is prohibited.",
+      "VRINK makes reasonable efforts to keep the Service stable and takes the measures needed for privacy protection and security so you can use the Service safely.",
+    ],
+  },
+  {
+    id: "ip",
+    title: "8. Intellectual Property",
+    body: [
+      "All trademarks, logos, product images, text, graphics, videos, UI, and other content on the website belong to VRINK or their respective rights holders. You can't reproduce, modify, distribute, sell, or create derivative works from it without prior consent.",
     ],
   },
   {
     id: "limitation",
-    title: "8. Limitation of Liability",
+    title: "9. Limitation of Liability",
     body: [
-      "VRINK is not liable for service interruptions caused by events beyond reasonable control, including natural disasters, network failures, third-party service issues, or user fault.",
+      "VRINK isn't liable for service interruptions caused by events beyond reasonable control, including natural disasters, network failures, third-party service issues, or user fault.",
       "Product information on the website is for guidance. Actual configuration, pricing, installation feasibility, and operating conditions may vary after consultation and contracting.",
     ],
   },
   {
-    id: "law",
-    title: "9. Governing Law",
+    id: "suspension",
+    title: "10. Service Suspension",
     body: [
-      "These Terms are governed by the laws of the Republic of Korea. Disputes related to the Service will be handled by the competent court under applicable law.",
+      "VRINK may temporarily suspend all or part of the Service for system maintenance, security measures, service improvements, or operational needs. We'll let you know in advance whenever we can.",
+    ],
+  },
+  {
+    id: "law",
+    title: "11. Governing Law",
+    body: [
+      "These Terms are governed by the laws of the Republic of Korea. If a dispute arises in connection with the Service, the competent court under applicable law will have first-instance jurisdiction.",
     ],
   },
   {
     id: "contact",
-    title: "10. Contact",
+    title: "12. Contact",
     body: [
-      `For questions about these Terms, contact ${siteConfig.contactEmail} or ${siteConfig.contactPhone}.`,
-      `${siteConfig.business.companyName} · CEO ${siteConfig.business.owner} · Business No. ${siteConfig.business.registrationNumber}`,
-      siteConfig.business.address,
+      `For questions about the Service or these Terms, reach us at ${siteConfig.contactEmail} or ${siteConfig.contactPhone}.`,
+      `Company name: ${englishBusinessInfo.companyName}`,
+      `Representative: ${englishBusinessInfo.owner}`,
+      `Business registration number: ${englishBusinessInfo.registrationNumber}`,
+      `Business address: ${englishBusinessInfo.address}`,
+      `Phone: ${siteConfig.contactPhone}`,
     ],
   },
 ];

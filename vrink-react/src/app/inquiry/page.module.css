@@ -2,7 +2,7 @@
   --page-ink: #1d1d1f;
   --page-label: #5f6670;
   --page-muted: rgba(0, 0, 0, 0.62);
-  --page-subtle: rgba(0, 0, 0, 0.42);
+  --page-subtle: #6e6e73;
   --page-line: rgba(0, 0, 0, 0.1);
   --page-input-line: #cfd5dc;
   --page-soft: #f5f5f7;
@@ -24,23 +24,31 @@
 
 .hero {
   background: #ffffff;
-  border-bottom: 1px solid var(--page-line);
-  padding: 122px var(--layout-page-gutter) 56px;
+  border-bottom: 0;
+  padding: 118px var(--layout-page-gutter) 72px;
 }
 
 .heroInner {
+  align-items: center;
+  display: grid;
+  gap: 0 44px;
+  grid-template-columns: minmax(0, 1fr) 96px;
   margin: 0 auto;
-  max-width: 760px;
-  text-align: center;
+  max-width: 960px;
+  text-align: left;
   width: 100%;
 }
 
 .heroIcon {
   display: block;
-  height: 92px;
-  margin: 0 auto 18px;
+  filter: grayscale(1);
+  grid-column: 2;
+  grid-row: 1 / span 3;
+  height: 80px;
+  margin: 0;
   object-fit: contain;
-  width: 92px;
+  opacity: 0.72;
+  width: 80px;
 }
 
 .heroInner > p,
@@ -50,6 +58,12 @@
   font-weight: var(--weight-regular);
   line-height: var(--line-label);
   margin: 0 0 12px;
+}
+
+.heroInner > p,
+.hero h1,
+.heroInner > span {
+  grid-column: 1;
 }
 
 .hero h1 {
@@ -66,13 +80,13 @@
   display: block;
   font-size: var(--type-lead);
   line-height: var(--line-lead);
-  margin: 14px auto 0;
+  margin: 14px 0 0;
   max-width: 620px;
   word-break: keep-all;
 }
 
 .formSection {
-  padding: 42px var(--layout-page-gutter) 108px;
+  padding: 56px var(--layout-page-gutter) 112px;
 }
 
 .formShell {
@@ -85,7 +99,7 @@
   background: var(--page-card);
   border: 1px solid var(--page-line);
   border-radius: 12px;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06);
+  box-shadow: none;
   overflow: hidden;
 }
 
@@ -315,7 +329,7 @@
 .requiredMark {
   color: #ff0000;
   font-style: normal;
-  font-weight: 800;
+  font-weight: var(--weight-semibold);
   margin-left: 2px;
 }
 
@@ -460,9 +474,9 @@
 }
 
 .emptyFiles::before {
-  background: #dbe5f2;
+  background: #dfe3e8;
   border-radius: 5px;
-  box-shadow: 7px -8px 0 rgba(197, 211, 231, 0.82);
+  box-shadow: 7px -8px 0 #c7cbd1;
   height: 38px;
   left: 8px;
   top: 13px;
@@ -473,8 +487,8 @@
   background:
     linear-gradient(#ffffff, #ffffff) 50% 50% / 16px 4px no-repeat,
     linear-gradient(#ffffff, #ffffff) 50% 50% / 4px 16px no-repeat,
-    #e78aa7;
-  border: 3px solid #f2c4d4;
+    var(--page-blue);
+  border: 3px solid #b7d7fb;
   border-radius: 999px;
   height: 28px;
   left: 0;
@@ -628,14 +642,14 @@
 
 .modalIcon {
   align-items: center;
-  background: rgba(0, 113, 227, 0.1);
-  border-radius: 999px;
+  background: transparent;
+  border-radius: 0;
   color: var(--page-blue);
   display: inline-flex;
-  height: 64px;
+  height: 48px;
   justify-content: center;
-  margin: 0 auto 18px;
-  width: 64px;
+  margin: 0 auto 14px;
+  width: 48px;
 }
 
 .modalIcon svg {
@@ -680,6 +694,16 @@
 @media (max-width: 760px) {
   .hero {
     padding: 100px 22px 42px;
+  }
+
+  .heroInner {
+    display: block;
+  }
+
+  .heroIcon {
+    height: 64px;
+    margin: 0 0 18px;
+    width: 64px;
   }
 
   .formSection {
@@ -736,5 +760,37 @@
 
   .modalConfirmButton {
     width: 100%;
+  }
+}
+
+.privacyTitleButton:active,
+.fileTrigger:active,
+.fileItem button:active,
+.submitButton:active,
+.modalCloseButton:active,
+.modalConfirmButton:active {
+  transform: scale(0.97);
+}
+
+.fileTrigger:focus-visible,
+.fileItem button:focus-visible,
+.submitButton:focus-visible,
+.modalCloseButton:focus-visible,
+.modalConfirmButton:focus-visible {
+  outline: 2px solid var(--page-blue);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .privacyTitleButton svg,
+  .fieldGrid input,
+  .fullField input,
+  .fullField select,
+  .fullField textarea,
+  .formRow input,
+  .formRow select,
+  .detailField textarea,
+  .fileTrigger {
+    transition-duration: 1ms;
   }
 }

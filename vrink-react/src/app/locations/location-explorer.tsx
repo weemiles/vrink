@@ -93,15 +93,166 @@ type LocationExplorerProps = {
 const locationExplorerCopy = {
   ko: {
     listLabel: "브링크 설치 지점 목록",
-    listTitle: "설치 지점",
-    countSuffix: "곳",
+    listTitle: "지점 선택",
+    fallbackMapLabel: "브링크 도입 지점 지도 미리보기",
+    legendFailed: "네이버 지도 연결 실패",
+    legendBeforeKey: "네이버 지도 키 연결 전 미리보기",
+    naverMapLabel: "네이버 지도",
+    mapLoading: "지도를 불러오는 중",
+    zoomControlsLabel: "지도 확대 축소",
+    zoomIn: "지도 확대",
+    zoomOut: "지도 축소",
+    popupCloseLabel: "지점 이미지 닫기",
+    carouselControlsLabel: "현장 이미지 넘기기",
+    prevImage: "이전 이미지",
+    nextImage: "다음 이미지",
+    carouselDotsLabel: "현장 이미지 선택",
+    viewLocation: (name: string) => `${name} 위치 보기`,
+    viewImage: (index: number) => `${index}번째 이미지 보기`,
   },
   en: {
     listLabel: "VRINK installation locations",
-    listTitle: "Locations",
-    countSuffix: " sites",
+    listTitle: "Choose a location",
+    fallbackMapLabel: "VRINK location map preview",
+    legendFailed: "Couldn't connect to Naver Maps",
+    legendBeforeKey: "Preview before the Naver Maps key is connected",
+    naverMapLabel: "Naver Map",
+    mapLoading: "Loading the map",
+    zoomControlsLabel: "Zoom map in and out",
+    zoomIn: "Zoom in",
+    zoomOut: "Zoom out",
+    popupCloseLabel: "Close location image",
+    carouselControlsLabel: "Browse site images",
+    prevImage: "Previous image",
+    nextImage: "Next image",
+    carouselDotsLabel: "Select site image",
+    viewLocation: (name: string) => `View ${name} location`,
+    viewImage: (index: number) => `View image ${index}`,
   },
 } as const;
+
+type LocationDisplay = {
+  name: string;
+  district: string;
+  address: string;
+};
+
+const englishLocationDisplay: Record<string, LocationDisplay> = {
+  "buildup-fitness-seongsu": {
+    name: "Build-up Fitness PT Seongsu Station",
+    district: "Seongsu Station",
+    address: "3F Namyoung Building, 97 Achasan-ro, Seongdong-gu, Seoul",
+  },
+  "fitvely-celebrity-gym": {
+    name: "Fitvely Celebrity Gym",
+    district: "Seongsu-dong",
+    address: "6 Yeonmujang 19-gil, Seongdong-gu, Seoul",
+  },
+  "bysec-world-fitness": {
+    name: "Bysec World Fitness",
+    district: "Yeoksam-dong",
+    address: "B1 Kyungnam Apt., 13 Eonju-ro 85-gil, Gangnam-gu, Seoul",
+  },
+  "ojim-wonju": {
+    name: "O Gym",
+    district: "Usan-dong",
+    address: "3F, 69 Moran 1-gil, Wonju-si, Gangwon State",
+  },
+  "gym90-city-hall-station": {
+    name: "Gym90 City Hall Station",
+    district: "City Hall Station",
+    address: "1F 102-103, 115 Seosomun-ro, Jung-gu, Seoul",
+  },
+  "gym90-city-hall": {
+    name: "Gym90 City Hall",
+    district: "City Hall",
+    address: "2F 210, 64 Sejong-daero, Jung-gu, Seoul",
+  },
+  "dallyeora-korean-medicine-clinic": {
+    name: "Dallyeora Korean Medicine Clinic",
+    district: "Anyang-dong",
+    address: "1F Joongang Plaza, 13 Jangnae-ro 125beon-gil, Manan-gu, Anyang-si, Gyeonggi-do",
+  },
+  "west-gym-gangbyeon": {
+    name: "West Gym Gangbyeon",
+    district: "Gangbyeon",
+    address: "B1, 86 Guuigangbyeon-ro, Gwangjin-gu, Seoul",
+  },
+  "west-gym-guui": {
+    name: "West Gym Guui",
+    district: "Guui",
+    address: "B1 Segyeong Building, 86 Jayang-ro, Gwangjin-gu, Seoul",
+  },
+  "able-gym-sangam": {
+    name: "Able Gym Sangam Station",
+    district: "Sangam-dong",
+    address: "B1 Woori Technology Building, 9 World Cup buk-ro 56-gil, Mapo-gu, Seoul",
+  },
+  "able-gym-balsan": {
+    name: "Able Gym Balsan Station",
+    district: "Naebalsan-dong",
+    address: "B1, 348 Gangseo-ro, Gangseo-gu, Seoul",
+  },
+  "fore-wellness-gwacheon": {
+    name: "Fore Wellness",
+    district: "Galhyeon-dong",
+    address: "3F Gwacheon Xi Elra Edition, 39 Gwacheon-daero 6ga-gil, Gwacheon-si, Gyeonggi-do",
+  },
+  "ss-fitness-gwanggyo": {
+    name: "Double S Fitness Gwanggyo",
+    district: "Gwanggyo",
+    address: "B2, 277 Gwanggyo Hosugongwon-ro, Yeongtong-gu, Suwon-si, Gyeonggi-do",
+  },
+  "dgym-yeongju": {
+    name: "D Gym",
+    district: "Gaheung-dong",
+    address: "5 Daehak-ro 261beon-gil, Yeongju-si, Gyeongsangbuk-do",
+  },
+  "hawkeye-gym-wonju-2": {
+    name: "Hawkeye Gym No. 2",
+    district: "Bangok-dong",
+    address: "36 Orihyeon-gil, Wonju-si, Gangwon State",
+  },
+  "gym90-ssangmun": {
+    name: "Gym90 Ssangmun",
+    district: "Ssangmun-dong",
+    address: "5F, 218 Haedeung-ro, Dobong-gu, Seoul",
+  },
+  "gym90-hufs": {
+    name: "Gym90 HUFS",
+    district: "Hwigyeong-dong",
+    address: "B1 The 305 Building, 13 Hwigyeong-ro, Dongdaemun-gu, Seoul",
+  },
+  "gym90-gwanghwamun": {
+    name: "Gym90 Gwanghwamun",
+    district: "Mugyo-dong",
+    address: "9F-10F, 16 Mugyo-ro, Jung-gu, Seoul",
+  },
+  "gym90-gildong": {
+    name: "Gym90 Gil-dong",
+    district: "Gil-dong",
+    address: "B1-B2, 1457 Yangjae-daero, Gangdong-gu, Seoul",
+  },
+};
+
+function getLocationDisplay(
+  location: (typeof vrinkLocations)[number],
+  locale: LocationExplorerProps["locale"],
+): LocationDisplay {
+  if (locale === "en") {
+    return englishLocationDisplay[location.id] ?? {
+      name: location.name,
+      district: location.district,
+      address: location.address,
+    };
+  }
+
+  return {
+    name: location.name,
+    district: location.district,
+    address: location.address,
+  };
+}
 
 const initialMapCenter = vrinkLocations.reduce(
   (center, location) => ({
@@ -112,7 +263,12 @@ const initialMapCenter = vrinkLocations.reduce(
 );
 const initialMapZoom = vrinkLocations.length > 6 ? 10 : vrinkLocations.length > 1 ? 12 : 16;
 
-function createMarkerContent(name: string, locationId: string, isSelected: boolean) {
+function createMarkerContent(
+  name: string,
+  locationId: string,
+  isSelected: boolean,
+  ariaLabel: string,
+) {
   const markerLogoSrc = withBasePath(markerLogoPath);
   const markerColor = isSelected ? "#0071e3" : "#ffffff";
   const logoFilter = isSelected ? "brightness(0) invert(1)" : "none";
@@ -120,7 +276,7 @@ function createMarkerContent(name: string, locationId: string, isSelected: boole
   return `
     <button
       type="button"
-      aria-label="${name} 위치 보기"
+      aria-label="${ariaLabel}"
       onclick="window.dispatchEvent(new CustomEvent('vrink-location-open', { detail: '${locationId}' }))"
       style="
         align-items:center;
@@ -205,6 +361,7 @@ export function LocationExplorer({ locale = "ko" }: LocationExplorerProps) {
   const [hoveredLocationId, setHoveredLocationId] = useState<string | null>(null);
   const [popupLocationId, setPopupLocationId] = useState<string | null>(null);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [allowMapScript, setAllowMapScript] = useState(false);
   const [scriptReady, setScriptReady] = useState(false);
   const [scriptFailed, setScriptFailed] = useState(false);
   const mapElementRef = useRef<HTMLDivElement>(null);
@@ -218,8 +375,9 @@ export function LocationExplorer({ locale = "ko" }: LocationExplorerProps) {
     ? vrinkLocations.find((location) => location.id === popupLocationId) ?? null
     : null;
   const popupImage = popupLocation ? popupLocation.images[activeImageIndex] : null;
+  const popupDisplay = popupLocation ? getLocationDisplay(popupLocation, locale) : null;
 
-  const showFallbackMap = !naverClientId || scriptFailed;
+  const showFallbackMap = !naverClientId || !allowMapScript || scriptFailed;
 
   const focusLocationOnMap = useCallback((locationId: string) => {
     const location = vrinkLocations.find((item) => item.id === locationId);
@@ -269,6 +427,30 @@ export function LocationExplorer({ locale = "ko" }: LocationExplorerProps) {
   }, []);
 
   useEffect(() => {
+    const handleNaverScriptError = (event: ErrorEvent) => {
+      const isNaverMapError =
+        event.filename?.includes("oapi.map.naver.com") || event.message?.includes("KVO");
+
+      if (!isNaverMapError) {
+        return;
+      }
+
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      naverMapRef.current = null;
+      setScriptReady(false);
+      setScriptFailed(true);
+    };
+
+    const isLocalMapHost = ["localhost", "127.0.0.1", "::1"].includes(window.location.hostname);
+
+    window.addEventListener("error", handleNaverScriptError, true);
+    queueMicrotask(() => setAllowMapScript(!isLocalMapHost));
+
+    return () => window.removeEventListener("error", handleNaverScriptError, true);
+  }, []);
+
+  useEffect(() => {
     const handleMarkerOpen = (event: Event) => {
       const locationId = event instanceof CustomEvent ? event.detail : null;
 
@@ -315,94 +497,104 @@ export function LocationExplorer({ locale = "ko" }: LocationExplorerProps) {
       return;
     }
 
-    if (!naverMapRef.current) {
-      const center = new maps.LatLng(initialMapCenter.lat, initialMapCenter.lng);
-      naverMapRef.current = new maps.Map(mapElementRef.current, {
-        center,
-        maxZoom: 19,
-        minZoom: 10,
-        scrollWheel: false,
-        zoom: initialMapZoom,
-        zoomControl: false,
-        zoomControlOptions: {
-          position: maps.Position.TOP_RIGHT,
-        },
-      });
-    }
-
-    const map = naverMapRef.current;
-    const mapElement = mapElementRef.current;
-    const handleWheel = (event: WheelEvent) => {
-      event.preventDefault();
-
-      const now = Date.now();
-      if (now - wheelZoomRef.current < 280) {
-        return;
+    try {
+      if (!naverMapRef.current) {
+        const center = new maps.LatLng(initialMapCenter.lat, initialMapCenter.lng);
+        naverMapRef.current = new maps.Map(mapElementRef.current, {
+          center,
+          maxZoom: 19,
+          minZoom: 10,
+          scrollWheel: false,
+          zoom: initialMapZoom,
+          zoomControl: false,
+          zoomControlOptions: {
+            position: maps.Position.TOP_RIGHT,
+          },
+        });
       }
 
-      wheelZoomRef.current = now;
-      const currentZoom = map.getZoom();
-      const nextZoom = currentZoom + (event.deltaY < 0 ? 1 : -1);
-      map.setZoom(Math.min(19, Math.max(10, nextZoom)), true);
-    };
+      const map = naverMapRef.current;
+      const mapElement = mapElementRef.current;
+      const handleWheel = (event: WheelEvent) => {
+        event.preventDefault();
 
-    mapElement.addEventListener("wheel", handleWheel, { passive: false });
+        const now = Date.now();
+        if (now - wheelZoomRef.current < 280) {
+          return;
+        }
 
-    const infoWindows: NaverInfoWindow[] = [];
-    const markers = vrinkLocations.map((location) => {
-      const marker = new maps.Marker({
-        icon: {
-          anchor: new maps.Point(17, 42),
-          content: createMarkerContent(
-            location.name,
-            location.id,
-            selectedLocationId === location.id,
-          ),
-        },
-        map,
-        position: new maps.LatLng(location.lat, location.lng),
-        title: location.name,
+        wheelZoomRef.current = now;
+        const currentZoom = map.getZoom();
+        const nextZoom = currentZoom + (event.deltaY < 0 ? 1 : -1);
+        map.setZoom(Math.min(19, Math.max(10, nextZoom)), true);
+      };
+
+      mapElement.addEventListener("wheel", handleWheel, { passive: false });
+
+      const infoWindows: NaverInfoWindow[] = [];
+      const markers = vrinkLocations.map((location) => {
+        const display = getLocationDisplay(location, locale);
+        const marker = new maps.Marker({
+          icon: {
+            anchor: new maps.Point(17, 42),
+            content: createMarkerContent(
+              display.name,
+              location.id,
+              selectedLocationId === location.id,
+              copy.viewLocation(display.name),
+            ),
+          },
+          map,
+          position: new maps.LatLng(location.lat, location.lng),
+          title: display.name,
+        });
+
+        const infoWindow = new maps.InfoWindow({
+          anchorColor: "#ffffff",
+          backgroundColor: "#ffffff",
+          borderColor: "rgba(0,0,0,.08)",
+          borderWidth: 1,
+          content: createHoverContent(display.name, display.address),
+          maxWidth: 270,
+          pixelOffset: new maps.Point(0, -10),
+        });
+
+        infoWindows.push(infoWindow);
+
+        maps.Event.addListener(marker, "mouseover", () => {
+          setHoveredLocationId(location.id);
+          infoWindow.open(map, marker);
+        });
+
+        maps.Event.addListener(marker, "mouseout", () => {
+          setHoveredLocationId((current) => (current === location.id ? null : current));
+          infoWindow.close();
+        });
+
+        maps.Event.addListener(marker, "click", () => {
+          handleLocationOpen(location.id);
+        });
+
+        return marker;
       });
 
-      const infoWindow = new maps.InfoWindow({
-        anchorColor: "#ffffff",
-        backgroundColor: "#ffffff",
-        borderColor: "rgba(0,0,0,.08)",
-        borderWidth: 1,
-        content: createHoverContent(location.name, location.address),
-        maxWidth: 270,
-        pixelOffset: new maps.Point(0, -10),
+      return () => {
+        mapElement.removeEventListener("wheel", handleWheel);
+        infoWindows.forEach((infoWindow) => infoWindow.close());
+        markers.forEach((marker) => marker.setMap(null));
+      };
+    } catch {
+      naverMapRef.current = null;
+      queueMicrotask(() => {
+        setScriptReady(false);
+        setScriptFailed(true);
       });
-
-      infoWindows.push(infoWindow);
-
-      maps.Event.addListener(marker, "mouseover", () => {
-        setHoveredLocationId(location.id);
-        infoWindow.open(map, marker);
-      });
-
-      maps.Event.addListener(marker, "mouseout", () => {
-        setHoveredLocationId((current) => (current === location.id ? null : current));
-        infoWindow.close();
-      });
-
-      maps.Event.addListener(marker, "click", () => {
-        handleLocationOpen(location.id);
-      });
-
-      return marker;
-    });
-
-    return () => {
-      mapElement.removeEventListener("wheel", handleWheel);
-      infoWindows.forEach((infoWindow) => infoWindow.close());
-      markers.forEach((marker) => marker.setMap(null));
-    };
-  }, [handleLocationOpen, scriptReady, selectedLocationId]);
+    }
+  }, [copy, handleLocationOpen, locale, scriptReady, selectedLocationId]);
 
   return (
     <div className={styles.explorer} id="map">
-      {naverClientId ? (
+      {naverClientId && allowMapScript && !scriptFailed ? (
         <Script
           id="naver-maps-sdk"
           src={`https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${naverClientId}`}
@@ -416,67 +608,71 @@ export function LocationExplorer({ locale = "ko" }: LocationExplorerProps) {
         <aside className={styles.locationListPanel} aria-label={copy.listLabel}>
           <div className={styles.locationListHeader}>
             <span>{copy.listTitle}</span>
-            <strong>
-              {vrinkLocations.length}
-              {copy.countSuffix}
-            </strong>
           </div>
           <div className={styles.locationList}>
-            {vrinkLocations.map((location) => (
-              <button
-                aria-current={selectedLocationId === location.id ? "true" : undefined}
-                key={location.id}
-                onClick={() => handleLocationOpen(location.id)}
-                onMouseEnter={() => setHoveredLocationId(location.id)}
-                onMouseLeave={() => setHoveredLocationId(null)}
-                type="button"
-              >
-                <span>{location.district}</span>
-                <strong>{location.name}</strong>
-                <small>{location.address}</small>
-              </button>
-            ))}
+            {vrinkLocations.map((location) => {
+              const display = getLocationDisplay(location, locale);
+
+              return (
+                <button
+                  aria-current={selectedLocationId === location.id ? "true" : undefined}
+                  key={location.id}
+                  onClick={() => handleLocationOpen(location.id)}
+                  onMouseEnter={() => setHoveredLocationId(location.id)}
+                  onMouseLeave={() => setHoveredLocationId(null)}
+                  type="button"
+                >
+                  <span>{display.district}</span>
+                  <strong>{display.name}</strong>
+                  <small>{display.address}</small>
+                </button>
+              );
+            })}
           </div>
         </aside>
         <div className={styles.mapPanel}>
           {showFallbackMap ? (
-            <div className={styles.fallbackMap} aria-label="브링크 도입 지점 지도 미리보기">
-              {vrinkLocations.map((location) => (
-                <button
-                  className={`${styles.mapMarker} ${
-                    selectedLocationId === location.id ? styles.mapMarkerActive : ""
-                  }`}
-                  key={location.id}
-                  style={{
-                    left: `${location.mapPosition.x}%`,
-                    top: `${location.mapPosition.y}%`,
-                  }}
-                  type="button"
-                  aria-label={`${location.name} 위치 보기`}
-                  onBlur={() => setHoveredLocationId(null)}
-                  onClick={() => handleLocationOpen(location.id)}
-                  onFocus={() => setHoveredLocationId(location.id)}
-                  onMouseEnter={() => setHoveredLocationId(location.id)}
-                  onMouseLeave={() => setHoveredLocationId(null)}
-                  onMouseMove={() => setHoveredLocationId(location.id)}
-                  onPointerEnter={() => setHoveredLocationId(location.id)}
-                  onPointerLeave={() => setHoveredLocationId(null)}
-                  onPointerMove={() => setHoveredLocationId(location.id)}
-                >
-                  <span className={styles.markerPin} aria-hidden="true">
-                    <svg className={styles.markerPinShape} height="42" viewBox="0 0 34 42" width="34">
-                      <path d="M17 41C14.8 37.4 11.7 34.2 8.8 31.1C5.1 27.1 2 22.8 2 16.8C2 8.6 8.6 2 17 2C25.4 2 32 8.6 32 16.8C32 22.8 28.9 27.1 25.2 31.1C22.3 34.2 19.2 37.4 17 41Z" />
-                    </svg>
-                    <Image
-                      alt=""
-                      className={styles.markerLogo}
-                      height={16}
-                      src={withBasePath(markerLogoPath)}
-                      width={16}
-                    />
-                  </span>
-                </button>
-              ))}
+            <div className={styles.fallbackMap} aria-label={copy.fallbackMapLabel}>
+              {vrinkLocations.map((location) => {
+                const display = getLocationDisplay(location, locale);
+
+                return (
+                  <button
+                    className={`${styles.mapMarker} ${
+                      selectedLocationId === location.id ? styles.mapMarkerActive : ""
+                    }`}
+                    key={location.id}
+                    style={{
+                      left: `${location.mapPosition.x}%`,
+                      top: `${location.mapPosition.y}%`,
+                    }}
+                    type="button"
+                    aria-label={copy.viewLocation(display.name)}
+                    onBlur={() => setHoveredLocationId(null)}
+                    onClick={() => handleLocationOpen(location.id)}
+                    onFocus={() => setHoveredLocationId(location.id)}
+                    onMouseEnter={() => setHoveredLocationId(location.id)}
+                    onMouseLeave={() => setHoveredLocationId(null)}
+                    onMouseMove={() => setHoveredLocationId(location.id)}
+                    onPointerEnter={() => setHoveredLocationId(location.id)}
+                    onPointerLeave={() => setHoveredLocationId(null)}
+                    onPointerMove={() => setHoveredLocationId(location.id)}
+                  >
+                    <span className={styles.markerPin} aria-hidden="true">
+                      <svg className={styles.markerPinShape} height="42" viewBox="0 0 34 42" width="34">
+                        <path d="M17 41C14.8 37.4 11.7 34.2 8.8 31.1C5.1 27.1 2 22.8 2 16.8C2 8.6 8.6 2 17 2C25.4 2 32 8.6 32 16.8C32 22.8 28.9 27.1 25.2 31.1C22.3 34.2 19.2 37.4 17 41Z" />
+                      </svg>
+                      <Image
+                        alt=""
+                        className={styles.markerLogo}
+                        height={16}
+                        src={withBasePath(markerLogoPath)}
+                        width={16}
+                      />
+                    </span>
+                  </button>
+                );
+              })}
               {hoveredLocation ? (
                 <article
                   className={styles.fallbackHoverCard}
@@ -485,28 +681,28 @@ export function LocationExplorer({ locale = "ko" }: LocationExplorerProps) {
                     top: `${hoveredLocation.mapPosition.y}%`,
                   }}
                 >
-                  <strong>{hoveredLocation.name}</strong>
-                  <small>{hoveredLocation.address}</small>
+                  <strong>{getLocationDisplay(hoveredLocation, locale).name}</strong>
+                  <small>{getLocationDisplay(hoveredLocation, locale).address}</small>
                 </article>
               ) : null}
               <div className={styles.mapLegend}>
                 <MapPin aria-hidden="true" size={16} />
-                <span>{naverClientId ? "네이버 지도 연결 실패" : "네이버 지도 키 연결 전 미리보기"}</span>
+                <span>{naverClientId ? copy.legendFailed : copy.legendBeforeKey}</span>
               </div>
             </div>
           ) : (
-            <div className={styles.naverMap} ref={mapElementRef} aria-label="네이버 지도" />
+            <div className={styles.naverMap} ref={mapElementRef} aria-label={copy.naverMapLabel} />
           )}
 
-          {naverClientId && !scriptReady && !scriptFailed ? (
-            <p className={styles.mapLoading}>지도를 불러오는 중</p>
+          {naverClientId && allowMapScript && !scriptReady && !scriptFailed ? (
+            <p className={styles.mapLoading}>{copy.mapLoading}</p>
           ) : null}
           {scriptReady && !showFallbackMap ? (
-            <div className={styles.mapZoomControls} aria-label="지도 확대 축소">
-              <button aria-label="지도 확대" onClick={() => handleMapZoom(1)} type="button">
+            <div className={styles.mapZoomControls} aria-label={copy.zoomControlsLabel}>
+              <button aria-label={copy.zoomIn} onClick={() => handleMapZoom(1)} type="button">
                 <Plus aria-hidden="true" size={22} strokeWidth={2} />
               </button>
-              <button aria-label="지도 축소" onClick={() => handleMapZoom(-1)} type="button">
+              <button aria-label={copy.zoomOut} onClick={() => handleMapZoom(-1)} type="button">
                 <Minus aria-hidden="true" size={22} strokeWidth={2} />
               </button>
             </div>
@@ -531,7 +727,7 @@ export function LocationExplorer({ locale = "ko" }: LocationExplorerProps) {
                 role="dialog"
               >
                 <button
-                  aria-label="지점 이미지 닫기"
+                  aria-label={copy.popupCloseLabel}
                   className={styles.locationPopupClose}
                   onClick={handlePopupClose}
                   type="button"
@@ -542,22 +738,26 @@ export function LocationExplorer({ locale = "ko" }: LocationExplorerProps) {
                   <div className={styles.locationPopupImage}>
                     <Image
                       src={withBasePath(popupImage.src)}
-                      alt={popupImage.alt}
+                      alt={
+                        locale === "en" && popupDisplay
+                          ? `${popupDisplay.name} installation image ${activeImageIndex + 1}`
+                          : popupImage.alt
+                      }
                       fill
                       priority
                       sizes="(max-width: 760px) 92vw, 560px"
                     />
                     {popupLocation.images.length > 1 ? (
-                      <div className={styles.carouselControls} aria-label="현장 이미지 넘기기">
+                      <div className={styles.carouselControls} aria-label={copy.carouselControlsLabel}>
                         <button
-                          aria-label="이전 이미지"
+                          aria-label={copy.prevImage}
                           onClick={() => handleImageStep(-1)}
                           type="button"
                         >
                           <ChevronLeft aria-hidden="true" size={19} strokeWidth={1.9} />
                         </button>
                         <button
-                          aria-label="다음 이미지"
+                          aria-label={copy.nextImage}
                           onClick={() => handleImageStep(1)}
                           type="button"
                         >
@@ -566,10 +766,10 @@ export function LocationExplorer({ locale = "ko" }: LocationExplorerProps) {
                       </div>
                     ) : null}
                     {popupLocation.images.length > 1 ? (
-                      <div className={styles.carouselDots} aria-label="현장 이미지 선택">
+                      <div className={styles.carouselDots} aria-label={copy.carouselDotsLabel}>
                         {popupLocation.images.map((image, index) => (
                           <button
-                            aria-label={`${index + 1}번째 이미지 보기`}
+                            aria-label={copy.viewImage(index + 1)}
                             aria-pressed={activeImageIndex === index}
                             key={image.src}
                             onClick={() => setActiveImageIndex(index)}
@@ -580,10 +780,12 @@ export function LocationExplorer({ locale = "ko" }: LocationExplorerProps) {
                     ) : null}
                   </div>
                 ) : null}
-                <div className={styles.locationPopupCopy}>
-                  <h3 id="location-popup-title">{popupLocation.name}</h3>
-                  <p>{popupLocation.address}</p>
-                </div>
+                {popupDisplay ? (
+                  <div className={styles.locationPopupCopy}>
+                    <h3 id="location-popup-title">{popupDisplay.name}</h3>
+                    <p>{popupDisplay.address}</p>
+                  </div>
+                ) : null}
               </section>
             </div>,
             document.body,

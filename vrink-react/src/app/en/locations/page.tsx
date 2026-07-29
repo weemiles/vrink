@@ -9,7 +9,7 @@ import styles from "../../locations/page.module.css";
 
 export const metadata: Metadata = buildMetadata({
   title: "Locations",
-  description: "Explore spaces and partner sites where VRINK Zero Station has been introduced.",
+  description: "Find nearby spaces and partner sites where VRINK Zero Station has been introduced.",
   locale: "en",
   path: "/en/locations",
 });
@@ -21,8 +21,8 @@ export default function EnglishLocationsPage() {
 
       <section className={styles.mapSection} aria-labelledby="locations-heading">
         <div className={styles.sectionHeader}>
-          <h2 id="locations-heading">VRINK Installation Locations</h2>
-          <span>Select a location from the list to move to that site on the map.</span>
+          <h2 id="locations-heading">Find a nearby VRINK installation location.</h2>
+          <span>Select 1 location to see it on the map right away.</span>
         </div>
         <LocationExplorer locale="en" />
       </section>
