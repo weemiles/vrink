@@ -1,9 +1,9 @@
 .page {
-  --page-ink: #1d1d1f;
-  --page-muted: #515154;
-  --page-subtle: #6e6e73;
-  --page-line: rgba(0, 0, 0, 0.1);
-  --page-soft: #f5f5f7;
+  --page-ink: #1f2528;
+  --page-muted: #5f6b72;
+  --page-subtle: #879199;
+  --page-line: #e5eaed;
+  --page-soft: #f6f8f9;
   --page-accent: #0071e3;
   --page-accent-dark: #0066cc;
 
@@ -19,17 +19,17 @@
 
 .hero {
   align-items: center;
-  background: #000000;
-  color: #ffffff;
+  background: #d8e1e3;
+  color: var(--page-ink);
   display: grid;
-  min-height: calc(100svh - 54px);
+  min-height: 74svh;
   overflow: hidden;
   padding: 112px var(--layout-page-gutter) 92px;
   position: relative;
 }
 
 .heroVideo {
-  filter: brightness(0.72) contrast(1.04) saturate(0.82);
+  filter: brightness(1.12) contrast(0.98) saturate(0.94);
   height: 100%;
   inset: 0;
   object-fit: cover;
@@ -39,32 +39,34 @@
 }
 
 .heroOverlay {
-  background: rgba(0, 0, 0, 0.34);
+  background:
+    linear-gradient(90deg, rgba(248, 251, 252, 0.8) 0%, rgba(248, 251, 252, 0.52) 42%, rgba(248, 251, 252, 0.04) 100%),
+    linear-gradient(180deg, rgba(248, 251, 252, 0.02) 0%, rgba(248, 251, 252, 0.16) 100%);
   inset: 0;
   pointer-events: none;
   position: absolute;
 }
 
 .heroInner {
-  animation: heroRise 480ms cubic-bezier(0.23, 1, 0.32, 1) both;
+  animation: heroRise 680ms ease both;
   max-width: 760px;
   position: relative;
   z-index: 1;
 }
 
 .heroInner h1 {
-  color: #ffffff;
+  color: var(--page-ink);
   font-size: var(--type-display);
   font-weight: var(--weight-semibold);
   line-height: var(--line-display);
   margin: 0;
   max-width: 720px;
-  text-shadow: none;
+  text-shadow: 0 1px 18px rgba(255, 255, 255, 0.46);
   word-break: keep-all;
 }
 
 .heroInner p {
-  color: #e8e8ed;
+  color: var(--page-muted);
   font-size: var(--type-lead);
   font-weight: var(--weight-regular);
   line-height: var(--line-lead);
@@ -91,14 +93,10 @@
   font-weight: var(--weight-regular);
   justify-content: center;
   line-height: var(--line-caption);
-  min-height: 44px;
+  min-height: 42px;
   padding: 0 20px;
   text-decoration: none;
-  transition:
-    background-color 180ms cubic-bezier(0.23, 1, 0.32, 1),
-    border-color 180ms cubic-bezier(0.23, 1, 0.32, 1),
-    color 180ms cubic-bezier(0.23, 1, 0.32, 1),
-    transform 140ms cubic-bezier(0.23, 1, 0.32, 1);
+  transition: background 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease;
 }
 
 .primaryButton {
@@ -108,32 +106,30 @@
 
 .primaryButton:hover {
   background: var(--page-accent-dark);
+  transform: translateY(-1px);
 }
 
 .secondaryButton {
-  background: rgba(0, 0, 0, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.72);
-  color: #ffffff;
+  background: rgba(255, 255, 255, 0.42);
+  border: 1px solid rgba(0, 113, 227, 0.28);
+  color: var(--page-accent-dark);
 }
 
 .secondaryButton:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: #ffffff;
+  background: rgba(255, 255, 255, 0.62);
+  border-color: rgba(0, 113, 227, 0.42);
 }
 
 .shotSection,
 .ingredientsSection,
 .referencesSection {
+  background: #ffffff;
   padding: 104px var(--layout-page-gutter);
 }
 
 .shotSection,
 .referencesSection {
-  background: var(--page-soft);
-}
-
-.ingredientsSection {
-  background: #ffffff;
+  border-top: 1px solid var(--page-line);
 }
 
 .shotSection,
@@ -183,7 +179,7 @@
 .shotGrid {
   display: grid;
   gap: 20px;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   margin: 0 auto;
   max-width: var(--layout-container-max);
 }
@@ -191,28 +187,20 @@
 .shotCard {
   align-items: center;
   background: #ffffff;
-  border: 0;
+  border: 1px solid var(--page-line);
   border-radius: 8px;
   display: flex;
   flex-direction: column;
-  grid-column: span 4;
   min-height: 278px;
-  padding: 32px 24px 30px;
+  padding: 26px 20px 28px;
   text-align: center;
-  transition: background-color 180ms ease, transform 180ms cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.shotCard:nth-child(1) {
-  grid-column: span 7;
-}
-
-.shotCard:nth-child(2) {
-  grid-column: span 5;
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
 }
 
 .shotCard:hover {
-  background: #fbfbfd;
-  transform: translateY(-2px);
+  border-color: rgba(0, 113, 227, 0.28);
+  box-shadow: 0 18px 46px rgba(28, 39, 43, 0.08);
+  transform: translateY(-3px);
 }
 
 .shotImage {
@@ -228,7 +216,7 @@
 
 .shotImage img {
   filter: drop-shadow(0 16px 22px rgba(31, 37, 40, 0.2));
-  height: 120px;
+  height: 112px;
   object-fit: contain;
   transform: rotate(-6deg);
   transition: transform 180ms ease;
@@ -236,7 +224,7 @@
 }
 
 .shotCard:hover .shotImage img {
-  transform: translateY(-3px) rotate(-2deg) scale(1.02);
+  transform: translateY(-5px) rotate(-2deg) scale(1.03);
 }
 
 .shotCard h3 {
@@ -259,31 +247,28 @@
 
 .ingredientGrid {
   display: grid;
-  gap: 20px;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px 24px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   margin: 0 auto;
   max-width: var(--layout-container-max);
 }
 
 .ingredientCard {
-  background: var(--page-soft);
-  border: 0;
+  background: #ffffff;
+  border: 1px solid var(--page-line);
   border-radius: 8px;
   display: flex;
   flex-direction: column;
   min-height: 0;
   padding: 32px 28px 34px;
   scroll-margin-top: 104px;
-  transition: background-color 180ms ease, transform 180ms cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.ingredientCard:nth-child(3n + 1) {
-  grid-column: span 2;
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
 }
 
 .ingredientCard:hover {
-  background: #f0f0f2;
-  transform: translateY(-2px);
+  border-color: rgba(0, 113, 227, 0.28);
+  box-shadow: 0 18px 48px rgba(28, 39, 43, 0.08);
+  transform: translateY(-3px);
 }
 
 .ingredientMeta {
@@ -294,9 +279,9 @@
   font-size: var(--type-micro);
   font-weight: var(--weight-medium);
   gap: 8px;
-  justify-content: flex-start;
+  justify-content: center;
   line-height: var(--line-micro);
-  text-align: left;
+  text-align: center;
 }
 
 .ingredientMeta span:first-child {
@@ -315,7 +300,7 @@
   font-weight: var(--weight-semibold);
   line-height: var(--line-feature);
   margin: 16px 0 0;
-  text-align: left;
+  text-align: center;
   word-break: keep-all;
 }
 
@@ -326,7 +311,7 @@
   font-weight: var(--weight-medium);
   line-height: var(--line-caption);
   margin-top: 7px;
-  text-align: left;
+  text-align: center;
 }
 
 .ingredientHeadline {
@@ -350,32 +335,21 @@
 .noteList {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 18px;
+  gap: 8px;
   list-style: none;
   margin: 22px 0 0;
   padding: 0;
 }
 
 .noteList li {
-  align-items: center;
-  background: transparent;
-  border: 0;
-  border-radius: 0;
-  color: var(--page-muted);
-  display: inline-flex;
+  background: #e8f2ff;
+  border: 1px solid #cfe3ff;
+  border-radius: 980px;
+  color: var(--page-accent-dark);
   font-size: var(--type-micro);
   font-weight: var(--weight-medium);
-  gap: 8px;
   line-height: var(--line-micro);
-  padding: 0;
-}
-
-.noteList li::before {
-  background: var(--page-accent);
-  border-radius: 50%;
-  content: "";
-  height: 5px;
-  width: 5px;
+  padding: 7px 10px;
 }
 
 .shotNote {
@@ -527,19 +501,11 @@
 
 @media (max-width: 1120px) {
   .shotGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .ingredientGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .shotCard,
-  .shotCard:nth-child(1),
-  .shotCard:nth-child(2),
-  .ingredientCard,
-  .ingredientCard:nth-child(3n + 1) {
-    grid-column: auto;
   }
 }
 
@@ -551,7 +517,9 @@
   }
 
   .heroOverlay {
-    background: rgba(0, 0, 0, 0.4);
+    background:
+      linear-gradient(180deg, rgba(248, 251, 252, 0.7) 0%, rgba(248, 251, 252, 0.42) 42%, rgba(248, 251, 252, 0.58) 100%),
+      linear-gradient(90deg, rgba(248, 251, 252, 0.68), rgba(248, 251, 252, 0.14));
   }
 
   .shotSection,
@@ -603,51 +571,5 @@
 
   .ingredientCard {
     padding: 24px;
-  }
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .primaryButton:hover {
-    background: var(--page-accent-dark);
-  }
-
-  .secondaryButton:hover {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: #ffffff;
-  }
-}
-
-.primaryButton:active,
-.secondaryButton:active,
-.sourceDetails summary:active {
-  transform: scale(0.97);
-}
-
-.primaryButton:focus-visible,
-.secondaryButton:focus-visible,
-.sourceDetails summary:focus-visible,
-.sourceList a:focus-visible,
-.referenceList a:focus-visible {
-  outline: 2px solid var(--page-accent);
-  outline-offset: 3px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .heroInner {
-    animation: none;
-  }
-
-  .primaryButton,
-  .secondaryButton,
-  .shotCard,
-  .shotImage img,
-  .ingredientCard {
-    transition-duration: 1ms;
-  }
-
-  .shotCard:hover,
-  .ingredientCard:hover,
-  .shotCard:hover .shotImage img {
-    transform: none;
   }
 }
