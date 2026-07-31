@@ -162,6 +162,24 @@ const lifestyleImages = [
 
 const newsItems = [
   {
+    title: "개인맞춤 영양 디스펜싱 플랫폼 ‘브링크’, CNT테크 투자 유치 확정…출시 3개월 만에 50개사 계약",
+    category: "언론 보도",
+    source: "한국목재신문",
+    date: "2026.07",
+    body: "개인맞춤 영양 추천과 무인 정밀 디스펜싱 플랫폼, 출시 3개월 내 50개사 계약 및 CNT테크 투자 유치 소식을 다룬 기사입니다.",
+    image: "/images/vrink/news/cnt-tech-investment-20260731.jpg",
+    href: "https://www.woodkorea.co.kr/news/articleView.html?idxno=90580",
+  },
+  {
+    title: "브링크, CNT테크 투자 유치···출시 3개월 만에 50개 고객사 확보",
+    category: "언론 보도",
+    source: "이넷뉴스",
+    date: "2026.07",
+    body: "CNT테크 투자 유치와 공식 출시 후 3개월 만의 50개 고객사 확보 성과를 소개한 기사입니다.",
+    image: "/images/vrink/news/cnt-tech-investment-20260731.jpg",
+    href: "https://www.enetnews.co.kr/news/articleView.html?idxno=52979",
+  },
+  {
     title: "브링크, CNT스타디움 유망 스포츠 스타트업 최종 선정",
     category: "언론 보도",
     source: "전자신문",

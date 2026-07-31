@@ -172,6 +172,24 @@ const lifestyleImages = [
 
 const newsItems = [
   {
+    title: "VRINK secures CNT Tech investment, signs 50 clients within three months of launch",
+    category: "Press",
+    source: "Korea Wood Newspaper",
+    date: "2026.07",
+    body: "Coverage of VRINK's personalized nutrition dispensing platform, early B2B traction, and investment from CNT Tech.",
+    image: "/images/vrink/news/cnt-tech-investment-20260731.jpg",
+    href: "https://www.woodkorea.co.kr/news/articleView.html?idxno=90580",
+  },
+  {
+    title: "VRINK raises investment from CNT Tech, reaches 50 clients in three months",
+    category: "Press",
+    source: "ENet News",
+    date: "2026.07",
+    body: "A report on VRINK's funding and the 50 client companies secured during the first three months after launch.",
+    image: "/images/vrink/news/cnt-tech-investment-20260731.jpg",
+    href: "https://www.enetnews.co.kr/news/articleView.html?idxno=52979",
+  },
+  {
     title: "VRINK named a final pick for CNT Stadium's promising sports startups",
     category: "Press",
     source: "The Electronic Times",
