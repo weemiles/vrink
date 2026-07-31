@@ -1210,10 +1210,6 @@
   padding-top: 0;
 }
 
-.newsListItem:last-child {
-  padding-bottom: 0;
-}
-
 .newsListLink {
   align-items: center;
   color: inherit;
