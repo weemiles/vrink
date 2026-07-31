@@ -274,10 +274,15 @@
   max-width: 780px;
 }
 
+.revealSection .sectionIntro h2 {
+  max-width: 880px;
+  text-wrap: balance;
+}
+
 .sceneGrid {
   display: grid;
   gap: 18px;
-  grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.65fr);
+  grid-template-columns: minmax(0, 1.28fr) minmax(340px, 0.72fr);
   grid-template-rows: repeat(2, minmax(0, 1fr));
   margin: 0 auto;
   max-width: 1220px;
@@ -323,11 +328,30 @@
 }
 
 .sceneCard h3 {
-  padding: 30px 32px 0;
+  max-width: 22ch;
+  text-wrap: balance;
 }
 
 .sceneCard p {
-  padding: 0 32px 34px;
+  max-width: 62ch;
+  text-wrap: pretty;
+}
+
+.sceneCopy {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+  padding: 30px 32px 34px;
+}
+
+.sceneCopy h3,
+.sceneCopy p {
+  margin: 0;
+  overflow-wrap: break-word;
+  padding: 0;
+  word-break: keep-all;
 }
 
 .sceneCard p,
@@ -1740,9 +1764,9 @@
     color: var(--page-ink);
     font-size: var(--type-feature);
     line-height: var(--line-feature);
-    margin: 0 0 10px;
-    max-width: none;
-    padding: 24px 24px 0;
+    margin: 0;
+    max-width: 22ch;
+    padding: 0;
     text-align: left;
   }
 
@@ -1751,9 +1775,15 @@
     font-size: var(--type-body);
     line-height: var(--line-body);
     margin: 0;
-    max-width: none;
-    padding: 0 24px 28px;
+    max-width: 62ch;
+    padding: 0;
     text-align: left;
+  }
+
+  .sceneCopy {
+    gap: 10px;
+    justify-content: flex-start;
+    padding: 24px 24px 28px;
   }
 
   .sceneImage {

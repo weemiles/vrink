@@ -46,7 +46,7 @@ export function VrinkHeader({ locale = "ko", variant = "default" }: VrinkHeaderP
   const headerClassName =
     variant === "overlay" ? `${styles.header} ${styles.headerOverlay}` : styles.header;
   const currentLanguage = locale === "en" ? "EN" : "KO";
-  const ctaLabel = locale === "en" ? "Get setup" : "상담받기";
+  const ctaLabel = locale === "en" ? "Plan your setup" : "상담받기";
   const ctaHref = locale === "en" ? "/en#contact" : "/#contact";
   const logoHref = locale === "en" ? "/en" : "/";
   const logoLabel = locale === "en" ? "VRINK English home" : "브링크 홈";

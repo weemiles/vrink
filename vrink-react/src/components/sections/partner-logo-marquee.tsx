@@ -104,8 +104,8 @@ const copyByLocale: Record<Locale, { eyebrow: string; title: string; description
   },
   en: {
     eyebrow: "Partner spaces",
-    title: "Spaces choosing VRINK.",
-    description: "Fitness, healthcare, and wellness spaces are building 15-second drink moments with VRINK.",
+    title: "Trusted by 50 clients within three months of launch.",
+    description: "See the fitness, healthcare, and wellness spaces already working with VRINK.",
     label: "VRINK partner and installation space logos",
   },
 };

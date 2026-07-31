@@ -19,20 +19,20 @@ import styles from "./page.module.css";
 
 const productScenes = [
   {
-    title: "태블릿에서 고르고 바로 받기",
-    body: "선택 화면과 제조부를 한 작업면에 배치해 처음 온 사람도 같은 순서로 이용합니다.",
+    title: "태블릿에서 고르고, 바로 옆에서 받기",
+    body: "태블릿에서 맛과 기능을 고르면 바로 옆 디스펜서에서 한 잔이 완성됩니다. 처음 이용해도 순서가 직관적입니다.",
     image: "/images/vrink/apple/vrink-product-angle-a.png",
     alt: "브링크 제로스테이션 상단과 태블릿 거치대",
   },
   {
-    title: "공간에 맞게 놓이는 외관",
-    body: "화이트와 메탈 중심의 절제된 디자인으로 오피스, 피트니스, 병원, 행사장에 자연스럽게 들어갑니다.",
+    title: "어떤 공간에도 자연스럽게",
+    body: "화이트와 메탈 중심의 절제된 외관으로 오피스, 피트니스, 병원, 행사장 어디에나 부담 없이 어울립니다.",
     image: "/images/vrink/apple/vrink-product-front.png",
     alt: "브링크 제로스테이션 정면",
   },
   {
-    title: "관리하기 쉬운 구조",
-    body: "음료 제조부, 배수부, 태블릿 거치부를 정리해 사용과 점검 흐름을 단순하게 만듭니다.",
+    title: "사용도, 관리도 간단하게",
+    body: "제조부와 배수부, 태블릿 거치대를 한 구조로 정리해 이용과 점검을 모두 간단하게 만들었습니다.",
     image: "/images/vrink/apple/vrink-product-top.png",
     alt: "브링크 제로스테이션 상단 구조",
   },
@@ -242,7 +242,7 @@ export default function HomePage() {
       <section id="product" className={styles.revealSection}>
         <ScrollReveal className={styles.sectionIntro}>
           <p>제품 경험</p>
-          <h2>고르고 받는 흐름을 한 작업면에 담았습니다.</h2>
+          <h2>맛과 기능을 고르면, 한 자리에서 한 잔이 완성됩니다.</h2>
         </ScrollReveal>
         <ScrollReveal className={styles.sceneGrid} stagger>
           {productScenes.map((scene) => (
@@ -250,8 +250,10 @@ export default function HomePage() {
               <div className={styles.sceneImage}>
                 <Image src={withBasePath(scene.image)} alt={scene.alt} fill sizes="(max-width: 900px) 100vw, 33vw" />
               </div>
-              <h3>{scene.title}</h3>
-              <p>{scene.body}</p>
+              <div className={styles.sceneCopy}>
+                <h3>{scene.title}</h3>
+                <p>{scene.body}</p>
+              </div>
             </article>
           ))}
         </ScrollReveal>
@@ -459,9 +461,9 @@ export default function HomePage() {
       <section id="contact" className={styles.contactSection}>
         <ScrollReveal className={styles.contactCopy}>
           <p>문의</p>
-          <h2>공간 정보와 유입경로로 구성을 받아보세요.</h2>
+          <h2>우리 공간에 맞는 도입 구성을 받아보세요.</h2>
           <span>
-            공간 유형, 예상 이용자, 도입 시기, 알게 된 경로를 남겨주시면 브링크 팀이 확인 후 연락드립니다.
+            기업·공간명, 담당자 성함, 이메일을 남겨주시면 필요한 내용을 확인해 제로스테이션 구성을 안내합니다.
           </span>
         </ScrollReveal>
         <LeadForm />

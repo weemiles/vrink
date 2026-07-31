@@ -28,7 +28,7 @@ const copyByLocale: Record<Locale, { eyebrow: string; title: string; description
   },
   en: {
     eyebrow: "In the moment",
-    title: "A cup people choose before workouts or between meetings.",
+    title: "A personalized drink for workouts, workdays, and everything in between.",
     description: "See how people choose and enjoy VRINK in the spaces where it is installed.",
   },
 };

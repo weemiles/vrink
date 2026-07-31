@@ -33,11 +33,11 @@ export function buildLeadMailtoHref(payload: LeadMailtoPayload, locale: "ko" | "
     `${locale === "en" ? "Company / Space" : "기업/공간"}: ${payload.company}`,
     `${locale === "en" ? "Name" : "담당자"}: ${payload.name}`,
     `${locale === "en" ? "Email" : "이메일"}: ${payload.email}`,
-    `${locale === "en" ? "Phone" : "연락처"}: ${payload.phone}`,
-    `${locale === "en" ? "Source" : "유입경로"}: ${getLeadSourceLabel(payload.source, locale)}`,
-    "",
-    locale === "en" ? "Message" : "상담 내용",
-    payload.message,
+    payload.phone ? `${locale === "en" ? "Phone" : "연락처"}: ${payload.phone}` : "",
+    payload.source ? `${locale === "en" ? "Source" : "유입경로"}: ${getLeadSourceLabel(payload.source, locale)}` : "",
+    ...(payload.message
+      ? ["", locale === "en" ? "Message" : "상담 내용", payload.message]
+      : []),
   ].filter(Boolean);
 
   return `mailto:${siteConfig.contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(

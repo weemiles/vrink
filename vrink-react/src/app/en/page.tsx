@@ -20,9 +20,9 @@ import { ExpertReviewMoreModal } from "../detail/expert-review-more-modal";
 import styles from "../page.module.css";
 
 export const metadata: Metadata = buildMetadata({
-  title: "15-Second Drink Station for Every Space",
+  title: "Personalized Wellness Drinks in 15 Seconds",
   description:
-    "VRINK Zero Station lets people choose functional shots, flavor, strength, and sparkling options in about 15 seconds for offices, gyms, hospitals, and events.",
+    "VRINK Zero Station prepares personalized wellness drinks in about 15 seconds for offices, gyms, healthcare spaces, and events.",
   locale: "en",
   path: "/en",
 });
@@ -226,14 +226,14 @@ export default function EnglishPage() {
       <section className={styles.hero}>
         <div className={styles.heroCopy}>
           <p>VRINK Zero Station</p>
-          <h1>A 15-second cup for your space.</h1>
+          <h1>Personalized wellness drinks, ready in 15 seconds.</h1>
           <span>
-            Combine 5 functional shots with flavor, strength, and sparkling options for offices, gyms, hospitals,
-            and events.
+            Choose your flavor, functional shot, strength, and sparkling level. VRINK prepares a personalized drink
+            in about 15 seconds—built for offices, gyms, healthcare spaces, and events.
           </span>
           <div className={styles.heroActions}>
-            <Link href="/en/product" className={styles.primaryButton}>View product</Link>
-            <Link href="/en#contact" className={styles.linkButton}>Get a setup plan</Link>
+            <Link href="/en#contact" className={styles.primaryButton}>Get a setup recommendation</Link>
+            <Link href="/en/product" className={styles.linkButton}>See the Zero Station</Link>
           </div>
         </div>
         <div className={styles.heroMedia} aria-hidden="true">
@@ -253,7 +253,7 @@ export default function EnglishPage() {
       <section id="product" className={styles.revealSection}>
         <ScrollReveal className={styles.sectionIntro}>
           <p>Product</p>
-          <h2>Choose and pour on one clear work surface.</h2>
+          <h2>Choose, customize, and dispense from one simple interface.</h2>
         </ScrollReveal>
         <ScrollReveal className={styles.sceneGrid} stagger>
           {productScenes.map((scene) => (
@@ -261,8 +261,10 @@ export default function EnglishPage() {
               <div className={styles.sceneImage}>
                 <Image src={withBasePath(scene.image)} alt={scene.alt} fill sizes="(max-width: 900px) 100vw, 33vw" />
               </div>
-              <h3>{scene.title}</h3>
-              <p>{scene.body}</p>
+              <div className={styles.sceneCopy}>
+                <h3>{scene.title}</h3>
+                <p>{scene.body}</p>
+              </div>
             </article>
           ))}
         </ScrollReveal>
@@ -277,7 +279,7 @@ export default function EnglishPage() {
       <section className={styles.darkSection}>
         <ScrollReveal className={styles.sectionIntro}>
           <p>Operations</p>
-          <h2>Installation and ingredient care run in one flow.</h2>
+          <h2>Installation, ingredient supply, and maintenance—handled in one service.</h2>
         </ScrollReveal>
         <ScrollReveal className={styles.systemGrid} stagger>
           {systemItems.map((item) => (
@@ -293,7 +295,7 @@ export default function EnglishPage() {
       <section className={styles.adminSection} aria-labelledby="admin-dashboard-title">
         <ScrollReveal className={styles.adminCopy}>
           <p>Admin dashboard</p>
-          <h2 id="admin-dashboard-title">See status, orders, and sales on one screen.</h2>
+          <h2 id="admin-dashboard-title">Monitor station status, orders, and sales from one dashboard.</h2>
           <span>
             After installation, the admin page lets you check site status, store orders, and sales flow in one place.
           </span>
@@ -334,7 +336,7 @@ export default function EnglishPage() {
           </div>
           <div className={styles.expertCopy}>
             <p>Drinks reviewed by an expert</p>
-            <h2 id="expert-review-title">A dietitian reviewed the 5 functional shots.</h2>
+            <h2 id="expert-review-title">Five functional-shot options, reviewed by a dietitian.</h2>
             <span>
               Each ingredient mix and use moment was reviewed so the drink routine for your space is easier to explain.
             </span>
@@ -352,7 +354,7 @@ export default function EnglishPage() {
       <section id="space" className={styles.useCaseSection}>
         <ScrollReveal className={styles.sectionIntro}>
           <p>Spaces</p>
-          <h2>Each space gets a clear use case.</h2>
+          <h2>Designed for the way each space operates.</h2>
         </ScrollReveal>
         <ScrollReveal className={styles.useCaseGrid} stagger>
           {useCases.map(([title, body]) => (
@@ -367,7 +369,7 @@ export default function EnglishPage() {
       <section id="welfare" className={styles.welfareSection} aria-labelledby="welfare-title">
         <ScrollReveal className={styles.welfareIntro}>
           <p>Workplace drink benefits</p>
-          <h2 id="welfare-title">Give employees drinks without stacking them in storage.</h2>
+          <h2 id="welfare-title">Offer made-to-order drinks without stocking cases of bottles and cans.</h2>
           <span>
             VRINK replaces the habit of buying bottled and canned drinks in advance with a station that makes one cup when it is needed.
           </span>
@@ -415,7 +417,7 @@ export default function EnglishPage() {
         </ScrollReveal>
         <ScrollReveal className={styles.operationCopy}>
           <p>Operations</p>
-          <h2>Manage ingredients and checks when they are needed.</h2>
+          <h2>Manage ingredient supply and routine checks when you need them.</h2>
           <span>
             We help define the routine for maintenance, ingredient supply, consumables, and support around your space.
           </span>
@@ -472,9 +474,10 @@ export default function EnglishPage() {
       <section id="contact" className={styles.contactSection}>
         <ScrollReveal className={styles.contactCopy}>
           <p>Contact</p>
-          <h2>Share setup details and source.</h2>
+          <h2>Tell us about your space.</h2>
           <span>
-            Tell us your space type, expected users, timeline, and how you found VRINK. Our team will review and follow up.
+            Leave your organization or venue, name, and work email. We’ll follow up with the right questions and
+            recommend a Zero Station setup.
           </span>
         </ScrollReveal>
         <LeadForm locale="en" />

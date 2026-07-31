@@ -39,9 +39,9 @@ const businessInfoLabels = {
 
 const footerContent = {
   ko: {
-    ctaTitle: "공간 정보와 유입경로로 도입 구성을 받아보세요",
-    ctaBody: "공간 유형, 예상 이용자, 도입 시기와 알게 된 경로를 남기면 제로스테이션 구성을 안내합니다.",
-    ctaLabel: "구성 받아보기",
+    ctaTitle: "우리 공간에 맞는 도입 구성을 받아보세요",
+    ctaBody: "기업·공간명, 담당자 성함, 이메일만 남겨주시면 필요한 내용을 확인해 제로스테이션 구성을 안내합니다.",
+    ctaLabel: "도입 구성 요청하기",
     subscribeTitle: "소식 구독",
     subscribeBody: "브링크 도입 사례와 제품 업데이트를 받아보세요.",
     subscribePlaceholder: "이메일 주소",
@@ -93,15 +93,15 @@ const footerContent = {
     ],
   },
   en: {
-    ctaTitle: "Share setup details and source",
-    ctaBody: "Tell us your space type, expected users, timeline, and how you found VRINK. We will suggest the right Zero Station setup.",
-    ctaLabel: "Get setup",
+    ctaTitle: "Tell us about your space",
+    ctaBody: "Leave your organization or venue, name, and work email. We’ll follow up and recommend the right Zero Station setup.",
+    ctaLabel: "Plan your setup",
     subscribeTitle: "Updates",
     subscribeBody: "Receive VRINK news, product updates, and installation stories.",
     subscribePlaceholder: "Email address",
     quickLinks: [
       ["About", "/en#product"],
-      ["Get setup", "/en#contact"],
+      ["Plan your setup", "/en#contact"],
       ["Issue report", "/en/inquiry"],
       ["Partnership", "/en#contact"],
       ["Support", "/en/support"],
@@ -125,7 +125,7 @@ const footerContent = {
       {
         title: "Getting Started",
         links: [
-          ["Get setup", "/en#contact"],
+          ["Plan your setup", "/en#contact"],
           ["Installation", "/en/support#install"],
           ["Rental & purchase", "/en#contact"],
         ],
