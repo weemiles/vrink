@@ -419,36 +419,40 @@ export default function HomePage() {
           <p>뉴스룸</p>
           <h2>브링크 소식을 한눈에 확인하세요.</h2>
         </ScrollReveal>
-        <ScrollReveal className={styles.newsFeature}>
-          <div className={styles.newsFeatureImage}>
-            <Image
-              src={withBasePath(newsItems[0].image)}
-              alt=""
-              fill
-              sizes="(max-width: 900px) 100vw, 50vw"
-            />
-          </div>
-          <article className={styles.newsFeatureCopy}>
-            <span>{`${newsItems[0].source} · ${newsItems[0].category} · ${newsItems[0].date}`}</span>
-            <h3>{newsItems[0].title}</h3>
-            <p>{newsItems[0].body}</p>
-            <a href={newsItems[0].href} rel="noreferrer" target="_blank">기사 보기 ›</a>
+        <ScrollReveal className={styles.newsLayout}>
+          <article className={styles.newsLead}>
+            <a className={styles.newsLeadLink} href={newsItems[0].href} rel="noreferrer" target="_blank">
+              <div className={styles.newsLeadImage}>
+                <Image
+                  src={withBasePath(newsItems[0].image)}
+                  alt=""
+                  fill
+                  sizes="(max-width: 900px) 100vw, 62vw"
+                />
+              </div>
+              <div className={styles.newsLeadCopy}>
+                <span className={styles.newsMeta}>{`${newsItems[0].source} · ${newsItems[0].category} · ${newsItems[0].date}`}</span>
+                <h3>{newsItems[0].title}</h3>
+                <span className={styles.newsCta} aria-hidden="true">기사 보기 ›</span>
+              </div>
+            </a>
           </article>
-        </ScrollReveal>
-        <ScrollReveal className={styles.newsGrid} stagger>
-          {newsItems.slice(1).map((item) => (
-            <article key={item.title} className={styles.newsCard}>
-              <div className={styles.newsCardImage}>
-                <Image src={withBasePath(item.image)} alt="" fill sizes="(max-width: 900px) 100vw, 33vw" />
-              </div>
-              <div>
-                <span>{`${item.source} · ${item.category} · ${item.date}`}</span>
-                <h3>{item.title}</h3>
-                <p>{item.body}</p>
-                <a href={item.href} rel="noreferrer" target="_blank">기사 보기 ›</a>
-              </div>
-            </article>
-          ))}
+          <div className={styles.newsList}>
+            {newsItems.slice(1).map((item) => (
+              <article key={item.title} className={styles.newsListItem}>
+                <a className={styles.newsListLink} href={item.href} rel="noreferrer" target="_blank">
+                  <div className={styles.newsListImage}>
+                    <Image src={withBasePath(item.image)} alt="" fill sizes="(max-width: 560px) 30vw, 140px" />
+                  </div>
+                  <div className={styles.newsListCopy}>
+                    <span className={styles.newsMeta}>{`${item.source} · ${item.category} · ${item.date}`}</span>
+                    <h3>{item.title}</h3>
+                    <span className={styles.newsCta} aria-hidden="true">기사 보기 ›</span>
+                  </div>
+                </a>
+              </article>
+            ))}
+          </div>
         </ScrollReveal>
       </section>
 
