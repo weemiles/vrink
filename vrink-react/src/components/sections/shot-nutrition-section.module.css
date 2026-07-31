@@ -21,6 +21,9 @@
   font-weight: var(--weight-semibold);
   line-height: var(--line-section);
   margin: 0;
+  overflow-wrap: break-word;
+  text-wrap: balance;
+  word-break: keep-all;
 }
 
 .intro p {
@@ -30,6 +33,9 @@
   line-height: var(--line-description);
   margin: 0;
   max-width: 640px;
+  overflow-wrap: break-word;
+  text-wrap: pretty;
+  word-break: keep-all;
 }
 
 .grid {
@@ -122,6 +128,9 @@
   font-weight: var(--weight-regular);
   line-height: var(--line-body);
   max-width: 260px;
+  overflow-wrap: break-word;
+  text-wrap: pretty;
+  word-break: keep-all;
 }
 
 .card em {

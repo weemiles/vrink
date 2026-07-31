@@ -9,6 +9,7 @@
   --page-muted-dark: rgba(255, 255, 255, 0.68);
   --page-hairline: rgba(0, 0, 0, 0.1);
   --page-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --page-overline-size: calc(var(--type-label) + 0.25rem);
 
   background: var(--page-gray);
   color: var(--page-ink);
@@ -114,7 +115,7 @@
 .welfareIntro p,
 .contactCopy p {
   color: var(--page-blue-dark);
-  font-size: var(--type-label);
+  font-size: var(--page-overline-size);
   font-weight: var(--weight-regular);
   line-height: var(--line-label);
   margin: 0 0 14px;
@@ -158,6 +159,9 @@
   line-height: var(--line-description);
   margin: 18px auto 0;
   max-width: 720px;
+  overflow-wrap: break-word;
+  text-wrap: pretty;
+  word-break: keep-all;
 }
 
 .heroActions {
@@ -272,6 +276,9 @@
   line-height: var(--line-section);
   margin: 0 auto;
   max-width: 780px;
+  overflow-wrap: break-word;
+  text-wrap: balance;
+  word-break: keep-all;
 }
 
 .revealSection .sectionIntro h2 {
@@ -325,11 +332,9 @@
   font-weight: var(--weight-semibold);
   line-height: var(--line-feature);
   margin: 0 0 10px;
-}
-
-.sceneCard h3 {
-  max-width: 22ch;
+  overflow-wrap: break-word;
   text-wrap: balance;
+  word-break: keep-all;
 }
 
 .sceneCard p {
@@ -366,6 +371,9 @@
   font-weight: var(--weight-regular);
   line-height: var(--line-body);
   margin: 0;
+  overflow-wrap: break-word;
+  text-wrap: pretty;
+  word-break: keep-all;
 }
 
 .usageSection {
@@ -822,7 +830,7 @@
 
 .expertCopy p {
   color: rgba(255, 255, 255, 0.88);
-  font-size: var(--type-label);
+  font-size: var(--page-overline-size);
   font-weight: var(--weight-regular);
   line-height: var(--line-label);
   margin: 0 0 14px;
@@ -1765,7 +1773,7 @@
     font-size: var(--type-feature);
     line-height: var(--line-feature);
     margin: 0;
-    max-width: 22ch;
+    max-width: none;
     padding: 0;
     text-align: left;
   }

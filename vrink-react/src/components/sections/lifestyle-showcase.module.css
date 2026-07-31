@@ -73,7 +73,7 @@
 
 .copy p {
   color: rgba(255, 255, 255, 0.88);
-  font-size: var(--type-label);
+  font-size: var(--page-overline-size, calc(var(--type-label) + 0.25rem));
   font-weight: var(--weight-regular);
   line-height: var(--line-label);
   margin: 0 0 14px;
