@@ -494,7 +494,7 @@ export default function DetailPage() {
         <Link href="#consult">견적 받기</Link>
       </div>
 
-      <VrinkFooter ctaHref="/detail#consult" />
+      <VrinkFooter ctaHref="/detail#consult" showCta={false} />
     </main>
   );
 }

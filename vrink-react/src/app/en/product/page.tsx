@@ -496,7 +496,7 @@ export default function EnglishProductPage() {
         </div>
       </section>
 
-      <VrinkFooter ctaHref="/en#contact" locale="en" />
+      <VrinkFooter ctaHref="/en#contact" locale="en" showCta={false} />
     </main>
   );
 }

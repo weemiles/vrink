@@ -483,7 +483,7 @@ export default function EnglishPage() {
         <LeadForm locale="en" />
       </section>
 
-      <VrinkFooter ctaHref="/en#contact" locale="en" />
+      <VrinkFooter ctaHref="/en#contact" locale="en" showCta={false} />
       <IntroOfferModal locale="en" />
       <CookieSettingsPopup locale="en" />
     </main>

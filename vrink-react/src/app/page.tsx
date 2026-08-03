@@ -469,7 +469,7 @@ export default function HomePage() {
         <LeadForm />
       </section>
 
-      <VrinkFooter ctaHref="/#contact" />
+      <VrinkFooter ctaHref="/#contact" showCta={false} />
       <IntroOfferModal />
       <CookieSettingsPopup />
     </main>

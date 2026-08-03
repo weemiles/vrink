@@ -499,7 +499,7 @@ export default function ProductPage() {
         </div>
       </section>
 
-      <VrinkFooter ctaHref="/support#inquiry" />
+      <VrinkFooter ctaHref="/support#inquiry" showCta={false} />
     </main>
   );
 }
