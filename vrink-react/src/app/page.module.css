@@ -1035,14 +1035,6 @@
   word-break: keep-all;
 }
 
-.welfareSpecCell strong::before {
-  align-items: center;
-  display: inline-flex;
-  flex: 0 0 auto;
-  font-weight: var(--weight-semibold);
-  justify-content: center;
-}
-
 .welfareSpecRows {
   display: grid;
   gap: 12px;
@@ -1063,7 +1055,7 @@
   background: #f4f8ff;
 }
 
-.welfareSpecCell span {
+.welfareSpecCell > span {
   color: rgba(0, 0, 0, 0.42);
   font-size: var(--type-caption);
   font-weight: var(--weight-semibold);
@@ -1072,28 +1064,31 @@
 }
 
 .welfareSpecCell strong {
-  align-items: flex-start;
+  align-items: start;
   color: var(--page-ink);
-  display: inline-flex;
+  display: grid;
   font-size: var(--type-card);
-  gap: 12px;
   font-weight: var(--weight-semibold);
+  gap: 10px;
+  grid-template-columns: 20px minmax(0, 1fr);
   line-height: var(--line-card);
   max-width: 390px;
   word-break: keep-all;
 }
 
-.welfareSpecCell strong::before {
-  color: rgba(0, 0, 0, 0.54);
-  content: "x";
-  font-size: 14px;
-  line-height: 1;
-  margin-top: 2px;
+.welfareStatusIcon {
+  display: block;
+  height: 20px;
+  margin-top: 0.16em;
+  width: 20px;
 }
 
-.welfareSpecCellAfter strong::before {
+.welfareSpecCell:not(.welfareSpecCellAfter) .welfareStatusIcon {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.welfareSpecCellAfter .welfareStatusIcon {
   color: var(--page-blue-dark);
-  content: "✓";
 }
 
 .welfareSpecCell:not(.welfareSpecCellAfter) strong {
@@ -1140,7 +1135,7 @@
 
 .operationCopy li {
   list-style: none;
-  padding-left: 22px;
+  padding-left: 18px;
   position: relative;
 }
 
@@ -1717,24 +1712,36 @@
     text-align: left;
   }
 
-  .welfareSpecCell span {
+  .welfareSpecCell > span {
     font-size: 12px;
     line-height: 1.35;
     margin-bottom: 10px;
   }
 
   .welfareSpecCell strong {
-    display: grid;
     font-size: 15px;
-    gap: 9px;
+    gap: 8px;
+    grid-template-columns: 18px minmax(0, 1fr);
     line-height: 1.45;
     max-width: none;
     width: 100%;
   }
 
-  .welfareSpecCell strong::before {
-    font-size: 12px;
-    margin-top: 0;
+  .welfareStatusIcon {
+    height: 18px;
+    margin-top: 0.12em;
+    width: 18px;
+  }
+
+  .operationCopy ul {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+    width: fit-content;
+  }
+
+  .operationCopy li {
+    text-align: left;
   }
 
   .revealSection {

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { Check, X } from "lucide-react";
 
 import { CookieSettingsPopup } from "@/components/consent/cookie-settings-popup";
 import { ActualKioskDemo } from "@/components/experience/actual-kiosk-demo";
@@ -393,11 +394,17 @@ export default function EnglishPage() {
               <div className={styles.welfareSpecRow} key={item.label}>
                 <div className={styles.welfareSpecCell}>
                   <span>{item.label}</span>
-                  <strong>{item.before}</strong>
+                  <strong>
+                    <X className={styles.welfareStatusIcon} aria-hidden="true" strokeWidth={2.5} />
+                    <span>{item.before}</span>
+                  </strong>
                 </div>
                 <div className={`${styles.welfareSpecCell} ${styles.welfareSpecCellAfter}`}>
                   <span>{item.label}</span>
-                  <strong>{item.after}</strong>
+                  <strong>
+                    <Check className={styles.welfareStatusIcon} aria-hidden="true" strokeWidth={2.5} />
+                    <span>{item.after}</span>
+                  </strong>
                 </div>
               </div>
             ))}
