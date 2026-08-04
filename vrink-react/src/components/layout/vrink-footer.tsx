@@ -55,7 +55,7 @@ const footerContent = {
       ["개인정보처리방침", "/privacy"],
       ["이용 약관", "/terms"],
     ],
-    copyright: "Copyright © 2025 VRINK. 모든 권리 보유.",
+    copyright: "Copyright © 2026 VRINK. 모든 권리 보유.",
     columns: [
       {
         title: "제품",
@@ -110,7 +110,7 @@ const footerContent = {
       ["Privacy Policy", "/en/privacy"],
       ["Terms", "/en/terms"],
     ],
-    copyright: "Copyright © 2025 VRINK. All rights reserved.",
+    copyright: "Copyright © 2026 VRINK. All rights reserved.",
     columns: [
       {
         title: "Product",
