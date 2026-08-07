@@ -8,6 +8,7 @@ import { ActualKioskDemo } from "@/components/experience/actual-kiosk-demo";
 import { LeadForm } from "@/components/forms/lead-form";
 import { VrinkFooter } from "@/components/layout/vrink-footer";
 import { VrinkHeader } from "@/components/layout/vrink-header";
+import { FloatingThinkingOrb } from "@/components/motion/floating-thinking-orb";
 import { ScrollReveal } from "@/components/motion/scroll-reveal";
 import { IntroOfferModal } from "@/components/promotions/intro-offer-modal";
 import { LifestyleShowcase } from "@/components/sections/lifestyle-showcase";
@@ -54,16 +55,22 @@ const systemItems = [
     label: "Smart station",
     title: "A 350ml cup in about 15 seconds",
     body: "The station is designed to keep waits short, even in spaces with steady daily traffic.",
+    orb: "working" as const,
+    orbDelay: 0,
   },
   {
     label: "Custom blend",
     title: "5 shots and about 1,792 combinations",
     body: "Functional shots, flavor, strength, and sparkling options help each space offer a clear drink choice.",
+    orb: "weaving" as const,
+    orbDelay: -2.4,
   },
   {
     label: "Operations",
     title: "Ingredient supply and checks together",
     body: "Stock checks, ordering guidance, and routine care are bundled so operators have fewer loose tasks.",
+    orb: "connecting" as const,
+    orbDelay: -4.8,
   },
 ];
 
@@ -277,7 +284,7 @@ export default function EnglishPage() {
         <ActualKioskDemo locale="en" variant="embedded" />
       </section>
 
-      <section className={styles.darkSection}>
+      <section id="operations" className={styles.darkSection}>
         <ScrollReveal className={styles.sectionIntro}>
           <p>Operations</p>
           <h2>Installation, ingredient supply, and maintenance—handled in one service.</h2>
@@ -285,6 +292,7 @@ export default function EnglishPage() {
         <ScrollReveal className={styles.systemGrid} stagger>
           {systemItems.map((item) => (
             <article className={styles.systemItem} key={item.title}>
+              <FloatingThinkingOrb delay={item.orbDelay} state={item.orb} />
               <span>{item.label}</span>
               <h3>{item.title}</h3>
               <p>{item.body}</p>

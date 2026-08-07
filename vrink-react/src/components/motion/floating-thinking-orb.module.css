@@ -1,0 +1,28 @@
+.orb {
+  align-items: center;
+  contain: layout paint;
+  display: flex;
+  justify-content: center;
+  min-height: 144px;
+  opacity: 0.84;
+  padding-block: 8px 32px;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .orb {
+    animation: orb-float 7s cubic-bezier(0.77, 0, 0.175, 1) infinite alternate;
+    animation-delay: var(--orb-float-delay, 0s);
+    will-change: transform;
+  }
+}
+
+@keyframes orb-float {
+  from {
+    transform: translate3d(0, 3px, 0);
+  }
+
+  to {
+    transform: translate3d(0, -7px, 0);
+  }
+}

@@ -7,6 +7,7 @@ import { ActualKioskDemo } from "@/components/experience/actual-kiosk-demo";
 import { LeadForm } from "@/components/forms/lead-form";
 import { VrinkFooter } from "@/components/layout/vrink-footer";
 import { VrinkHeader } from "@/components/layout/vrink-header";
+import { FloatingThinkingOrb } from "@/components/motion/floating-thinking-orb";
 import { ScrollReveal } from "@/components/motion/scroll-reveal";
 import { IntroOfferModal } from "@/components/promotions/intro-offer-modal";
 import { LifestyleShowcase } from "@/components/sections/lifestyle-showcase";
@@ -44,16 +45,22 @@ const systemItems = [
     label: "스마트 스테이션",
     title: "350ml 한 잔, 평균 15초",
     body: "사용자가 많은 공간에서도 짧은 대기 흐름으로 음료를 받을 수 있게 설계했습니다.",
+    orb: "working" as const,
+    orbDelay: 0,
   },
   {
     label: "맞춤 조합",
     title: "5종 기능샷과 약 1,792가지 조합",
     body: "기능샷, 맛, 농도, 탄산을 조합해 공간과 사용자 목적에 맞는 한 잔을 만듭니다.",
+    orb: "weaving" as const,
+    orbDelay: -2.4,
   },
   {
     label: "운영 관리",
     title: "원액과 점검을 함께 관리",
     body: "잔량 확인, 주문 안내, 정기 점검 흐름을 묶어 운영자가 챙길 일을 줄입니다.",
+    orb: "connecting" as const,
+    orbDelay: -4.8,
   },
 ];
 
@@ -266,7 +273,7 @@ export default function HomePage() {
         <ActualKioskDemo locale="ko" variant="embedded" />
       </section>
 
-      <section className={styles.darkSection}>
+      <section id="operations" className={styles.darkSection}>
         <ScrollReveal className={styles.sectionIntro}>
           <p>운영 구조</p>
           <h2>설치와 원액 관리까지 한 흐름으로 이어집니다.</h2>
@@ -274,6 +281,7 @@ export default function HomePage() {
         <ScrollReveal className={styles.systemGrid} stagger>
           {systemItems.map((item) => (
             <article className={styles.systemItem} key={item.title}>
+              <FloatingThinkingOrb delay={item.orbDelay} state={item.orb} />
               <span>{item.label}</span>
               <h3>{item.title}</h3>
               <p>{item.body}</p>

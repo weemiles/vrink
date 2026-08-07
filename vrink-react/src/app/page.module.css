@@ -616,6 +616,8 @@
 
 .systemItem {
   background: #1d1d1f;
+  display: flex;
+  flex-direction: column;
   min-height: 320px;
   padding: 34px;
 }
