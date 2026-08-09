@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Script from "next/script";
 import { ChevronLeft, ChevronRight, MapPin, Minus, Plus, X } from "lucide-react";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 import { withBasePath } from "@/lib/static-export";
@@ -392,6 +392,17 @@ export function LocationExplorer({ locale = "ko" }: LocationExplorerProps) {
   const mapElementRef = useRef<HTMLDivElement>(null);
   const naverMapRef = useRef<NaverMap | null>(null);
   const wheelZoomRef = useRef(0);
+  const sortedLocations = useMemo(
+    () =>
+      [...vrinkLocations].sort((firstLocation, secondLocation) =>
+        getLocationDisplay(firstLocation, locale).name.localeCompare(
+          getLocationDisplay(secondLocation, locale).name,
+          locale === "ko" ? "ko-KR" : "en-US",
+          { sensitivity: "base" },
+        ),
+      ),
+    [locale],
+  );
 
   const hoveredLocation = hoveredLocationId
     ? vrinkLocations.find((location) => location.id === hoveredLocationId) ?? null
@@ -630,31 +641,6 @@ export function LocationExplorer({ locale = "ko" }: LocationExplorerProps) {
       ) : null}
 
       <div className={styles.mapWorkspace}>
-        <aside className={styles.locationListPanel} aria-label={copy.listLabel}>
-          <div className={styles.locationListHeader}>
-            <span>{copy.listTitle}</span>
-          </div>
-          <div className={styles.locationList}>
-            {vrinkLocations.map((location) => {
-              const display = getLocationDisplay(location, locale);
-
-              return (
-                <button
-                  aria-current={selectedLocationId === location.id ? "true" : undefined}
-                  key={location.id}
-                  onClick={() => handleLocationOpen(location.id)}
-                  onMouseEnter={() => setHoveredLocationId(location.id)}
-                  onMouseLeave={() => setHoveredLocationId(null)}
-                  type="button"
-                >
-                  <span>{display.district}</span>
-                  <strong>{display.name}</strong>
-                  <small>{display.address}</small>
-                </button>
-              );
-            })}
-          </div>
-        </aside>
         <div className={styles.mapPanel}>
           {showFallbackMap ? (
             <div className={styles.fallbackMap} aria-label={copy.fallbackMapLabel}>
@@ -733,6 +719,31 @@ export function LocationExplorer({ locale = "ko" }: LocationExplorerProps) {
             </div>
           ) : null}
         </div>
+        <aside className={styles.locationListPanel} aria-label={copy.listLabel}>
+          <div className={styles.locationListHeader}>
+            <span>{copy.listTitle}</span>
+          </div>
+          <div className={styles.locationList}>
+            {sortedLocations.map((location) => {
+              const display = getLocationDisplay(location, locale);
+
+              return (
+                <button
+                  aria-current={selectedLocationId === location.id ? "true" : undefined}
+                  key={location.id}
+                  onClick={() => handleLocationOpen(location.id)}
+                  onMouseEnter={() => setHoveredLocationId(location.id)}
+                  onMouseLeave={() => setHoveredLocationId(null)}
+                  type="button"
+                >
+                  <span>{display.district}</span>
+                  <strong>{display.name}</strong>
+                  <small>{display.address}</small>
+                </button>
+              );
+            })}
+          </div>
+        </aside>
       </div>
 
       {popupLocation && typeof document !== "undefined"

@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import Script from "next/script";
 
 import { GoogleAnalytics } from "@/components/analytics/google-analytics";
+import { CookieSettingsPopup } from "@/components/consent/cookie-settings-popup";
 import { ChatbotWidget } from "@/components/consultation/chatbot-widget";
 import { buildMetadata, organizationJsonLd } from "@/lib/seo";
 
@@ -44,6 +45,7 @@ export default function RootLayout({
           }}
         />
         {children}
+        <CookieSettingsPopup />
         <ChatbotWidget />
         <GoogleAnalytics />
       </body>

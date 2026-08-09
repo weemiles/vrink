@@ -1,5 +1,6 @@
 export const CONSENT_STORAGE_KEY = "vrink-cookie-consent-v1";
 export const CONSENT_CHANGE_EVENT = "vrink:consent-change";
+export const CONSENT_OPEN_EVENT = "vrink:consent-open";
 
 export type CookiePreferences = {
   essential: boolean;

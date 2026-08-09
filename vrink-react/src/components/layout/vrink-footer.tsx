@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { CookieSettingsButton } from "@/components/consent/cookie-settings-button";
 import { siteConfig } from "@/config/site";
 import { withBasePath } from "@/lib/static-export";
 
@@ -55,6 +56,7 @@ const footerContent = {
       ["개인정보처리방침", "/privacy"],
       ["이용 약관", "/terms"],
     ],
+    cookieSettingsLabel: "쿠키 설정",
     copyright: "Copyright © 2026 VRINK. 모든 권리 보유.",
     columns: [
       {
@@ -110,6 +112,7 @@ const footerContent = {
       ["Privacy Policy", "/en/privacy"],
       ["Terms", "/en/terms"],
     ],
+    cookieSettingsLabel: "Cookie settings",
     copyright: "Copyright © 2026 VRINK. All rights reserved.",
     columns: [
       {
@@ -160,6 +163,7 @@ const footerContent = {
     subscribePlaceholder: string;
     quickLinks: Array<[label: string, href: string]>;
     legalLinks: Array<[label: string, href: string]>;
+    cookieSettingsLabel: string;
     copyright: string;
     columns: FooterColumn[];
   }
@@ -260,6 +264,10 @@ export function VrinkFooter({ ctaHref = "/#contact", locale = "ko", showCta = tr
           <FooterLink href={content.legalLinks[0][1]}>{content.legalLinks[0][0]}</FooterLink>
           <span>·</span>
           <FooterLink href={content.legalLinks[1][1]}>{content.legalLinks[1][0]}</FooterLink>
+          <span>·</span>
+          <CookieSettingsButton className={styles.footerConsentButton}>
+            {content.cookieSettingsLabel}
+          </CookieSettingsButton>
         </div>
         <dl className={styles.footerBusinessInfo}>
           {businessInfoRows.map(([label, value]) => (

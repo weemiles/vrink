@@ -1,30 +1,24 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useSyncExternalStore } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect, useState, useSyncExternalStore } from "react";
 
 import {
+  CONSENT_OPEN_EVENT,
   CONSENT_STORAGE_KEY,
+  readConsent,
+  subscribeConsent,
   writeConsent,
   type CookiePreferences,
 } from "@/lib/consent";
 
 import styles from "./cookie-settings-popup.module.css";
 
-const INTRO_OFFER_EVENT = "vrink:intro-offer-visibility";
-
 const defaultPreferences: CookiePreferences = {
   essential: true,
   analytics: false,
   marketing: false,
-};
-
-const subscribeToConsentStore = (onStoreChange: () => void) => {
-  window.addEventListener("storage", onStoreChange);
-
-  return () => {
-    window.removeEventListener("storage", onStoreChange);
-  };
 };
 
 const getConsentSnapshot = () => {
@@ -36,18 +30,6 @@ const getConsentSnapshot = () => {
 };
 
 const getServerConsentSnapshot = () => true;
-
-const subscribeToIntroOfferStore = (onStoreChange: () => void) => {
-  window.addEventListener(INTRO_OFFER_EVENT, onStoreChange);
-
-  return () => {
-    window.removeEventListener(INTRO_OFFER_EVENT, onStoreChange);
-  };
-};
-
-const getIntroOfferSnapshot = () => document.body.dataset.vrinkIntroOffer === "visible";
-
-const getServerIntroOfferSnapshot = () => false;
 
 type Locale = "ko" | "en";
 
@@ -68,6 +50,9 @@ const COPY = {
     analyticsDesc: "방문 흐름과 사용성을 이해해 서비스를 개선합니다.",
     marketingTitle: "마케팅 쿠키",
     marketingDesc: "브링크 소식과 맞춤형 안내를 제공하는 데 활용합니다.",
+    alwaysOn: "항상 사용",
+    settings: "설정",
+    closeSettings: "설정 닫기",
     essentialOnly: "필수만 허용",
     saveSelection: "선택 저장",
     allowAll: "모두 허용",
@@ -88,6 +73,9 @@ const COPY = {
     analyticsDesc: "Help us see how you use VRINK so we can make it better.",
     marketingTitle: "Marketing cookies",
     marketingDesc: "Used to share VRINK news and tips made for you.",
+    alwaysOn: "Always on",
+    settings: "Settings",
+    closeSettings: "Close settings",
     essentialOnly: "Essential only",
     saveSelection: "Save choices",
     allowAll: "Allow all",
@@ -95,28 +83,42 @@ const COPY = {
 } as const;
 
 export function CookieSettingsPopup({ locale = "ko" }: { locale?: Locale } = {}) {
-  const t = COPY[locale];
+  const pathname = usePathname();
+  const activeLocale = /(^|\/)en(?:\/|$)/.test(pathname) ? "en" : locale;
+  const t = COPY[activeLocale];
   const hasStoredConsent = useSyncExternalStore(
-    subscribeToConsentStore,
+    subscribeConsent,
     getConsentSnapshot,
     getServerConsentSnapshot,
   );
-  const isIntroOfferVisible = useSyncExternalStore(
-    subscribeToIntroOfferStore,
-    getIntroOfferSnapshot,
-    getServerIntroOfferSnapshot,
-  );
   const [isDismissed, setIsDismissed] = useState(false);
+  const [isForcedOpen, setIsForcedOpen] = useState(false);
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [preferences, setPreferences] = useState<CookiePreferences>(defaultPreferences);
-  const isCompactWithIntroOffer = isIntroOfferVisible;
-  const overlayClassName = isCompactWithIntroOffer
-    ? `${styles.overlay} ${styles.withIntroOffer}`
-    : styles.overlay;
+
+  useEffect(() => {
+    const openSettings = () => {
+      const storedConsent = readConsent();
+
+      setPreferences({
+        essential: true,
+        analytics: storedConsent?.analytics ?? false,
+        marketing: storedConsent?.marketing ?? false,
+      });
+      setIsDismissed(false);
+      setIsForcedOpen(true);
+      setIsSettingsOpen(true);
+    };
+
+    window.addEventListener(CONSENT_OPEN_EVENT, openSettings);
+    return () => window.removeEventListener(CONSENT_OPEN_EVENT, openSettings);
+  }, []);
 
   const savePreferences = (nextPreferences: CookiePreferences) => {
     // 동의값 저장 + 변경 이벤트 발행(같은 탭에서 GA가 즉시 반응하도록).
     writeConsent(nextPreferences);
     setIsDismissed(true);
+    setIsForcedOpen(false);
   };
 
   const updatePreference = (key: "analytics" | "marketing", value: boolean) => {
@@ -126,105 +128,128 @@ export function CookieSettingsPopup({ locale = "ko" }: { locale?: Locale } = {})
     }));
   };
 
-  if (hasStoredConsent || isDismissed) {
+  if ((hasStoredConsent && !isForcedOpen) || isDismissed) {
     return null;
   }
 
   return (
-    <div className={overlayClassName}>
+    <div className={styles.overlay}>
       <section
         className={styles.dialog}
         role="dialog"
-        aria-modal={!isCompactWithIntroOffer}
+        aria-modal="false"
         aria-label={t.ariaLabel}
       >
-        <div className={styles.header}>
-          <p>{t.eyebrow}</p>
-          <h2>{t.heading}</h2>
+        <div className={styles.summary}>
+          <div className={styles.copyBlock}>
+            <div className={styles.header}>
+              <p>{t.eyebrow}</p>
+              <h2>{t.heading}</h2>
+            </div>
+
+            <p className={styles.description}>
+              {t.descriptionFullPrefix}
+              <Link href={activeLocale === "en" ? "/en/privacy" : "/privacy"}>
+                {t.privacyLinkLabel}
+              </Link>
+              {t.descriptionFullSuffix}
+            </p>
+          </div>
+
+          <div className={styles.actions}>
+            <button
+              className={styles.primaryButton}
+              type="button"
+              onClick={() =>
+                savePreferences({
+                  essential: true,
+                  analytics: true,
+                  marketing: true,
+                })
+              }
+            >
+              {t.allowAll}
+            </button>
+            <button
+              className={styles.secondaryButton}
+              type="button"
+              onClick={() => savePreferences(defaultPreferences)}
+            >
+              {t.essentialOnly}
+            </button>
+            <button
+              aria-expanded={isSettingsOpen}
+              className={styles.settingsButton}
+              type="button"
+              onClick={() => setIsSettingsOpen((current) => !current)}
+            >
+              {isSettingsOpen ? t.closeSettings : t.settings}
+            </button>
+          </div>
         </div>
 
-        <p className={styles.description}>
-          {isCompactWithIntroOffer ? (
-            <>{t.descriptionCompact}</>
-          ) : (
-            <>
-              {t.descriptionFullPrefix}
-              <Link href={locale === "en" ? "/en/privacy" : "/privacy"}>{t.privacyLinkLabel}</Link>
-              {t.descriptionFullSuffix}
-            </>
-          )}
-        </p>
-
-        {!isCompactWithIntroOffer ? (
+        {isSettingsOpen ? (
           <div className={styles.optionList}>
-            <label className={styles.option}>
+            <div className={styles.option}>
               <span>
                 <strong>{t.essentialTitle}</strong>
                 <small>{t.essentialDesc}</small>
               </span>
-              <input checked disabled type="checkbox" />
-              <span className={styles.switch} aria-hidden="true" />
-            </label>
+              <button
+                aria-checked="true"
+                aria-label={`${t.essentialTitle}: ${t.alwaysOn}`}
+                className={styles.switchControl}
+                disabled
+                role="switch"
+                type="button"
+              >
+                <span className={styles.switchThumb} />
+              </button>
+            </div>
 
-            <label className={styles.option}>
+            <div className={styles.option}>
               <span>
                 <strong>{t.analyticsTitle}</strong>
                 <small>{t.analyticsDesc}</small>
               </span>
-              <input
-                checked={preferences.analytics}
-                type="checkbox"
-                onChange={(event) => updatePreference("analytics", event.target.checked)}
-              />
-              <span className={styles.switch} aria-hidden="true" />
-            </label>
+              <button
+                aria-checked={preferences.analytics}
+                aria-label={t.analyticsTitle}
+                className={styles.switchControl}
+                onClick={() => updatePreference("analytics", !preferences.analytics)}
+                role="switch"
+                type="button"
+              >
+                <span className={styles.switchThumb} />
+              </button>
+            </div>
 
-            <label className={styles.option}>
+            <div className={styles.option}>
               <span>
                 <strong>{t.marketingTitle}</strong>
                 <small>{t.marketingDesc}</small>
               </span>
-              <input
-                checked={preferences.marketing}
-                type="checkbox"
-                onChange={(event) => updatePreference("marketing", event.target.checked)}
-              />
-              <span className={styles.switch} aria-hidden="true" />
-            </label>
-          </div>
-        ) : null}
+              <button
+                aria-checked={preferences.marketing}
+                aria-label={t.marketingTitle}
+                className={styles.switchControl}
+                onClick={() => updatePreference("marketing", !preferences.marketing)}
+                role="switch"
+                type="button"
+              >
+                <span className={styles.switchThumb} />
+              </button>
+            </div>
 
-        <div className={styles.actions}>
-          <button
-            className={styles.secondaryButton}
-            type="button"
-            onClick={() => savePreferences(defaultPreferences)}
-          >
-            {t.essentialOnly}
-          </button>
-          {!isCompactWithIntroOffer ? (
             <button
-              className={styles.outlineButton}
+              className={styles.saveButton}
               type="button"
               onClick={() => savePreferences(preferences)}
             >
               {t.saveSelection}
             </button>
-          ) : null}
-          <button
-            className={styles.primaryButton}
-            type="button"
-            onClick={() =>
-              savePreferences({
-                essential: true,
-                analytics: true,
-                marketing: true,
-              })
-            }
-          >
-            {t.allowAll}
-          </button>
-        </div>
+          </div>
+        ) : null}
       </section>
     </div>
   );

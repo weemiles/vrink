@@ -83,6 +83,7 @@
 .footerQuickLinks a,
 .footerSocial a,
 .footerLegal a,
+.footerConsentButton,
 .footerLegal p,
 .footerLegal span,
 .footerBusinessInfo dt,
@@ -100,6 +101,23 @@
 .footerSocial a:hover,
 .footerLegal a:hover {
   color: #1d1d1f;
+}
+
+.footerConsentButton {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0;
+}
+
+.footerConsentButton:hover {
+  color: #1d1d1f;
+}
+
+.footerConsentButton:focus-visible {
+  outline: 2px solid rgba(0, 113, 227, 0.34);
+  outline-offset: 3px;
 }
 
 .footerSubscribe form {

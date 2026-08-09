@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Check, X } from "lucide-react";
 
-import { CookieSettingsPopup } from "@/components/consent/cookie-settings-popup";
 import { ActualKioskDemo } from "@/components/experience/actual-kiosk-demo";
 import { LeadForm } from "@/components/forms/lead-form";
 import { VrinkFooter } from "@/components/layout/vrink-footer";
@@ -498,7 +497,6 @@ export default function EnglishPage() {
       </section>
 
       <VrinkFooter ctaHref="/en#contact" locale="en" showCta={false} />
-      <CookieSettingsPopup locale="en" />
     </main>
   );
 }

@@ -182,10 +182,10 @@
 }
 
 .mapWorkspace {
-  align-items: start;
+  align-items: stretch;
   display: grid;
   gap: 20px;
-  grid-template-columns: minmax(260px, 320px) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 340px);
   min-width: 0;
 }
 
@@ -455,10 +455,14 @@
 }
 
 .locationListPanel {
-  background: transparent;
+  background: rgba(255, 255, 255, 0.82);
   border: 0;
+  display: flex;
+  flex-direction: column;
+  height: 590px;
   min-width: 0;
-  padding: 0;
+  overflow: hidden;
+  padding: 18px 14px 14px;
 }
 
 .locationListHeader {
@@ -466,8 +470,9 @@
   display: flex;
   gap: 12px;
   justify-content: space-between;
-  margin-bottom: 12px;
-  padding-bottom: 14px;
+  flex: 0 0 auto;
+  margin: 0 4px 12px;
+  padding: 0 0 14px;
 }
 
 .locationListHeader span {
@@ -589,7 +594,25 @@
 
 .locationList {
   display: grid;
+  flex: 1 1 auto;
   gap: 8px;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 4px;
+  scrollbar-gutter: stable;
+}
+
+.locationList::-webkit-scrollbar {
+  width: 6px;
+}
+
+.locationList::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.16);
+  border-radius: 999px;
+}
+
+.locationList::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 .locationList button {
@@ -949,7 +972,8 @@
   }
 
   .locationListPanel {
-    padding: 0;
+    height: min(520px, 68svh);
+    padding: 16px 12px 12px;
   }
 
   .locationList {
