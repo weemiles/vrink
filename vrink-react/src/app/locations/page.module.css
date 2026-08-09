@@ -517,8 +517,7 @@
   object-fit: cover;
 }
 
-.selectedLocation > span:not(.selectedPhoto),
-.locationList button > span {
+.selectedLocation > span:not(.selectedPhoto) {
   color: var(--locations-blue-dark);
   display: block;
   font-size: var(--type-nano);
@@ -795,31 +794,43 @@
   border-radius: 999px;
   bottom: 12px;
   display: flex;
-  gap: 7px;
+  gap: 0;
   left: 50%;
-  padding: 7px 9px;
+  padding: 4px 6px;
   position: absolute;
   transform: translateX(-50%);
   z-index: 3;
 }
 
 .carouselDots button {
-  background: rgba(255, 255, 255, 0.56);
+  background: transparent;
   border: 0;
-  border-radius: 999px;
+  border-radius: 50%;
   cursor: pointer;
-  height: 6px;
+  height: 24px;
   padding: 0;
-  transform-origin: center;
+  position: relative;
+  width: 24px;
+}
+
+.carouselDots button::before {
+  background: rgba(255, 255, 255, 0.56);
+  border-radius: 50%;
+  content: "";
+  height: 7px;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0.86);
   transition:
     background-color 160ms ease,
     transform 160ms cubic-bezier(0.23, 1, 0.32, 1);
-  width: 6px;
+  width: 7px;
 }
 
-.carouselDots button[aria-pressed="true"] {
+.carouselDots button[aria-pressed="true"]::before {
   background: #ffffff;
-  transform: scaleX(3.67);
+  transform: translate(-50%, -50%) scale(1.15);
 }
 
 .locationPopupCopy dl {

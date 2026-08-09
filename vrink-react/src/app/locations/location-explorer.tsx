@@ -736,7 +736,6 @@ export function LocationExplorer({ locale = "ko" }: LocationExplorerProps) {
                   onMouseLeave={() => setHoveredLocationId(null)}
                   type="button"
                 >
-                  <span>{display.district}</span>
                   <strong>{display.name}</strong>
                   <small>{display.address}</small>
                 </button>
