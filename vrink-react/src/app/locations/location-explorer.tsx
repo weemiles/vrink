@@ -233,6 +233,31 @@ const englishLocationDisplay: Record<string, LocationDisplay> = {
     district: "Gil-dong",
     address: "B1-B2, 1457 Yangjae-daero, Gangdong-gu, Seoul",
   },
+  "star-gym-23-cheongdam": {
+    name: "Star Gym 23",
+    district: "Cheongdam-dong",
+    address: "4F-5F Pungyang Building, 722 Yeongdong-daero, Gangnam-gu, Seoul",
+  },
+  "fitness-m-mapo": {
+    name: "Fitness M Mapo",
+    district: "Mapo",
+    address: "B1 Hanwha Obelisk, 33 Mapo-daero, Mapo-gu, Seoul",
+  },
+  "mansumugang-health-andong": {
+    name: "Mansumugang Fitness",
+    district: "Yongsang-dong",
+    address: "28 Gilju 1-gil, Andong-si, Gyeongsangbuk-do",
+  },
+  "gym-for-you-yullyang": {
+    name: "Gym For You",
+    district: "Yullyang-dong",
+    address: "2F Seongil Building, 8-2 Yulbong-ro 176beon-gil, Cheongwon-gu, Cheongju-si",
+  },
+  "aone-gym-dongtan-station": {
+    name: "A-One Gym Dongtan Station",
+    district: "Dongtan Station",
+    address: "6F 602, 124 Dongtanyeok-ro, Dongtan-gu, Hwaseong-si, Gyeonggi-do",
+  },
 };
 
 function getLocationDisplay(

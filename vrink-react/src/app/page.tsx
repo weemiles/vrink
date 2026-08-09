@@ -9,7 +9,6 @@ import { VrinkFooter } from "@/components/layout/vrink-footer";
 import { VrinkHeader } from "@/components/layout/vrink-header";
 import { FloatingThinkingOrb } from "@/components/motion/floating-thinking-orb";
 import { ScrollReveal } from "@/components/motion/scroll-reveal";
-import { IntroOfferModal } from "@/components/promotions/intro-offer-modal";
 import { LifestyleShowcase } from "@/components/sections/lifestyle-showcase";
 import { PartnerLogoMarquee } from "@/components/sections/partner-logo-marquee";
 import { ShotNutritionSection } from "@/components/sections/shot-nutrition-section";
@@ -485,7 +484,6 @@ export default function HomePage() {
       </section>
 
       <VrinkFooter ctaHref="/#contact" showCta={false} />
-      <IntroOfferModal />
       <CookieSettingsPopup />
     </main>
   );
