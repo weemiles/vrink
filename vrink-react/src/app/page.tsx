@@ -44,21 +44,21 @@ const systemItems = [
     label: "스마트 스테이션",
     title: "350ml 한 잔, 평균 15초",
     body: "사용자가 많은 공간에서도 짧은 대기 흐름으로 음료를 받을 수 있게 설계했습니다.",
-    orb: "working" as const,
+    orb: "solving" as const,
     orbDelay: 0,
   },
   {
     label: "맞춤 조합",
     title: "5종 기능샷과 약 1,792가지 조합",
     body: "기능샷, 맛, 농도, 탄산을 조합해 공간과 사용자 목적에 맞는 한 잔을 만듭니다.",
-    orb: "weaving" as const,
+    orb: "composing" as const,
     orbDelay: -2.4,
   },
   {
     label: "운영 관리",
     title: "원액과 점검을 함께 관리",
     body: "잔량 확인, 주문 안내, 정기 점검 흐름을 묶어 운영자가 챙길 일을 줄입니다.",
-    orb: "connecting" as const,
+    orb: "shaping" as const,
     orbDelay: -4.8,
   },
 ];
@@ -68,27 +68,47 @@ const adminScreenshots = [
     title: "실시간 운영 대시보드",
     body: "회원, 주문, 매출, 이슈 현황을 한 화면에서 확인합니다.",
     image: "/images/vrink/admin/dashboard-masked.png",
-    alt: "지점명이 가려진 브링크 관리자 대시보드 화면",
+    alt: "지점 정보가 가려진 브링크 관리자 대시보드 화면",
   },
   {
     title: "자사몰 주문 관리",
     body: "운영 소모품 주문과 배송 흐름을 관리자 화면에서 이어갑니다.",
     image: "/images/vrink/admin/own-mall-masked.png",
-    alt: "지점명이 가려진 브링크 관리자 자사몰 화면",
+    alt: "배송지 정보가 가려진 브링크 관리자 자사몰 화면",
   },
   {
     title: "매출 분석",
     body: "기간별 매출, 옵션 비중, 시간대별 주문 흐름을 비교합니다.",
     image: "/images/vrink/admin/sales-masked.png",
-    alt: "지점명이 가려진 브링크 관리자 매출 분석 화면",
+    alt: "지점 정보가 가려진 브링크 관리자 매출 분석 화면",
   },
 ];
 
 const useCases = [
-  ["피트니스", "운동 전후에 바로 고르는 기능샷 루틴"],
-  ["오피스", "직원과 방문객이 함께 쓰는 상시 음료 스테이션"],
-  ["병원·웰니스", "대기 시간에 가볍게 고르는 제로 당류 음료 옵션"],
-  ["이벤트·팝업", "방문자가 직접 고르고 마시는 체험 접점"],
+  {
+    title: "피트니스",
+    body: "운동 전후에 바로 고르는 기능샷 루틴",
+    image: "/images/vrink/use-cases/fitness.jpg",
+    alt: "운동 기구가 배치된 현대적인 피트니스 공간",
+  },
+  {
+    title: "오피스",
+    body: "직원과 방문객이 함께 쓰는 상시 음료 스테이션",
+    image: "/images/vrink/use-cases/office.jpg",
+    alt: "자연광이 들어오는 현대적인 오피스 회의 공간",
+  },
+  {
+    title: "병원·웰니스",
+    body: "대기 시간에 가볍게 고르는 제로 당류 음료 옵션",
+    image: "/images/vrink/use-cases/wellness.jpg",
+    alt: "차분한 조명과 식물이 어우러진 웰니스 스튜디오",
+  },
+  {
+    title: "이벤트·팝업",
+    body: "방문자가 직접 고르고 마시는 체험 접점",
+    image: "/images/vrink/use-cases/event.jpg",
+    alt: "여러 방문객이 모인 넓은 이벤트 행사장 로비",
+  },
 ];
 
 const welfareComparisons = [
@@ -289,7 +309,7 @@ export default function HomePage() {
         </ScrollReveal>
       </section>
 
-      <section className={styles.adminSection} aria-labelledby="admin-dashboard-title">
+      <section id="admin" className={styles.adminSection} aria-labelledby="admin-dashboard-title">
         <ScrollReveal className={styles.adminCopy}>
           <p>관리자 대시보드</p>
           <h2 id="admin-dashboard-title">매장 상태, 주문, 매출을 한 화면에서 봅니다.</h2>
@@ -298,11 +318,17 @@ export default function HomePage() {
           </span>
         </ScrollReveal>
 
-        <ScrollReveal className={styles.adminShowcase} aria-label="브링크 관리자 화면 스크린샷" stagger>
+        <ScrollReveal className={styles.adminShowcase} aria-label="정보가 가려진 브링크 관리자 화면 스크린샷" stagger>
           {adminScreenshots.map((item, index) => (
             <figure className={index === 0 ? styles.adminScreenshotPrimary : styles.adminScreenshot} key={item.title}>
               <div className={styles.adminScreenshotImage}>
-                <Image src={withBasePath(item.image)} alt={item.alt} fill sizes="(max-width: 720px) 78vw, 31vw" />
+                <Image
+                  src={withBasePath(item.image)}
+                  alt={item.alt}
+                  fill
+                  sizes="(max-width: 720px) 92vw, 62vw"
+                  unoptimized
+                />
               </div>
               <figcaption>
                 <h3>{item.title}</h3>
@@ -354,10 +380,20 @@ export default function HomePage() {
           <h2>공간별 쓰임을 분명하게 나눴습니다.</h2>
         </ScrollReveal>
         <ScrollReveal className={styles.useCaseGrid} stagger>
-          {useCases.map(([title, body]) => (
-            <article key={title}>
-              <h3>{title}</h3>
-              <p>{body}</p>
+          {useCases.map((useCase) => (
+            <article key={useCase.title}>
+              <div className={styles.useCaseImage}>
+                <Image
+                  src={withBasePath(useCase.image)}
+                  alt={useCase.alt}
+                  fill
+                  sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 25vw"
+                />
+              </div>
+              <div className={styles.useCaseCopy}>
+                <h3>{useCase.title}</h3>
+                <p>{useCase.body}</p>
+              </div>
             </article>
           ))}
         </ScrollReveal>

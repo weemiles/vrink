@@ -618,7 +618,7 @@
   background: #1d1d1f;
   display: flex;
   flex-direction: column;
-  min-height: 320px;
+  min-height: 382px;
   padding: 34px;
 }
 
@@ -711,6 +711,7 @@
 }
 
 .adminScreenshotImage img {
+  image-rendering: auto;
   object-fit: cover;
   object-position: top left;
 }
@@ -940,6 +941,7 @@
 }
 
 .useCaseGrid {
+  background: var(--surface-card);
   display: grid;
   border-bottom: 1px solid var(--page-hairline);
   border-top: 1px solid var(--page-hairline);
@@ -950,10 +952,8 @@
 }
 
 .useCaseGrid article {
-  background: transparent;
   border-right: 1px solid var(--page-hairline);
-  min-height: 220px;
-  padding: 30px 26px 36px;
+  min-width: 0;
 }
 
 .useCaseGrid article:last-child {
@@ -964,6 +964,22 @@
   font-size: var(--type-card);
   font-weight: var(--weight-semibold);
   line-height: var(--line-card);
+}
+
+.useCaseImage {
+  aspect-ratio: 4 / 3;
+  background: var(--page-hairline);
+  overflow: hidden;
+  position: relative;
+}
+
+.useCaseImage img {
+  object-fit: cover;
+}
+
+.useCaseCopy {
+  min-height: 156px;
+  padding: 26px 26px 34px;
 }
 
 .welfareSection {
@@ -1495,7 +1511,7 @@
   }
 
   .systemItem {
-    min-height: 220px;
+    min-height: 330px;
   }
 
   .usageIntro {
@@ -1670,7 +1686,6 @@
   .sceneCard,
   .usageStep,
   .blendSteps article,
-  .useCaseGrid article,
   .systemItem {
     padding: 24px;
   }
@@ -1831,6 +1846,15 @@
   .useCaseGrid article:nth-child(2) {
     border-bottom: 1px solid var(--page-hairline);
     border-right: 0;
+  }
+
+  .useCaseGrid article:last-child {
+    border-bottom: 0;
+  }
+
+  .useCaseCopy {
+    min-height: 0;
+    padding: 24px 24px 30px;
   }
 
   .usageSection {

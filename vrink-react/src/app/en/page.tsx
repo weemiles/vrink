@@ -54,21 +54,21 @@ const systemItems = [
     label: "Smart station",
     title: "A 350ml cup in about 15 seconds",
     body: "The station is designed to keep waits short, even in spaces with steady daily traffic.",
-    orb: "working" as const,
+    orb: "solving" as const,
     orbDelay: 0,
   },
   {
     label: "Custom blend",
     title: "5 shots and about 1,792 combinations",
     body: "Functional shots, flavor, strength, and sparkling options help each space offer a clear drink choice.",
-    orb: "weaving" as const,
+    orb: "composing" as const,
     orbDelay: -2.4,
   },
   {
     label: "Operations",
     title: "Ingredient supply and checks together",
     body: "Stock checks, ordering guidance, and routine care are bundled so operators have fewer loose tasks.",
-    orb: "connecting" as const,
+    orb: "shaping" as const,
     orbDelay: -4.8,
   },
 ];
@@ -78,27 +78,47 @@ const adminScreenshots = [
     title: "Live operations dashboard",
     body: "See members, orders, sales, and issues on a single screen.",
     image: "/images/vrink/admin/dashboard-masked.png",
-    alt: "VRINK admin dashboard with the branch name masked",
+    alt: "VRINK admin dashboard with branch details masked",
   },
   {
     title: "Store order management",
     body: "Order supplies and follow shipping right from the admin page.",
     image: "/images/vrink/admin/own-mall-masked.png",
-    alt: "VRINK admin store ordering screen with the branch name masked",
+    alt: "VRINK admin store screen with delivery details masked",
   },
   {
     title: "Sales analytics",
     body: "Compare sales by period, option mix, and order flow across the day.",
     image: "/images/vrink/admin/sales-masked.png",
-    alt: "VRINK admin sales analytics screen with the branch name masked",
+    alt: "VRINK admin sales analytics screen with branch details masked",
   },
 ];
 
 const useCases = [
-  ["Fitness", "Functional shot routines before and after workouts."],
-  ["Office", "An always-on drink station for teams and visitors."],
-  ["Healthcare & wellness", "A zero-sugar drink option for waiting and wellness spaces."],
-  ["Events & pop-ups", "A hands-on drink moment visitors can choose themselves."],
+  {
+    title: "Fitness",
+    body: "Functional shot routines before and after workouts.",
+    image: "/images/vrink/use-cases/fitness.jpg",
+    alt: "A modern fitness space with strength-training equipment",
+  },
+  {
+    title: "Office",
+    body: "An always-on drink station for teams and visitors.",
+    image: "/images/vrink/use-cases/office.jpg",
+    alt: "A modern office meeting space filled with natural light",
+  },
+  {
+    title: "Healthcare & wellness",
+    body: "A zero-sugar drink option for waiting and wellness spaces.",
+    image: "/images/vrink/use-cases/wellness.jpg",
+    alt: "A calm wellness studio with soft lighting and greenery",
+  },
+  {
+    title: "Events & pop-ups",
+    body: "A hands-on drink moment visitors can choose themselves.",
+    image: "/images/vrink/use-cases/event.jpg",
+    alt: "Visitors gathering in a spacious event lobby",
+  },
 ];
 
 const welfareComparisons = [
@@ -300,7 +320,7 @@ export default function EnglishPage() {
         </ScrollReveal>
       </section>
 
-      <section className={styles.adminSection} aria-labelledby="admin-dashboard-title">
+      <section id="admin" className={styles.adminSection} aria-labelledby="admin-dashboard-title">
         <ScrollReveal className={styles.adminCopy}>
           <p>Admin dashboard</p>
           <h2 id="admin-dashboard-title">Monitor station status, orders, and sales from one dashboard.</h2>
@@ -309,11 +329,17 @@ export default function EnglishPage() {
           </span>
         </ScrollReveal>
 
-        <ScrollReveal className={styles.adminShowcase} aria-label="VRINK admin screenshots" stagger>
+        <ScrollReveal className={styles.adminShowcase} aria-label="VRINK admin screenshots with identifying details masked" stagger>
           {adminScreenshots.map((item, index) => (
             <figure className={index === 0 ? styles.adminScreenshotPrimary : styles.adminScreenshot} key={item.title}>
               <div className={styles.adminScreenshotImage}>
-                <Image src={withBasePath(item.image)} alt={item.alt} fill sizes="(max-width: 720px) 78vw, 31vw" />
+                <Image
+                  src={withBasePath(item.image)}
+                  alt={item.alt}
+                  fill
+                  sizes="(max-width: 720px) 92vw, 62vw"
+                  unoptimized
+                />
               </div>
               <figcaption>
                 <h3>{item.title}</h3>
@@ -367,10 +393,20 @@ export default function EnglishPage() {
           <h2>Designed for the way each space operates.</h2>
         </ScrollReveal>
         <ScrollReveal className={styles.useCaseGrid} stagger>
-          {useCases.map(([title, body]) => (
-            <article key={title}>
-              <h3>{title}</h3>
-              <p>{body}</p>
+          {useCases.map((useCase) => (
+            <article key={useCase.title}>
+              <div className={styles.useCaseImage}>
+                <Image
+                  src={withBasePath(useCase.image)}
+                  alt={useCase.alt}
+                  fill
+                  sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 25vw"
+                />
+              </div>
+              <div className={styles.useCaseCopy}>
+                <h3>{useCase.title}</h3>
+                <p>{useCase.body}</p>
+              </div>
             </article>
           ))}
         </ScrollReveal>
