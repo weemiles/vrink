@@ -1,0 +1,164 @@
+.section {
+  background: #fff;
+}
+
+.scene {
+  height: 160svh;
+  position: relative;
+}
+
+.stickyScene {
+  display: grid;
+  height: 100svh;
+  overflow: hidden;
+  place-items: center;
+  position: sticky;
+  top: 0;
+}
+
+.frame,
+.imageLayer {
+  inset: 0;
+  position: absolute;
+}
+
+.frame {
+  overflow: hidden;
+  will-change: clip-path;
+}
+
+.imageLayer {
+  transform-origin: center;
+  will-change: transform;
+}
+
+.image {
+  object-fit: cover;
+}
+
+.productionScene .image {
+  object-position: center 48%;
+}
+
+.reviewScene .image {
+  object-position: center 46%;
+}
+
+.copyShell {
+  box-sizing: border-box;
+  display: grid;
+  inset: 0;
+  padding: clamp(48px, 7vw, 96px) var(--layout-page-gutter);
+  place-items: center;
+  pointer-events: none;
+  position: absolute;
+  text-align: center;
+  width: min(100%, var(--layout-container-max));
+  margin-inline: auto;
+  z-index: 2;
+}
+
+.copy {
+  color: #fff;
+  max-width: 760px;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.9), 0 4px 30px rgba(0, 0, 0, 0.68);
+}
+
+.label {
+  color: #fff;
+  font-size: var(--type-description);
+  font-weight: var(--weight-regular);
+  line-height: var(--line-description);
+  margin: 0 0 16px;
+}
+
+.copy h3 {
+  color: #fff;
+  font-size: var(--type-display);
+  font-weight: var(--weight-semibold);
+  line-height: var(--line-display);
+  margin: 0;
+  max-width: 18em;
+  margin-inline: auto;
+  text-wrap: balance;
+  word-break: keep-all;
+}
+
+.body {
+  color: #fff;
+  font-size: var(--type-description);
+  font-weight: var(--weight-regular);
+  line-height: 1.6;
+  margin: 22px 0 0;
+  max-width: 42em;
+  margin-inline: auto;
+  text-wrap: pretty;
+  word-break: keep-all;
+}
+
+.visuallyHidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+@media (max-width: 720px) {
+  .scene {
+    height: 140svh;
+  }
+
+  .productionScene .image {
+    object-position: 64% center;
+  }
+
+  .reviewScene .image {
+    object-position: 45% center;
+  }
+
+  .copyShell {
+    padding: 48px 22px;
+  }
+
+  .copy {
+    max-width: 340px;
+  }
+
+  .copy h3 {
+    font-size: var(--type-feature);
+    line-height: var(--line-feature);
+    max-width: 13em;
+  }
+
+  .body {
+    margin-top: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene {
+    height: 100svh;
+    min-height: 620px;
+  }
+
+  .stickyScene {
+    height: 100%;
+    position: relative;
+  }
+
+  .frame {
+    clip-path: none !important;
+    will-change: auto;
+  }
+
+  .imageLayer {
+    transform: none !important;
+    will-change: auto;
+  }
+}

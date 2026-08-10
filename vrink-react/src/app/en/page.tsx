@@ -10,6 +10,7 @@ import { VrinkHeader } from "@/components/layout/vrink-header";
 import { FloatingThinkingOrb } from "@/components/motion/floating-thinking-orb";
 import { ScrollReveal } from "@/components/motion/scroll-reveal";
 import { LifestyleShowcase } from "@/components/sections/lifestyle-showcase";
+import { ManufacturingStory } from "@/components/sections/manufacturing-story";
 import { PartnerLogoMarquee } from "@/components/sections/partner-logo-marquee";
 import { ShotNutritionSection } from "@/components/sections/shot-nutrition-section";
 import { withBasePath } from "@/lib/static-export";
@@ -327,6 +328,8 @@ export default function EnglishPage() {
           ))}
         </div>
       </section>
+
+      <ManufacturingStory locale="en" />
 
       <section id="blend" className={styles.blendSection}>
         <ShotNutritionSection locale="en" />
