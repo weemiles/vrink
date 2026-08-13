@@ -36,7 +36,7 @@ type VrinkHeaderProps = {
   variant?: "default" | "overlay";
 };
 
-export function VrinkHeader({ locale = "ko", variant = "default" }: VrinkHeaderProps) {
+export function VrinkHeader({ locale = "ko", variant = "overlay" }: VrinkHeaderProps) {
   const [languageOpen, setLanguageOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const languageRef = useRef<HTMLDivElement>(null);
