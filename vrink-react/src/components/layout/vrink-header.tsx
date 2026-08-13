@@ -101,7 +101,6 @@ export function VrinkHeader({ locale = "ko", variant = "default" }: VrinkHeaderP
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
         setLanguageOpen(false);
-        setMobileMenuOpen(false);
       }
     }
 
