@@ -12,7 +12,6 @@ import styles from "./vrink-header.module.css";
 const navItems = {
   ko: [
     { label: "제품", href: "/product" },
-    { label: "라이트 예정", href: "/business", disabled: true },
     { label: "원료소개", href: "/ingredients" },
     { label: "도입 지점", href: "/locations" },
     { label: "소식", href: "/#news" },
@@ -20,7 +19,6 @@ const navItems = {
   ],
   en: [
     { label: "Product", href: "/en/product" },
-    { label: "Light Soon", href: "/en/business", disabled: true },
     { label: "Ingredients", href: "/en/ingredients" },
     { label: "Locations", href: "/en/locations" },
     { label: "News", href: "/en#news" },
@@ -114,32 +112,56 @@ export function VrinkHeader({ locale = "ko", variant = "default" }: VrinkHeaderP
     };
   }, []);
 
+  const menuButton = (
+    <button
+      type="button"
+      className={styles.menuButton}
+      aria-controls="vrink-mobile-menu"
+      aria-expanded={mobileMenuOpen}
+      aria-label={menuLabel}
+      onClick={() => setMobileMenuOpen((open) => !open)}
+    >
+      {mobileMenuOpen ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
+    </button>
+  );
+
+  const logo = (
+    <Link
+      href={logoHref}
+      className={styles.logo}
+      aria-label={logoLabel}
+      onClick={() => setMobileMenuOpen(false)}
+    >
+      <span className={styles.logoMark} aria-hidden="true">
+        <Image
+          src={withBasePath("/images/vrink/apple/vrink-logo.svg")}
+          alt=""
+          width={140}
+          height={40}
+          priority
+        />
+      </span>
+    </Link>
+  );
+
   return (
     <header className={headerClassName}>
-      <button
-        type="button"
-        className={styles.menuButton}
-        aria-controls="vrink-mobile-menu"
-        aria-expanded={mobileMenuOpen}
-        aria-label={menuLabel}
-        onClick={() => setMobileMenuOpen((open) => !open)}
-      >
-        {mobileMenuOpen ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
-      </button>
-      <Link href={logoHref} className={styles.logo} aria-label={logoLabel} onClick={() => setMobileMenuOpen(false)}>
-        <Image src={withBasePath("/images/vrink/apple/vrink-logo.svg")} alt="" width={140} height={40} priority />
-      </Link>
+      {variant === "overlay" ? (
+        <>
+          {logo}
+          {menuButton}
+        </>
+      ) : (
+        <>
+          {menuButton}
+          {logo}
+        </>
+      )}
       <nav className={styles.nav} aria-label={navLabel}>
         {navItems[locale].map((item) => (
-          item.disabled ? (
-            <span className={styles.navDisabled} aria-disabled="true" key={item.label}>
-              {item.label}
-            </span>
-          ) : (
-            <Link href={item.href} key={item.label}>
-              {item.label}
-            </Link>
-          )
+          <Link href={item.href} key={item.label}>
+            {item.label}
+          </Link>
         ))}
       </nav>
       <div className={styles.actions}>
@@ -182,15 +204,9 @@ export function VrinkHeader({ locale = "ko", variant = "default" }: VrinkHeaderP
       >
         <nav className={styles.mobileNav} aria-label={mobileNavLabel}>
           {navItems[locale].map((item) => (
-            item.disabled ? (
-              <span className={styles.mobileNavDisabled} aria-disabled="true" key={item.label}>
-                {item.label}
-              </span>
-            ) : (
-              <Link href={item.href} key={item.label} onClick={() => setMobileMenuOpen(false)}>
-                {item.label}
-              </Link>
-            )
+            <Link href={item.href} key={item.label} onClick={() => setMobileMenuOpen(false)}>
+              {item.label}
+            </Link>
           ))}
         </nav>
         <div className={styles.mobileMenuMeta}>
