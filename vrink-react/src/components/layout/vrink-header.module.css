@@ -508,9 +508,19 @@
   }
 
   .headerOverlay {
-    grid-template-columns: 1fr 42px;
-    inset-inline: 12px;
+    grid-template-columns: 1fr 44px;
+    height: 54px;
+    inset-inline: 18px;
     padding-inline: 8px;
+  }
+
+  .headerOverlay .logo {
+    height: 54px;
+  }
+
+  .headerOverlay .menuButton {
+    height: 44px;
+    width: 44px;
   }
 
   .headerOverlay .mobileCta {
