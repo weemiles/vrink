@@ -176,7 +176,6 @@
 .mapWorkspace,
 .locationListPanel,
 .locationSidebar,
-.selectedLocation,
 .locationList button {
   border-radius: 12px;
 }
@@ -499,16 +498,20 @@
 }
 
 .selectedLocation {
-  background: #ffffff;
-  border: 0;
-  padding: 24px;
+  border-bottom: 1px solid var(--locations-line);
+  flex: 0 0 auto;
+  margin: 0 4px 12px;
+  padding: 0 0 14px;
 }
 
 .selectedPhoto {
-  aspect-ratio: 1.5 / 1;
+  aspect-ratio: 16 / 9;
+  background: var(--locations-gray);
   border-radius: 8px;
   display: block;
-  margin: 0 0 18px;
+  margin: 0 0 12px;
+  outline: 1px solid rgba(0, 0, 0, 0.1);
+  outline-offset: -1px;
   overflow: hidden;
   position: relative;
 }
@@ -517,54 +520,24 @@
   object-fit: cover;
 }
 
-.selectedLocation > span:not(.selectedPhoto) {
-  color: var(--locations-blue-dark);
-  display: block;
-  font-size: var(--type-nano);
-  font-weight: var(--weight-semibold);
-  line-height: var(--line-nano);
-  margin-bottom: 8px;
+.selectedLocationCopy {
+  min-width: 0;
+  padding: 0 2px;
 }
 
 .selectedLocation h3 {
   color: var(--locations-ink);
-  font-size: var(--type-card);
+  font-size: var(--type-caption);
   font-weight: var(--weight-semibold);
-  line-height: var(--line-card);
+  line-height: var(--line-caption);
   margin: 0;
 }
 
 .locationDetailText {
   color: var(--locations-muted);
-  font-size: var(--type-caption);
-  line-height: var(--line-caption);
-  margin: 12px 0 0;
-  word-break: keep-all;
-}
-
-.selectedLocation dl {
-  display: grid;
-  gap: 12px;
-  margin: 18px 0 0;
-}
-
-.selectedLocation dl div {
-  border-top: 1px solid var(--locations-line);
-  padding-top: 12px;
-}
-
-.selectedLocation dt {
-  color: var(--locations-subtle);
   font-size: var(--type-nano);
   line-height: var(--line-nano);
-  margin-bottom: 4px;
-}
-
-.selectedLocation dd {
-  color: var(--locations-ink);
-  font-size: var(--type-caption);
-  line-height: var(--line-caption);
-  margin: 0;
+  margin: 5px 0 0;
   word-break: keep-all;
 }
 
@@ -664,69 +637,6 @@
   margin-top: 10px;
 }
 
-.locationPopupBackdrop {
-  align-items: center;
-  animation: locationBackdropIn 180ms ease both;
-  background: rgba(0, 0, 0, 0.42);
-  backdrop-filter: blur(10px);
-  display: flex;
-  inset: 0;
-  justify-content: center;
-  padding: 22px;
-  position: fixed;
-  z-index: 120;
-}
-
-.locationPopup {
-  animation: locationPopupIn 220ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
-  background: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
-  color: var(--locations-ink);
-  max-height: min(560px, calc(100svh - 44px));
-  max-width: 560px;
-  overflow: auto;
-  position: relative;
-  width: min(100%, 560px);
-}
-
-.locationPopupCompact {
-  max-width: 420px;
-  width: min(100%, 420px);
-}
-
-.locationPopupClose {
-  align-items: center;
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 999px;
-  color: var(--locations-ink);
-  cursor: pointer;
-  display: inline-flex;
-  height: 32px;
-  justify-content: center;
-  position: absolute;
-  right: 12px;
-  top: 12px;
-  width: 32px;
-  z-index: 2;
-}
-
-.locationPopupClose:hover {
-  background: #ffffff;
-}
-
-.locationPopupImage {
-  aspect-ratio: 1.5 / 1;
-  background: var(--locations-gray);
-  overflow: hidden;
-  position: relative;
-}
-
-.locationPopupImage img {
-  object-fit: cover;
-}
-
 .carouselControls {
   align-items: center;
   display: flex;
@@ -742,61 +652,29 @@
   align-items: center;
   background: rgba(255, 255, 255, 0.9);
   border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 999px;
+  border-radius: 8px;
   color: var(--locations-ink);
   cursor: pointer;
   display: inline-flex;
-  height: 34px;
+  height: 44px;
   justify-content: center;
   pointer-events: auto;
-  width: 34px;
+  width: 44px;
 }
 
 .carouselControls button:hover {
   background: #ffffff;
 }
 
-.locationPopupCopy {
-  padding: 20px 24px 24px;
-}
-
-.locationPopupCompact .locationPopupCopy {
-  padding: 30px 30px 32px;
-}
-
-.locationPopupCopy > span {
-  color: var(--locations-blue-dark);
-  display: block;
-  font-size: var(--type-caption);
-  line-height: var(--line-caption);
-  margin-bottom: 8px;
-}
-
-.locationPopupCopy h3 {
-  color: var(--locations-ink);
-  font-size: clamp(21px, 2.5vw, 27px);
-  font-weight: var(--weight-semibold);
-  line-height: 1.22;
-  margin: 0;
-}
-
-.locationPopupCopy p {
-  color: var(--locations-muted);
-  font-size: var(--type-caption);
-  line-height: var(--line-caption);
-  margin: 8px 0 0;
-  word-break: keep-all;
-}
-
 .carouselDots {
   align-items: center;
   background: rgba(0, 0, 0, 0.2);
   border-radius: 999px;
-  bottom: 12px;
+  bottom: 8px;
   display: flex;
   gap: 0;
   left: 50%;
-  padding: 4px 6px;
+  padding: 2px 4px;
   position: absolute;
   transform: translateX(-50%);
   z-index: 3;
@@ -807,10 +685,10 @@
   border: 0;
   border-radius: 50%;
   cursor: pointer;
-  height: 24px;
+  height: 44px;
   padding: 0;
   position: relative;
-  width: 24px;
+  width: 44px;
 }
 
 .carouselDots button::before {
@@ -833,51 +711,6 @@
   transform: translate(-50%, -50%) scale(1.15);
 }
 
-.locationPopupCopy dl {
-  border-top: 1px solid var(--locations-line);
-  display: grid;
-  gap: 14px;
-  grid-template-columns: minmax(150px, 0.42fr) minmax(0, 0.58fr);
-  margin: 20px 0 0;
-  padding-top: 18px;
-}
-
-.locationPopupCopy dt {
-  color: var(--locations-subtle);
-  font-size: var(--type-nano);
-  line-height: var(--line-nano);
-  margin-bottom: 4px;
-}
-
-.locationPopupCopy dd {
-  color: var(--locations-ink);
-  font-size: var(--type-caption);
-  line-height: var(--line-caption);
-  margin: 0;
-  word-break: keep-all;
-}
-
-@keyframes locationBackdropIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes locationPopupIn {
-  from {
-    opacity: 0;
-    transform: translateY(18px) scale(0.98);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
 
 .spaceSection {
   align-items: stretch;
@@ -1032,26 +865,6 @@
     transform: translate(-50%, calc(-100% - 24px));
   }
 
-  .selectedLocation {
-    padding: 18px;
-  }
-
-  .locationPopupBackdrop {
-    padding: 16px;
-  }
-
-  .locationPopupImage {
-    aspect-ratio: 1.2 / 1;
-  }
-
-  .locationPopupCopy {
-    padding: 22px 20px 24px;
-  }
-
-  .locationPopupCopy dl {
-    grid-template-columns: 1fr;
-  }
-
   .spaceVisual {
     min-height: 360px;
   }
@@ -1079,7 +892,6 @@
 .locationPreviewButton:active,
 .locationList button:active,
 .mapZoomControls button:active,
-.locationPopupClose:active,
 .carouselControls button:active,
 .carouselDots button:active {
   transform: scale(0.97);
@@ -1090,7 +902,6 @@
 .locationList button:focus-visible,
 .mapZoomControls button:focus-visible,
 .mapMarker:focus-visible,
-.locationPopupClose:focus-visible,
 .carouselControls button:focus-visible,
 .carouselDots button:focus-visible {
   outline: 2px solid var(--locations-blue);
@@ -1098,11 +909,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .locationPopupBackdrop,
-  .locationPopup {
-    animation: none;
-  }
-
   .filterTabs button,
   .locationList button,
   .mapMarker,
@@ -1114,7 +920,6 @@
 @media (prefers-reduced-transparency: reduce) {
   .mapLegend,
   .mapLoading,
-  .locationPopupClose,
   .carouselControls button {
     background: #ffffff;
     backdrop-filter: none;

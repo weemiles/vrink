@@ -2,9 +2,8 @@
 
 import Image from "next/image";
 import Script from "next/script";
-import { ChevronLeft, ChevronRight, MapPin, Minus, Plus, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, MapPin, Minus, Plus } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { createPortal } from "react-dom";
 
 import { withBasePath } from "@/lib/static-export";
 import { vrinkLocations } from "./locations-data";
@@ -102,7 +101,6 @@ const locationExplorerCopy = {
     zoomControlsLabel: "지도 확대 축소",
     zoomIn: "지도 확대",
     zoomOut: "지도 축소",
-    popupCloseLabel: "지점 이미지 닫기",
     carouselControlsLabel: "현장 이미지 넘기기",
     prevImage: "이전 이미지",
     nextImage: "다음 이미지",
@@ -121,7 +119,6 @@ const locationExplorerCopy = {
     zoomControlsLabel: "Zoom map in and out",
     zoomIn: "Zoom in",
     zoomOut: "Zoom out",
-    popupCloseLabel: "Close location image",
     carouselControlsLabel: "Browse site images",
     prevImage: "Previous image",
     nextImage: "Next image",
@@ -375,7 +372,6 @@ export function LocationExplorer({ locale = "ko" }: LocationExplorerProps) {
   const copy = locationExplorerCopy[locale];
   const [selectedLocationId, setSelectedLocationId] = useState<string | null>(null);
   const [hoveredLocationId, setHoveredLocationId] = useState<string | null>(null);
-  const [popupLocationId, setPopupLocationId] = useState<string | null>(null);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [allowMapScript, setAllowMapScript] = useState(false);
   const [scriptReady, setScriptReady] = useState(false);
@@ -398,11 +394,11 @@ export function LocationExplorer({ locale = "ko" }: LocationExplorerProps) {
   const hoveredLocation = hoveredLocationId
     ? vrinkLocations.find((location) => location.id === hoveredLocationId) ?? null
     : null;
-  const popupLocation = popupLocationId
-    ? vrinkLocations.find((location) => location.id === popupLocationId) ?? null
+  const selectedLocation = selectedLocationId
+    ? vrinkLocations.find((location) => location.id === selectedLocationId) ?? null
     : null;
-  const popupImage = popupLocation ? popupLocation.images[activeImageIndex] : null;
-  const popupDisplay = popupLocation ? getLocationDisplay(popupLocation, locale) : null;
+  const selectedImage = selectedLocation ? selectedLocation.images[activeImageIndex] : null;
+  const selectedDisplay = selectedLocation ? getLocationDisplay(selectedLocation, locale) : null;
 
   const showFallbackMap = !naverClientId || !allowMapScript || scriptFailed;
 
@@ -426,21 +422,11 @@ export function LocationExplorer({ locale = "ko" }: LocationExplorerProps) {
   const handleLocationOpen = useCallback(
     (locationId: string) => {
       setSelectedLocationId(locationId);
-      setPopupLocationId(locationId);
       setActiveImageIndex(0);
       focusLocationOnMap(locationId);
     },
     [focusLocationOnMap],
   );
-
-  const handlePopupClose = useCallback(() => {
-    setPopupLocationId(null);
-    setHoveredLocationId(null);
-
-    if (document.activeElement instanceof HTMLElement) {
-      document.activeElement.blur();
-    }
-  }, []);
 
   const handleMapZoom = useCallback((direction: -1 | 1) => {
     const map = naverMapRef.current;
@@ -492,7 +478,7 @@ export function LocationExplorer({ locale = "ko" }: LocationExplorerProps) {
 
   function handleImageStep(direction: -1 | 1) {
     setActiveImageIndex((current) => {
-      const imageCount = popupLocation?.images.length ?? 0;
+      const imageCount = selectedLocation?.images.length ?? 0;
 
       if (imageCount < 2) {
         return 0;
@@ -501,21 +487,6 @@ export function LocationExplorer({ locale = "ko" }: LocationExplorerProps) {
       return (current + direction + imageCount) % imageCount;
     });
   }
-
-  useEffect(() => {
-    if (!popupLocation) {
-      return;
-    }
-
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        handlePopupClose();
-      }
-    };
-
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [handlePopupClose, popupLocation]);
 
   useEffect(() => {
     const maps = window.naver?.maps;
@@ -714,6 +685,61 @@ export function LocationExplorer({ locale = "ko" }: LocationExplorerProps) {
           <div className={styles.locationListHeader}>
             <span>{copy.listTitle}</span>
           </div>
+          {selectedLocation && selectedImage && selectedDisplay ? (
+            <section
+              aria-labelledby="selected-location-title"
+              className={styles.selectedLocation}
+            >
+              <div className={styles.selectedPhoto}>
+                <Image
+                  src={withBasePath(selectedImage.src)}
+                  alt={
+                    locale === "en"
+                      ? `${selectedDisplay.name} installation image ${activeImageIndex + 1}`
+                      : selectedImage.alt
+                  }
+                  fill
+                  priority
+                  sizes="(max-width: 720px) calc(100vw - 64px), 304px"
+                />
+                {selectedLocation.images.length > 1 ? (
+                  <div className={styles.carouselControls} aria-label={copy.carouselControlsLabel}>
+                    <button
+                      aria-label={copy.prevImage}
+                      onClick={() => handleImageStep(-1)}
+                      type="button"
+                    >
+                      <ChevronLeft aria-hidden="true" size={19} strokeWidth={1.9} />
+                    </button>
+                    <button
+                      aria-label={copy.nextImage}
+                      onClick={() => handleImageStep(1)}
+                      type="button"
+                    >
+                      <ChevronRight aria-hidden="true" size={19} strokeWidth={1.9} />
+                    </button>
+                  </div>
+                ) : null}
+                {selectedLocation.images.length > 1 ? (
+                  <div className={styles.carouselDots} aria-label={copy.carouselDotsLabel}>
+                    {selectedLocation.images.map((image, index) => (
+                      <button
+                        aria-label={copy.viewImage(index + 1)}
+                        aria-pressed={activeImageIndex === index}
+                        key={image.src}
+                        onClick={() => setActiveImageIndex(index)}
+                        type="button"
+                      />
+                    ))}
+                  </div>
+                ) : null}
+              </div>
+              <div aria-atomic="true" aria-live="polite" className={styles.selectedLocationCopy}>
+                <h3 id="selected-location-title">{selectedDisplay.name}</h3>
+                <p className={styles.locationDetailText}>{selectedDisplay.address}</p>
+              </div>
+            </section>
+          ) : null}
           <div className={styles.locationList}>
             {sortedLocations.map((location) => {
               const display = getLocationDisplay(location, locale);
@@ -735,88 +761,6 @@ export function LocationExplorer({ locale = "ko" }: LocationExplorerProps) {
           </div>
         </aside>
       </div>
-
-      {popupLocation && typeof document !== "undefined"
-        ? createPortal(
-            <div
-              className={styles.locationPopupBackdrop}
-              onClick={handlePopupClose}
-              role="presentation"
-            >
-              <section
-                aria-labelledby="location-popup-title"
-                aria-modal="true"
-                className={`${styles.locationPopup} ${
-                  popupImage ? "" : styles.locationPopupCompact
-                }`}
-                onClick={(event) => event.stopPropagation()}
-                role="dialog"
-              >
-                <button
-                  aria-label={copy.popupCloseLabel}
-                  className={styles.locationPopupClose}
-                  onClick={handlePopupClose}
-                  type="button"
-                >
-                  <X aria-hidden="true" size={18} strokeWidth={1.8} />
-                </button>
-                {popupImage ? (
-                  <div className={styles.locationPopupImage}>
-                    <Image
-                      src={withBasePath(popupImage.src)}
-                      alt={
-                        locale === "en" && popupDisplay
-                          ? `${popupDisplay.name} installation image ${activeImageIndex + 1}`
-                          : popupImage.alt
-                      }
-                      fill
-                      priority
-                      sizes="(max-width: 760px) 92vw, 560px"
-                    />
-                    {popupLocation.images.length > 1 ? (
-                      <div className={styles.carouselControls} aria-label={copy.carouselControlsLabel}>
-                        <button
-                          aria-label={copy.prevImage}
-                          onClick={() => handleImageStep(-1)}
-                          type="button"
-                        >
-                          <ChevronLeft aria-hidden="true" size={19} strokeWidth={1.9} />
-                        </button>
-                        <button
-                          aria-label={copy.nextImage}
-                          onClick={() => handleImageStep(1)}
-                          type="button"
-                        >
-                          <ChevronRight aria-hidden="true" size={19} strokeWidth={1.9} />
-                        </button>
-                      </div>
-                    ) : null}
-                    {popupLocation.images.length > 1 ? (
-                      <div className={styles.carouselDots} aria-label={copy.carouselDotsLabel}>
-                        {popupLocation.images.map((image, index) => (
-                          <button
-                            aria-label={copy.viewImage(index + 1)}
-                            aria-pressed={activeImageIndex === index}
-                            key={image.src}
-                            onClick={() => setActiveImageIndex(index)}
-                            type="button"
-                          />
-                        ))}
-                      </div>
-                    ) : null}
-                  </div>
-                ) : null}
-                {popupDisplay ? (
-                  <div className={styles.locationPopupCopy}>
-                    <h3 id="location-popup-title">{popupDisplay.name}</h3>
-                    <p>{popupDisplay.address}</p>
-                  </div>
-                ) : null}
-              </section>
-            </div>,
-            document.body,
-          )
-        : null}
     </div>
   );
 }
