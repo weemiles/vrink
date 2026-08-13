@@ -513,9 +513,9 @@ export default function HomePage() {
       <section id="contact" className={styles.contactSection}>
         <ScrollReveal className={styles.contactCopy}>
           <p>문의</p>
-          <h2>우리 공간에 맞는 도입 구성을 받아보세요.</h2>
+          <h2>공간 정보와 유입경로로 구성을 받아보세요.</h2>
           <span>
-            기업·공간명, 담당자 성함, 이메일을 남겨주시면 필요한 내용을 확인해 제로스테이션 구성을 안내합니다.
+            공간 유형, 예상 이용자, 도입 시기, 알게 된 경로를 남겨주시면 브링크 팀이 확인 후 연락드립니다.
           </span>
         </ScrollReveal>
         <LeadForm />

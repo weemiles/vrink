@@ -526,10 +526,9 @@ export default function EnglishPage() {
       <section id="contact" className={styles.contactSection}>
         <ScrollReveal className={styles.contactCopy}>
           <p>Contact</p>
-          <h2>Tell us about your space.</h2>
+          <h2>Share setup details and source.</h2>
           <span>
-            Leave your organization or venue, name, and work email. We’ll follow up with the right questions and
-            recommend a Zero Station setup.
+            Tell us your space type, expected users, timeline, and how you found VRINK. Our team will review and follow up.
           </span>
         </ScrollReveal>
         <LeadForm locale="en" />

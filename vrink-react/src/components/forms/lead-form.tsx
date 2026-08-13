@@ -1,11 +1,14 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { ChevronDown } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import { vrinkCopy } from "@/content/vrink-copy";
+import { leadSourceOptions } from "@/lib/lead-source";
 import { buildLeadMailtoHref, isStaticExport } from "@/lib/static-export";
 import { leadInquirySchema } from "@/lib/validation/lead";
 
@@ -24,23 +27,29 @@ const initialFeedback: FormFeedback = {
 };
 
 const englishLeadForm = {
-  title: "Start with three details",
-  description: "Your organization or venue, name, and work email are enough to start.",
-  submitLabel: "Request a setup recommendation",
+  title: "Share setup details and source",
+  description: "Space type, expected users, timeline, and how you found VRINK are enough to start.",
+  submitLabel: "Get a setup plan",
   submittingLabel: "Submitting...",
-  privacyNotice: "We’ll only use your details to review your request and follow up.",
+  privacyNotice: "Submitted information is used only for consultation and follow-up.",
   validationError: "Please check the required fields.",
   networkError: "A network error occurred. Please try again later.",
   fallbackError: "The inquiry could not be submitted.",
   fields: {
-    company: "Organization or venue",
+    company: "Company or space",
     name: "Name",
-    email: "Work email",
+    email: "Email",
+    phone: "Phone",
+    source: "How did you hear about us?",
+    message: "Message",
   },
   placeholders: {
-    company: "Organization or venue",
+    company: "VRINK Co.",
     name: "Your name",
-    email: "name@company.com",
+    email: "hello@vrink.kr",
+    phone: "010-0000-0000",
+    source: "Select a source",
+    message: "Space type, expected users, timeline",
   },
 };
 
@@ -60,9 +69,9 @@ export function LeadForm({ locale = "ko" }: LeadFormProps) {
       company: String(formData.get("company") ?? ""),
       name: String(formData.get("name") ?? ""),
       email: String(formData.get("email") ?? ""),
-      phone: "",
-      source: "website",
-      message: "",
+      phone: String(formData.get("phone") ?? ""),
+      source: String(formData.get("source") ?? ""),
+      message: String(formData.get("message") ?? ""),
       honeypot: String(formData.get("honeypot") ?? ""),
     };
 
@@ -158,14 +167,65 @@ export function LeadForm({ locale = "ko" }: LeadFormProps) {
           </div>
         </div>
 
+        <div className="grid gap-5 md:grid-cols-2">
+          <div className="space-y-2">
+            <Label htmlFor="email">{copy.fields.email} *</Label>
+            <Input
+              id="email"
+              name="email"
+              type="email"
+              placeholder={copy.placeholders.email}
+              autoComplete="email"
+              required
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="phone">{copy.fields.phone} *</Label>
+            <Input
+              id="phone"
+              name="phone"
+              type="tel"
+              placeholder={copy.placeholders.phone}
+              autoComplete="tel"
+              required
+            />
+          </div>
+        </div>
+
         <div className="space-y-2">
-          <Label htmlFor="email">{copy.fields.email} *</Label>
-          <Input
-            id="email"
-            name="email"
-            type="email"
-            placeholder={copy.placeholders.email}
-            autoComplete="email"
+          <Label htmlFor="source">{copy.fields.source} *</Label>
+          <div className="relative">
+            <select
+              id="source"
+              name="source"
+              required
+              defaultValue=""
+              className="border-input h-9 w-full appearance-none rounded-md border bg-transparent py-1 pl-3 pr-11 text-base shadow-xs outline-none transition-[color,box-shadow] focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+            >
+              <option value="" disabled>
+                {copy.placeholders.source}
+              </option>
+              {leadSourceOptions.map((option) => (
+                <option key={option.id} value={option.id}>
+                  {option.labels[locale]}
+                </option>
+              ))}
+            </select>
+            <ChevronDown
+              aria-hidden="true"
+              className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--brand-ink)]"
+              strokeWidth={1.8}
+            />
+          </div>
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="message">{copy.fields.message} *</Label>
+          <Textarea
+            id="message"
+            name="message"
+            placeholder={copy.placeholders.message}
+            className="min-h-32"
             required
           />
         </div>
