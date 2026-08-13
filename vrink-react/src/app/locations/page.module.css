@@ -464,29 +464,6 @@
   padding: 18px 14px 14px;
 }
 
-.locationListHeader {
-  border-bottom: 1px solid var(--locations-line);
-  display: flex;
-  gap: 12px;
-  justify-content: space-between;
-  flex: 0 0 auto;
-  margin: 0 4px 12px;
-  padding: 0 0 14px;
-}
-
-.locationListHeader span {
-  color: var(--locations-subtle);
-  font-size: var(--type-nano);
-  line-height: var(--line-nano);
-}
-
-.locationListHeader strong {
-  color: var(--locations-ink);
-  font-size: var(--type-caption);
-  font-weight: var(--weight-semibold);
-  line-height: var(--line-caption);
-}
-
 .locationSidebar {
   background: transparent;
   border: 0;
@@ -642,7 +619,7 @@
   display: flex;
   inset: 0;
   justify-content: space-between;
-  padding: 0 14px;
+  padding: 0 12px;
   pointer-events: none;
   position: absolute;
   z-index: 2;
@@ -650,34 +627,59 @@
 
 .carouselControls button {
   align-items: center;
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 8px;
+  background: transparent;
+  border: 0;
+  border-radius: 10px;
   color: var(--locations-ink);
   cursor: pointer;
   display: inline-flex;
   height: 44px;
   justify-content: center;
   pointer-events: auto;
+  position: relative;
   width: 44px;
 }
 
-.carouselControls button:hover {
+.carouselControls button::before {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  content: "";
+  height: 34px;
+  left: 50%;
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 34px;
+}
+
+.carouselControls button svg {
+  position: relative;
+}
+
+.carouselControls button:hover::before {
   background: #ffffff;
 }
 
 .carouselDots {
   align-items: center;
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 999px;
-  bottom: 8px;
+  bottom: 6px;
   display: flex;
   gap: 0;
   left: 50%;
-  padding: 2px 4px;
   position: absolute;
   transform: translateX(-50%);
   z-index: 3;
+}
+
+.carouselDots::before {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 999px;
+  content: "";
+  inset: 8px 10px;
+  pointer-events: none;
+  position: absolute;
 }
 
 .carouselDots button {
@@ -689,13 +691,14 @@
   padding: 0;
   position: relative;
   width: 44px;
+  z-index: 1;
 }
 
 .carouselDots button::before {
   background: rgba(255, 255, 255, 0.56);
   border-radius: 50%;
   content: "";
-  height: 7px;
+  height: 6px;
   left: 50%;
   position: absolute;
   top: 50%;
@@ -703,12 +706,12 @@
   transition:
     background-color 160ms ease,
     transform 160ms cubic-bezier(0.23, 1, 0.32, 1);
-  width: 7px;
+  width: 6px;
 }
 
 .carouselDots button[aria-pressed="true"]::before {
   background: #ffffff;
-  transform: translate(-50%, -50%) scale(1.15);
+  transform: translate(-50%, -50%) scale(1.12);
 }
 
 
@@ -920,7 +923,7 @@
 @media (prefers-reduced-transparency: reduce) {
   .mapLegend,
   .mapLoading,
-  .carouselControls button {
+  .carouselControls button::before {
     background: #ffffff;
     backdrop-filter: none;
   }

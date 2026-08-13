@@ -92,7 +92,6 @@ type LocationExplorerProps = {
 const locationExplorerCopy = {
   ko: {
     listLabel: "브링크 설치 지점 목록",
-    listTitle: "지점 선택",
     fallbackMapLabel: "브링크 도입 지점 지도 미리보기",
     legendFailed: "네이버 지도 연결 실패",
     legendBeforeKey: "네이버 지도 키 연결 전 미리보기",
@@ -110,7 +109,6 @@ const locationExplorerCopy = {
   },
   en: {
     listLabel: "VRINK installation locations",
-    listTitle: "Choose a location",
     fallbackMapLabel: "VRINK location map preview",
     legendFailed: "Couldn't connect to Naver Maps",
     legendBeforeKey: "Preview before the Naver Maps key is connected",
@@ -682,9 +680,6 @@ export function LocationExplorer({ locale = "ko" }: LocationExplorerProps) {
           ) : null}
         </div>
         <aside className={styles.locationListPanel} aria-label={copy.listLabel}>
-          <div className={styles.locationListHeader}>
-            <span>{copy.listTitle}</span>
-          </div>
           {selectedLocation && selectedImage && selectedDisplay ? (
             <section
               aria-labelledby="selected-location-title"
@@ -709,14 +704,14 @@ export function LocationExplorer({ locale = "ko" }: LocationExplorerProps) {
                       onClick={() => handleImageStep(-1)}
                       type="button"
                     >
-                      <ChevronLeft aria-hidden="true" size={19} strokeWidth={1.9} />
+                      <ChevronLeft aria-hidden="true" size={17} strokeWidth={1.9} />
                     </button>
                     <button
                       aria-label={copy.nextImage}
                       onClick={() => handleImageStep(1)}
                       type="button"
                     >
-                      <ChevronRight aria-hidden="true" size={19} strokeWidth={1.9} />
+                      <ChevronRight aria-hidden="true" size={17} strokeWidth={1.9} />
                     </button>
                   </div>
                 ) : null}
