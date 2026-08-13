@@ -138,16 +138,6 @@ type LocationDisplay = {
 };
 
 const englishLocationDisplay: Record<string, LocationDisplay> = {
-  "buildup-fitness-seongsu": {
-    name: "Build-up Fitness PT Seongsu Station",
-    district: "Seongsu Station",
-    address: "3F Namyoung Building, 97 Achasan-ro, Seongdong-gu, Seoul",
-  },
-  "fitvely-celebrity-gym": {
-    name: "Fitvely Celebrity Gym",
-    district: "Seongsu-dong",
-    address: "6 Yeonmujang 19-gil, Seongdong-gu, Seoul",
-  },
   "bysec-world-fitness": {
     name: "Bysec World Fitness",
     district: "Yeoksam-dong",
@@ -168,11 +158,6 @@ const englishLocationDisplay: Record<string, LocationDisplay> = {
     district: "City Hall",
     address: "2F 210, 64 Sejong-daero, Jung-gu, Seoul",
   },
-  "dallyeora-korean-medicine-clinic": {
-    name: "Dallyeora Korean Medicine Clinic",
-    district: "Anyang-dong",
-    address: "1F Joongang Plaza, 13 Jangnae-ro 125beon-gil, Manan-gu, Anyang-si, Gyeonggi-do",
-  },
   "west-gym-gangbyeon": {
     name: "West Gym Gangbyeon",
     district: "Gangbyeon",
@@ -184,12 +169,12 @@ const englishLocationDisplay: Record<string, LocationDisplay> = {
     address: "B1 Segyeong Building, 86 Jayang-ro, Gwangjin-gu, Seoul",
   },
   "able-gym-sangam": {
-    name: "Able Gym Sangam Station",
+    name: "Able Gym Sangam",
     district: "Sangam-dong",
     address: "B1 Woori Technology Building, 9 World Cup buk-ro 56-gil, Mapo-gu, Seoul",
   },
   "able-gym-balsan": {
-    name: "Able Gym Balsan Station",
+    name: "Able Gym Balsan",
     district: "Naebalsan-dong",
     address: "B1, 348 Gangseo-ro, Gangseo-gu, Seoul",
   },
@@ -199,9 +184,14 @@ const englishLocationDisplay: Record<string, LocationDisplay> = {
     address: "3F Gwacheon Xi Elra Edition, 39 Gwacheon-daero 6ga-gil, Gwacheon-si, Gyeonggi-do",
   },
   "ss-fitness-gwanggyo": {
-    name: "Double S Fitness Gwanggyo",
+    name: "Double S Fitness Gwanggyo 1",
     district: "Gwanggyo",
     address: "B2, 277 Gwanggyo Hosugongwon-ro, Yeongtong-gu, Suwon-si, Gyeonggi-do",
+  },
+  "vrink-headquarters-hanam": {
+    name: "VRINK Headquarters",
+    district: "Gamil-dong",
+    address: "1F-2F, 46 Dongnam-ro 406beon-gil, Hanam-si, Gyeonggi-do",
   },
   "dgym-yeongju": {
     name: "D Gym",
@@ -244,7 +234,7 @@ const englishLocationDisplay: Record<string, LocationDisplay> = {
     address: "B1 Hanwha Obelisk, 33 Mapo-daero, Mapo-gu, Seoul",
   },
   "mansumugang-health-andong": {
-    name: "Mansumugang Fitness",
+    name: "Mansumugang Health",
     district: "Yongsang-dong",
     address: "28 Gilju 1-gil, Andong-si, Gyeongsangbuk-do",
   },
@@ -254,7 +244,7 @@ const englishLocationDisplay: Record<string, LocationDisplay> = {
     address: "2F Seongil Building, 8-2 Yulbong-ro 176beon-gil, Cheongwon-gu, Cheongju-si",
   },
   "aone-gym-dongtan-station": {
-    name: "A-One Gym Dongtan Station",
+    name: "A-One Gym Dongtan",
     district: "Dongtan Station",
     address: "6F 602, 124 Dongtanyeok-ro, Dongtan-gu, Hwaseong-si, Gyeonggi-do",
   },
