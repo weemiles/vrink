@@ -397,6 +397,9 @@ export function LocationExplorer({ locale = "ko" }: LocationExplorerProps) {
     : null;
   const selectedImage = selectedLocation ? selectedLocation.images[activeImageIndex] : null;
   const selectedDisplay = selectedLocation ? getLocationDisplay(selectedLocation, locale) : null;
+  const visibleLocations = selectedImage
+    ? sortedLocations.filter((location) => location.id !== selectedLocationId)
+    : sortedLocations;
 
   const showFallbackMap = !naverClientId || !allowMapScript || scriptFailed;
 
@@ -704,14 +707,14 @@ export function LocationExplorer({ locale = "ko" }: LocationExplorerProps) {
                       onClick={() => handleImageStep(-1)}
                       type="button"
                     >
-                      <ChevronLeft aria-hidden="true" size={17} strokeWidth={1.9} />
+                      <ChevronLeft aria-hidden="true" size={18} strokeWidth={2.2} />
                     </button>
                     <button
                       aria-label={copy.nextImage}
                       onClick={() => handleImageStep(1)}
                       type="button"
                     >
-                      <ChevronRight aria-hidden="true" size={17} strokeWidth={1.9} />
+                      <ChevronRight aria-hidden="true" size={18} strokeWidth={2.2} />
                     </button>
                   </div>
                 ) : null}
@@ -736,7 +739,7 @@ export function LocationExplorer({ locale = "ko" }: LocationExplorerProps) {
             </section>
           ) : null}
           <div className={styles.locationList}>
-            {sortedLocations.map((location) => {
+            {visibleLocations.map((location) => {
               const display = getLocationDisplay(location, locale);
 
               return (

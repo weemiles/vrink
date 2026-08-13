@@ -619,7 +619,7 @@
   display: flex;
   inset: 0;
   justify-content: space-between;
-  padding: 0 12px;
+  padding: 0 8px;
   pointer-events: none;
   position: absolute;
   z-index: 2;
@@ -629,57 +629,33 @@
   align-items: center;
   background: transparent;
   border: 0;
-  border-radius: 10px;
-  color: var(--locations-ink);
+  border-radius: 50%;
+  color: #ffffff;
   cursor: pointer;
   display: inline-flex;
   height: 44px;
   justify-content: center;
   pointer-events: auto;
-  position: relative;
   width: 44px;
 }
 
-.carouselControls button::before {
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 8px;
-  content: "";
-  height: 34px;
-  left: 50%;
-  pointer-events: none;
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 34px;
-}
-
 .carouselControls button svg {
-  position: relative;
-}
-
-.carouselControls button:hover::before {
-  background: #ffffff;
+  filter:
+    drop-shadow(1px 0 0 rgba(0, 0, 0, 0.68))
+    drop-shadow(-1px 0 0 rgba(0, 0, 0, 0.68))
+    drop-shadow(0 1px 0 rgba(0, 0, 0, 0.68))
+    drop-shadow(0 -1px 0 rgba(0, 0, 0, 0.68));
 }
 
 .carouselDots {
   align-items: center;
-  bottom: 6px;
+  bottom: 4px;
   display: flex;
   gap: 0;
   left: 50%;
   position: absolute;
   transform: translateX(-50%);
   z-index: 3;
-}
-
-.carouselDots::before {
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 999px;
-  content: "";
-  inset: 8px 10px;
-  pointer-events: none;
-  position: absolute;
 }
 
 .carouselDots button {
@@ -690,13 +666,14 @@
   height: 44px;
   padding: 0;
   position: relative;
-  width: 44px;
+  width: 24px;
   z-index: 1;
 }
 
 .carouselDots button::before {
   background: rgba(255, 255, 255, 0.56);
   border-radius: 50%;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.42);
   content: "";
   height: 6px;
   left: 50%;
@@ -922,8 +899,7 @@
 
 @media (prefers-reduced-transparency: reduce) {
   .mapLegend,
-  .mapLoading,
-  .carouselControls button::before {
+  .mapLoading {
     background: #ffffff;
     backdrop-filter: none;
   }
