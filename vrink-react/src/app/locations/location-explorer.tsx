@@ -276,6 +276,7 @@ const initialMapCenter = vrinkLocations.reduce(
   }),
   { lat: 0, lng: 0 },
 );
+const minimumMapZoom = 6;
 const initialMapZoom = vrinkLocations.length > 6 ? 10 : vrinkLocations.length > 1 ? 12 : 16;
 
 function createMarkerContent(
@@ -449,7 +450,7 @@ export function LocationExplorer({ locale = "ko" }: LocationExplorerProps) {
     }
 
     const nextZoom = map.getZoom() + direction;
-    map.setZoom(Math.min(19, Math.max(10, nextZoom)), true);
+    map.setZoom(Math.min(19, Math.max(minimumMapZoom, nextZoom)), true);
   }, []);
 
   useEffect(() => {
@@ -529,7 +530,7 @@ export function LocationExplorer({ locale = "ko" }: LocationExplorerProps) {
         naverMapRef.current = new maps.Map(mapElementRef.current, {
           center,
           maxZoom: 19,
-          minZoom: 10,
+          minZoom: minimumMapZoom,
           scrollWheel: false,
           zoom: initialMapZoom,
           zoomControl: false,
@@ -552,7 +553,7 @@ export function LocationExplorer({ locale = "ko" }: LocationExplorerProps) {
         wheelZoomRef.current = now;
         const currentZoom = map.getZoom();
         const nextZoom = currentZoom + (event.deltaY < 0 ? 1 : -1);
-        map.setZoom(Math.min(19, Math.max(10, nextZoom)), true);
+        map.setZoom(Math.min(19, Math.max(minimumMapZoom, nextZoom)), true);
       };
 
       mapElement.addEventListener("wheel", handleWheel, { passive: false });
