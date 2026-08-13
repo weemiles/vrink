@@ -47,7 +47,7 @@
 }
 
 .header p {
-  color: #0066cc;
+  color: #1b64da;
   font-size: var(--type-nano);
   font-weight: var(--weight-medium);
   line-height: var(--line-nano);
@@ -75,7 +75,7 @@
 }
 
 .description a {
-  color: #0066cc;
+  color: #1b64da;
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -117,13 +117,13 @@
 
 .primaryButton,
 .saveButton {
-  background: #0071e3;
+  background: #3182f6;
   color: #ffffff;
 }
 
 .primaryButton:hover,
 .saveButton:hover {
-  background: #0066cc;
+  background: #1b64da;
 }
 
 .secondaryButton {
@@ -149,7 +149,7 @@
 .actions button:focus-visible,
 .saveButton:focus-visible,
 .switchControl:focus-visible {
-  outline: 3px solid rgba(0, 113, 227, 0.28);
+  outline: 3px solid rgba(49, 130, 246, 0.28);
   outline-offset: 2px;
 }
 
@@ -215,7 +215,7 @@
 }
 
 .switchControl[aria-checked="true"] {
-  background: #0071e3;
+  background: #3182f6;
 }
 
 .switchControl:disabled {

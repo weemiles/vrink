@@ -65,7 +65,7 @@ const ingredients: Ingredient[] = [
     number: "02",
     name: "Vitamin B",
     category: "Water-soluble vitamin",
-    accent: "#0071e3",
+    accent: "#3182f6",
     headline: "A water-soluble vitamin group involved in energy metabolism, nervous-system function, and daily nutrition routines.",
     body:
       "Vitamin B refers to a group of related nutrients, including B1, B2, B3, B5, B6, B7, folate (B9), and B12. These vitamins act as coenzymes in carbohydrate, fat, and protein metabolism and are also discussed in relation to nervous-system function and cell maintenance, so VRINK frames them as foundational daily nutrition rather than a quick stimulant.",
@@ -228,7 +228,7 @@ const ingredients: Ingredient[] = [
     number: "09",
     name: "L-Carnitine",
     category: "Exercise routine ingredient",
-    accent: "#008ed6",
+    accent: "#3182f6",
     headline: "An ingredient connected to the metabolic pathway that transports fatty acids into mitochondria.",
     body:
       "L-carnitine is known for its role in long-chain fatty acid transport, and clinical studies also discuss exercise-induced muscle damage markers and recovery perception. VRINK presents it as one part of a balanced routine with exercise, not as a standalone weight-loss ingredient.",

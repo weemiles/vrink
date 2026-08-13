@@ -230,8 +230,8 @@
 .fieldGrid input:focus,
 .messageField textarea:focus {
   background: #ffffff;
-  border-color: rgba(0, 113, 227, 0.55);
-  box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.12);
+  border-color: rgba(49, 130, 246, 0.55);
+  box-shadow: 0 0 0 4px rgba(49, 130, 246, 0.12);
 }
 
 .messageField textarea {

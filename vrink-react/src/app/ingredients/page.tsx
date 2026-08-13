@@ -67,7 +67,7 @@ const ingredients: Ingredient[] = [
     name: "비타민B",
     englishName: "Vitamin B",
     category: "수용성 비타민",
-    accent: "#0071e3",
+    accent: "#3182f6",
     headline: "에너지 대사와 신경 기능을 돕는 효소 반응에 관여하는 수용성 비타민군입니다.",
     body:
       "비타민B군은 B1, B2, B3, B5, B6, B7, 엽산(B9), B12처럼 여러 영양소를 함께 부르는 이름입니다. 탄수화물, 지방, 단백질을 에너지로 전환하는 대사 과정과 신경계 기능, 세포 유지에 관여해 데일리 컨디션 루틴에서 기본 영양소로 다룹니다.",
@@ -237,7 +237,7 @@ const ingredients: Ingredient[] = [
     name: "L-카르니틴",
     englishName: "L-Carnitine",
     category: "운동 루틴 원료",
-    accent: "#008ed6",
+    accent: "#3182f6",
     headline: "지방산을 미토콘드리아로 운반하는 대사 경로와 연결된 원료입니다.",
     body:
       "L-카르니틴은 긴사슬 지방산 운반 과정에 관여하는 물질로 알려져 있으며, 운동 후 근육 손상 지표와 회복감에 대한 임상 연구도 있습니다. 브링크에서는 단독 감량 원료가 아니라 운동과 함께하는 밸런스 루틴의 일부로 소개합니다.",
@@ -275,7 +275,7 @@ const shotPairings = [
     name: "커팅샷",
     body: "녹차추출물과 L-카르니틴을 운동과 함께하는 가벼운 관리 루틴으로 연결합니다.",
     image: "/images/vrink/shots/cutting-shot.png",
-    accent: "#008ed6",
+    accent: "#3182f6",
   },
   {
     name: "아미노샷",

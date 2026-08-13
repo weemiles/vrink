@@ -8,6 +8,7 @@
   const LIVE_TYPING_URL = window.VRINK_LIVE_TYPING_API || '/api/chat-live/typing';
   const LIVE_CLOSE_URL = window.VRINK_LIVE_CLOSE_API || '/api/chat-live/close';
   const BRAND = '#56E893';
+  const LAUNCHER_COLOR = '#3182F6';
   const BOT_NAME = '브링크';
   const NOTICE =
     '평일 10:00–18:00에 순차적으로 답변드려요.\n도입 문의, 이용 방법, 제휴 등 무엇이든 편하게 남겨주세요!';
@@ -37,12 +38,12 @@
   const css = `
   .vk-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:2147482999;display:none}
   .vk-launcher{position:fixed;right:24px;bottom:24px;width:56px;height:56px;border:none;border-radius:50%;
-    background:${BRAND};cursor:pointer;display:flex;align-items:center;justify-content:center;
+    background:${LAUNCHER_COLOR};cursor:pointer;display:flex;align-items:center;justify-content:center;
     box-shadow:0 4px 16px rgba(0,0,0,.16);z-index:2147483002;transition:transform .15s ease}
   .vk-launcher:hover{transform:scale(1.05)}
   .vk-launcher svg{width:26px;height:26px}
   .vk-launcher.vk-active{background:#fff;border:1px solid #E5E5E5}
-  .vk-launcher.vk-active svg{stroke:#56E893}
+  .vk-launcher.vk-active svg{stroke:${LAUNCHER_COLOR}}
   .vk-panel{position:fixed;right:24px;bottom:92px;width:380px;max-width:calc(100vw - 32px);height:600px;
     max-height:calc(100vh - 120px);background:#fff;border:1px solid #ECECEC;border-radius:16px;
     box-shadow:0 12px 40px rgba(0,0,0,.14);z-index:2147483000;display:none;flex-direction:column;overflow:hidden;
@@ -50,7 +51,7 @@
   .vk-panel.vk-open{display:flex}
   .vk-header{position:relative;padding:14px 14px;border-bottom:1px solid #F2F2F2;display:flex;align-items:center;gap:8px}
   .vk-profile{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
-  .vk-avatar{width:34px;height:34px;border-radius:50%;background:#F4F8FF;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .vk-avatar{width:34px;height:34px;border-radius:50%;background:rgba(49,130,246,.06);display:flex;align-items:center;justify-content:center;flex-shrink:0}
   .vk-title{font-size:16px;font-weight:600;letter-spacing:-0.02em;color:#1A1A1A;line-height:1.2}
   .vk-sub{font-size:12px;color:#8A8A8A;margin-top:1px}
   .vk-more{background:none;border:none;cursor:pointer;padding:6px;flex-shrink:0;display:flex;align-items:center}
@@ -77,7 +78,7 @@
   .vk-user{align-self:flex-end;background:${BRAND};color:#0A2A1A;border-bottom-right-radius:4px}
   .vk-msg img{max-width:100%;border-radius:8px;margin-top:6px;display:block}
   .vk-meta{align-self:flex-start;display:flex;align-items:center;gap:5px;font-size:12px;color:#9AA0A6;margin:-2px 0 4px 2px}
-  .vk-meta-ic{width:15px;height:15px;border-radius:50%;background:#F4F8FF;display:flex;align-items:center;justify-content:center}
+  .vk-meta-ic{width:15px;height:15px;border-radius:50%;background:rgba(49,130,246,.06);display:flex;align-items:center;justify-content:center}
   .vk-meta-ic svg{width:12px;height:12px}
   .vk-typing{align-self:flex-start;display:flex;gap:4px;padding:12px 14px;background:#fff;border:1px solid #EDEDED;border-radius:14px}
   .vk-typing span{width:6px;height:6px;border-radius:50%;background:#BDBDBD;animation:vk-blink 1.2s infinite}

@@ -40,7 +40,7 @@ const shotItems: ShotItem[] = [
     purpose: "일상 속 가벼운 관리 루틴",
     description: "L-카르니틴과 녹차농축액으로 산뜻한 밸런스 관리를 돕는 기능샷입니다.",
     image: "/images/vrink/shots/cutting-shot.png",
-    accent: "#008ed6",
+    accent: "#3182f6",
     ingredients: ["L-카르니틴 500mg", "녹차농축액 300mg"],
   },
   {

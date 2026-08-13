@@ -93,7 +93,7 @@ const shotItems: ShotItem[] = [
       en: "L-carnitine and green tea concentrate for an easy before-or-after workout choice.",
     },
     image: "/images/vrink/shots/cutting-shot.png",
-    accent: "#008ed6",
+    accent: "#3182f6",
     ingredients: [
       { ko: "L-카르니틴 500mg", en: "L-carnitine 500mg" },
       { ko: "녹차농축액 300mg", en: "Green tea concentrate 300mg" },

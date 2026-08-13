@@ -30,7 +30,7 @@
 
 .footerCta a {
   align-items: center;
-  background: #0071e3;
+  background: #3182f6;
   border-radius: 980px;
   color: #ffffff;
   display: inline-flex;
@@ -44,7 +44,7 @@
 }
 
 .footerCta a:hover {
-  background: #0066cc;
+  background: #1b64da;
 }
 
 .footerDivider {
@@ -116,7 +116,7 @@
 }
 
 .footerConsentButton:focus-visible {
-  outline: 2px solid rgba(0, 113, 227, 0.34);
+  outline: 2px solid rgba(49, 130, 246, 0.34);
   outline-offset: 3px;
 }
 
@@ -149,7 +149,7 @@
 }
 
 .footerSubscribe button {
-  background: #0071e3;
+  background: #3182f6;
   border: 0;
   color: #ffffff;
   cursor: pointer;

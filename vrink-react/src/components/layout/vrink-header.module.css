@@ -154,7 +154,7 @@
 .navCta:focus-visible,
 .languageButton:focus-visible,
 .menuButton:focus-visible {
-  outline: 2px solid #0071e3;
+  outline: 2px solid #3182f6;
   outline-offset: 3px;
 }
 
@@ -267,7 +267,7 @@
 
 .navCta {
   align-items: center;
-  background: #0071e3;
+  background: #3182f6;
   border-radius: 980px;
   color: #ffffff;
   display: inline-flex;
@@ -276,7 +276,7 @@
 }
 
 .navCta:hover {
-  background: #0066cc;
+  background: #1b64da;
   color: #ffffff;
 }
 
@@ -366,7 +366,7 @@
 
 .mobileCta {
   align-items: center;
-  background: #0071e3;
+  background: #3182f6;
   border-radius: 999px;
   color: #ffffff;
   display: inline-flex;

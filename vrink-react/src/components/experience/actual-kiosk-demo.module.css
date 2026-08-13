@@ -252,7 +252,7 @@
 
 .emptyBlend {
   align-items: center;
-  background: #f0f4ff;
+  background: rgba(49, 130, 246, 0.08);
   border-radius: 50%;
   color: var(--brand-primary);
   display: flex;

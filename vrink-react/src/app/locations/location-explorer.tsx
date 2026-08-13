@@ -283,7 +283,7 @@ function createMarkerContent(
   ariaLabel: string,
 ) {
   const markerLogoSrc = withBasePath(markerLogoPath);
-  const markerColor = isSelected ? "#0071e3" : "#ffffff";
+  const markerColor = isSelected ? "#3182f6" : "#ffffff";
   const logoFilter = isSelected ? "brightness(0) invert(1)" : "none";
 
   return `

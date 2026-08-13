@@ -2,8 +2,8 @@
   --page-black: #000000;
   --page-ink: #1d1d1f;
   --page-gray: #f5f5f7;
-  --page-blue: #0071e3;
-  --page-blue-dark: #0066cc;
+  --page-blue: #3182f6;
+  --page-blue-dark: #1b64da;
   --page-muted: rgba(0, 0, 0, 0.64);
 
   background: #ffffff;
@@ -150,9 +150,9 @@
 }
 
 .choiceCard:hover {
-  background: #f4f9ff;
-  border-color: #9dccff;
-  box-shadow: 0 18px 42px rgba(0, 113, 227, 0.1);
+  background: rgba(49, 130, 246, 0.06);
+  border-color: rgba(49, 130, 246, 0.42);
+  box-shadow: 0 18px 42px rgba(49, 130, 246, 0.1);
   transform: translateY(-2px);
 }
 
@@ -169,7 +169,7 @@
 }
 
 .choiceCard:hover .choiceIcon {
-  background: #e8f2ff;
+  background: rgba(49, 130, 246, 0.1);
 }
 
 .choiceIcon svg {

@@ -4,8 +4,8 @@
   --page-subtle: #879199;
   --page-line: #e5eaed;
   --page-soft: #f6f8f9;
-  --page-accent: #0071e3;
-  --page-accent-dark: #0066cc;
+  --page-accent: #3182f6;
+  --page-accent-dark: #1b64da;
 
   background: #ffffff;
   color: var(--page-ink);
@@ -111,13 +111,13 @@
 
 .secondaryButton {
   background: rgba(255, 255, 255, 0.42);
-  border: 1px solid rgba(0, 113, 227, 0.28);
+  border: 1px solid rgba(49, 130, 246, 0.28);
   color: var(--page-accent-dark);
 }
 
 .secondaryButton:hover {
   background: rgba(255, 255, 255, 0.62);
-  border-color: rgba(0, 113, 227, 0.42);
+  border-color: rgba(49, 130, 246, 0.42);
 }
 
 .shotSection,
@@ -198,7 +198,7 @@
 }
 
 .shotCard:hover {
-  border-color: rgba(0, 113, 227, 0.28);
+  border-color: rgba(49, 130, 246, 0.28);
   box-shadow: 0 18px 46px rgba(28, 39, 43, 0.08);
   transform: translateY(-3px);
 }
@@ -266,7 +266,7 @@
 }
 
 .ingredientCard:hover {
-  border-color: rgba(0, 113, 227, 0.28);
+  border-color: rgba(49, 130, 246, 0.28);
   box-shadow: 0 18px 48px rgba(28, 39, 43, 0.08);
   transform: translateY(-3px);
 }
@@ -342,8 +342,8 @@
 }
 
 .noteList li {
-  background: #e8f2ff;
-  border: 1px solid #cfe3ff;
+  background: rgba(49, 130, 246, 0.1);
+  border: 1px solid rgba(49, 130, 246, 0.2);
   border-radius: 980px;
   color: var(--page-accent-dark);
   font-size: var(--type-micro);

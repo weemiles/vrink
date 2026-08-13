@@ -64,7 +64,7 @@
 .closeButton:focus-visible,
 .primaryAction:focus-visible,
 .todayButton:focus-visible {
-  box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.28);
+  box-shadow: 0 0 0 4px rgba(49, 130, 246, 0.28);
   outline: none;
 }
 
@@ -73,7 +73,7 @@
 }
 
 .eyebrow {
-  color: #2997ff;
+  color: #3182f6;
   font-size: var(--type-label);
   font-weight: var(--weight-regular);
   line-height: var(--line-label);

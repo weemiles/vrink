@@ -227,7 +227,7 @@
 }
 
 .processSection .eyebrow {
-  color: #2997ff;
+  color: #3182f6;
 }
 
 .processIntro > p:last-child {
@@ -252,7 +252,7 @@
 }
 
 .processList li > span {
-  color: #2997ff;
+  color: #3182f6;
   font-size: 0.875rem;
   font-variant-numeric: tabular-nums;
   font-weight: var(--weight-medium);
