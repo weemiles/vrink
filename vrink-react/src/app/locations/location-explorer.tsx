@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Script from "next/script";
-import { ChevronLeft, ChevronRight, MapPin, Minus, Plus } from "lucide-react";
+import { Check, ChevronLeft, ChevronRight, MapPin, Minus, Plus } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { withBasePath } from "@/lib/static-export";
@@ -397,9 +397,6 @@ export function LocationExplorer({ locale = "ko" }: LocationExplorerProps) {
     : null;
   const selectedImage = selectedLocation ? selectedLocation.images[activeImageIndex] : null;
   const selectedDisplay = selectedLocation ? getLocationDisplay(selectedLocation, locale) : null;
-  const visibleLocations = selectedImage
-    ? sortedLocations.filter((location) => location.id !== selectedLocationId)
-    : sortedLocations;
 
   const showFallbackMap = !naverClientId || !allowMapScript || scriptFailed;
 
@@ -739,12 +736,13 @@ export function LocationExplorer({ locale = "ko" }: LocationExplorerProps) {
             </section>
           ) : null}
           <div className={styles.locationList}>
-            {visibleLocations.map((location) => {
+            {sortedLocations.map((location) => {
               const display = getLocationDisplay(location, locale);
+              const isSelected = selectedLocationId === location.id;
 
               return (
                 <button
-                  aria-current={selectedLocationId === location.id ? "true" : undefined}
+                  aria-current={isSelected ? "true" : undefined}
                   key={location.id}
                   onClick={() => handleLocationOpen(location.id)}
                   onMouseEnter={() => setHoveredLocationId(location.id)}
@@ -753,6 +751,14 @@ export function LocationExplorer({ locale = "ko" }: LocationExplorerProps) {
                 >
                   <strong>{display.name}</strong>
                   <small>{display.address}</small>
+                  {isSelected ? (
+                    <Check
+                      aria-hidden="true"
+                      className={styles.locationSelectedIcon}
+                      size={18}
+                      strokeWidth={2}
+                    />
+                  ) : null}
                 </button>
               );
             })}
