@@ -48,7 +48,7 @@
   box-sizing: border-box;
   display: grid;
   inset: 0;
-  padding: clamp(48px, 7vw, 96px) var(--layout-page-gutter);
+  padding: clamp(48px, 7vw, 96px) clamp(24px, 4vw, 64px);
   place-items: center;
   pointer-events: none;
   position: absolute;
@@ -61,6 +61,7 @@
 .copy {
   color: #fff;
   max-width: 760px;
+  width: 100%;
 }
 
 .label {
