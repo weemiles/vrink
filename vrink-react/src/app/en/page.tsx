@@ -531,7 +531,7 @@ export default function EnglishPage() {
             Tell us your space type, expected users, timeline, and how you found VRINK. Our team will review and follow up.
           </span>
         </ScrollReveal>
-        <LeadForm locale="en" />
+        <LeadForm instagramContactDialog locale="en" />
       </section>
 
       <VrinkFooter ctaHref="/en#contact" locale="en" showCta={false} />
