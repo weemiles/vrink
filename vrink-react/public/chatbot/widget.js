@@ -108,8 +108,10 @@
     padding:10px 16px;cursor:pointer;flex-shrink:0}
   .vk-send:disabled{opacity:.5;cursor:default}
   @media (max-width:480px){
-    .vk-panel{top:calc(var(--vk-viewport-top, 0px) + 12px);bottom:auto;left:12px;right:12px;width:auto;max-width:none;
-      height:calc(var(--vk-viewport-height, 100dvh) - 24px);max-height:none;min-height:0;border-radius:16px}
+    .vk-panel{top:12px;bottom:auto;left:12px;right:12px;width:auto;max-width:none;
+      height:calc(var(--vk-viewport-height, 100dvh) - 24px);max-height:none;min-height:0;border-radius:16px;
+      transform:translate3d(var(--vk-viewport-left, 0px),var(--vk-viewport-top, 0px),0)}
+    .vk-input{height:44px;max-height:44px;overflow-y:auto}
     .vk-overlay.vk-open{display:block}
   }
   `;
@@ -196,17 +198,64 @@
   const sendBtn = panel.querySelector('.vk-send');
 
   // ---- 헬퍼 ----
+  let pageScrollLock = null;
+
+  function lockPageScroll() {
+    if (window.innerWidth > 480 || pageScrollLock) return;
+
+    const bodyStyle = document.body.style;
+    const rootStyle = document.documentElement.style;
+    const scrollY = Math.max(0, window.scrollY);
+    pageScrollLock = {
+      scrollY,
+      body: {
+        position: bodyStyle.position,
+        top: bodyStyle.top,
+        left: bodyStyle.left,
+        right: bodyStyle.right,
+        width: bodyStyle.width,
+        overflow: bodyStyle.overflow,
+      },
+      root: {
+        overflow: rootStyle.overflow,
+        overscrollBehavior: rootStyle.overscrollBehavior,
+      },
+    };
+
+    bodyStyle.position = 'fixed';
+    bodyStyle.top = `-${scrollY}px`;
+    bodyStyle.left = '0';
+    bodyStyle.right = '0';
+    bodyStyle.width = '100%';
+    bodyStyle.overflow = 'hidden';
+    rootStyle.overflow = 'hidden';
+    rootStyle.overscrollBehavior = 'none';
+  }
+
+  function unlockPageScroll() {
+    if (!pageScrollLock) return;
+
+    const saved = pageScrollLock;
+    pageScrollLock = null;
+    Object.assign(document.body.style, saved.body);
+    Object.assign(document.documentElement.style, saved.root);
+    window.scrollTo(0, saved.scrollY);
+  }
+
   function syncMobileViewport() {
     if (window.innerWidth > 480) {
       panel.style.removeProperty('--vk-viewport-top');
+      panel.style.removeProperty('--vk-viewport-left');
       panel.style.removeProperty('--vk-viewport-height');
       return;
     }
 
     const viewport = window.visualViewport;
     const offsetTop = viewport ? viewport.offsetTop : 0;
+    const offsetLeft = viewport ? viewport.offsetLeft : 0;
     const height = viewport ? viewport.height : window.innerHeight;
     panel.style.setProperty('--vk-viewport-top', `${Math.max(0, offsetTop)}px`);
+    panel.style.setProperty('--vk-viewport-left', `${Math.max(0, offsetLeft)}px`);
     panel.style.setProperty('--vk-viewport-height', `${Math.max(0, height)}px`);
   }
 
@@ -386,7 +435,7 @@
 
     addMessage('user', text, images);
     input.value = '';
-    input.style.height = 'auto';
+    input.style.height = window.innerWidth > 480 ? 'auto' : '';
     pendingImages = [];
     renderPreview();
 
@@ -490,7 +539,7 @@
   async function submitLead(text) {
     addMessage('user', text);
     input.value = '';
-    input.style.height = 'auto';
+    input.style.height = window.innerWidth > 480 ? 'auto' : '';
     leadCapture = false;
     const transcript = [...body.querySelectorAll('.vk-msg')].map((el) => {
       let content = el.textContent.trim();
@@ -516,7 +565,7 @@
     if (!text && images.length === 0) return;
     addMessage('user', text, images);
     input.value = '';
-    input.style.height = 'auto';
+    input.style.height = window.innerWidth > 480 ? 'auto' : '';
     try {
       // 텍스트와 이미지를 각각 한 메시지로 전송(이미지당 1건)
       if (text) {
@@ -631,11 +680,16 @@
   let opened = false;
   function toggle(open) {
     opened = open;
-    if (open) syncMobileViewport();
+    if (open) {
+      syncMobileViewport();
+      lockPageScroll();
+    } else {
+      if (document.activeElement === input) input.blur();
+      unlockPageScroll();
+    }
     panel.classList.toggle('vk-open', open);
     overlay.classList.toggle('vk-open', open);
     launcher.classList.toggle('vk-active', open);
-    document.body.style.overflow = (open && window.innerWidth <= 480) ? 'hidden' : '';
     if (open && body.childElementCount === 0) {
       addMessage('bot', MACROS.greeting);
       home();
@@ -646,8 +700,12 @@
 
   // ---- 입력 ----
   input.addEventListener('input', () => {
-    input.style.height = 'auto';
-    input.style.height = Math.min(input.scrollHeight, 96) + 'px';
+    if (window.innerWidth > 480) {
+      input.style.height = 'auto';
+      input.style.height = Math.min(input.scrollHeight, 96) + 'px';
+    } else if (input.style.height) {
+      input.style.removeProperty('height');
+    }
     if (live) pingTyping(); // 라이브 상담 중 입력 시 상담사에게 '입력 중' 알림
   });
   input.addEventListener('keydown', (e) => {
