@@ -722,6 +722,16 @@
     grid-template-columns: 1fr;
   }
 
+  .fieldGrid input,
+  .fullField input,
+  .fullField select,
+  .fullField textarea,
+  .formRow input,
+  .formRow select,
+  .detailField textarea {
+    font-size: 1rem;
+  }
+
   .formRow {
     gap: 8px;
     grid-template-columns: 1fr;
