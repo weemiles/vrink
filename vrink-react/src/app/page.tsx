@@ -518,7 +518,7 @@ export default function HomePage() {
             공간 유형, 예상 이용자, 도입 시기, 알게 된 경로를 남겨주시면 브링크 팀이 확인 후 연락드립니다.
           </span>
         </ScrollReveal>
-        <LeadForm />
+        <LeadForm instagramContactDialog />
       </section>
 
       <VrinkFooter ctaHref="/#contact" showCta={false} />
