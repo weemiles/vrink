@@ -108,7 +108,8 @@
     padding:10px 16px;cursor:pointer;flex-shrink:0}
   .vk-send:disabled{opacity:.5;cursor:default}
   @media (max-width:480px){
-    .vk-panel{top:16px;bottom:88px;left:12px;right:12px;width:auto;max-width:none;height:auto;max-height:none;border-radius:16px}
+    .vk-panel{top:calc(var(--vk-viewport-top, 0px) + 12px);bottom:auto;left:12px;right:12px;width:auto;max-width:none;
+      height:calc(var(--vk-viewport-height, 100dvh) - 24px);max-height:none;min-height:0;border-radius:16px}
     .vk-overlay.vk-open{display:block}
   }
   `;
@@ -195,6 +196,24 @@
   const sendBtn = panel.querySelector('.vk-send');
 
   // ---- 헬퍼 ----
+  function syncMobileViewport() {
+    if (window.innerWidth > 480) {
+      panel.style.removeProperty('--vk-viewport-top');
+      panel.style.removeProperty('--vk-viewport-height');
+      return;
+    }
+
+    const viewport = window.visualViewport;
+    const offsetTop = viewport ? viewport.offsetTop : 0;
+    const height = viewport ? viewport.height : window.innerHeight;
+    panel.style.setProperty('--vk-viewport-top', `${Math.max(0, offsetTop)}px`);
+    panel.style.setProperty('--vk-viewport-height', `${Math.max(0, height)}px`);
+  }
+
+  window.addEventListener('resize', syncMobileViewport);
+  window.visualViewport?.addEventListener('resize', syncMobileViewport);
+  window.visualViewport?.addEventListener('scroll', syncMobileViewport);
+
   function addMessage(role, text, images) {
     const el = document.createElement('div');
     el.className = 'vk-msg ' + (role === 'user' ? 'vk-user' : 'vk-bot');
@@ -612,6 +631,7 @@
   let opened = false;
   function toggle(open) {
     opened = open;
+    if (open) syncMobileViewport();
     panel.classList.toggle('vk-open', open);
     overlay.classList.toggle('vk-open', open);
     launcher.classList.toggle('vk-active', open);
