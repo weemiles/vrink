@@ -1,6 +1,14 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import {
+  FormEvent,
+  type FocusEvent,
+  type PointerEvent,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { ChevronDown } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -25,6 +33,109 @@ const initialFeedback: FormFeedback = {
   type: "idle",
   message: "",
 };
+
+const focusScrollRestoreDelays = [0, 60, 140, 260, 420, 650];
+
+function isFormControl(target: EventTarget | null): target is HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement {
+  return target instanceof HTMLInputElement || target instanceof HTMLSelectElement || target instanceof HTMLTextAreaElement;
+}
+
+function isInstagramIOSWebView() {
+  const isIOS =
+    /iPhone|iPad|iPod/i.test(navigator.userAgent) ||
+    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+
+  return isIOS && /Instagram/i.test(navigator.userAgent) && window.innerWidth <= 820;
+}
+
+function useInstagramFocusScrollStabilizer() {
+  const pointerAnchorRef = useRef<{ target: EventTarget; top: number; capturedAt: number } | null>(null);
+  const anchorTopRef = useRef(0);
+  const activeUntilRef = useRef(0);
+  const restoringRef = useRef(false);
+  const restoreTimeoutsRef = useRef<number[]>([]);
+  const originalScrollBehaviorRef = useRef<string | null>(null);
+
+  const finishStabilizing = useCallback(() => {
+    activeUntilRef.current = 0;
+    restoreTimeoutsRef.current.forEach((timeoutId) => window.clearTimeout(timeoutId));
+    restoreTimeoutsRef.current = [];
+
+    if (originalScrollBehaviorRef.current !== null) {
+      document.documentElement.style.scrollBehavior = originalScrollBehaviorRef.current;
+      originalScrollBehaviorRef.current = null;
+    }
+  }, []);
+
+  const restoreVisualPosition = useCallback(() => {
+    if (restoringRef.current || performance.now() > activeUntilRef.current) return;
+
+    const visualOffsetTop = window.visualViewport?.offsetTop ?? 0;
+    const targetScrollY = Math.max(0, anchorTopRef.current - visualOffsetTop);
+    if (Math.abs(window.scrollY - targetScrollY) < 1) return;
+
+    restoringRef.current = true;
+    window.scrollTo({ left: window.scrollX, top: targetScrollY, behavior: "auto" });
+    window.requestAnimationFrame(() => {
+      restoringRef.current = false;
+    });
+  }, []);
+
+  useEffect(() => {
+    const viewport = window.visualViewport;
+    const cancelForUserScroll = () => finishStabilizing();
+
+    window.addEventListener("scroll", restoreVisualPosition, { passive: true });
+    window.addEventListener("touchmove", cancelForUserScroll, { passive: true });
+    viewport?.addEventListener("resize", restoreVisualPosition, { passive: true });
+    viewport?.addEventListener("scroll", restoreVisualPosition, { passive: true });
+
+    return () => {
+      finishStabilizing();
+      window.removeEventListener("scroll", restoreVisualPosition);
+      window.removeEventListener("touchmove", cancelForUserScroll);
+      viewport?.removeEventListener("resize", restoreVisualPosition);
+      viewport?.removeEventListener("scroll", restoreVisualPosition);
+    };
+  }, [finishStabilizing, restoreVisualPosition]);
+
+  const handlePointerDownCapture = useCallback((event: PointerEvent<HTMLFormElement>) => {
+    if (!isFormControl(event.target) || !isInstagramIOSWebView()) return;
+
+    pointerAnchorRef.current = {
+      target: event.target,
+      top: window.scrollY + (window.visualViewport?.offsetTop ?? 0),
+      capturedAt: performance.now(),
+    };
+  }, []);
+
+  const handleFocusCapture = useCallback(
+    (event: FocusEvent<HTMLFormElement>) => {
+      if (!isFormControl(event.target) || !isInstagramIOSWebView()) return;
+
+      finishStabilizing();
+
+      const pointerAnchor = pointerAnchorRef.current;
+      const isRecentDirectTap =
+        pointerAnchor?.target === event.target && performance.now() - pointerAnchor.capturedAt < 1_500;
+      anchorTopRef.current = isRecentDirectTap
+        ? pointerAnchor.top
+        : window.scrollY + (window.visualViewport?.offsetTop ?? 0);
+      activeUntilRef.current = performance.now() + 700;
+
+      originalScrollBehaviorRef.current = document.documentElement.style.scrollBehavior;
+      document.documentElement.style.scrollBehavior = "auto";
+
+      restoreTimeoutsRef.current = focusScrollRestoreDelays.map((delay) =>
+        window.setTimeout(restoreVisualPosition, delay),
+      );
+      restoreTimeoutsRef.current.push(window.setTimeout(finishStabilizing, 720));
+    },
+    [finishStabilizing, restoreVisualPosition],
+  );
+
+  return { handleFocusCapture, handlePointerDownCapture };
+}
 
 const englishLeadForm = {
   title: "Share setup details and source",
@@ -56,6 +167,7 @@ const englishLeadForm = {
 export function LeadForm({ locale = "ko" }: LeadFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [feedback, setFeedback] = useState<FormFeedback>(initialFeedback);
+  const { handleFocusCapture, handlePointerDownCapture } = useInstagramFocusScrollStabilizer();
   const copy = locale === "en" ? englishLeadForm : vrinkCopy.leadForm;
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -144,7 +256,14 @@ export function LeadForm({ locale = "ko" }: LeadFormProps) {
       <h3 className="text-h5">{copy.title}</h3>
       <p className="mt-2 text-body-2 text-[var(--text-muted)]">{copy.description}</p>
 
-      <form className="mt-6 space-y-5" onSubmit={handleSubmit} noValidate aria-busy={isSubmitting}>
+      <form
+        className="mt-6 space-y-5"
+        onFocusCapture={handleFocusCapture}
+        onPointerDownCapture={handlePointerDownCapture}
+        onSubmit={handleSubmit}
+        noValidate
+        aria-busy={isSubmitting}
+      >
         <div className="hidden" aria-hidden="true">
           <Label htmlFor="honeypot">Website</Label>
           <input id="honeypot" name="honeypot" type="text" tabIndex={-1} autoComplete="off" />
