@@ -8,10 +8,12 @@
 }
 
 .copy {
+  box-sizing: border-box;
   margin: 0 auto;
   max-width: 760px;
-  padding: 0 var(--layout-page-gutter);
+  padding-inline: clamp(18px, 4vw, 40px);
   text-align: center;
+  width: 100%;
 }
 
 .copy p {
@@ -29,6 +31,7 @@
   line-height: var(--line-section);
   margin: 0 auto;
   max-width: 680px;
+  text-wrap: balance;
   word-break: keep-all;
 }
 
@@ -40,6 +43,7 @@
   line-height: var(--line-description);
   margin: 18px auto 0;
   max-width: 560px;
+  text-wrap: pretty;
   word-break: keep-all;
 }
 
