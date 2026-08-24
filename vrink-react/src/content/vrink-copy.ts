@@ -316,11 +316,11 @@ export const vrinkCopy: VrinkCopy = {
       owner: "김민수",
       address: "하남시 동남로406번길 46",
       email: "vrink@contact.kr",
-      phone: "010-7362-6070",
+      phone: "070-4667-6072",
     },
     contact: {
       email: "contact@vrink.kr",
-      phone: "010-7362-6070",
+      phone: "070-4667-6072",
       instagram: "@vrink_official",
       website: "vrink.kr",
     },
