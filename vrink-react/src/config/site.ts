@@ -21,7 +21,7 @@ export const siteConfig: SiteConfig = {
     "브링크 제로스테이션: 15초 만에 기능샷과 맛을 고르는 공간 맞춤 음료 스테이션.",
   baseUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.vrink.kr",
   contactEmail: "vrink@contact.kr",
-  contactPhone: "010-7362-6070",
+  contactPhone: "070-4667-6072",
   instagram: "@vrink_official",
   business: {
     companyName: "주식회사 브링크",
