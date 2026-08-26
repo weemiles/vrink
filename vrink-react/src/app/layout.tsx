@@ -5,14 +5,14 @@ import Script from "next/script";
 import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 import { CookieSettingsPopup } from "@/components/consent/cookie-settings-popup";
 import { ChatbotWidget } from "@/components/consultation/chatbot-widget";
-import { buildMetadata, organizationJsonLd } from "@/lib/seo";
+import { buildMetadata, organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 
 import "./globals.css";
 
 export const metadata: Metadata = buildMetadata({
-  title: "브링크(VRINK) 공식 웹사이트",
+  title: "브링크 공식 홈페이지",
   description:
-    "브링크 제로스테이션: 공간의 경험, 복지, 운영 흐름을 함께 설계하는 스마트 음료 시스템.",
+    "브링크(VRINK)는 15초 만에 맛과 5종 기능샷을 고르는 맞춤형 웰니스 음료 디스펜서입니다.",
 });
 
 const pretendard = localFont({
@@ -39,9 +39,17 @@ export default function RootLayout({
           }}
         />
         <script
+          id="vrink-organization-schema"
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(organizationJsonLd()),
+          }}
+        />
+        <script
+          id="vrink-website-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteJsonLd()),
           }}
         />
         {children}
