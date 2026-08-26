@@ -16,9 +16,9 @@ export type SiteConfig = {
 
 export const siteConfig: SiteConfig = {
   name: "VRINK",
-  title: "브링크(VRINK) 공식 웹사이트",
+  title: "브링크 공식 홈페이지 | VRINK",
   description:
-    "브링크 제로스테이션: 15초 만에 기능샷과 맛을 고르는 공간 맞춤 음료 스테이션.",
+    "브링크(VRINK)는 15초 만에 맛과 5종 기능샷을 고르는 맞춤형 웰니스 음료 디스펜서입니다.",
   baseUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.vrink.kr",
   contactEmail: "vrink@contact.kr",
   contactPhone: "070-4667-6072",

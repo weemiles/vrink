@@ -9,10 +9,13 @@ export function organizationJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: siteConfig.business.companyName,
-    alternateName: ["VRINK", "브링크"],
+    "@id": `${base}/#organization`,
+    name: "브링크",
+    legalName: siteConfig.business.companyName,
+    alternateName: ["VRINK", "브링크 제로스테이션"],
     url: base,
     logo: `${base}/images/vrink/brand/vrink-circle-logo.png`,
+    description: siteConfig.description,
     email: siteConfig.contactEmail,
     address: {
       "@type": "PostalAddress",
@@ -22,6 +25,23 @@ export function organizationJsonLd() {
       addressCountry: "KR",
     },
     sameAs: [`https://www.instagram.com/${instagramHandle}`],
+  };
+}
+
+export function websiteJsonLd() {
+  const base = siteConfig.baseUrl.replace(/\/$/, "");
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${base}/#website`,
+    url: base,
+    name: "브링크",
+    alternateName: "VRINK",
+    inLanguage: ["ko-KR", "en-US"],
+    publisher: {
+      "@id": `${base}/#organization`,
+    },
   };
 }
 
@@ -63,13 +83,13 @@ export function buildMetadata({
     verification: {
       google: "d-ltXkau_y7Wo-LDtgOIv0evIEcIGBv7RUNojYW6C3Y",
       other: {
-        "naver-site-verification": "080d2859d859a75fb78a7963c5acd9024e1be9a4",
+        "naver-site-verification": "e7c4ec4e2d84aeb1ad409beccf1a65e64a267e8d",
       },
     },
     openGraph: {
       type: "website",
       url: canonical,
-      siteName: siteConfig.name,
+      siteName: locale === "en" ? siteConfig.name : "브링크",
       title: fullTitle,
       description: fullDescription,
       locale: locale === "en" ? "en_US" : "ko_KR",
