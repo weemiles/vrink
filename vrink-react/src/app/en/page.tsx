@@ -199,6 +199,15 @@ const lifestyleImages = [
 
 const newsItems = [
   {
+    title: "CNT Tech invests in AI-powered personalized wellness drink platform VRINK",
+    category: "Press",
+    source: "The Electronic Times",
+    date: "2026.08",
+    body: "Coverage of CNT Tech's investment in VRINK and the platform's plans to expand its dispensing technology, product lineup, and B2B reach.",
+    image: "/images/vrink/news/etnews-cnt-tech-investment-20260825.jpg",
+    href: "https://www.etnews.com/20260825000341",
+  },
+  {
     title: "VRINK secures CNT Tech investment, signs 50 clients within three months of launch",
     category: "Press",
     source: "Korea Wood Newspaper",
