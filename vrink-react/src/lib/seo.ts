@@ -83,7 +83,7 @@ export function buildMetadata({
     verification: {
       google: "d-ltXkau_y7Wo-LDtgOIv0evIEcIGBv7RUNojYW6C3Y",
       other: {
-        "naver-site-verification": "e7c4ec4e2d84aeb1ad409beccf1a65e64a267e8d",
+        "naver-site-verification": "080d2859d859a75fb78a7963c5acd9024e1be9a4",
       },
     },
     openGraph: {
