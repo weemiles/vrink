@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { Check, X } from "lucide-react";
+import { ArrowRight, Check, ChevronRight, X } from "lucide-react";
 
 import { ActualKioskDemo } from "@/components/experience/actual-kiosk-demo";
 import { LeadForm } from "@/components/forms/lead-form";
@@ -13,6 +13,7 @@ import { LifestyleShowcase } from "@/components/sections/lifestyle-showcase";
 import { ManufacturingStory } from "@/components/sections/manufacturing-story";
 import { PartnerLogoMarquee } from "@/components/sections/partner-logo-marquee";
 import { ShotNutritionSection } from "@/components/sections/shot-nutrition-section";
+import { getNewsItems } from "@/content/news";
 import { withBasePath } from "@/lib/static-export";
 import { buildMetadata } from "@/lib/seo";
 
@@ -197,62 +198,7 @@ const lifestyleImages = [
   },
 ];
 
-const newsItems = [
-  {
-    title: "CNT Tech invests in AI-powered personalized wellness drink platform VRINK",
-    category: "Press",
-    source: "The Electronic Times",
-    date: "2026.08",
-    body: "Coverage of CNT Tech's investment in VRINK and the platform's plans to expand its dispensing technology, product lineup, and B2B reach.",
-    image: "/images/vrink/news/etnews-cnt-tech-investment-20260825.jpg",
-    href: "https://www.etnews.com/20260825000341",
-  },
-  {
-    title: "VRINK secures CNT Tech investment, signs 50 clients within three months of launch",
-    category: "Press",
-    source: "Korea Wood Newspaper",
-    date: "2026.07",
-    body: "Coverage of VRINK's personalized nutrition dispensing platform, early B2B traction, and investment from CNT Tech.",
-    image: "/images/vrink/news/cnt-tech-investment-20260731.jpg",
-    href: "https://www.woodkorea.co.kr/news/articleView.html?idxno=90580",
-  },
-  {
-    title: "VRINK raises investment from CNT Tech, reaches 50 clients in three months",
-    category: "Press",
-    source: "ENet News",
-    date: "2026.07",
-    body: "A report on VRINK's funding and the 50 client companies secured during the first three months after launch.",
-    image: "/images/vrink/news/cnt-tech-investment-20260731.jpg",
-    href: "https://www.enetnews.co.kr/news/articleView.html?idxno=52979",
-  },
-  {
-    title: "VRINK named a final pick for CNT Stadium's promising sports startups",
-    category: "Press",
-    source: "The Electronic Times",
-    date: "2026.04",
-    body: "Coverage of VRINK as a final selection for the 2026 Sports Accelerating program, CNT Stadium.",
-    image: "/images/vrink/news/etnews-cnt-stadium-20260430.jpg",
-    href: "https://n.news.naver.com/article/030/0003423393?sid=101",
-  },
-  {
-    title: "VRINK selected for the 18th Kibo Venture Camp, recognized for custom nutrition tech",
-    category: "Press",
-    source: "The Billiards",
-    date: "2026.04",
-    body: "An article on VRINK's personalized nutrition direction and its selection for a tech startup support program.",
-    image: "/images/vrink/news/vrink-news-consulting.jpg",
-    href: "https://www.thebilliards.kr/news/articleView.html?idxno=30505",
-  },
-  {
-    title: "VRINK joins sports accelerating, taking wellness drinks to the fitness market",
-    category: "Press",
-    source: "FT Sports",
-    date: "2026.04",
-    body: "Coverage of VRINK's sports accelerating selection and its plans to grow in the fitness market.",
-    image: "/images/vrink/news/vrink-news-booth.jpg",
-    href: "https://www.ftimes.kr/news/articleView.html?idxno=36836",
-  },
-];
+const newsItems = getNewsItems("en");
 
 export default function EnglishPage() {
   return (
@@ -497,7 +443,13 @@ export default function EnglishPage() {
         </ScrollReveal>
         <ScrollReveal className={styles.newsLayout}>
           <article className={styles.newsLead}>
-            <a className={styles.newsLeadLink} href={newsItems[0].href} rel="noreferrer" target="_blank">
+            <a
+              aria-label={`${newsItems[0].title} — opens article in a new tab`}
+              className={styles.newsLeadLink}
+              href={newsItems[0].href}
+              rel="noreferrer"
+              target="_blank"
+            >
               <div className={styles.newsLeadImage}>
                 <Image
                   src={withBasePath(newsItems[0].image)}
@@ -509,26 +461,39 @@ export default function EnglishPage() {
               <div className={styles.newsLeadCopy}>
                 <span className={styles.newsMeta}>{`${newsItems[0].source} · ${newsItems[0].category} · ${newsItems[0].date}`}</span>
                 <h3>{newsItems[0].title}</h3>
-                <span className={styles.newsCta} aria-hidden="true">Read article ›</span>
+                <span className={styles.newsCta} aria-hidden="true">Read article</span>
               </div>
             </a>
           </article>
           <div className={styles.newsList}>
-            {newsItems.slice(1).map((item) => (
+            {newsItems.slice(1, 4).map((item) => (
               <article key={item.title} className={styles.newsListItem}>
-                <a className={styles.newsListLink} href={item.href} rel="noreferrer" target="_blank">
+                <a
+                  aria-label={`${item.title} — opens article in a new tab`}
+                  className={styles.newsListLink}
+                  href={item.href}
+                  rel="noreferrer"
+                  target="_blank"
+                  title={item.title}
+                >
                   <div className={styles.newsListImage}>
                     <Image src={withBasePath(item.image)} alt="" fill sizes="(max-width: 560px) 30vw, 140px" />
                   </div>
                   <div className={styles.newsListCopy}>
                     <span className={styles.newsMeta}>{`${item.source} · ${item.category} · ${item.date}`}</span>
                     <h3>{item.title}</h3>
-                    <span className={styles.newsCta} aria-hidden="true">Read article ›</span>
                   </div>
+                  <ChevronRight className={styles.newsRowIcon} aria-hidden="true" strokeWidth={1.5} />
                 </a>
               </article>
             ))}
           </div>
+        </ScrollReveal>
+        <ScrollReveal className={styles.newsMore}>
+          <Link className={styles.newsMoreLink} href="/en/news">
+            <span>View all news</span>
+            <ArrowRight aria-hidden="true" strokeWidth={1.5} />
+          </Link>
         </ScrollReveal>
       </section>
 

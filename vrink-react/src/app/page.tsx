@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Check, X } from "lucide-react";
+import { ArrowRight, Check, ChevronRight, X } from "lucide-react";
 
 import { ActualKioskDemo } from "@/components/experience/actual-kiosk-demo";
 import { LeadForm } from "@/components/forms/lead-form";
@@ -12,6 +12,7 @@ import { LifestyleShowcase } from "@/components/sections/lifestyle-showcase";
 import { ManufacturingStory } from "@/components/sections/manufacturing-story";
 import { PartnerLogoMarquee } from "@/components/sections/partner-logo-marquee";
 import { ShotNutritionSection } from "@/components/sections/shot-nutrition-section";
+import { getNewsItems } from "@/content/news";
 import { withBasePath } from "@/lib/static-export";
 
 import { ExpertReviewBackgroundVideo } from "./detail/expert-review-background-video";
@@ -187,62 +188,7 @@ const lifestyleImages = [
   },
 ];
 
-const newsItems = [
-  {
-    title: "씨엔티테크, AI 기반 개인 맞춤형 웰니스 영양음료 플랫폼 '브링크' 투자",
-    category: "언론 보도",
-    source: "전자신문",
-    date: "2026.08",
-    body: "씨엔티테크의 브링크 투자와 AI 기반 개인 맞춤형 영양음료 플랫폼의 기술·사업 확장 계획을 소개한 기사입니다.",
-    image: "/images/vrink/news/etnews-cnt-tech-investment-20260825.jpg",
-    href: "https://www.etnews.com/20260825000341",
-  },
-  {
-    title: "개인맞춤 영양 디스펜싱 플랫폼 ‘브링크’, CNT테크 투자 유치 확정…출시 3개월 만에 50개사 계약",
-    category: "언론 보도",
-    source: "한국목재신문",
-    date: "2026.07",
-    body: "개인맞춤 영양 추천과 무인 정밀 디스펜싱 플랫폼, 출시 3개월 내 50개사 계약 및 CNT테크 투자 유치 소식을 다룬 기사입니다.",
-    image: "/images/vrink/news/cnt-tech-investment-20260731.jpg",
-    href: "https://www.woodkorea.co.kr/news/articleView.html?idxno=90580",
-  },
-  {
-    title: "브링크, CNT테크 투자 유치···출시 3개월 만에 50개 고객사 확보",
-    category: "언론 보도",
-    source: "이넷뉴스",
-    date: "2026.07",
-    body: "CNT테크 투자 유치와 공식 출시 후 3개월 만의 50개 고객사 확보 성과를 소개한 기사입니다.",
-    image: "/images/vrink/news/cnt-tech-investment-20260731.jpg",
-    href: "https://www.enetnews.co.kr/news/articleView.html?idxno=52979",
-  },
-  {
-    title: "브링크, CNT스타디움 유망 스포츠 스타트업 최종 선정",
-    category: "언론 보도",
-    source: "전자신문",
-    date: "2026.04",
-    body: "브링크가 2026 스포츠 액셀러레이팅 프로그램 CNT스타디움 최종 선정기업으로 소개된 기사입니다.",
-    image: "/images/vrink/news/etnews-cnt-stadium-20260430.jpg",
-    href: "https://n.news.naver.com/article/030/0003423393?sid=101",
-  },
-  {
-    title: "브링크, 기보벤처캠프 18기 선발…맞춤형 뉴트리션 기술력 인정",
-    category: "언론 보도",
-    source: "빌리어즈",
-    date: "2026.04",
-    body: "브링크의 개인 맞춤 뉴트리션 방향과 기술 창업 지원 프로그램 선발 소식을 소개한 기사입니다.",
-    image: "/images/vrink/news/vrink-news-consulting.jpg",
-    href: "https://www.thebilliards.kr/news/articleView.html?idxno=30505",
-  },
-  {
-    title: "브링크, 스포츠 액셀러레이팅 선정…웰니스 음료로 피트니스 시장 공략",
-    category: "언론 보도",
-    source: "FT스포츠",
-    date: "2026.04",
-    body: "스포츠 액셀러레이팅 선정과 피트니스 시장 확장 방향을 다룬 기사입니다.",
-    image: "/images/vrink/news/vrink-news-booth.jpg",
-    href: "https://www.ftimes.kr/news/articleView.html?idxno=36836",
-  },
-];
+const newsItems = getNewsItems("ko");
 
 export default function HomePage() {
   return (
@@ -484,7 +430,13 @@ export default function HomePage() {
         </ScrollReveal>
         <ScrollReveal className={styles.newsLayout}>
           <article className={styles.newsLead}>
-            <a className={styles.newsLeadLink} href={newsItems[0].href} rel="noreferrer" target="_blank">
+            <a
+              aria-label={`${newsItems[0].title} — 새 창에서 기사 보기`}
+              className={styles.newsLeadLink}
+              href={newsItems[0].href}
+              rel="noreferrer"
+              target="_blank"
+            >
               <div className={styles.newsLeadImage}>
                 <Image
                   src={withBasePath(newsItems[0].image)}
@@ -496,26 +448,39 @@ export default function HomePage() {
               <div className={styles.newsLeadCopy}>
                 <span className={styles.newsMeta}>{`${newsItems[0].source} · ${newsItems[0].category} · ${newsItems[0].date}`}</span>
                 <h3>{newsItems[0].title}</h3>
-                <span className={styles.newsCta} aria-hidden="true">기사 보기 ›</span>
+                <span className={styles.newsCta} aria-hidden="true">기사 보기</span>
               </div>
             </a>
           </article>
           <div className={styles.newsList}>
-            {newsItems.slice(1).map((item) => (
+            {newsItems.slice(1, 4).map((item) => (
               <article key={item.title} className={styles.newsListItem}>
-                <a className={styles.newsListLink} href={item.href} rel="noreferrer" target="_blank">
+                <a
+                  aria-label={`${item.title} — 새 창에서 기사 보기`}
+                  className={styles.newsListLink}
+                  href={item.href}
+                  rel="noreferrer"
+                  target="_blank"
+                  title={item.title}
+                >
                   <div className={styles.newsListImage}>
                     <Image src={withBasePath(item.image)} alt="" fill sizes="(max-width: 560px) 30vw, 140px" />
                   </div>
                   <div className={styles.newsListCopy}>
                     <span className={styles.newsMeta}>{`${item.source} · ${item.category} · ${item.date}`}</span>
                     <h3>{item.title}</h3>
-                    <span className={styles.newsCta} aria-hidden="true">기사 보기 ›</span>
                   </div>
+                  <ChevronRight className={styles.newsRowIcon} aria-hidden="true" strokeWidth={1.5} />
                 </a>
               </article>
             ))}
           </div>
+        </ScrollReveal>
+        <ScrollReveal className={styles.newsMore}>
+          <Link className={styles.newsMoreLink} href="/news">
+            <span>전체 소식 보기</span>
+            <ArrowRight aria-hidden="true" strokeWidth={1.5} />
+          </Link>
         </ScrollReveal>
       </section>
 
