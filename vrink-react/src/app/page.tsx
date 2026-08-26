@@ -189,6 +189,15 @@ const lifestyleImages = [
 
 const newsItems = [
   {
+    title: "씨엔티테크, AI 기반 개인 맞춤형 웰니스 영양음료 플랫폼 '브링크' 투자",
+    category: "언론 보도",
+    source: "전자신문",
+    date: "2026.08",
+    body: "씨엔티테크의 브링크 투자와 AI 기반 개인 맞춤형 영양음료 플랫폼의 기술·사업 확장 계획을 소개한 기사입니다.",
+    image: "/images/vrink/news/etnews-cnt-tech-investment-20260825.jpg",
+    href: "https://www.etnews.com/20260825000341",
+  },
+  {
     title: "개인맞춤 영양 디스펜싱 플랫폼 ‘브링크’, CNT테크 투자 유치 확정…출시 3개월 만에 50개사 계약",
     category: "언론 보도",
     source: "한국목재신문",
