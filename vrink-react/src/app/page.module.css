@@ -1262,7 +1262,7 @@
   color: inherit;
   display: grid;
   gap: 18px;
-  grid-template-columns: 132px minmax(0, 1fr);
+  grid-template-columns: 132px minmax(0, 1fr) 18px;
   text-decoration: none;
 }
 
@@ -1280,23 +1280,66 @@
 }
 
 .newsListCopy h3 {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
   color: var(--page-ink);
+  display: -webkit-box;
   font-size: var(--type-card);
   font-weight: var(--weight-medium);
   line-height: var(--line-card);
   margin: 0;
+  overflow: hidden;
+  overflow-wrap: break-word;
   text-wrap: pretty;
   word-break: keep-all;
 }
 
-.newsListCopy .newsCta {
-  margin-top: 10px;
+.newsRowIcon {
+  color: rgba(0, 0, 0, 0.42);
+  height: 18px;
+  transition:
+    color 160ms var(--page-ease-out),
+    transform 160ms var(--page-ease-out);
+  width: 18px;
+}
+
+.newsMore {
+  display: flex;
+  justify-content: center;
+  margin-top: 34px;
+}
+
+.newsMoreLink {
+  align-items: center;
+  color: var(--page-blue-dark);
+  display: inline-flex;
+  font-size: var(--type-label);
+  font-weight: var(--weight-medium);
+  gap: 8px;
+  justify-content: center;
+  line-height: var(--line-label);
+  min-height: 44px;
+  padding-inline: 10px;
+  text-decoration: none;
+  transition:
+    color 160ms var(--page-ease-out),
+    transform 160ms var(--page-ease-out);
+}
+
+.newsMoreLink svg {
+  height: 17px;
+  width: 17px;
 }
 
 .newsLeadLink:focus-visible,
-.newsListLink:focus-visible {
+.newsListLink:focus-visible,
+.newsMoreLink:focus-visible {
   outline: 2px solid var(--page-blue);
   outline-offset: 4px;
+}
+
+.newsMoreLink:active {
+  transform: scale(0.97);
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -1308,6 +1351,15 @@
   .newsLeadLink:hover h3,
   .newsListLink:hover h3 {
     color: var(--page-blue-dark);
+  }
+
+  .newsListLink:hover .newsRowIcon {
+    color: var(--page-blue-dark);
+    transform: translateX(2px);
+  }
+
+  .newsMoreLink:hover {
+    color: var(--page-blue);
   }
 }
 
@@ -1580,7 +1632,7 @@
   }
 
   .newsListLink {
-    grid-template-columns: 180px minmax(0, 1fr);
+    grid-template-columns: 180px minmax(0, 1fr) 18px;
   }
 
   .newsLeadCopy {
@@ -1991,7 +2043,7 @@
 
   .newsListLink {
     gap: 14px;
-    grid-template-columns: 112px minmax(0, 1fr);
+    grid-template-columns: 112px minmax(0, 1fr) 18px;
   }
 
   .newsListCopy h3 {
@@ -1999,8 +2051,8 @@
     line-height: var(--line-body);
   }
 
-  .newsListCopy .newsCta {
-    margin-top: 8px;
+  .newsMore {
+    margin-top: 28px;
   }
 
   .faqList summary {

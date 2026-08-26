@@ -14,14 +14,14 @@ const navItems = {
     { label: "제품", href: "/product" },
     { label: "원료소개", href: "/ingredients" },
     { label: "도입 지점", href: "/locations" },
-    { label: "소식", href: "/#news" },
+    { label: "소식", href: "/news" },
     { label: "고객지원", href: "/support" },
   ],
   en: [
     { label: "Product", href: "/en/product" },
     { label: "Ingredients", href: "/en/ingredients" },
     { label: "Locations", href: "/en/locations" },
-    { label: "News", href: "/en#news" },
+    { label: "News", href: "/en/news" },
     { label: "Support", href: "/en/support" },
   ],
 };
@@ -63,6 +63,7 @@ export function VrinkHeader({ locale = "ko", variant = "overlay" }: VrinkHeaderP
       if (pathname === "/business") return "/en/business";
       if (pathname === "/ingredients") return "/en/ingredients";
       if (pathname === "/locations") return "/en/locations";
+      if (pathname === "/news") return "/en/news";
       if (pathname === "/support") return "/en/support";
       if (pathname === "/inquiry") return "/en/inquiry";
       if (pathname === "/privacy") return "/en/privacy";
@@ -77,6 +78,7 @@ export function VrinkHeader({ locale = "ko", variant = "overlay" }: VrinkHeaderP
     if (pathname === "/en/business") return "/business";
     if (pathname === "/en/ingredients") return "/ingredients";
     if (pathname === "/en/locations") return "/locations";
+    if (pathname === "/en/news") return "/news";
     if (pathname === "/en/support") return "/support";
     if (pathname === "/en/inquiry") return "/inquiry";
     if (pathname === "/en/privacy") return "/privacy";
