@@ -1363,6 +1363,26 @@
   }
 }
 
+@media (min-width: 981px) {
+  .newsLayout {
+    align-items: stretch;
+    grid-template-columns: minmax(0, 1.45fr) minmax(420px, 1fr);
+  }
+
+  .newsLeadImage img {
+    transform: scale(1.015);
+  }
+
+  .newsList {
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+  }
+
+  .newsListItem {
+    display: grid;
+    padding: 0;
+  }
+}
+
 .faqList {
   margin: 0 auto;
   max-width: 900px;
