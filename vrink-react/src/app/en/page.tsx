@@ -9,6 +9,7 @@ import { VrinkFooter } from "@/components/layout/vrink-footer";
 import { VrinkHeader } from "@/components/layout/vrink-header";
 import { FloatingThinkingOrb } from "@/components/motion/floating-thinking-orb";
 import { ScrollReveal } from "@/components/motion/scroll-reveal";
+import { IntroOfferModal } from "@/components/promotions/intro-offer-modal";
 import { LifestyleShowcase } from "@/components/sections/lifestyle-showcase";
 import { ManufacturingStory } from "@/components/sections/manufacturing-story";
 import { PartnerLogoMarquee } from "@/components/sections/partner-logo-marquee";
@@ -204,6 +205,7 @@ export default function EnglishPage() {
   return (
     <main className={styles.page}>
       <VrinkHeader locale="en" variant="overlay" />
+      <IntroOfferModal locale="en" />
 
       <section className={styles.hero}>
         <div className={styles.heroCopy}>
