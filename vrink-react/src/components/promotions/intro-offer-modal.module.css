@@ -70,19 +70,19 @@
   font-size: var(--type-label);
   font-weight: var(--weight-regular);
   line-height: var(--line-label);
-  margin: 0 0 24px;
+  margin: 0 0 16px;
   word-break: keep-all;
 }
 
 .darkPanel h2 {
-  background: var(--brand-ink);
-  color: #ffffff;
+  background: transparent;
+  color: var(--brand-ink);
   font-size: var(--type-display);
   font-weight: var(--weight-semibold);
   line-height: var(--line-display);
-  margin: 0 -24px;
+  margin: 0;
   max-width: none;
-  padding: 40px 24px 30px;
+  padding: 0 0 20px;
   word-break: keep-all;
 }
 
@@ -92,13 +92,13 @@
 
 .lightPanel {
   display: grid;
-  gap: 16px;
-  padding: 28px 24px 26px;
+  gap: 12px;
+  padding: 0 24px 22px;
 }
 
 .offerCopy {
   display: grid;
-  gap: 10px;
+  gap: 8px;
 }
 
 .offerCopy h3 {
@@ -126,7 +126,7 @@
   font-size: var(--type-micro);
   font-weight: var(--weight-regular);
   line-height: var(--line-micro);
-  margin-top: 2px;
+  margin-top: 0;
   word-break: keep-all;
 }
 
@@ -202,23 +202,23 @@
 
   .eyebrow {
     font-size: var(--type-caption);
-    margin-bottom: 20px;
+    margin-bottom: 14px;
   }
 
   .darkPanel h2 {
     font-size: var(--type-display);
     line-height: var(--line-display);
-    margin-inline: -18px;
-    padding: 34px 18px 28px;
+    margin-inline: 0;
+    padding: 0 0 18px;
   }
 
   .lightPanel {
-    gap: 16px;
-    padding: 26px 18px 24px;
+    gap: 12px;
+    padding: 0 18px 22px;
   }
 
   .offerCopy {
-    gap: 12px;
+    gap: 8px;
   }
 
   .offerCopy h3 {
