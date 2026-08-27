@@ -22,19 +22,18 @@
 }
 
 .darkPanel {
-  background: var(--brand-ink);
-  color: #ffffff;
-  min-height: 216px;
-  padding: 44px 24px 34px;
+  background: var(--surface-card);
+  color: var(--brand-ink);
+  padding: 32px 24px 0;
   position: relative;
 }
 
 .closeButton {
   align-items: center;
-  background: rgba(255, 255, 255, 0.12);
+  background: var(--surface-background);
   border: 0;
   border-radius: 50%;
-  color: #ffffff;
+  color: var(--brand-ink);
   cursor: pointer;
   display: inline-flex;
   height: 44px;
@@ -60,21 +59,23 @@
 }
 
 .eyebrow {
-  color: #3182f6;
+  color: var(--brand-primary);
   font-size: var(--type-label);
   font-weight: var(--weight-regular);
   line-height: var(--line-label);
-  margin: 0 0 18px;
+  margin: 0 0 24px;
   word-break: keep-all;
 }
 
 .darkPanel h2 {
+  background: var(--brand-ink);
   color: #ffffff;
   font-size: var(--type-display);
   font-weight: var(--weight-semibold);
   line-height: var(--line-display);
-  margin: 0;
-  max-width: 440px;
+  margin: 0 -24px;
+  max-width: none;
+  padding: 40px 24px 30px;
   word-break: keep-all;
 }
 
@@ -160,7 +161,7 @@
 
 @media (hover: hover) and (pointer: fine) {
   .closeButton:hover {
-    background: rgba(255, 255, 255, 0.22);
+    background: rgba(0, 0, 0, 0.1);
   }
 
   .primaryAction:hover {
@@ -182,8 +183,7 @@
   }
 
   .darkPanel {
-    min-height: 200px;
-    padding: 52px 18px 30px;
+    padding: 28px 18px 0;
   }
 
   .closeButton {
@@ -195,12 +195,14 @@
 
   .eyebrow {
     font-size: var(--type-caption);
-    margin-bottom: 18px;
+    margin-bottom: 20px;
   }
 
   .darkPanel h2 {
     font-size: var(--type-display);
     line-height: var(--line-display);
+    margin-inline: -18px;
+    padding: 34px 18px 28px;
   }
 
   .lightPanel {
