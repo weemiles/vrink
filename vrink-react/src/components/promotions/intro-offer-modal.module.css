@@ -30,10 +30,9 @@
 
 .closeButton {
   align-items: center;
-  background: var(--surface-background);
+  background: transparent;
   border: 0;
-  border-radius: 50%;
-  color: var(--brand-ink);
+  color: var(--text-muted);
   cursor: pointer;
   display: inline-flex;
   height: 44px;
@@ -42,16 +41,24 @@
   right: 18px;
   top: 18px;
   transition:
-    background 160ms ease,
+    color 160ms ease,
     transform 160ms ease;
   width: 44px;
 }
 
-.closeButton:focus-visible,
 .primaryAction:focus-visible,
 .todayButton:focus-visible {
   box-shadow: 0 0 0 4px rgba(49, 130, 246, 0.28);
   outline: none;
+}
+
+.closeButton:focus-visible {
+  color: var(--brand-ink);
+  outline: none;
+}
+
+.closeButton:focus-visible svg {
+  stroke-width: 2.8;
 }
 
 .closeButton:active {
@@ -161,7 +168,7 @@
 
 @media (hover: hover) and (pointer: fine) {
   .closeButton:hover {
-    background: rgba(0, 0, 0, 0.1);
+    color: var(--brand-primary);
   }
 
   .primaryAction:hover {

@@ -163,7 +163,7 @@ export function IntroOfferModal({ locale = "ko" }: { locale?: Locale } = {}) {
           onClick={() => setIsDismissed(true)}
           type="button"
         >
-          <X aria-hidden="true" size={22} strokeWidth={2.4} />
+          <X aria-hidden="true" size={18} strokeWidth={2.2} />
         </button>
         <p className={styles.eyebrow}>{t.eyebrow}</p>
         <h2 id="intro-offer-title">
