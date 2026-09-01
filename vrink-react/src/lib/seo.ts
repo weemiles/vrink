@@ -17,6 +17,7 @@ export function organizationJsonLd() {
     logo: `${base}/images/vrink/brand/vrink-circle-logo.png`,
     description: siteConfig.description,
     email: siteConfig.contactEmail,
+    telephone: siteConfig.contactPhone,
     address: {
       "@type": "PostalAddress",
       streetAddress: "동남로406번길 46",
