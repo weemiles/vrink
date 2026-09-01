@@ -200,9 +200,9 @@ export default function HomePage() {
       <section className={styles.hero}>
         <div className={styles.heroCopy}>
           <p>브링크 제로스테이션</p>
-          <h1>15초 만에 고르는 우리 공간의 한 잔.</h1>
+          <h1>브링크, 15초 만에 고르는 맞춤 음료.</h1>
           <span>
-            5종 기능샷과 맛, 농도, 탄산을 조합해 오피스, 피트니스, 병원, 행사장에 맞게 제공합니다.
+            브링크(VRINK)는 5종 기능샷과 맛, 농도, 탄산을 조합해 오피스, 피트니스, 병원, 행사장에 맞는 한 잔을 제공합니다.
           </span>
           <div className={styles.heroActions}>
             <Link href="/product" className={styles.primaryButton}>제품 보기</Link>
