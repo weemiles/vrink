@@ -16,7 +16,7 @@ import { PartnerLogoMarquee } from "@/components/sections/partner-logo-marquee";
 import { ShotNutritionSection } from "@/components/sections/shot-nutrition-section";
 import { getNewsItems } from "@/content/news";
 import { withBasePath } from "@/lib/static-export";
-import { buildMetadata } from "@/lib/seo";
+import { buildMetadata, productJsonLd } from "@/lib/seo";
 
 import { ExpertReviewBackgroundVideo } from "../detail/expert-review-background-video";
 import { ExpertReviewMoreModal } from "../detail/expert-review-more-modal";
@@ -204,6 +204,11 @@ const newsItems = getNewsItems("en");
 export default function EnglishPage() {
   return (
     <main className={styles.page}>
+      <script
+        id="vrink-zero-station-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd("en")) }}
+      />
       <VrinkHeader locale="en" variant="overlay" />
       <IntroOfferModal locale="en" />
 

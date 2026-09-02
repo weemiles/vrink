@@ -21,7 +21,7 @@ export default function EnglishLocationsPage() {
 
       <section className={styles.mapSection} aria-labelledby="locations-heading">
         <div className={styles.sectionHeader}>
-          <h2 id="locations-heading">Find a nearby VRINK installation location.</h2>
+          <h1 id="locations-heading">Find a nearby VRINK installation location.</h1>
           <span>Select 1 location to see it on the map right away.</span>
         </div>
         <LocationExplorer locale="en" />
