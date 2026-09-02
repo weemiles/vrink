@@ -18,6 +18,19 @@ export function organizationJsonLd() {
     description: siteConfig.description,
     email: siteConfig.contactEmail,
     telephone: siteConfig.contactPhone,
+    identifier: {
+      "@type": "PropertyValue",
+      propertyID: "KR Business Registration Number",
+      value: siteConfig.business.registrationNumber,
+    },
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "customer service",
+      telephone: siteConfig.contactPhone,
+      email: siteConfig.contactEmail,
+      areaServed: "KR",
+      availableLanguage: ["Korean", "English"],
+    },
     address: {
       "@type": "PostalAddress",
       streetAddress: "동남로406번길 46",
@@ -26,6 +39,54 @@ export function organizationJsonLd() {
       addressCountry: "KR",
     },
     sameAs: [`https://www.instagram.com/${instagramHandle}`],
+  };
+}
+
+export function productJsonLd(locale: "ko" | "en" = "ko") {
+  const base = siteConfig.baseUrl.replace(/\/$/, "");
+  const isEnglish = locale === "en";
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "@id": `${base}/product#zero-station`,
+    name: isEnglish ? "VRINK Zero Station" : "브링크 제로스테이션",
+    alternateName: isEnglish ? "브링크 제로스테이션" : "VRINK Zero Station",
+    description: isEnglish
+      ? "VRINK Zero Station is a smart wellness drink dispenser with an average 15-second serving flow and five functional shots."
+      : "브링크 제로스테이션은 평균 15초 제조 흐름과 5종 기능샷을 제공하는 스마트 웰니스 음료 디스펜서입니다.",
+    url: `${base}${isEnglish ? "/en/product" : "/product"}`,
+    image: `${base}/images/vrink/apple/vrink-product-front.png`,
+    category: isEnglish ? "Smart wellness drink dispenser" : "스마트 웰니스 음료 디스펜서",
+    brand: {
+      "@type": "Brand",
+      name: "브링크",
+      alternateName: "VRINK",
+    },
+    manufacturer: {
+      "@id": `${base}/#organization`,
+    },
+    countryOfOrigin: {
+      "@type": "Country",
+      name: isEnglish ? "South Korea" : "대한민국",
+    },
+    additionalProperty: [
+      {
+        "@type": "PropertyValue",
+        name: isEnglish ? "Average serving time" : "평균 제조 시간",
+        value: isEnglish ? "About 15 seconds per 350ml cup" : "350ml 한 잔 기준 평균 약 15초",
+      },
+      {
+        "@type": "PropertyValue",
+        name: isEnglish ? "Functional shots" : "기능샷",
+        value: isEnglish ? "5 options" : "5종",
+      },
+      {
+        "@type": "PropertyValue",
+        name: isEnglish ? "Operation" : "운영",
+        value: isEnglish ? "24-hour operation available" : "24시간 운영 가능",
+      },
+    ],
   };
 }
 
@@ -65,6 +126,13 @@ export function buildMetadata({
   const fullTitle = title ? `${title} | ${siteConfig.name}` : siteConfig.title;
   const fullDescription = description ?? siteConfig.description;
   const canonical = new URL(canonicalPath, metadataBase.origin).toString();
+  const koreanPath = locale === "en" ? path.replace(/^\/en(?=\/|$)/, "") || "/" : path;
+  const englishPath = locale === "en" ? path : path === "/" ? "/en" : `/en${path}`;
+  const localizedUrl = (localizedPath: string) =>
+    new URL(
+      `${basePath}${localizedPath === "/" ? "/" : localizedPath}`,
+      metadataBase.origin,
+    ).toString();
   const heroImageUrl = new URL(
     `${basePath}/images/vrink/apple/vrink-hero-still.jpg`,
     metadataBase.origin,
@@ -76,6 +144,11 @@ export function buildMetadata({
     description: fullDescription,
     alternates: {
       canonical,
+      languages: {
+        "ko-KR": localizedUrl(koreanPath),
+        "en-US": localizedUrl(englishPath),
+        "x-default": localizedUrl(koreanPath),
+      },
     },
     robots: {
       index: true,

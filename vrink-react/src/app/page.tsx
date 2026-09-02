@@ -14,6 +14,7 @@ import { ManufacturingStory } from "@/components/sections/manufacturing-story";
 import { PartnerLogoMarquee } from "@/components/sections/partner-logo-marquee";
 import { ShotNutritionSection } from "@/components/sections/shot-nutrition-section";
 import { getNewsItems } from "@/content/news";
+import { productJsonLd } from "@/lib/seo";
 import { withBasePath } from "@/lib/static-export";
 
 import { ExpertReviewBackgroundVideo } from "./detail/expert-review-background-video";
@@ -194,6 +195,11 @@ const newsItems = getNewsItems("ko");
 export default function HomePage() {
   return (
     <main className={styles.page}>
+      <script
+        id="vrink-zero-station-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd()) }}
+      />
       <VrinkHeader variant="overlay" />
       <IntroOfferModal />
 

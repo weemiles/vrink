@@ -5,7 +5,7 @@ import { ArrowRight, Headphones, ShieldCheck, Wrench } from "lucide-react";
 
 import { VrinkFooter } from "@/components/layout/vrink-footer";
 import { VrinkHeader } from "@/components/layout/vrink-header";
-import { buildMetadata } from "@/lib/seo";
+import { buildMetadata, productJsonLd } from "@/lib/seo";
 import { withBasePath } from "@/lib/static-export";
 
 import styles from "../../product/page.module.css";
@@ -252,6 +252,11 @@ const finalHighlights = [
 export default function EnglishProductPage() {
   return (
     <main className={styles.page}>
+      <script
+        id="vrink-zero-station-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd("en")) }}
+      />
       <VrinkHeader locale="en" />
 
       <section className={styles.hero}>

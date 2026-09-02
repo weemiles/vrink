@@ -20,7 +20,7 @@ export default function LocationsPage() {
 
       <section className={styles.mapSection} aria-labelledby="locations-heading">
         <div className={styles.sectionHeader}>
-          <h2 id="locations-heading">가까운 브링크 설치 지점을 찾아보세요.</h2>
+          <h1 id="locations-heading">가까운 브링크 설치 지점을 찾아보세요.</h1>
           <span>지점 1곳을 선택하면 지도에서 바로 위치를 확인할 수 있습니다.</span>
         </div>
         <LocationExplorer />
