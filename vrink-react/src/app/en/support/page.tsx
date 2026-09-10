@@ -77,6 +77,10 @@ const faqGroups = [
     title: "Shots & drinks",
     items: [
       [
+        "I see something that looks like a foreign particle in my drink. What is it?",
+        "VRINK uses fruit juice-based concentrates, so naturally occurring fruit fiber may be visible in your drink. The concentrates we use have passed food safety testing, and this fruit fiber is a natural component of the ingredients.",
+      ],
+      [
         "How are shots and flavors selected?",
         "We recommend combinations of Booster, Vitamin, Relax, Cutting, and Amino shots with flavors based on the purpose of the space and user preference.",
       ],
